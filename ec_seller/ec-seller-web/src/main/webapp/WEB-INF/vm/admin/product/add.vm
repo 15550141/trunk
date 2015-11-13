@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>
+	会员管理-基本信息
+</title>
+  <link type="text/css" rel="stylesheet" href="/misc/css/admin.css">
+  <script type="text/javascript" src="/misc/js/jquery-1.2.6.pack.js"></script>
+</head>
+<body>
+    <form id="productForm" name="productForm">
+
+        <div class="box">
+         <!--标题区-->
+               <div class="title">
+    商品池管理-添加
+               </div>
+         <!--表单区-->
+               <div class="panel_form">
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" id="ctl00_CPform_tab_userinfo">
+				<tbody>
+	<tr>
+		<td class="TdLabel"><div align="right">client_id：</div></td>
+		<td width="78%" align="left" colspan="10" class="TdValue">
+			 <input type="text" value="" id="client_id" name="client_id" class="txt"></td>
+		</td>
+	</tr>
+	<tr>
+		<td class="TdLabel"><div align="right">公司名称：</div></td>
+		<td align="left" colspan="10" class="TdValue">
+			<input type="text" value="" id="name" name="name" class="txt"></td>
+        </td>
+	</tr>
+	<tr>
+		<td align="right" class="TdLabel">商品池：</td>
+		<td align="left" colspan="10" class="TdValue">
+			<textarea style="width:500px;height:200px;" id="sku_ids" name="sku_ids"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td class="TdLabel"><div align="right">商品池名称：</div></td>
+		<td align="left" colspan="10" class="TdValue">
+            <input type="text" id="pool_name" name="pool_name" class="txt"></td>
+	</tr>
+	<tr>
+		<td class="TdLabel"><div align="right">页码：</div></td>
+		<td align="left" colspan="10" class="TdValue">
+			<input type="text" id="page_num" name="page_num" class="txt">
+		</td>
+	</tr>
+	<tr>
+		<td align="center" style="height:35px;" class="split1" colspan="11">
+
+		<input type="button" onclick="create();" value="保存修改" class="btn2">
+		
+      </td>
+	</tr>
+	
+</tbody></table>
+    		   </div>
+    	</div>
+	</form>
+	
+	 <script type="text/javascript">
+	 	function create(){
+			jQuery.ajax({
+                type:"POST",
+                url:"/admin/product/create",
+                data:$("#productForm").serialize(),
+                dataType:"json",
+                success:function (data) {
+					if(data.success == true){
+						alert("创建成功！");
+						window.location.href="/admin/product/index";
+					}else{
+						alert(data.resultMessage);
+					}
+                },
+            	error : function() {
+        			alert("请求异常，请检查参数是否输入正确");
+            	}
+            });
+		}
+	 </script>
+	
+</body>
+</html>

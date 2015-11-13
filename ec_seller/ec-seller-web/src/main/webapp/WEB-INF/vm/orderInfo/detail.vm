@@ -1,0 +1,273 @@
+    <div class="box">
+           <div class="title">
+           		商品信息
+           </div>
+		   
+           <div class="panel_form">
+				<table width="100%" cellspacing="0" cellpadding="0" border="0" id="ctl00_CPform_tab_userinfo">
+                	<tr>
+                		<td class="TdLabel"><div align="middle">商品名称</div></td>
+                		<td class="TdLabel"><div align="middle">商品规格</div></td>
+                		<td class="TdLabel"><div align="middle">价格</div></td>
+                		<td class="TdLabel"><div align="middle">商品数量</div></td>
+                		<!-- <td class="TdLabel"><div align="middle">库存状态</div></td> -->
+                		<td class="TdLabel"><div align="middle">小计</div></td>
+                	</tr>
+                	
+                	#foreach($orderDetail in $!orderInfo.orderDetails)
+            			<tr>
+                		<td align="middle" class="TdValue">
+                			$!orderDetail.itemName
+                		</td>
+                		<td align="middle" class="TdValue">
+                			$!orderDetail.salesPropertyName
+                		</td>
+                		<td align="middle" class="TdValue">
+                			$!orderDetail.price
+                		</td>
+                		<td align="middle" class="TdValue">
+                			$!orderDetail.num
+                		</td>
+                		<!-- 
+                			<td align="middle" class="TdValue">
+                				有货
+                			</td>
+                		-->
+                		<td align="middle" class="TdValue">
+                			$!orderDetail.bigDecimalPrice
+                		</td>
+                	</tr>
+                	
+            		#end
+				</table>
+		   </div>
+	</div>
+	
+	<div class="box">
+           <div class="title">
+           		基本信息
+           </div>
+		   
+           <div class="panel_form">
+				<table width="100%" cellspacing="0" cellpadding="0" border="0" id="ctl00_CPform_tab_userinfo">
+                	<tr>
+                		<td class="TdLabel"><div align="right">订单号：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!orderInfo.orderId
+                		</td>
+                	</tr>
+                	<tr>
+                		<td class="TdLabel"><div align="right">订单状态：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			#if($!orderInfo.orderStatus==0)
+		                		新订单
+		                	#end
+		                	#if($!orderInfo.orderStatus==1)
+		                		等待付款
+		                	#end
+		                	#if($!orderInfo.orderStatus==2)
+		                		等待付款确认
+		                	#end
+		                	#if($!orderInfo.orderStatus==3)
+		                		暂停
+		                	#end
+		                	#if($!orderInfo.orderStatus==4)
+		                		店长最终审核
+		                	#end
+		                	#if($!orderInfo.orderStatus==5)
+		                		等待打印
+		                	#end
+		                	#if($!orderInfo.orderStatus==6)
+		                		等待出库
+		                	#end
+		                	#if($!orderInfo.orderStatus==7)
+		                		等待打包
+		                	#end
+		                	#if($!orderInfo.orderStatus==8)
+		                		等待发货
+		                	#end
+		                	#if($!orderInfo.orderStatus==9)
+		                		自提途中
+		                	#end
+		                	#if($!orderInfo.orderStatus==10)
+		                		上门提货
+		                	#end
+		                	#if($!orderInfo.orderStatus==11)
+		                		自提退货
+		                	#end
+		                	#if($!orderInfo.orderStatus==12)
+		                		确认自提
+		                	#end
+		                	#if($!orderInfo.orderStatus==13)
+		                		等待确认收货
+		                	#end
+		                	#if($!orderInfo.orderStatus==714)
+		                		配送退货
+		                	#end
+		                	#if($!orderInfo.orderStatus==15)
+		                		收款确认
+		                	#end
+		                	#if($!orderInfo.orderStatus==16)
+		                		锁定
+		                	#end
+		                	#if($!orderInfo.orderStatus==17)
+		                		等待退款
+		                	#end
+		                	#if($!orderInfo.orderStatus==50)
+		                		订单完成
+		                	#end
+		                	#if($!orderInfo.orderStatus==51)
+		                		已取消订单
+		                	#end
+		                	
+                		</td>
+                	</tr>
+                	<tr>
+                		<td class="TdLabel"><div align="right">客户账号：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!orderInfo.userId
+                		</td>
+                	</tr>
+                	<tr>
+                		<td class="TdLabel"><div align="right">下单时间：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!{dateFormatUtils.format($orderInfo.orderTime)}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td class="TdLabel"><div align="right">期望到达时间：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!orderInfo.hopeArrivalTime
+                		</td>
+                	</tr>
+                	<tr>
+                		<td class="TdLabel"><div align="right">收货人姓名：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!orderInfo.consigneeName
+                		</td>
+                	</tr>
+                	<tr>
+                		<td class="TdLabel"><div align="right">手机号：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!orderInfo.consigneeMobile
+                		</td>
+                	</tr>
+                	<tr>
+                		<td class="TdLabel"><div align="right">收货地址：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!orderInfo.consigneeAddress 
+                		</td>
+                	</tr>
+                	
+                	<tr>
+                		<td class="TdLabel"><div align="right">订单类型：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			#if($!orderInfo.orderType==1)
+		                		在线支付
+		                	#end
+		                	#if($!orderInfo.orderType==2)
+		                		货到付款
+		                	#end
+                		</td>
+                	</tr>
+                	
+                	<!--
+                	<tr>
+                		<td class="TdLabel"><div align="right">支付类型：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			#if($!orderInfo.paymentType==1)
+		                		现金
+		                	#end
+		                	#if($!orderInfo.paymentType==2)
+		                		银行卡
+		                	#end
+		                	#if($!orderInfo.paymentType==3)
+		                		微信支付
+		                	#end
+		                	#if($!orderInfo.paymentType==4)
+		                		支付宝支付
+		                	#end
+                		</td>
+                	</tr>
+                	-->
+                	<tr>
+                		<td class="TdLabel"><div align="right">总订单金额：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!orderInfo.bigDecimalOrderMoney
+                		</td>
+                	</tr>
+                	
+                	<tr>
+                		<td class="TdLabel"><div align="right">总优惠金额：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!orderInfo.bigDecimalDiscountMoney
+                		</td>
+                	</tr>
+                	
+                	<tr>
+                		<td class="TdLabel"><div align="right">优惠明细：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!orderInfo.discountInfo
+                		</td>
+                	</tr>
+                	
+                	<tr>
+                		<td class="TdLabel"><div align="right">订单完成时间：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!{dateFormatUtils.format($orderInfo.finishTime)}
+                		</td>
+                	</tr>
+                	
+                	<tr>
+                		<td class="TdLabel"><div align="right">是否锁定：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			#if($!orderInfo.lockStatus==0)
+		                		未锁定
+		                	#end
+		                	#if($!orderInfo.orderStatus==1)
+		                		已锁定
+		                	#end
+                		</td>
+                	</tr>
+                	<tr>
+                		<td class="TdLabel"><div align="right">锁定原因：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!orderInfo.lockReason
+                		</td>
+                	</tr>
+                	
+				</table>
+		   </div>
+	</div>
+	
+	<!--
+	<div class="box">
+           <div class="title">
+           		财物信息
+           </div>
+		   
+           <div class="panel_form">
+				<table width="100%" cellspacing="0" cellpadding="0" border="0" id="ctl00_CPform_tab_userinfo">
+                	<tr>
+                		<td class="TdLabel"><div align="right">订单总金额：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!orderInfo.getBigDecimalOrderPrice()
+                		</td>
+                	</tr>
+                	<tr>
+                		<td class="TdLabel"><div align="right">已支付金额：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!orderInfo.payMoney
+                		</td>
+                	</tr>
+                	<tr>
+                		<td class="TdLabel"><div align="right">剩余支付金额：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			#set($surplus=$!orderInfo.getBigDecimalOrderPrice() - $!orderInfo.payMoney)
+                			$!surplus
+                		</td>
+                	</tr>
+				</table>
+		   </div>
+	</div>
+	-->

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+	default-autowire="byName">
+	<!-- 要调用的工作类 start -->
+	<bean id="workerJob" class="com.ec.seller.web.work.Worker" />
+	<!-- 要调用的工作类 end-->
+	<!-- 定义调用对象和调用对象的方法 start -->
+	<bean id="onSheftTask"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="false" />
+		<property name="targetObject">
+			<ref bean="workerJob" />
+		</property>
+		<property name="targetMethod">
+			<value>onSheft</value>
+		</property>
+	</bean>
+	<bean id="offSheftTask"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="false" />
+		<property name="targetObject">
+			<ref bean="workerJob" />
+		</property>
+		<property name="targetMethod">
+			<value>offSheft</value>
+		</property>
+	</bean>
+		<bean id="startPromotionTask"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="false" />
+		<property name="targetObject">
+			<ref bean="workerJob" />
+		</property>
+		<property name="targetMethod">
+			<value>startPromotion</value>
+		</property>
+	</bean>
+	<bean id="stopPromotionTask"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="false" />
+		<property name="targetObject">
+			<ref bean="workerJob" />
+		</property>
+		<property name="targetMethod">
+			<value>stopPromotion</value>
+		</property>
+	</bean>
+	<bean id="sendSmsTask"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="false" />
+		<property name="targetObject">
+			<ref bean="workerJob" />
+		</property>
+		<property name="targetMethod">
+			<value>sendSms</value>
+		</property>
+	</bean>
+	<!-- 定义调用对象和调用对象的方法 end -->
+	<!-- 定义触发时间 start -->
+	<bean id="onSheftDoTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="onSheftTask" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0/1 * * * ?</value>
+		</property>
+	</bean>
+	<bean id="offSheftDoTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="offSheftTask" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0/10 * * * ?</value>
+		</property>
+	</bean>
+	<bean id="startPromotionDoTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="startPromotionTask" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0/10 * * * ?</value>
+		</property>
+	</bean>
+	<bean id="stopPromotionDoTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="stopPromotionTask" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0/10 * * * ?</value>
+		</property>
+	</bean>
+	<bean id="sendSmsDoTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="sendSmsTask" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0/1 * * * ?</value>
+		</property>
+	</bean>
+	<!-- 定义触发时间 end -->
+	<!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 -->
+	<bean id="startQuertz" lazy-init="false" autowire="no"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+			      <!-- <ref bean="onSheftDoTime" /> 
+				   <ref bean="offSheftDoTime" />
+				  <ref bean="startPromotionDoTime" />
+				  <ref bean="stopPromotionDoTime" />
+				  <ref bean="sendSmsDoTime" /> -->
+			</list>
+		</property>
+	</bean>
+</beans>

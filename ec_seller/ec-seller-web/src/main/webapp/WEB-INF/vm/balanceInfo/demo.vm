@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>商家管理平台</title>
+	<link rel="stylesheet" type="text/css" href="/misc/easyui/themes/default/easyui.css">
+	<script type="text/javascript" src="/misc/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="/misc/easyui/jquery.easyui.min.js"></script>
+</head>
+<body class="easyui-layout">
+	<div data-options="region:'north',border:false" style="background:#B3DFDA;padding:5px">
+		<div style="padding-left:100px;height:40px;"> 
+			<div style="float:left;padding-top:5px;font-size:25px;font-weight:bold;">商家管理平台</div>
+			<div style="float:right;padding-top:10px;"><a href="javascript:voi(0);">注销</a></div>
+		</div>
+	</div>
+	<div data-options="region:'west',split:true,title:'菜单'" style="width:150px;padding:10px;">
+		<ul class="easyui-tree" id="leftTree" data-options="lines:false">
+			<li>
+				<span>商品管理</span>
+				<ul>
+        			<li data-options="attributes:{url:'/item/addPro'}">属性管理</li>
+        			<li data-options="attributes:{url:'/product/detail'}">发布供应新品</li>
+        			<li data-options="attributes:{url:'/product/preSaleProduct'}">待售商品管理</li>
+        			<li data-options="attributes:{url:'/product/onSaleProduct'}">在售商品管理</li>
+        			<li data-options="attributes:{url:'/product/stopSaleProduct'}">下架商品管理</li>
+                </ul>
+            </li>
+            
+            <li>
+				<span>促销管理</span>
+				<ul>
+        			<li data-options="attributes:{url:'/promotion/singleItemPromotion'}">单品促销</li>
+        			<li data-options="attributes:{url:'/promotion/productPlacePromotion'}">产地特供促销</li>
+        			<li data-options="attributes:{url:'/promotion/plannedPromotion'}">待审核促销列表</li>
+        			<li data-options="attributes:{url:'/promotion/examinedPromotion'}">待上线促销列表</li>
+        			<li data-options="attributes:{url:'/promotion/ongoingPromotion'}">上线促销列表</li>
+        			<li data-options="attributes:{url:'/promotion/stoppedPromotion'}">下线促销列表</li>
+        			<li data-options="attributes:{url:'/promotion/rejectPromotion'}">驳回促销列表</li>
+                </ul>
+            </li>
+            
+            <li>
+				<span>订单管理</span>
+				<ul>
+        			<li data-options="attributes:{url:'/orderInfo/index'}">订单管理</li>
+                </ul>
+            </li>
+            <li>
+				<span>结算管理</span>
+				<ul>
+        			<li data-options="attributes:{url:'/balanceInfo/index2'}">结算管理</li>
+        			<li data-options="attributes:{url:'/user/showBank'}">银行账号验证</li>
+                </ul>
+            </li>
+		</ul>
+	</div>
+	<div data-options="region:'center'">
+		<div id="tt" class="easyui-tabs" height="26px;" fit="true" >
+			<div title="welcome" href="">
+				欢迎来到商家管理平台
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+			$(function(){
+				$('#leftTree').tree({
+                	onClick: function(node){
+                		if(node.attributes){
+                			var title = node.text;
+                			var tt = $('#tt');
+                			 
+					        if (tt.tabs('exists', title)){//如果tab已经存在,则选中并刷新该tab          
+					            tt.tabs('close', title);
+					        }
+					        var url = node.attributes.url;
+				            $('#tt').tabs('add',{
+								title:title,
+								content:'<iframe scrolling="yes" frameborder="0" src="'+url+'" style="width:100%;height:98%;"></iframe>',
+								closable:true
+							});
+                		}
+                	}
+                });
+			});
+		</script>
+</body>
+</html>

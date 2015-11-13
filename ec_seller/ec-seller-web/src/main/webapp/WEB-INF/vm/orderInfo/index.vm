@@ -1,0 +1,375 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    	<meta http-equiv="expires" content="0" />
+        <title>订单管理页面</title>
+        <script language="javascript" src="/js/jquery-1.6.2.min.js"></script>
+		<script language="javascript" src="/js/jquery.simplemodal.js"></script>
+		<script language="javascript" src="/My97DatePicker/WdatePicker.js"></script> 
+		
+		<link type="text/css" rel="stylesheet" href="/misc/css/admin.css">
+		<link type='text/css' rel="stylesheet" href='/misc/css/basic1.css'/>
+</head>
+<body>
+<!--盒子开始-->
+<form id="f1" name="f1" method="post">
+<div class="box"> 
+    <!--标题区开始-->
+    <div class="title">
+        <div class="left">
+            <div class="title_gl">订单管理</div>
+            <div class="title_fbt"></div>
+            <div class="bh"></div>
+        </div>
+    </div>
+    <!--标题区结束-->
+    <!--查询区开始-->
+    
+    <div class="panel_search">
+    	<table border="0" cellpadding="0" cellspacing="2">
+            <tr>
+                <td align="right" style="width:100px">
+                	订单编号：
+                </td>
+                <td align="left" style="width:100px">
+					<input type="text" name="orderId" maxlength="30" id="orderId" value="$!{query.orderId}"/>
+				</td>
+				<td align="right" style="width:100px">
+                	下单时间：
+                </td>
+                 <td align="left" style="width:250px">
+                	<input type="text" id="startTime" name="startTime" value="$!{dateFormatUtils.format($!query.startTime)}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />至
+                	<input type="text" id="endTime" name="endTime" value="$!{dateFormatUtils.format($!query.endTime)}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+				</td>
+            </tr>
+			 <tr>
+			   <td align="right" style="width:100px">
+                	订单类型：
+                </td>
+                <td align="left" style="width:100px">
+					<select name="orderType" id="orderType" style="width: 130px">
+						<option value="">全部</option>
+						<option #if($!query.orderType==1)selected="selected"#end value="1">在线支付</option>
+						<option #if($!query.orderType==2)selected="selected"#end value="2">货到付款</option>
+					</select>
+				</td>
+				<td align="right" style="width:100px">
+                	订单金额：
+                </td>
+                <td align="left" style="width:250px">
+                	<input type="text" id="priceStart" name="priceStart" value="$!query.priceStart" />至
+                	<input type="text" id="priceEnd" name="priceEnd" value="$!query.priceEnd" />
+				</td>
+            </tr>
+            <tr>
+            	<td align="right" style="width:100px">
+                	买家用户名：
+                </td>
+                <td align="left" style="width:100px">
+					<input type="text" name="consigneeName" maxlength="30" id="consigneeName" value="$!{query.consigneeName}"/>
+				</td>
+				<td align="right" style="width:100px">
+                	订单状态：
+                </td>
+				<td>
+					<select name="orderStatus" id="orderStatus" style="width: 130px">
+						<option value="">全部</option>
+						<option #if($!query.orderStatus==8)selected="selected"#end value="8">等待发货</option>
+						<option #if($!query.orderStatus==13)selected="selected"#end value="13">等待确认收货</option>
+						<option #if($!query.orderStatus==50)selected="selected"#end value="50">订单完成</option>
+					</select>
+				</td>
+            </tr>
+            <tr>
+            	<td align="right" style="width:100px">
+                </td>
+                <td align="left" style="width:100px">
+				</td>
+				<td></td>
+				<td><input type="submit" value="查询" /></td>
+            </tr>
+			
+        </table>
+    </div>
+    <!--查询区结束--> 
+    <!--列表区开始--><!--
+    <div>
+        <input type="checkbox" name="selectAll" value="checkbox"/> 全选  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" id="query" name="query" value="批量下架"/>
+    </div>
+    --><br />
+    <div class="panel_grid">
+        <table>
+            <tr>
+                <th>订单号</th>
+                <th>商品信息</th> 
+                <th>总订单金额</th>
+                <th>订单类型</th> 
+                <th>买家姓名</th>
+                <th>下单时间</th>
+                <th>期望到达时间时间</th>
+                <th>当前状态</th> 
+				<th>操作</th>
+            </tr>
+            
+            #foreach($orderInfo in $list)
+			<tr>
+                <td>$!orderInfo.orderId</td>
+                <td>
+            		#foreach($orderDetail in $!orderInfo.orderDetails)
+            			商品名称：$!orderDetail.itemName &nbsp;&nbsp;
+            			$!orderDetail.salesPropertyName &nbsp;&nbsp;
+            			单价：$!orderDetail.bigDecimalPrice &nbsp;&nbsp;
+            			数量：$!orderDetail.num<br />
+            		#end
+                </td> 
+                <td>
+                	$!orderInfo.getBigDecimalOrderMoney()
+                </td>
+                <td>
+                	#if($!orderInfo.orderType==1)
+                		在线支付
+                	#end
+                	#if($!orderInfo.orderType==2)
+                		货到付款
+                	#end
+                </td> 
+                 
+                <td>$!orderInfo.consigneeName</td>
+                <td>$!{dateFormatUtils.format($orderInfo.orderTime)}</td>
+                <td>$!orderInfo.hopeArrivalTime</td>
+                <td>
+                	#if($!orderInfo.orderStatus==0)
+                		新订单
+                	#end
+                	#if($!orderInfo.orderStatus==1)
+                		等待付款
+                	#end
+                	#if($!orderInfo.orderStatus==2)
+                		等待付款确认
+                	#end
+                	#if($!orderInfo.orderStatus==3)
+                		暂停
+                	#end
+                	#if($!orderInfo.orderStatus==4)
+                		店长最终审核
+                	#end
+                	#if($!orderInfo.orderStatus==5)
+                		等待打印
+                	#end
+                	#if($!orderInfo.orderStatus==6)
+                		等待出库
+                	#end
+                	#if($!orderInfo.orderStatus==7)
+                		等待打包
+                	#end
+                	#if($!orderInfo.orderStatus==8)
+                		等待发货
+                	#end
+                	#if($!orderInfo.orderStatus==9)
+                		自提途中
+                	#end
+                	#if($!orderInfo.orderStatus==10)
+                		上门提货
+                	#end
+                	#if($!orderInfo.orderStatus==11)
+                		自提退货
+                	#end
+                	#if($!orderInfo.orderStatus==12)
+                		确认自提
+                	#end
+                	#if($!orderInfo.orderStatus==13)
+                		等待确认收货
+                	#end
+                	#if($!orderInfo.orderStatus==714)
+                		配送退货
+                	#end
+                	#if($!orderInfo.orderStatus==15)
+                		收款确认
+                	#end
+                	#if($!orderInfo.orderStatus==16)
+                		锁定
+                	#end
+                	#if($!orderInfo.orderStatus==17)
+                		等待退款
+                	#end
+                	#if($!orderInfo.orderStatus==50)
+                		订单完成
+                	#end
+                	#if($!orderInfo.orderStatus==51)
+                		订单已取消
+                	#end
+                </td>
+				<td>
+					<a href="javascript:void(0);" onClick="detail($!orderInfo.orderId);">【查看详情】</a><br /><br />
+					#if($!orderInfo.lockStatus == 0 && $!orderInfo.orderStatus == 0)
+						<a href="javascript:void(0);" onClick="lockOrder($!orderInfo.orderId);">【锁定】</a><br /><br />
+					#end
+					#if($!orderInfo.lockStatus == 1)
+						<a href="javascript:void(0);" onClick="unLockOrder($!orderInfo.orderId);">【解除锁定】</a><br /><br />
+					#end
+					#if($!orderInfo.orderStatus == 8)
+						<a href="javascript:void(0);" onClick="sendGoods($!orderInfo.orderId);">【确认发货】</a><br /><br />
+					#end
+					#if($!orderInfo.orderStatus == 13)
+						<a href="javascript:void(0);" onclick="doFinish($!orderInfo.orderId);">【确认已收货】</a><br /><br />
+					#end
+					#if($!orderInfo.orderStatus != 50 && $!orderInfo.orderStatus != 51)
+						<a href="javascript:void(0);" onclick="doCancel($!orderInfo.orderId);">【取消订单】</a><br /><br />
+					#end
+				</td>
+            </tr>
+			#end
+        </table>
+        <!--分页控件开始-->
+        <div class="pager">
+        #set($pageModule = $mainModule.getTarget("/orderInfo/index").addQueryData("orderId",$!{query.orderId}).addQueryData("orderType",$!{query.orderType}).addQueryData("priceEnd",$!{query.priceEnd}).addQueryData("priceStart",$!{query.priceStart}).addQueryData("startTime",$!{dateFormatUtils.format($!query.startTime)}).addQueryData("endTime",$!{dateFormatUtils.format($!query.endTime)}).addQueryData("pageSize",$!{dateFormatUtils.format($!query.pageSize)}))
+		#showPage($pageModule $list)
+        </div>
+        <!--分页控件结束--> 
+    </div>
+    <!--列表区结束--> 
+</div>
+<!--盒子结束--> 
+</form>
+<div id="addDialog" style="width: 95%; display:none;">
+			
+</div>	
+
+<script type="text/javascript">
+	function detail(orderId){
+	  jQuery.get("/orderInfo/detail?orderId="+orderId, function(result){
+        $("#addDialog").html(result);
+      });
+  
+		$('#addDialog').modal({
+		});
+		return;
+	};
+	
+	function lockOrder(orderId){
+	  jQuery.get("/orderInfo/lockOrder?orderId="+orderId, function(result){
+        $("#addDialog").html(result);
+      });
+  
+		$('#addDialog').modal({
+		});
+		return;
+	};
+	
+	function doCancel(orderId){
+		if(confirm("请确认是否取消该订单？")){
+			$.ajax({
+				type : "post",
+		    	url : "/orderInfo/doCancel",
+		    	data : "orderId="+orderId,
+		    	contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+		    	dataType: "json", 
+		    	success : function(data) {
+		    		if(data.success){
+		    			alert("取消成功！");
+		    		}else{
+		    			alert(data.message);
+		    		}
+		    		window.location.reload();
+		    	}
+			});
+		}
+	}
+	
+	function doFinish(orderId){
+		if(confirm("请确认订单是否完成？")){
+			$.ajax({
+				type : "post",
+		    	url : "/orderInfo/doFinish",
+		    	data : "orderId="+orderId,
+		    	contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+		    	dataType: "json", 
+		    	success : function(data) {
+		    		if(data.success){
+		    			alert("修改成功！");
+		    		}else{
+		    			alert(data.message);
+		    		}
+		    		window.location.reload();
+		    	}
+			});
+		}
+	}
+	
+	function unLockOrder(orderId){
+		if(confirm("请确认是否需要解锁，解除锁定后订单继续流转。")){
+			$.ajax({
+				type : "post",
+		    	url : "/orderInfo/doUnLock",
+		    	data : "orderId="+orderId,
+		    	contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+		    	dataType: "json", 
+		    	success : function(data) {
+		    		if(data.success){
+		    			alert("修改成功！");
+		    		}else{
+		    			alert(data.message);
+		    		}
+		    		window.location.reload();
+		    	}
+			});
+		}
+	}
+	
+	function sendGoods(orderId){
+		if(confirm("请确保订单已发货？")){
+			$.ajax({
+				type : "post",
+		    	url : "/orderInfo/sendGoods",
+		    	data : "orderId="+orderId,
+		    	contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+		    	dataType: "json", 
+		    	success : function(data) {
+		    		if(data.success){
+		    			alert("发货成功！");
+		    		}else{
+		    			alert(data.message);
+		    		}
+		    		window.location.reload();
+		    	}
+			});
+		}
+	}
+	
+	function confirmGetPrice(orderId){
+	  jQuery.get("/orderInfo/confirmGetPrice?orderId="+orderId, function(result){
+        $("#addDialog").html(result);
+      });
+  
+		$('#addDialog').modal({
+		});
+		return;
+	};
+	
+	function confirmGetLastPrice(orderId){
+	  jQuery.get("/orderInfo/confirmGetLastPrice?orderId="+orderId, function(result){
+        $("#addDialog").html(result);
+      });
+  
+		$('#addDialog').modal({
+		});
+		return;
+	};
+	
+	function entry(orderId){
+	  jQuery.get("/orderInfo/entry?orderId="+orderId, function(result){
+        $("#addDialog").html(result);
+      });
+  
+		$('#addDialog').modal({
+		});
+		return;
+	};
+</script>
+ </body>
+</html>

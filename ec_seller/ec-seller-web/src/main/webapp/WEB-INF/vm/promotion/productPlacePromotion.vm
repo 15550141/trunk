@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    	<meta http-equiv="expires" content="0" />
+        <title>管理页面</title>
+        <link href="/style/erpstyle.css"rel="stylesheet" type="text/css" />
+        <script language="javascript" src="/js/jquery-1.6.2.min.js"></script>
+        <script language="javascript" src="/js/erpstyle1.js"></script>
+        <script language="javascript" src="/js/common.js"></script>
+    </head>
+    <body>
+<!--盒子开始-->
+<form id="f1" name="f1" method="post">
+<div class="box"> 
+    <!--标题区开始-->
+    <div class="title">
+        <div class="left">
+            <div class="title_gl">产地特供促销</div>
+            <div class="title_fbt"></div>
+            <div class="bh"></div>
+        </div>
+    </div>
+    <!--标题区结束-->
+    <!--查询区开始-->
+    <div class="panel_search">
+		<table border="0" cellpadding="0" cellspacing="5">
+    		<tr height="30px">
+    			<td align="right" width="80" >促销名称：</td>
+				<td align="left" >
+                <input type="text" name="promotionName" id="promotionName" value="$!{promotionInfo.promotionName}" />
+    			</td>
+    		</tr>
+            <tr height="30px">
+    			<td align="right">开始时间：</td>
+				<td align="left" >
+                <input type="text" name="startTimeString" id="startTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" value="$!dateFormatUtils.format($!{promotionInfo.startTime},"yyyy-MM-dd HH:mm:ss")" />
+    			<span>结束时间：</span>
+                <input type="text" name="endTimeString" id="endTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" value="$!dateFormatUtils.format($!{promotionInfo.endTime},"yyyy-MM-dd HH:mm:ss")" />
+    			</td>
+    		</tr>
+    	<tr>
+		<td align="right" style="width: 100px">活动发起方：</td>
+		<td align="left" style="width: 400px">
+		<select name="specialProvince" id="specialProvince" style="width: 110px">
+			<option value="1">北京</option>
+			<option value="2">上海</option>
+			<option value="3">天津</option>
+			<option value="4">重庆</option>
+			<option value="5">河北</option>
+			<option value="6">山西</option>
+			<option value="7">河南</option>
+			<option value="8">辽宁</option>
+			<option value="9">吉林</option>
+			<option value="10">黑龙江</option>
+			<option value="11">内蒙古</option>
+			<option value="12">江苏</option>
+			<option value="13">山东</option>
+			<option value="14">安徽</option>
+			<option value="15">浙江</option>
+			<option value="16">福建</option>
+			<option value="17">湖北</option>
+			<option value="18">湖南</option>
+			<option value="19">广东</option>
+			<option value="20">广西</option>
+			<option value="21">江西</option>
+			<option value="22">四川</option>
+			<option value="23">海南</option>
+			<option value="24">贵州</option>
+			<option value="25">云南</option>
+			<option value="26">西藏</option>
+			<option value="27">陕西</option>
+			<option value="28">甘肃</option>
+			<option value="29">青海</option>
+			<option value="30">宁夏</option>
+			<option value="31">新疆</option>
+			<option value="32">台湾</option>
+			<option value="42">香港</option>
+			<option value="43">澳门</option>
+			<option value="84">钓鱼岛</option>
+		</select> <select name="specialCity" id="specialCity" style="width: 110px">
+		</select> <select name="specialCounty" id="specialCounty" style="width: 110px">
+		</select></td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px">活动发起方详情：</td>
+		<td>
+			<input type="text" name="specialAddress" id="specialAddress" value="" style="width: 250px" />
+		</td>
+	</tr>
+    		<tr height="30px">
+    			<td align="right" >促销商品ID：</td>
+				<td align="left" >
+    				<input type="text" name="itemId" id="itemId" value="" style="width:80px;" />
+    				<input type="button" name="addProductBut" id="addProductBut" value="添加商品" />
+    				<input type="button" name="clearProductBut" id="clearProductBut" value="重置商品" />
+    			</td>
+    			<td></td>
+    			<td></td>
+    		</tr>
+    		<tr>
+    			<td></td>
+    			<td>
+    				<span id="itemIdSp"></span>
+    			</td>
+    		</tr>
+    		<!--
+    		
+            <tr height="30px">
+    			<td align="right">商品状态：</td>
+				<td align="left" >
+    				<input type="checkbox" name="promotionId" id="promotionId" value="" checked="true" >仅支持上架商品</input>
+				</td>
+    		</tr>
+			--><tr height="30px">
+    			<td align="right">购买数量：</td>
+				<td align="left">
+					<span>单次最多购买数量</span>
+					<input type="text" name="purchaseNumberMax" id="purchaseNumberMax" value="$!{promotionInfo.purchaseNumberMax}" />
+    				<!--  <input type="checkbox" name="promotionId" id="promotionId" value="promotionId" >不限</input> -->
+				</td>
+    		</tr>
+			<tr height="30px">
+    			<td align="right"> </td>
+				<td align="left" >
+					<span>单次最少购买数量</span>
+					<input type="text" name="purchaseNumberMin" id="purchaseNumberMin" value="$!{promotionInfo.purchaseNumberMin}" />
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					
+				</td>
+    		</tr>
+		</table>
+    </div>
+    <!--查询区结束--> 
+	<p style="text-indent:25px;"><font color="#FF0000">*促销设置完成后该商品编码下新增加的sku不会参与该促销！</font></p>
+    <!--列表区开始-->
+    <div class="panel_grid">
+        <table style="border-collapse: collapse;" id="TH">
+        	<tr style="font-weight: bold;">
+				<th class="tdgoods" style="width: 100px" >商品ID</th>
+				<th class="tdgoods" style="width: 100px">SKU ID</th>
+				<th class="tdgoods" style="width: 100px">供应量</th>
+				<th class="tdgoods" style="width: 100px">状态</th>
+				<th class="tdgoods" style="width: 100px">目前售价(元)</th>
+				<th class="tdgoods" style="width: 100px">直降(元)</th>
+				<th class="tdgoods" style="width: 100px">直降后售价(元)</th>
+			</tr>
+			</table>
+			<table style="border-collapse: collapse;" id="skuPromotionTB">
+        	</table>	
+        	<br/>
+        	<input type="button" name="addPromotionBut" id="addPromotionBut" value="开始促销"  style="position: absolute; left: 50%; width: 100px;"/>
+    </div>
+    <!--列表区结束--> 
+    <input type="hidden" id=promotionType name="promotionType" value="2" />
+</div>
+<!--盒子结束--> 
+</form>
+ <!--  <script language="javascript" src="/My97DatePicker/WdatePicker.js"></script> -->
+ <script language="javascript" src="$assetModule.getTarget("/My97DatePicker/WdatePicker.js")"></script>
+ <script language="javascript" src="$assetModule.getTarget("/js/promotion/promotionJS.js")"></script>
+ </body>
+ </html>

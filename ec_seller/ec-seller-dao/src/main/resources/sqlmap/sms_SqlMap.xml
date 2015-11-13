@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="Sms" >
+  <resultMap id="SmsResult" class="com.ec.seller.domain.Sms" >
+    <result column="id" property="id"  />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="status" property="status"  />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+      <isNotNull prepend="and" property="mobile" >
+        mobile = #mobile:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="content" >
+        content = #content:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="status" >
+        status = #status:INTEGER#
+      </isNotNull>
+    </dynamic>
+  </sql>
+  
+  
+  <insert id="insert" parameterClass="com.ec.seller.domain.Sms" >
+    insert into sms ( mobile, content, status, created, modified)
+    values ( #mobile:VARCHAR#, #content:VARCHAR#, 0,
+      now(),now())
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="id">
+			<![CDATA[SELECT @@IDENTITY AS id ]]>
+	  </selectKey>
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterClass="com.ec.seller.domain.Sms" >
+    update sms set modified = now()
+    <dynamic >
+      <isNotNull prepend="," property="mobile" >
+        mobile = #mobile:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="content" >
+        content = #content:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        status = #status:INTEGER#
+      </isNotNull>
+    </dynamic>
+    where id = #id:INTEGER#
+  </update>
+  
+  <select id="countByCondition" parameterClass="com.ec.seller.domain.query.SmsQuery" resultClass="java.lang.Integer" >
+    select count(1) from sms
+    <include refid="Sms.condition" />
+  </select>
+  
+  
+  <select id="selectByCondition" parameterClass="com.ec.seller.domain.query.SmsQuery" resultMap="SmsResult" >
+    select id,mobile, content, status, created, modified
+     from sms
+    <include refid="Sms.condition" />
+  </select>
+  
+  <select id="selectLastRecordByCondition" parameterClass="com.ec.seller.domain.query.SmsQuery" resultMap="SmsResult" >
+    select id,mobile, content, status, created, modified
+     from sms
+    <include refid="Sms.condition" />
+    order by created desc
+    limit 0,1
+  </select>
+  
+  <select id="selectByConditionForPage" parameterClass="com.ec.seller.domain.query.SmsQuery" resultMap="SmsResult" >
+    select id,mobile, content, status, created, modified
+     from sms
+    <include refid="Sms.condition" />
+    order by id
+  	limit #start#,#pageSize#
+  </select>
+  
+</sqlMap>

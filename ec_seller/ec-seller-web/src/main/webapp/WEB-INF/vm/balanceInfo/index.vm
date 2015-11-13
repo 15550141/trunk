@@ -1,0 +1,130 @@
+		<link rel="stylesheet" type="text/css" href="/misc/easyui/themes/metro/easyui.css">
+		<link rel="stylesheet" type="text/css" href="/misc/easyui/themes/icon.css">
+		<script type="text/javascript" src="/misc/easyui/jquery.min.js"></script>
+		<script type="text/javascript" src="/misc/easyui/jquery.easyui.min.js"></script>
+		
+		<script type="text/javascript">
+			$(function(){
+				$('#data_content').datagrid({
+			    	url:'/balanceInfo/list',
+			    	fitColumns:true,
+			    	method:'GET',
+			    	title:'结算管理',
+			    	pagination:true,
+			    	toolbar:"#toolbar",
+			    	singleSelect:true,
+			   		columns:[[
+			    		{field:'balanceId',title:'结算单号',width:100,sortable:false},
+			    		{field:'balanceDate',title:'结算日期',width:100,formatter:function(value,row,index){  
+                        	var unixTimestamp = new Date(value);  
+                        	return unixTimestamp.toLocaleString();  
+                        }},
+			    		{field:'orderMoneyAll',title:'订单金额（总）',width:100},
+			    		{field:'paymentGoods',title:'货款（总）',width:100},
+			    		{field:'commission',title:'佣金',width:100},
+			    		{field:'balanceMoney',title:'结算金额',width:100},
+			    		{field:'balanceStatus',title:'结算状态',width:100,formatter:function(value,rec){
+			    			if(value == 1){
+			    				return '待审核';
+			    			}
+			    			if(value == 2){
+			    				return '审核通过';
+			    			}
+			    			if(value == 3){
+			    				return '审核驳回';
+			    			}
+			    			if(value == 4){
+			    				return '结算完成';
+			    			}
+			    		}},
+			    		{field:'操作',title:'操作',width:100,formatter:function(value,rec){
+			    			var ret = '<a href="javascript:void(0);" onClick="doFinish()">【确认结算】</a><br />'
+							return ret; 
+			    			}
+			    		}
+			    	]]
+				});
+			})
+		</script>
+		<!-- <table id="data_content" title="企销订单服务中心 - 企销订单管理" data-options="url:'/balanceInfo/list',fitColumns:true,singleSelect:true" toolbar="#toolbar" pagination="true" idField="id" rownumbers="true" fitColumns="true" singleSelect="true"> -->
+		<table id="data_content">
+		</table>
+		<div id="toolbar" style="padding:5px;height:auto">  
+		    <div style="margin-bottom:5px">  
+		        <a href="#" class="easyui-linkbutton" iconCls="icon-add" title="添加" plain="true"></a>  
+		        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" title="修改" plain="true"></a>  
+		        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" title="删除" plain="true"></a>  
+		    </div>  
+		    <div>
+		    	结算状态: 
+		    	<select name="balanceStatus" id="balanceStatus" style="width: 130px">
+					<option value="">全部</option>
+					<option #if($!query.balanceStatus==1)selected="selected"#end value="1">待审核</option>
+					<option #if($!query.balanceStatus==2)selected="selected"#end value="2">审核通过</option>
+					<option #if($!query.balanceStatus==3)selected="selected"#end value="3">审核驳回</option>
+					<option #if($!query.balanceStatus==4)selected="selected"#end value="4">结算完成</option>
+				</select>
+				结算时间： 
+				<input class="easyui-datebox" name="startTime" id="startTime" value="$!{dateFormatUtils.format($!query.startTime, 'MM/dd/yyyy')}" style="width:100px">至<input class="easyui-datebox" name="endTime" id="endTime" value="$!{dateFormatUtils.format($!query.endTime, 'MM/dd/yyyy')}" style="width:100px">
+				结算单号:<input type="text" id="balanceId" name="balanceId" value="$!query.balanceId" /> 
+		        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="query();">Search</a>
+		    </div>  
+		    <div>
+		    	<a href="javascript:void(0);" class="easyui-linkbutton" onclick="detail();" >查看详细信息</a>
+		    </div>
+		</div>
+		
+		<div style="padding-top:220px;">
+        	<div id="w" class="easyui-window" data-options="title:'结算详情',minimizable:false,collapsible:false,closed:true,modal:true" style="width:600px;height:300px;padding:10px;">
+				<div class="easyui-layout" data-options="fit:true">
+					<table id="detail_table" class="easyui-propertygrid" toolbar="#detail_table_tool_bar" style="width:100%;height:100%" data-options="showGroup:false,showHeader:false,scrollbarSize:10"></table>
+					<div id="detail_table_tool_bar">
+						<div>
+					    	<a href="javascript:void(0);" class="easyui-linkbutton" onclick="saveDetail();" >保存</a>
+					    </div>
+					</div>
+				</div>
+			</div>
+        </div>
+        
+		<script type="text/javascript">
+			
+        	//查询
+        	function query(){
+        		$('#data_content').datagrid({
+        			url:'/balanceInfo/list',
+        			pageNumber : 1,
+        			queryParams:{
+        				balanceStatus: $('#balanceStatus').val().trim(),
+        				startTime : $("#startTime").datebox("getValue"),
+        				endTime : $("#endTime").datebox("getValue"),
+						balanceId: $("#balanceId").val()
+        			}
+				});
+        	}
+        	
+        	function detail(){
+        		var row = $("#data_content").datagrid("getSelected");
+        		if(row){
+	    		    $('#detail_table').datagrid({
+					    url:'/balanceInfo/windowDetail?balanceId='+row.balanceId
+				    });
+					    
+	        		$("#w").window("open");
+        		}
+        	}
+        	
+        	function saveDetail(){
+				var param = 'balanceId='+$("#data_content").datagrid("getSelected").balanceId;
+				var rows = $('#detail_table').propertygrid('getChanges');
+				for(var i=0; i<rows.length; i++){
+					param += '&' + rows[i].name + '=' + rows[i].value;
+					if(i < rows.length-1){
+						param += '&';
+					}
+				}
+				alert(param);
+        	}
+        	
+        </script>
+        

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="SellerEntry" >
+  <resultMap id="SellerEntryResult" class="com.ec.seller.domain.SellerEntry" >
+    <result column="payment_id" property="paymentId"  />
+    <result column="order_id" property="orderId"  />
+    <result column="order_pay_type" property="orderPayType"  />
+    <result column="payment_mode" property="paymentMode"  />
+    <result column="payment_money" property="paymentMoney"  />
+    <result column="busi_partner" property="busiPartner" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="orderId" >
+        order_id = #orderId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="orderPayType" >
+        order_pay_type = #orderPayType:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="paymentMode" >
+        payment_mode = #paymentMode:INTEGER#
+      </isNotNull>
+    </dynamic>
+  </sql>
+  
+  <select id="selectByOrderId" resultMap="SellerEntryResult" parameterClass="java.lang.Integer" >
+    select payment_id, order_id, order_pay_type, payment_mode, payment_money, busi_partner, remark, created,
+      modified
+    from seller_entry
+    where order_id = #orderId:INTEGER#
+  </select>
+  
+  <select id="selectSumPayMoneyByCondition" resultClass="int" parameterClass="com.ec.seller.domain.SellerEntry" >
+    select sum(payment_money) 
+    from seller_entry
+    <include refid="SellerEntry.condition" />
+  </select>
+ 
+  <insert id="insert" parameterClass="com.ec.seller.domain.SellerEntry" >
+  	insert into seller_entry ( order_id, order_pay_type, payment_mode, payment_money,
+      busi_partner,remark, created, modified)
+    values (#orderId:INTEGER#, #orderPayType:INTEGER#, #paymentMode:INTEGER#,
+      #paymentMoney:INTEGER#, #busiPartner:VARCHAR#,#remark:VARCHAR#, now(),now())
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="paymentId">
+			<![CDATA[SELECT @@IDENTITY AS payment_id ]]>
+	  </selectKey>
+  </insert>
+  
+
+  <select id="countByCondition" parameterClass="com.ec.seller.domain.query.SellerEntryQuery" resultClass="java.lang.Integer" >
+    select count(1) from seller_entry
+    <include refid="SellerEntry.condition" />
+  </select>
+  
+  <select id="selectByCondition" parameterClass="com.ec.seller.domain.query.SellerEntryQuery" resultMap="SellerEntryResult" >
+    select payment_id, order_id, order_pay_type, payment_mode, payment_money, busi_partner, remark, created,
+      modified
+    from seller_entry
+    <include refid="SellerEntry.condition" />
+  </select>
+  
+  <select id="selectByConditionForPage" parameterClass="com.ec.seller.domain.query.SellerEntryQuery" resultMap="SellerEntryResult" >
+    select payment_id, order_id, order_pay_type, payment_mode, payment_money, busi_partner, remark, created,
+      modified
+    from seller_entry
+    <include refid="SellerEntry.condition" />
+    order by payment_id
+  	limit #start#,#pageSize#
+  </select>
+  
+</sqlMap>

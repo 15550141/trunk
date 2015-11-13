@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName">
+	
+	<!-- 
+	<bean id="demoDao" class="com.jd.sns.vip.dao.impl.DemoDaoImpl">
+		<property name="dataSource" ref="bizApiDynamicMysqlDataSource"></property>
+	</bean>
+	 -->
+	 
+	 <bean id="userDao" class="com.ec.seller.dao.impl.UserDaoImpl">
+	 	<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+	
+	<bean id="userInfoDAO" class="com.ec.seller.dao.impl.UserInfoDAOImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+	
+	<bean id="venderInfoDAO" class="com.ec.seller.dao.impl.VenderInfoDAOImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+	
+	<bean id="promotionDAO" class="com.ec.seller.dao.impl.PromotionDAOImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+	
+	<bean id="categoryDao" class="com.ec.seller.dao.impl.CategoryDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+	
+	<bean id="addressDao" class="com.ec.seller.dao.impl.AddressDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+
+	<bean id="businessUserExtDao" class="com.ec.seller.dao.impl.BusinessUserExtDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+	
+	<bean id="consigneeInfoDao" class="com.ec.seller.dao.impl.ConsigneeInfoDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>	
+	
+	
+	<bean id="itemDao" class="com.ec.seller.dao.impl.ItemDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+	
+	<bean id="itemDescriptionDao" class="com.ec.seller.dao.impl.ItemDescriptionDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>	
+	
+	<bean id="itemImageDao" class="com.ec.seller.dao.impl.ItemImageDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+	
+	<bean id="itemPropertyDao" class="com.ec.seller.dao.impl.ItemPropertyDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>	
+	
+	<bean id="orderInfoDao" class="com.ec.seller.dao.impl.OrderInfoDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+	
+	<bean id="orderShoppingCartDao" class="com.ec.seller.dao.impl.OrderShoppingCartDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>	
+	
+	<bean id="paymentInfoDao" class="com.ec.seller.dao.impl.PaymentInfoDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+	
+	<bean id="promotionInfoDao" class="com.ec.seller.dao.impl.PromotionInfoDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>	
+	
+	<bean id="promotionProductDao" class="com.ec.seller.dao.impl.PromotionProductDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>	
+	
+	<bean id="propertyDao" class="com.ec.seller.dao.impl.PropertyDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+	
+	<bean id="propertyValueDao" class="com.ec.seller.dao.impl.PropertyValueDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>	
+	
+	<bean id="skuDao" class="com.ec.seller.dao.impl.SkuDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+	
+	<bean id="smsDao" class="com.ec.seller.dao.impl.SmsDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+	
+	<bean id="favoritesDao" class="com.ec.seller.dao.impl.FavoritesDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+	
+	<bean id="promotionSkuDao" class="com.ec.seller.dao.impl.PromotionSkuDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+	
+	<bean id="orderDetailDao" class="com.ec.seller.dao.impl.OrderDetailDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+	
+	<bean id="sellerEntryDao" class="com.ec.seller.dao.impl.SellerEntryDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+
+	<bean id="balanceInfoDao" class="com.ec.seller.dao.impl.BalanceInfoDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+	
+</beans>
+

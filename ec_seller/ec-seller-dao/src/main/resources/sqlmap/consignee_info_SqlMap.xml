@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ConsigneeInfo" >
+  <resultMap id="ConsigneeInfoResult" class="com.ec.seller.domain.ConsigneeInfo" >
+    <result column="Consignee_id" property="consigneeId"  />
+    <result column="user_id" property="userId"  />
+    <result column="Consignee_name" property="consigneeName" jdbcType="VARCHAR" />
+    <result column="Consignee_province" property="consigneeProvince"  />
+    <result column="Consignee_city" property="consigneeCity"  />
+    <result column="Consignee_county" property="consigneeCounty"  />
+    <result column="Consignee_address" property="consigneeAddress" jdbcType="VARCHAR" />
+    <result column="Consignee_mobile" property="consigneeMobile" jdbcType="VARCHAR" />
+    <result column="last_time" property="lastTime" jdbcType="TIMESTAMP" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <!-- 查询条件 -->
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="userId" >
+        user_id = #userId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="consigneeName" >
+        Consignee_name = #consigneeName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="consigneeProvince" >
+        Consignee_province = #consigneeProvince:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="consigneeCity" >
+        Consignee_city = #consigneeCity:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="consigneeCounty" >
+        Consignee_county = #consigneeCounty:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="consigneeAddress" >
+        Consignee_address = #consigneeAddress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="consigneeMobile" >
+        Consignee_mobile = #consigneeMobile:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="lastTime" >
+        last_time = #lastTime:TIMESTAMP#
+      </isNotNull>
+
+    </dynamic>
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="ConsigneeInfoResult" parameterClass="java.lang.Integer" >
+    select Consignee_id, user_id, Consignee_name, Consignee_province, Consignee_city,
+      Consignee_county, Consignee_address, Consignee_mobile, last_time, created, modified
+    from consignee_info
+    where Consignee_id = #consigneeId:INTEGER#
+  </select>
+  
+  <select id="selectByUserIdForLastUse" resultMap="ConsigneeInfoResult" parameterClass="java.lang.Integer" >
+    select Consignee_id, user_id, Consignee_name, Consignee_province, Consignee_city,
+      Consignee_county, Consignee_address, Consignee_mobile, last_time, created, modified
+    from consignee_info
+    where user_id = #userId:INTEGER#
+    order by last_time desc
+    limit 0,1
+  </select>
+  
+
+  <insert id="insert" parameterClass="com.ec.seller.domain.ConsigneeInfo" >
+    insert into consignee_info (user_id, Consignee_name, Consignee_province,
+      Consignee_city, Consignee_county, Consignee_address, Consignee_mobile, last_time, created,
+      modified)
+    values (#userId:INTEGER#, #consigneeName:VARCHAR#,
+      #consigneeProvince:INTEGER#, #consigneeCity:INTEGER#, #consigneeCounty:INTEGER#,
+      #consigneeAddress:VARCHAR#, #consigneeMobile:VARCHAR#, now(),
+      now(), now())
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="consigneeId">
+			<![CDATA[SELECT @@IDENTITY AS Consignee_id ]]>
+	  </selectKey>
+  </insert>
+  
+
+  <update id="updateByPrimaryKey" parameterClass="com.ec.seller.domain.ConsigneeInfo" >
+    update consignee_info set modified = now()
+    <dynamic >
+      <isNotNull prepend="," property="userId" >
+        user_id = #userId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="consigneeName" >
+        Consignee_name = #consigneeName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="consigneeProvince" >
+        Consignee_province = #consigneeProvince:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="consigneeCity" >
+        Consignee_city = #consigneeCity:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="consigneeCounty" >
+        Consignee_county = #consigneeCounty:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="consigneeAddress" >
+        Consignee_address = #consigneeAddress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="consigneeMobile" >
+        Consignee_mobile = #consigneeMobile:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastTime" >
+        last_time = #lastTime:TIMESTAMP#
+      </isNotNull>
+    </dynamic>
+    where Consignee_id = #consigneeId:INTEGER#
+  </update>
+  
+  <select id="countByCondition" parameterClass="com.ec.seller.domain.query.ConsigneeInfoQuery" resultClass="java.lang.Integer" >
+    select count(1) from consignee_info
+    <include refid="ConsigneeInfo.condition" />
+  </select>
+  
+  <select id="selectByCondition" parameterClass="com.ec.seller.domain.query.ConsigneeInfoQuery" resultMap="ConsigneeInfoResult" >
+    select Consignee_id, user_id, Consignee_name, Consignee_province, Consignee_city,
+      Consignee_county, Consignee_address, Consignee_mobile, last_time, created, modified
+    from consignee_info
+    <include refid="ConsigneeInfo.condition" />
+    order by last_time desc
+  </select>
+</sqlMap>

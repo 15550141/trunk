@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE sqlMapConfig  PUBLIC "-//iBATIS.com//DTD SQL Map
+Config 2.0/" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+
+    <settings cacheModelsEnabled="false" enhancementEnabled="true"
+              lazyLoadingEnabled="false" errorTracingEnabled="true" maxRequests="1000"
+              maxSessions="300" maxTransactions="300" useStatementNamespaces="true"
+              defaultStatementTimeout="10"/>
+
+
+    <sqlMap resource="sqlmap/user_sqlMap.xml"/>
+    <sqlMap resource="sqlmap/user_info_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/vender_info_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/promotion_info_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/promotion_product_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/address_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/business_user_ext_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/category_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/consignee_info_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/item_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/item_description_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/item_image_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/item_property_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/order_info_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/order_detail_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/order_shopping_cart_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/payment_info_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/property_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/property_value_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/sku_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/sms_SqlMap.xml"/>
+    <sqlMap resource="sqlmap/favorites_SqlMap.xml"/> 
+    <sqlMap resource="sqlmap/promotion_sku_SqlMap.xml"/> 
+    <sqlMap resource="sqlmap/seller_entry_SqlMap.xml"/> 
+    <sqlMap resource="sqlmap/balance_info_SqlMap.xml"/> 
+    
+</sqlMapConfig>

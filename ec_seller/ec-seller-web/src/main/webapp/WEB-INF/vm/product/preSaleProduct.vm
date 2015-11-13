@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    	<meta http-equiv="expires" content="0" />
+        <title>管理页面</title>
+        <link href="/style/erpstyle.css"rel="stylesheet" type="text/css" />
+        <script language="javascript" src="/js/jquery-1.6.2.min.js"></script>
+        <script language="javascript" src="/js/erpstyle1.js"></script>
+        <script language="javascript" src="/js/common.js"></script>
+    </head>
+    <body>
+    
+<!--盒子开始-->
+<form id="f1" name="f1" method="post">
+<div class="box"> 
+    <!--标题区开始-->
+    <div class="title">
+        <div class="left">
+            <div class="title_gl">待售商品管理</div>
+            <div class="title_fbt"></div>
+            <div class="bh"></div>
+        </div>
+    </div>
+    <!--标题区结束-->
+    <!--查询区开始-->
+    
+    <div class="panel_search">
+        <table border="0" cellpadding="0" cellspacing="2" style="width:900px;">
+            <tr>
+                <td align="right" style="width:100px">
+                	商品ID：
+                </td>
+                <td align="left" style="width:100px">
+					<input type="text" name="itemId" maxlength="30" id="itemId" value="$!{itemQuery.itemId}"/>
+				</td>
+				<td align="right" style="width:100px">
+                	商品名称：
+                </td>
+                <td align="left" style="width:100px">
+					<input type="text" name="itemName" maxlength="30" id="itemName" value="$!{itemQuery.itemName}"/>
+				</td>
+                <td align="right" style="width:80px">商品分类：</td>
+                <td style="width:400px">
+					<select name="categoryId1" id="categoryIdS1" style="width: 80px"> </select>
+                    <select name="categoryId2" id="categoryIdS2" style="width: 80px"> </select>
+                    <select name="categoryId3" id="categoryIdS3" style="width: 80px"> </select>
+                    <select name="categoryId4" id="categoryIdS4" style="width: 80px"> </select>
+                </td>
+                
+            </tr>
+			 <tr>
+                <td align="right">上架时间：</td>
+                <td>
+                    <input type="text" name="onShelfTimeString" id="onShelfTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" value="$!dateFormatUtils.format($!{itemQuery.onShelfTime},"yyyy-MM-dd HH:mm:ss")" />
+                </td>
+				 <td align="right">下架时间：</td>
+				<td>
+                    <input type="text" name="offShelfTimeString" id="offShelfTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" value="$!dateFormatUtils.format($!{itemQuery.offShelfTime},"yyyy-MM-dd HH:mm:ss")" />
+                </td><!--
+                
+                <td align="left">
+                    <select id="skuStatus" name="skuStatus">
+						<option #if($!{sku.skuStatus}==1) selected="selected" #end value="1">全部待售</option>
+						<option #if($!{sku.skuStatus}==2) selected="selected" #end value="2">自主下架</option>
+						<option #if($!{sku.skuStatus}==2) selected="selected" #end value="3">系统下架</option>
+						<option #if($!{sku.skuStatus}==2) selected="selected" #end value="4">从未上架</option>
+                    </select>
+                </td>
+                
+                -->
+                <td></td>
+                <td style="width:400px">
+					<input type="submit" name="query" action="/product/preSaleProduct" method="post" value="查询"/>
+				</td>
+            </tr>
+			
+        </table>
+    </div>
+    <!--查询区结束--> 
+    <!--列表区开始--><!--
+    <div>
+        <input type="checkbox" name="selectAll" value="checkbox"/> 全选-->  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" id="startAllBut" name="startAllBut" value="批量上架"/>
+    </div>
+    <br />
+    <div class="panel_grid">
+        <table>
+            <tr>
+            	<th><input name="chkTable" type="checkbox" id="chkTable" onclick="CheckAll(this.form)" /></th>
+                <th>商品ID</th>
+                <th>商品分类</th>
+                <th>商品图片</th>
+                <th>商品名称</th>
+				<th>价格(元)</th>
+                <th>库存</th>
+                <th>上架时间</th>
+				<th>操作</th>
+            </tr>
+			#foreach($item in $resultMap.itemList)
+            <tr>
+            	<td>
+					<input type="checkbox" name="id" id="$!{item.itemId}" value="$!{item.itemId}" />
+           		</td>
+                <td>$!{item.itemId}</td>
+                <td>$!{item.categoryId1Name} - $!{item.categoryId2Name} - $!{item.categoryId3Name} - $!{item.categoryId4Name}</td>
+               	<td> #if($!{item.itemImage}!="")
+               		<img src="$!{item.itemImage}" width="30" height="30" alt="无图片" />
+               		#else
+               		无图片
+               		#end
+               	</td>
+                <td>$!{item.itemName}</td>
+                <td>$!{item.tbPrice}</td>
+                <td>$!{item.stock}</td>
+				<td>$!dateFormatUtils.format($!{item.onShelfTime},"yyyy-MM-dd HH:mm:ss")</td>
+                <td>
+                    <a href="/product/edit?itemId=$!{item.itemId}">修改</a>
+					<!--  <a href="/product/startSale?itemId=$!{item.itemId}" id="startSale">上架</a> -->
+					<a id="$!{item.itemId}" href="javascript:void(0)" onclick="startSale(this);">上架</a>
+                </td>
+            </tr>
+			#end
+        </table>
+        <!--分页控件开始-->
+        
+        <div class="pager">
+        	#set($pageModule = $mainModule.getTarget("/product/preSaleProduct").addQueryData("itemId",$!{itemQuery.itemId}))
+			#showPage($pageModule $resultMap.itemList)
+        </div>
+        <!--分页控件结束--> 
+    </div>
+    <!--列表区结束--> 
+</div>
+<!--盒子结束--> 
+</form>
+<!--  <script language="javascript" src="/My97DatePicker/WdatePicker.js"></script> -->
+<script language="javascript" src="$assetModule.getTarget("/My97DatePicker/WdatePicker.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/js/product/productJS.js")"></script>
+<script langusge="javascript" >
+//初始化分类
+$(document).ready(function(){
+	jQuery.ajax( {
+		url : "/category/getLevel",
+		type : "post",
+		dataType : "json",
+		data : "level=1",
+		success : function(data) {
+			if (data.msg == "success") {
+				$("#categoryIdS1").empty(); // 清空分类选项
+				$("<option value=''> 全部 </option>").appendTo("#categoryIdS1");
+				var categoryList=data.categoryList;
+				for ( var i = 0; i < categoryList.length; i++) {
+					var category = categoryList[i];
+					
+					$("<option value='" + category.categoryId + "'>" 
+							+ category.categoryName + "</option>").appendTo("#categoryIdS1");
+					//获取二级分类
+					$("#categoryIdS1").change();
+					
+				}
+			} else {
+				alert("无商品一级分类！");
+			}
+		},
+		errot : function() {
+			alert("系统超时！");
+		}
+		});
+
+
+	});
+
+//一级分类联动，获取二级分类
+$("#categoryIdS1").change(
+		function() {
+			$.ajax( {
+				url : "/category/getLevel",
+				type : "post",
+				dataType : "json",
+				data : "level=2&pId="+$("#categoryIdS1").val(),
+				success : function(data) {
+					if (data.msg == "success") {
+						$("#categoryIdS2").empty(); // 清空分类选项
+						$("<option value=''> 全部 </option>").appendTo("#categoryIdS2");
+						var categoryList=data.categoryList;
+						for ( var i = 0; i < categoryList.length; i++) {
+							var category = categoryList[i];
+							
+							$("<option value='" + category.categoryId + "'>" 
+									+ category.categoryName + "</option>").appendTo("#categoryIdS2");
+							
+						}
+
+						$("#categoryIdS2").change();
+
+
+					} else {
+						alert("无二级分类！");
+					}
+				},
+				errot : function() {
+					alert("系统超时！");
+				}
+		});
+});
+
+
+//二级分类联动，获取三级分类
+$("#categoryIdS2").change(
+		function() {
+			$.ajax( {
+				url : "/category/getLevel",
+				type : "post",
+				dataType : "json",
+				data : "level=3&pId="+$("#categoryIdS2").val(),
+				success : function(data) {
+					if (data.msg == "success") {
+						$("#categoryIdS3").empty(); // 清空分类选项
+						$("<option value=''> 全部 </option>").appendTo("#categoryIdS3");
+						var categoryList=data.categoryList;
+						for ( var i = 0; i < categoryList.length; i++) {
+							var category = categoryList[i];
+							
+							$("<option value='" + category.categoryId + "'>" 
+									+ category.categoryName + "</option>").appendTo("#categoryIdS3");
+							
+						}
+						
+						//通过二级分类获取销售属性
+						$("#categoryIdS3").change();
+					} else {
+						alert("无二级分类！");
+					}
+				},
+				errot : function() {
+					alert("系统超时！");
+				}
+		});
+});
+
+//三级分类联动，获取四级分类
+$("#categoryIdS3").change(
+		function() {
+			$.ajax( {
+				url : "/category/getLevel",
+				type : "post",
+				dataType : "json",
+				data : "level=4&pId="+$("#categoryIdS3").val(),
+				success : function(data) {
+					if (data.msg == "success") {
+						$("#categoryIdS4").empty(); // 清空分类选项
+						$("<option value=''> 全部 </option>").appendTo("#categoryIdS4");
+						var categoryList=data.categoryList;
+						for ( var i = 0; i < categoryList.length; i++) {
+							var category = categoryList[i];
+							
+							$("<option value='" + category.categoryId + "'>" 
+									+ category.categoryName + "</option>").appendTo("#categoryIdS4");
+							
+						}
+						
+
+						
+					} else {
+						alert("无二级分类！");
+					}
+				},
+				errot : function() {
+					alert("系统超时！");
+				}
+		});
+});
+</script>
+</body>
+</html>

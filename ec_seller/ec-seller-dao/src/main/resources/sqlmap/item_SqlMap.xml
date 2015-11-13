@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="Item" >
+  <resultMap id="ItemResult" class="com.ec.seller.domain.Item" >
+    <result column="ITEM_ID" property="itemId"  />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="ITEM_TYPE" property="itemType"  />
+    <result column="CATEGORY_ID1" property="categoryId1"  />
+    <result column="CATEGORY_ID2" property="categoryId2"  />
+    <result column="CATEGORY_ID3" property="categoryId3"  />
+    <result column="CATEGORY_ID4" property="categoryId4"  />
+    <result column="VENDER_USER_ID" property="venderUserId"  />
+    <result column="ITEM_STATUS" property="itemStatus"  />
+    <result column="auto_on_shelf_time" property="autoOnShelfTime" jdbcType="TIMESTAMP" />
+    <result column="auto_off_shelf_time" property="autoOffShelfTime" jdbcType="TIMESTAMP" />
+    <result column="ON_SHELF_TIME" property="onShelfTime" jdbcType="TIMESTAMP" />
+    <result column="OFF_SHELF_TIME" property="offShelfTime" jdbcType="TIMESTAMP" />
+    <result column="ITEM_IMAGE" property="itemImage" jdbcType="VARCHAR" />
+    <result column="IF_DEPOSIT" property="ifDeposit"  />
+    <result column="DEPOSIT_RATE" property="depositRate"  />
+    <result column="origin_province" property="originProvince"  />
+    <result column="origin_city" property="originCity"  />
+    <result column="origin_county" property="originCounty"  />
+    <result column="origin_address" property="originAddress" jdbcType="VARCHAR" />
+    <result column="supply_province" property="supplyProvince"  />
+    <result column="supply_city" property="supplyCity"  />
+    <result column="supply_county" property="supplyCounty"  /> 
+    <result column="Weight" property="weight" jdbcType="VARCHAR" />
+    <result column="differ_Weight" property="differWeight" jdbcType="VARCHAR" />
+    <result column="Packing_type" property="packingType"  />
+    <result column="Packing_type_custom" property="packingTypeCustom" jdbcType="VARCHAR" />
+    <result column="length" property="length" jdbcType="VARCHAR" />
+    <result column="Wide" property="wide" jdbcType="VARCHAR" />
+    <result column="High" property="high" jdbcType="VARCHAR" />
+    <result column="sales_property_set" property="salesPropertySet" jdbcType="VARCHAR" />
+    <result column="unit" property="unit"  />
+    <result column="if_have_zjbg" property="ifHaveZjbg"  />
+    <result column="if_have_cprz" property="ifHaveCprz"  />
+    <result column="market_start_time" property="marketStartTime" jdbcType="TIMESTAMP" />
+    <result column="market_end_time" property="marketEndTime" jdbcType="TIMESTAMP" />
+    <result column="YN" property="yn"  />
+    <result column="CREATED" property="created" jdbcType="TIMESTAMP" />
+    <result column="MODIFIED" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+   <resultMap id="ItemQueryResult" class="com.ec.seller.domain.query.ItemQuery" >
+    <result column="ITEM_ID" property="itemId"  />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="ITEM_TYPE" property="itemType"  />
+    <result column="CATEGORY_ID1" property="categoryId1"  />
+    <result column="CATEGORY_ID2" property="categoryId2"  />
+    <result column="CATEGORY_ID3" property="categoryId3"  />
+    <result column="CATEGORY_ID4" property="categoryId4"  />
+    <result column="VENDER_USER_ID" property="venderUserId"  />
+    <result column="ITEM_STATUS" property="itemStatus"  />
+    <result column="auto_on_shelf_time" property="autoOnShelfTime" jdbcType="TIMESTAMP" />
+    <result column="auto_off_shelf_time" property="autoOffShelfTime" jdbcType="TIMESTAMP" />
+    <result column="ON_SHELF_TIME" property="onShelfTime" jdbcType="TIMESTAMP" />
+    <result column="OFF_SHELF_TIME" property="offShelfTime" jdbcType="TIMESTAMP" />
+    <result column="ITEM_IMAGE" property="itemImage" jdbcType="VARCHAR" />
+    <result column="IF_DEPOSIT" property="ifDeposit"  />
+    <result column="DEPOSIT_RATE" property="depositRate"  />
+    <result column="origin_province" property="originProvince"  />
+    <result column="origin_city" property="originCity"  />
+    <result column="origin_county" property="originCounty"  />
+    <result column="origin_address" property="originAddress" jdbcType="VARCHAR" />
+    <result column="supply_province" property="supplyProvince"  />
+    <result column="supply_city" property="supplyCity"  />
+    <result column="supply_county" property="supplyCounty"  /> 
+    <result column="Weight" property="weight" jdbcType="VARCHAR" />
+    <result column="differ_Weight" property="differWeight" jdbcType="VARCHAR" />
+    <result column="Packing_type" property="packingType"  />
+    <result column="Packing_type_custom" property="packingTypeCustom" jdbcType="VARCHAR" />
+    <result column="length" property="length" jdbcType="VARCHAR" />
+    <result column="Wide" property="wide" jdbcType="VARCHAR" />
+    <result column="High" property="high" jdbcType="VARCHAR" />
+    <result column="sales_property_set" property="salesPropertySet" jdbcType="VARCHAR" />
+    <result column="unit" property="unit"  />
+    <result column="if_have_zjbg" property="ifHaveZjbg"  />
+    <result column="if_have_cprz" property="ifHaveCprz"  />
+    <result column="market_start_time" property="marketStartTime" jdbcType="TIMESTAMP" />
+    <result column="market_end_time" property="marketEndTime" jdbcType="TIMESTAMP" />
+    <result column="YN" property="yn"  />
+    <result column="CREATED" property="created" jdbcType="TIMESTAMP" />
+    <result column="MODIFIED" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <!-- 查询条件 -->
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="itemId" >
+        ITEM_ID = #itemId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="itemName" >
+        ITEM_NAME like '%$itemName$%'
+      </isNotNull>
+      <isNotNull prepend="and" property="itemType" >
+        ITEM_TYPE = #itemType:TINYINT#
+      </isNotNull>
+      <isNotNull prepend="and" property="categoryId1" >
+        CATEGORY_ID1 = #categoryId1:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="categoryId2" >
+        CATEGORY_ID2 = #categoryId2:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="categoryId3" >
+        CATEGORY_ID3 = #categoryId3:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="categoryId4" >
+        CATEGORY_ID4 = #categoryId4:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="venderUserId" >
+        VENDER_USER_ID = #venderUserId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="itemStatus" >
+        ITEM_STATUS = #itemStatus:TINYINT#
+      </isNotNull>
+      <isNotNull prepend="and" property="onShelfTime" >
+      <![CDATA[ DATE_FORMAT(on_shelf_time,'%Y-%m-%d %H:%i:%s') >= DATE_FORMAT(#onShelfTime#, '%Y-%m-%d %H:%i:%s') ]]>
+      </isNotNull>
+      <isNotNull prepend="and" property="offShelfTime" >
+       <![CDATA[ DATE_FORMAT(off_shelf_time,'%Y-%m-%d %H:%i:%s') <= DATE_FORMAT(#offShelfTime#, '%Y-%m-%d %H:%i:%s') ]]>
+      </isNotNull>
+      <isNotNull prepend="and" property="autoOnShelfTime" >
+        auto_on_shelf_time = #autoOnShelfTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="and" property="autoOffShelfTime" >
+        auto_off_shelf_time = #autoOffShelfTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="and" property="itemImage" >
+        ITEM_IMAGE = #itemImage:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="ifDeposit" >
+        IF_DEPOSIT = #ifDeposit:TINYINT#
+      </isNotNull>
+      <isNotNull prepend="and" property="depositRate" >
+        DEPOSIT_RATE = #depositRate:INTEGER#
+      </isNotNull>      
+      <isNotNull prepend="and" property="originProvince" >
+        origin_province = #originProvince:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="originCity" >
+        origin_city = #originCity:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="originCounty" >
+        origin_county = #originCounty:INTEGER#
+      </isNotNull>  
+      <isNotNull prepend="and" property="originAddress" >
+        origin_address = #originAddress:VARCHAR#
+      </isNotNull>  
+      <isNotNull prepend="and" property="supplyProvince" >
+        supply_province = #supplyProvince:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="supplyCity" >
+        supply_city = #supplyCity:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="supplyCounty" >
+        supply_county = #supplyCounty:INTEGER#
+      </isNotNull>  
+      <isNotNull prepend="and" property="weight" >
+        Weight = #weight:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="differWeight" >
+        differ_Weight = #differWeight:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="packingType" >
+        Packing_type = #packingType:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="packingTypeCustom" >
+        Packing_type_custom = #PackingTypeCustom:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="length" >
+        length = #length:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="wide" >
+        Wide = #wide:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="high" >
+        High = #high:VARCHAR#
+      </isNotNull>     
+      <isNotNull prepend="and" property="salesPropertySet" >
+        sales_property_set = #salesPropertySet:VARCHAR#
+      </isNotNull>   
+      <isNotNull prepend="and" property="unit" >
+        unit = #unit:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="ifHaveZjbg" >
+        if_have_zjbg = #ifHaveZjbg:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="ifHaveCprz" >
+        if_have_cprz = #ifHaveCprz:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="marketStartTime" >
+        market_start_time = #marketStartTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="and" property="marketEndTime" >
+        market_end_time = #marketEndTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="and" property="yn" >
+        YN = #yn:TINYINT#
+      </isNotNull>
+    </dynamic>
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="ItemResult" parameterClass="java.lang.Integer" >
+    select ITEM_ID, ITEM_NAME, ITEM_TYPE, CATEGORY_ID1, CATEGORY_ID2, CATEGORY_ID3, CATEGORY_ID4,VENDER_USER_ID, ITEM_STATUS,
+     auto_on_shelf_time,auto_off_shelf_time,ON_SHELF_TIME, OFF_SHELF_TIME, ITEM_IMAGE, IF_DEPOSIT, DEPOSIT_RATE,
+     origin_province,origin_city,origin_county,origin_address,supply_province,supply_city,supply_county , Weight,
+      differ_Weight, Packing_type,Packing_type_custom ,length, Wide, High,sales_property_set,
+      unit,if_have_zjbg,if_have_cprz,market_start_time,market_end_time, YN, CREATED,
+      MODIFIED
+    from item
+    where ITEM_ID = #itemId:INTEGER#
+  </select>
+  
+
+  <insert id="insert" parameterClass="com.ec.seller.domain.Item" >
+    insert into item (ITEM_NAME, ITEM_TYPE, CATEGORY_ID1, CATEGORY_ID2, CATEGORY_ID3, CATEGORY_ID4,VENDER_USER_ID,
+      ITEM_STATUS, auto_on_shelf_time,auto_off_shelf_time,ON_SHELF_TIME, OFF_SHELF_TIME, ITEM_IMAGE, IF_DEPOSIT, DEPOSIT_RATE,
+      origin_province,origin_city,origin_county,origin_address,supply_province,supply_city,supply_county , Weight,
+       differ_Weight, Packing_type,Packing_type_custom, length, Wide, High,sales_property_set,
+       unit,if_have_zjbg,if_have_cprz,market_start_time,market_end_time, YN, CREATED,
+      MODIFIED)
+    values (#itemName:VARCHAR#, #itemType:INTEGER#, #categoryId1:INTEGER#,
+      #categoryId2:INTEGER#, #categoryId3:INTEGER#,#categoryId4:INTEGER#,
+      #venderUserId:INTEGER#, #itemStatus:INTEGER#, 
+      #autoOnShelfTime:TIMESTAMP#,#autoOffShelfTime:TIMESTAMP#,#onShelfTime:TIMESTAMP#,
+      #offShelfTime:TIMESTAMP#, #itemImage:VARCHAR#, #ifDeposit:INTEGER#,
+      #depositRate:INTEGER#, #originProvince:INTEGER#, #originCity:INTEGER#, #originCounty:INTEGER#,#originAddress:VARCHAR#,#supplyProvince:INTEGER#,#supplyCity:INTEGER#, #supplyCounty:INTEGER# , #weight:VARCHAR#, #differWeight:VARCHAR#,
+      #packingType:INTEGER#, #packingTypeCustom:VARCHAR#,#length:VARCHAR#, #wide:VARCHAR#, #high:VARCHAR#, #salesPropertySet:VARCHAR#,
+      #unit:INTEGER#, #ifHaveZjbg:INTEGER#, #ifHaveCprz:INTEGER#,#marketStartTime:TIMESTAMP#,#marketEndTime:TIMESTAMP#,1,
+      now(),now())
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="itemId">
+			<![CDATA[SELECT @@IDENTITY AS ITEM_ID ]]>
+	  </selectKey>
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterClass="com.ec.seller.domain.Item" >
+    update item set MODIFIED = now()
+    <dynamic >
+      <isNotNull prepend="," property="itemName" >
+        ITEM_NAME = #itemName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="itemType" >
+        ITEM_TYPE = #itemType:TINYINT#
+      </isNotNull>
+      <isNotNull prepend="," property="categoryId1" >
+        CATEGORY_ID1 = #categoryId1:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="categoryId2" >
+        CATEGORY_ID2 = #categoryId2:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="categoryId3" >
+        CATEGORY_ID3 = #categoryId3:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="categoryId4" >
+        CATEGORY_ID4 = #categoryId4:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="venderUserId" >
+        VENDER_USER_ID = #venderUserId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="itemStatus" >
+        ITEM_STATUS = #itemStatus:TINYINT#
+      </isNotNull>
+      <isNotNull prepend="," property="autoOnShelfTime" >
+        auto_on_shelf_time = #autoOnShelfTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="autoOffShelfTime" >
+        auto_off_shelf_time = #autoOffShelfTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="onShelfTime" >
+        ON_SHELF_TIME = #onShelfTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="offShelfTime" >
+        OFF_SHELF_TIME = #offShelfTime:TIMESTAMP#
+      </isNotNull>
+
+      <isNotNull prepend="," property="itemImage" >
+        ITEM_IMAGE = #itemImage:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ifDeposit" >
+        IF_DEPOSIT = #ifDeposit:TINYINT#
+      </isNotNull>
+      <isNotNull prepend="," property="depositRate" >
+        DEPOSIT_RATE = #depositRate:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="originProvince" >
+        origin_province = #originProvince:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="originCity" >
+        origin_city = #originCity:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="originCounty" >
+        origin_county = #originCounty:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="originAddress" >
+        origin_address = #originAddress:VARCHAR#
+      </isNotNull>
+      
+      <isNotNull prepend="," property="supplyProvince" >
+        supply_province = #supplyProvince:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="supplyCity" >
+        supply_city = #supplyCity:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="supplyCounty" >
+        supply_county = #supplyCounty:INTEGER#
+      </isNotNull>
+      
+      <isNotNull prepend="," property="weight" >
+        Weight = #weight:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="differWeight" >
+        differ_Weight = #differWeight:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="packingType" >
+        Packing_type = #packingType:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="packingTypeCustom" >
+        Packing_type_custom = #packingTypeCustom:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="length" >
+        length = #length:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="wide" >
+        Wide = #wide:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="high" >
+        High = #high:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="salesPropertySet" >
+        sales_property_set = #salesPropertySet:VARCHAR#
+      </isNotNull>  
+      <isNotNull prepend="," property="unit" >
+        unit = #unit:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="ifHaveZjbg" >
+        if_have_zjbg = #ifHaveZjbg:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="ifHaveCprz" >
+        if_have_cprz = #ifHaveCprz:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="marketStartTime" >
+        market_start_time = #marketStartTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="marketEndTime" >
+        market_end_time = #marketEndTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="yn" >
+        YN = #yn:TINYINT#
+      </isNotNull>
+    </dynamic>
+    where ITEM_ID = #itemId#
+  </update>
+  <!-- 自动下架 -->
+   <update id="offSheft" parameterClass="com.ec.seller.domain.query.ItemQuery">
+    update item set MODIFIED = now(),item_status=2 where item_id=#itemId# and
+    <![CDATA[ DATE_FORMAT(auto_off_shelf_time,'%Y-%m-%d %H:%i:%s') < DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s') ]]>
+  </update>
+  
+    <!-- 自动上架 -->
+   <update id="onSheft" parameterClass="com.ec.seller.domain.query.ItemQuery" >
+    update item set MODIFIED = now(),item_status=1 where item_id=#itemId# and
+    <![CDATA[ DATE_FORMAT(auto_on_shelf_time,'%Y-%m-%d %H:%i:%s') <= DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s') ]]>
+  </update>
+  
+  <select id="countByCondition" parameterClass="com.ec.seller.domain.query.ItemQuery" resultClass="java.lang.Integer" >
+    select count(1) from item
+    <dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="itemId" >
+        ITEM_ID = #itemId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="itemName" >
+        ITEM_NAME like '%$itemName$%'
+      </isNotNull>
+      <isNotNull prepend="and" property="itemType" >
+        ITEM_TYPE = #itemType:TINYINT#
+      </isNotNull>
+      <isNotNull prepend="and" property="categoryId1" >
+        CATEGORY_ID1 = #categoryId1:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="categoryId2" >
+        CATEGORY_ID2 = #categoryId2:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="categoryId3" >
+        CATEGORY_ID3 = #categoryId3:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="categoryId4" >
+        CATEGORY_ID4 = #categoryId4:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="venderUserId" >
+        VENDER_USER_ID = #venderUserId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="itemStatus" >
+        ITEM_STATUS = #itemStatus:TINYINT#
+      </isNotNull>
+      <isNotNull prepend="and" property="onShelfTime" >
+      <![CDATA[ DATE_FORMAT(on_shelf_time,'%Y-%m-%d %H:%i:%s') >= DATE_FORMAT(#onShelfTime#, '%Y-%m-%d %H:%i:%s') ]]>
+      </isNotNull>
+      <isNotNull prepend="and" property="offShelfTime" >
+       <![CDATA[ DATE_FORMAT(off_shelf_time,'%Y-%m-%d %H:%i:%s') <= DATE_FORMAT(#offShelfTime#, '%Y-%m-%d %H:%i:%s') ]]>
+      </isNotNull>
+      <isNotNull prepend="and" property="autoOnShelfTime" >
+        auto_on_shelf_time = #autoOnShelfTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="and" property="autoOffShelfTime" >
+        auto_off_shelf_time = #autoOffShelfTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="and" property="itemImage" >
+        ITEM_IMAGE = #itemImage:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="ifDeposit" >
+        IF_DEPOSIT = #ifDeposit:TINYINT#
+      </isNotNull>
+      <isNotNull prepend="and" property="depositRate" >
+        DEPOSIT_RATE = #depositRate:INTEGER#
+      </isNotNull>      
+      <isNotNull prepend="and" property="originProvince" >
+        origin_province = #originProvince:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="originCity" >
+        origin_city = #originCity:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="originCounty" >
+        origin_county = #originCounty:INTEGER#
+      </isNotNull> 
+      <isNotNull prepend="and" property="originAddress" >
+        origin_address = #originAddress:INTEGER#
+      </isNotNull>   
+      <isNotNull prepend="and" property="supplyProvince" >
+        supply_province = #supplyProvince:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="supplyCity" >
+        supply_city = #supplyCity:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="supplyCounty" >
+        supply_county = #supplyCounty:INTEGER#
+      </isNotNull>  
+      <isNotNull prepend="and" property="weight" >
+        Weight = #weight:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="differWeight" >
+        differ_Weight = #differWeight:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="packingType" >
+        Packing_type = #packingType:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="packingTypeCustom" >
+        Packing_type_custom = #PackingTypeCustom:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="length" >
+        length = #length:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="wide" >
+        Wide = #wide:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="high" >
+        High = #high:VARCHAR#
+      </isNotNull>     
+      <isNotNull prepend="and" property="salesPropertySet" >
+        sales_property_set = #salesPropertySet:VARCHAR#
+      </isNotNull>   
+      <isNotNull prepend="and" property="unit" >
+        unit = #unit:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="ifHaveZjbg" >
+        if_have_zjbg = #ifHaveZjbg:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="ifHaveCprz" >
+        if_have_cprz = #ifHaveCprz:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="marketStartTime" >
+        market_start_time = #marketStartTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="and" property="marketEndTime" >
+        market_end_time = #marketEndTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="and" property="yn" >
+        YN = #yn:TINYINT#
+      </isNotNull>
+    </dynamic>
+    
+  </select>
+  
+  <select id="selectByCondition" parameterClass="com.ec.seller.domain.query.ItemQuery" resultMap="ItemResult" >
+     select ITEM_ID, ITEM_NAME, ITEM_TYPE, CATEGORY_ID1, CATEGORY_ID2,CATEGORY_ID3, CATEGORY_ID4, VENDER_USER_ID, ITEM_STATUS,
+     auto_on_shelf_time,auto_off_shelf_time,ON_SHELF_TIME, OFF_SHELF_TIME,ITEM_IMAGE, IF_DEPOSIT, DEPOSIT_RATE,
+      origin_province,origin_city,origin_county,origin_address,supply_province,supply_city,supply_county , Weight,
+      differ_Weight, Packing_type, Packing_type_custom, length, Wide, High, sales_property_set,
+      unit,if_have_zjbg,if_have_cprz,market_start_time,market_end_time,YN, CREATED,
+      MODIFIED
+    from item
+    <include refid="Item.condition" />
+    order by ITEM_ID desc
+  </select>
+  
+  <select id="selectByConditionForPage" parameterClass="com.ec.seller.domain.query.ItemQuery" resultMap="ItemResult" >
+    select ITEM_ID, ITEM_NAME, ITEM_TYPE, CATEGORY_ID1, CATEGORY_ID2,CATEGORY_ID3, CATEGORY_ID4, VENDER_USER_ID, ITEM_STATUS,
+      auto_on_shelf_time,auto_off_shelf_time,ON_SHELF_TIME, OFF_SHELF_TIME, LEAST_BUY, ITEM_IMAGE, IF_DEPOSIT, DEPOSIT_RATE,
+      origin_province,origin_city,origin_county,origin_address,supply_province,supply_city,supply_county ,Weight, 
+      differ_Weight, Packing_type,Packing_type_custom, length, Wide, High, sales_property_set,
+      unit,if_have_zjbg,if_have_cprz,market_start_time,market_end_time,YN, CREATED,
+      MODIFIED
+    from item
+    <include refid="Item.condition" />
+    order by ITEM_ID desc
+  	limit #start#,#pageSize#
+  </select>
+  
+  
+    <select id="selectByConditionWithPage" parameterClass="com.ec.seller.domain.query.ItemQuery" resultMap="ItemQueryResult" >
+    select ITEM_ID, ITEM_NAME, ITEM_TYPE, CATEGORY_ID1, CATEGORY_ID2,CATEGORY_ID3, CATEGORY_ID4, VENDER_USER_ID, ITEM_STATUS,
+      auto_on_shelf_time,auto_off_shelf_time,ON_SHELF_TIME, OFF_SHELF_TIME,  ITEM_IMAGE, IF_DEPOSIT, DEPOSIT_RATE,
+      origin_province,origin_city,origin_county,origin_address,supply_province,supply_city,supply_county ,Weight, 
+      differ_Weight, Packing_type,Packing_type_custom, length, Wide, High, sales_property_set,
+      unit,if_have_zjbg,if_have_cprz,market_start_time,market_end_time,YN, CREATED,
+      MODIFIED
+    from item
+    <include refid="Item.condition" />
+    order by ITEM_ID desc
+  	limit #start#,#pageSize#
+  </select>
+    <!-- 查询待上架商品 -->
+  <select id="queryOnSheftList" parameterClass="java.lang.Integer" resultMap="ItemQueryResult" >
+    select ITEM_ID, ITEM_NAME, ITEM_TYPE, CATEGORY_ID1, CATEGORY_ID2,CATEGORY_ID3, CATEGORY_ID4, VENDER_USER_ID, ITEM_STATUS,
+      auto_on_shelf_time,auto_off_shelf_time,ON_SHELF_TIME, OFF_SHELF_TIME,  ITEM_IMAGE, IF_DEPOSIT, DEPOSIT_RATE,
+      origin_province,origin_city,origin_county,origin_address,supply_province,supply_city,supply_county ,Weight, 
+      differ_Weight, Packing_type,Packing_type_custom, length, Wide, High, sales_property_set,
+      unit,if_have_zjbg,if_have_cprz,market_start_time,market_end_time,YN, CREATED,
+      MODIFIED
+    from item
+    where ITEM_STATUS = 0 and <![CDATA[ DATE_FORMAT(auto_on_shelf_time,'%Y-%m-%d %H:%i:%s') < DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s') ]]>
+    order by ITEM_ID desc
+  	limit #offsetOnSheft#,500
+  </select>
+  
+  <!-- 查询待下架商品 -->
+  <select id="queryOffSheftList" parameterClass="java.lang.Integer" resultMap="ItemQueryResult" >
+    select ITEM_ID, ITEM_NAME, ITEM_TYPE, CATEGORY_ID1, CATEGORY_ID2, CATEGORY_ID3, CATEGORY_ID4,VENDER_USER_ID, ITEM_STATUS,
+      auto_on_shelf_time,auto_off_shelf_time,ON_SHELF_TIME, OFF_SHELF_TIME,  ITEM_IMAGE, IF_DEPOSIT, DEPOSIT_RATE,
+      origin_province,origin_city,origin_county,origin_address,supply_province,supply_city,supply_county ,Weight, 
+      differ_Weight, Packing_type,Packing_type_custom, length, Wide, High, sales_property_set,
+      unit,if_have_zjbg,if_have_cprz,market_start_time,market_end_time,YN, CREATED,
+      MODIFIED
+    from item
+    where ITEM_STATUS = 1 and <![CDATA[ DATE_FORMAT(auto_off_shelf_time,'%Y-%m-%d %H:%i:%s') < DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s') ]]>
+    order by ITEM_ID desc
+  	limit #offsetOffSheft#,500
+  </select>
+  
+   <select id="countByConditionForPage" parameterClass="com.ec.seller.domain.query.ItemQuery" resultClass="java.lang.Integer" >
+		select count(1) from item
+    <include refid="Item.condition" />
+    order by ITEM_ID desc
+  	limit #start#,#pageSize#
+  </select>
+  
+</sqlMap>

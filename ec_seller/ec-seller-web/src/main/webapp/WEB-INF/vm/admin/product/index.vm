@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link type="text/css" rel="stylesheet" href="/misc/css/admin.css">
+		<script type="text/javascript" src="/misc/js/jquery-1.2.6.pack.js"></script>
+	</head>
+	
+	<body>
+    <form id="productForm" action="/admin/product/index" name="productForm" method="get">
+
+     <div class="box">
+     <!--标题区-->
+           <div class="title">
+				企销API-商品池管理
+           </div>
+    <!--查询区-->
+
+           <div class="panel_search">
+              <table cellspacing="0" cellpadding="0" border="0">
+	<tbody><tr>
+		<td style="width:15%" class="TdLabel">client_id:</td>
+		<td class="TdValue">
+        <input type="text" value="$!pp.client_id" style="width:200px;" id="client_id" name="client_id" class="txt"></td>
+		<td style="width:15%" class="TdLabel">公司名称:</td>
+		<td class="TdValue">
+        <input type="text" value="$!pp.name" style="width:200px;" id="name" name="name" class="txt">
+        </td>
+		<td style="width:15%" class="TdLabel">商品skuid:</td>
+		<td class="TdValue">
+        <input type="text" value="$!pp.sku_ids" style="width:200px;" id="sku_ids" name="sku_ids" class="txt">
+        </td>
+		<td class="TdValue">
+			<a href="/admin/product/add">创建</a>
+        </td>
+		<td width="1%" class="panelSearch1" rowspan="4">
+			<input type="submit" value="" style="background:url(http://cc.360buy.com/SiteManage/skin/default/images/search1.jpg)" class="btn1">
+        </td>
+	</tr>
+	<!--
+	<tr>
+        <td class="TdLabel">别名查询: <br>（支持联合登录用户）</td>
+		<td class="TdValue"><input type="text" value="" id="jdpin" name="userQuery.jdpin" class="txt"></td>
+		<td style="width:15%" class="TdLabel">用户编号:</td>
+		<td class="TdValue">
+        <input type="text" value="" maxlength="10" style="width:67px;" id="uid" name="userQuery.uid" class="txt"><span id="uidMes"></span></td>
+		<td class="TdLabel">
+			<a href="/admin/product/add">创建</a>
+        </td>
+	</tr>
+	-->
+</tbody></table>
+
+           </div>
+    <!--功能区-->
+
+           <div class="panel_function">
+                
+
+           </div>
+     <!--列表区-->
+           <div class="panel_grid">
+                
+<table>
+<tbody>
+	<tr>
+        <th>编号</th>
+        <th>client_id</th>
+        <th>公司名称</th>
+        <th width="400px;">商品池</th>
+        <th>商品池名称</th>
+        <th>页码</th>
+		<th>创建时间</th>
+		<th>操作</th>
+	</tr>
+
+	#foreach($productPool in $list)
+    	<tr id="tr_$productPool.id">
+    		<td>$productPool.id</td>
+    		<td>$productPool.client_id</td>
+    		<td>$productPool.name</td>
+    		<td>
+				<textarea style="width:400px;height:50px;">$productPool.sku_ids</textarea>
+			</td>
+    		<td>$productPool.pool_name</td>
+    		<td>$productPool.page_num</td>
+    		<td>$productPool.created</td>
+			<td><a href="/admin/product/detail?id=$!productPool.id">修改</a> &nbsp;&nbsp;<a href="javascript:void(0);" onclick="del($!productPool.id);">删除</a></td>
+    	</tr>
+    #end
+
+</tbody></table>
+    
+<!--分页控件 start-->
+
+<!-- 分页控件 end-->
+           </div>
+
+    </div>
+	<script type="text/javascript">
+		function del(id){
+			if(confirm("是否删除该条记录？")){
+				jQuery.ajax({
+                type:"POST",
+                url:"/admin/product/delete",
+                data:"id="+id,
+                dataType:"json",
+                success:function (data) {
+					if(data.success == true){
+						alert("删除成功");
+						$("#tr_"+id).remove();
+					}else{
+						alert("删除失败");
+					}
+                },
+            	error : function() {
+        			alert("删除失败");
+            	}
+            });
+            }
+		}
+	</script>
+    </form>
+
+ </body>
+</html>
+
+

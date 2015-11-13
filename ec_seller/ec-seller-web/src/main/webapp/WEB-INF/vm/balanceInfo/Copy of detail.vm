@@ -1,0 +1,81 @@
+    <div class="box">
+           <div class="title">
+           		结算单订单详情查看
+           </div>
+		   
+           <div class="panel_form">
+				<table width="100%" cellspacing="0" cellpadding="0" border="0" id="ctl00_CPform_tab_userinfo">
+                	<tr>
+                		<td class="TdLabel"><div align="right">结算日期：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!{dateFormatUtils.format($balanceInfo.balanceDate, "yyyy-MM-dd")}
+                		</td>
+                	</tr>
+                	<tr>
+                		<td class="TdLabel"><div align="right">订单金额（总）：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!balanceInfo.orderMoneyAll元
+                		</td>
+                	</tr>
+                	<tr>
+                		<td class="TdLabel"><div align="right">货款（总）：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!balanceInfo.paymentGoods元
+                		</td>
+                	</tr>
+                	<tr>
+                		<td class="TdLabel"><div align="right">佣金：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!balanceInfo.commission元
+                		</td>
+                	</tr>
+                	<tr>
+                		<td class="TdLabel"><div align="right">结算金额：</div></td>
+                		<td width="78%" align="left" colspan="10" class="TdValue">
+                			$!balanceInfo.balanceMoney元&nbsp;&nbsp;&nbsp;&nbsp;货款（总）-佣金
+                		</td>
+                	</tr>
+				</table>
+		   </div>
+	</div>
+    
+    <div class="box">
+		   
+           <div class="panel_form">
+				<table width="100%" cellspacing="0" cellpadding="0" border="0" id="ctl00_CPform_tab_userinfo">
+                	<tr>
+                		<td class="TdLabel"><div align="middle">订单号</div></td>
+                		<td class="TdLabel"><div align="middle">订单状态</div></td>
+                		<td class="TdLabel"><div align="middle">商品信息</div></td>
+                		<td class="TdLabel"><div align="middle">订单金额</div></td>
+                		<td class="TdLabel"><div align="middle">货款</div></td>
+                		<td class="TdLabel"><div align="middle">订单完成时间</div></td>
+                	</tr>
+                	#foreach($orderInfo in $balanceInfo.orderInfoList)
+                	
+                		<tr>
+	                		<td align="middle" class="TdValue">
+	                			$!orderInfo.orderId
+	                		</td>
+	                		<td align="middle" class="TdValue">
+	                			订单完成
+	                		</td>
+	                		<td align="middle" class="TdValue">
+	                			$!orderInfo.orderDetail.itemName
+	                		</td>
+	                		<td align="middle" class="TdValue">
+	                			$!orderInfo.getBigDecimalOrderPrice()
+	                		</td>
+	                		<td align="middle" class="TdValue">
+	                			$!orderInfo.paymentGoodsPrice
+	                		</td>
+	                		<td align="middle" class="TdValue">
+	                			$!{dateFormatUtils.format($!orderInfo.finishTime)}
+	                		</td>
+	                	</tr>
+                	#end
+				</table>
+		   </div>
+	</div>
+	
+

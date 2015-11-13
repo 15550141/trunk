@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="User" >
+  
+	<!-- 
+	<insert id="createUser" parameterClass="com.jd.sns.biz.api.domain.User">
+		insert into user (name,domain,redirect_uri,client_id,client_secret,scope,img,created) values 
+		(#name#, #domain#, #redirect_uri#, #client_id#, #client_secret#, #scope#, #img#, #created#);
+	</insert>
+  
+  	<update id="updateUser" parameterClass="com.jd.sns.biz.api.domain.User" >
+  		update user set redirect_uri=#redirect_uri#,name=#name#,img=#img#,domain=#domain#,scope=#scope#,updated=#updated# where id=#id#
+  	</update>
+	 
+  	
+  	<select id="selectAllUser" parameterClass="com.jd.sns.biz.api.domain.User" resultClass="com.jd.sns.biz.api.domain.User">
+		select id,name,domain,redirect_uri,client_id,client_secret,scope,img,created,updated from user 
+		where 1=1
+		 <isNotEmpty property="name">
+		 	and name like '%$name$%'
+		 </isNotEmpty>
+		 <isNotEmpty property="client_id">
+		 	and client_id like '%$client_id$%'
+		 </isNotEmpty>
+		 <isNotEmpty property="domain">
+		 	and domain like '%$domain$%'
+		 </isNotEmpty>
+	</select>
+	
+	<select id="getUserById" resultClass="com.jd.sns.biz.api.domain.User" parameterClass="int">
+		select id,name,domain,redirect_uri,client_id,client_secret,scope,img,created from user where id=#id#
+	</select>
+	
+	<select id="getUserByClientId" resultClass="com.jd.sns.biz.api.domain.User" parameterClass="String">
+		select id,name,domain,redirect_uri,client_id,client_secret,scope,img,created from user where client_id=#client_id#
+	</select>
+	
+	<delete id="delUser"  parameterClass="int">
+		delete from user where id=#id#
+	</delete>
+	
+	-->
+	
+	<select id="getUserByUsername" resultClass="com.ec.seller.domain.User" parameterClass="String">
+		select id,username,created,modified,yn from user where username=#username#
+	</select>
+	
+</sqlMap>

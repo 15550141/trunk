@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="OrderInfo" >
+  <resultMap id="OrderInfoResult" class="com.ec.seller.domain.OrderInfo" >
+  	<result column="order_type" property="orderType"  />
+    <result column="order_id" property="orderId"  />
+    <result column="payment_type" property="paymentType"  />
+    <result column="vender_user_id" property="venderUserId"  />
+    <result column="user_id" property="userId"  />
+    <result column="Consignee_name" property="consigneeName" jdbcType="VARCHAR" />
+    <result column="Consignee_province" property="consigneeProvince"  />
+    <result column="Consignee_city" property="consigneeCity"  />
+    <result column="Consignee_county" property="consigneeCounty"  />
+    <result column="Consignee_address" property="consigneeAddress" jdbcType="VARCHAR" />
+    <result column="Consignee_mobile" property="consigneeMobile" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="order_money" property="orderMoney"  />
+    <result column="discount_money" property="discountMoney"  />
+    <result column="discount_info" property="discountInfo" jdbcType="VARCHAR" />
+    <result column="order_time" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="hope_arrival_time" property="hopeArrivalTime" jdbcType="TIMESTAMP" />
+    <result column="send_out_time" property="sendOutTime" jdbcType="TIMESTAMP" />
+    <result column="finish_time" property="finishTime" jdbcType="TIMESTAMP" />
+    <result column="order_status" property="orderStatus"  />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="lock_status" property="lockStatus"  />
+    <result column="lock_reason" property="lockReason" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+    <result column="parent_order_id" property="parentOrderId" />
+    <result column="yn" property="yn" />
+  </resultMap>
+  
+  <!-- 查询条件 -->
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="orderType" >
+        order_type = #orderType:INTEGER#
+      </isNotNull>
+  	  <isNotNull prepend="and" property="orderId" >
+        order_id = #orderId:INTEGER#
+      </isNotNull>
+  	  <isNotNull prepend="and" property="venderUserId" >
+        vender_user_id = #venderUserId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="userId" >
+        user_id = #userId:INTEGER#
+      </isNotNull>
+      <isNotEmpty prepend="and" property="consigneeName" >
+        Consignee_name like '%$consigneeName$%'
+      </isNotEmpty>
+      <isNotNull prepend="and" property="consigneeProvince" >
+        Consignee_province = #consigneeProvince:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="consigneeCity" >
+        Consignee_city = #consigneeCity:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="consigneeCounty" >
+        Consignee_county = #consigneeCounty:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="consigneeMobile" >
+        Consignee_mobile = #consigneeMobile:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="remark" >
+        remark = #remark:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="orderMoney" >
+        order_money = #orderMoney:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="discountMoney" >
+        discount_money = #discountMoney:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="discountInfo" >
+        discount_info = #discountInfo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="orderTime" >
+        order_time = #orderTime#
+      </isNotNull>
+      <isNotNull prepend="and" property="orderStatus" >
+        order_status = #orderStatus:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="lockStatus" >
+        lock_status = #lockStatus:INTEGER#
+      </isNotNull>
+      
+      <isNotNull prepend="and" property="startTime" >
+        <![CDATA[
+ 			order_time > #startTime#
+		]]>
+      </isNotNull>
+     <isNotNull prepend="and" property="endTime" >
+        <![CDATA[
+ 			order_time < #endTime#
+		]]>
+      </isNotNull>
+      
+      <isNotNull prepend="and" property="startFinishTime" >
+        <![CDATA[
+ 			finish_time >= #startFinishTime#
+		]]>
+      </isNotNull>
+     <isNotNull prepend="and" property="endFinishTime" >
+        <![CDATA[
+ 			finish_time < #endFinishTime#
+		]]>
+      </isNotNull>
+      
+       <isNotNull prepend="and" property="priceStart" >
+        <![CDATA[
+ 			order_money >= #priceStart#
+		]]>
+      </isNotNull>
+      <isNotNull prepend="and" property="priceEnd" >
+        <![CDATA[
+ 			order_money <= #priceEnd#
+		]]>
+      </isNotNull>
+      
+    </dynamic>
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="OrderInfoResult" parameterClass="java.lang.Integer" >
+    select order_id, order_type, payment_type, vender_user_id, user_id, consignee_name, consignee_province, consignee_city, consignee_county,
+    consignee_address, consignee_mobile, remark, order_money, discount_money,discount_info, order_time, pay_time ,hope_arrival_time,send_out_time ,finish_time,
+    order_status, ip, lock_status, lock_reason, created, modified, parent_order_id ,yn 
+    from order_info
+    where order_id = #orderId:INTEGER#
+  </select>
+
+  <insert id="insert" parameterClass="com.ec.seller.domain.OrderInfo" >
+    insert into order_info ( order_type, payment_type, vender_user_id, user_id, consignee_name, consignee_province, consignee_city, consignee_county,
+    consignee_address, consignee_mobile, remark, order_money, discount_money,discount_info, order_time, pay_time ,hope_arrival_time,send_out_time ,finish_time,
+    order_status, ip, lock_status, lock_reason, created, modified, parent_order_id ,yn )
+    values (#orderType#, #paymentType#, #venderUserId#, #userId#, #consigneeName#, #consigneeProvince#, #consigneeCity#, #consigneeCounty#,
+    #consigneeAddress#, #consigneeMobile#, #remark#, #orderMoney#, #discountMoney#, #discountInfo#, now(), #payTime# ,#hopeArrivalTime#,#sendOutTime# ,#finishTime#,
+    #orderStatus#, #ip#, #lockStatus#, #lockReason#, now(), #modified#, #parentOrderId# ,#yn# )
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="orderId">
+			<![CDATA[SELECT @@IDENTITY AS order_id ]]>
+	  </selectKey>
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterClass="com.ec.seller.domain.OrderInfo" >
+    update order_info set modified = now()
+    <dynamic >
+      <isNotNull prepend="," property="orderType" >
+        order_type = #orderType:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="userId" >
+        user_id = #userId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="consigneeName" >
+        Consignee_name = #consigneeName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="consigneeProvince" >
+        Consignee_province = #consigneeProvince:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="consigneeCity" >
+        Consignee_city = #consigneeCity:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="consigneeCounty" >
+        Consignee_county = #consigneeCounty:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="consigneeAddress" >
+        Consignee_address = #consigneeAddress:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="consigneeMobile" >
+        Consignee_mobile = #consigneeMobile:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="remark" >
+        remark = #remark:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="orderMoney" >
+        order_money = #orderMoney:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="discountMoney" >
+        discount_money = #discountMoney:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="discountInfo" >
+        discount_info = #discountInfo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="orderTime" >
+        order_time = #orderTime#
+      </isNotNull>
+      <isNotNull prepend="," property="sendOutTime" >
+        send_out_time = #sendOutTime#
+      </isNotNull>
+      <isNotNull prepend="," property="finishTime" >
+        finish_time = #finishTime#
+      </isNotNull>
+      <isNotNull prepend="," property="orderStatus" >
+        order_status = #orderStatus:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="ip" >
+        ip = #ip:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lockStatus" >
+        lock_status = #lockStatus:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="lockReason" >
+        lock_reason = #lockReason:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where order_id = #orderId:INTEGER# and vender_user_id=#venderUserId#
+  </update>
+  
+  <select id="countByCondition" parameterClass="com.ec.seller.domain.query.OrderInfoQuery" resultClass="java.lang.Integer" >
+    select count(1) from order_info
+    <include refid="OrderInfo.condition" />
+  </select>
+  
+  <select id="selectByCondition" parameterClass="com.ec.seller.domain.query.OrderInfoQuery" resultMap="OrderInfoResult" >
+    select order_id, order_type, payment_type, vender_user_id, user_id, consignee_name, consignee_province, consignee_city, consignee_county,
+    consignee_address, consignee_mobile, remark, order_money, discount_money,discount_info, order_time, pay_time ,hope_arrival_time,send_out_time ,finish_time,
+    order_status, ip, lock_status, lock_reason, created, modified, parent_order_id ,yn 
+    from order_info
+    <include refid="OrderInfo.condition" />
+  </select>
+  
+  <select id="selectByConditionForPage" parameterClass="com.ec.seller.domain.query.OrderInfoQuery" resultMap="OrderInfoResult" >
+    select order_id, order_type, payment_type, vender_user_id, user_id, consignee_name, consignee_province, consignee_city, consignee_county,
+    consignee_address, consignee_mobile, remark, order_money, discount_money,discount_info, order_time, pay_time ,hope_arrival_time,send_out_time ,finish_time,
+    order_status, ip, lock_status, lock_reason, created, modified, parent_order_id ,yn 
+    from order_info
+    <include refid="OrderInfo.condition" />
+    order by order_id desc
+  	limit #start#,#pageSize#
+  </select>
+</sqlMap>

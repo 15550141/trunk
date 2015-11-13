@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="OrderDetail" >
+  <resultMap id="OrderDetailResult" class="com.ec.seller.domain.OrderDetail" >
+    <result column="id" property="id"  />
+    <result column="order_id" property="orderId"  />
+    <result column="sku_id" property="skuId"  />
+    <result column="item_id" property="itemId"  />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+    <result column="sales_property" property="salesProperty" jdbcType="VARCHAR" />
+    <result column="sales_property_name" property="salesPropertyName" jdbcType="VARCHAR" />
+    <result column="price" property="price"  />
+    <result column="num" property="num"  />
+    <result column="item_image" property="itemImage" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="selectByOrderId" resultMap="OrderDetailResult" parameterClass="java.lang.Integer" >
+    select id, order_id, sku_id, item_id, item_name, sales_property, sales_property_name, price, num, item_image, created, modified
+    from order_detail
+    where order_id = #orderId#
+  </select>
+  
+  <insert id="insert" parameterClass="com.ec.seller.domain.OrderDetail" >
+    insert into order_detail (order_id, sku_id, item_id, item_name, sales_property, sales_property_name, price, num, item_image,
+      created, modified)
+    values ( #orderId:INTEGER#, #skuId:INTEGER#, #itemId:INTEGER#, #itemName:VARCHAR#, #salesProperty:VARCHAR#, #salesPropertyName#
+    	 #price:INTEGER#, #num:INTEGER#,
+      #itemImage:VARCHAR#, now(), now())
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="id">
+			<![CDATA[SELECT @@IDENTITY AS id ]]>
+	  </selectKey>
+  </insert>
+
+</sqlMap>

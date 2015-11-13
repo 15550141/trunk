@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="OrderShoppingCart" >
+  <resultMap id="OrderShoppingCartResult" class="com.ec.seller.domain.OrderShoppingCart" >
+    <result column="id" property="id"  />
+    <result column="order_id" property="orderId"  />
+    <result column="sku_id" property="skuId"  />
+    <result column="price" property="price"  />
+    <result column="num" property="num"  />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+    <result column="item_image" property="itemImage" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="selectByOrderId" resultMap="OrderShoppingCartResult" parameterClass="java.lang.Integer" >
+    select id, order_id, sku_id, price, num, item_name, item_image, created, modified
+    from order_shopping_cart
+    where order_id = #orderId:INTEGER#
+  </select>
+  
+  <insert id="insert" parameterClass="com.ec.seller.domain.OrderShoppingCart" >
+    insert into order_shopping_cart (order_id, sku_id, price, num, item_name, item_image,
+      created, modified)
+    values ( #orderId:INTEGER#, #skuId:INTEGER#, #price:INTEGER#, #num:INTEGER#,
+      #itemName:VARCHAR#, #itemImage:VARCHAR#, #created:TIMESTAMP#, #modified:TIMESTAMP#)
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="id">
+			<![CDATA[SELECT @@IDENTITY AS id ]]>
+	  </selectKey>
+  </insert>
+
+</sqlMap>

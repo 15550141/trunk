@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="BalanceInfo" >
+  <resultMap id="BalanceInfoResult" class="com.ec.seller.domain.BalanceInfo" >
+    <result column="balance_id" property="balanceId"  />
+    <result column="balance_date" property="balanceDate" jdbcType="TIMESTAMP" />
+    <result column="vender_user_id" property="venderUserId"  />
+    <result column="order_money_all" property="orderMoneyAll"  />
+    <result column="payment_goods" property="paymentGoods"  />
+    <result column="commission" property="commission"  />
+    <result column="balance_money" property="balanceMoney"  />
+    <result column="balance_status" property="balanceStatus"  />
+    <result column="reason" property="reason"  />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="selectAllColunms">
+		balance_id,balance_date,vender_user_id,order_money_all,payment_goods,commission,balance_money,balance_status,created,modified,reason
+  </sql>
+	
+  <!-- 查询条件 -->
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="balanceId" >
+        balance_id = #balanceId#
+      </isNotNull>
+  	  <isNotNull prepend="and" property="venderUserId" >
+        vender_user_id = #venderUserId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="orderMoneyAll" >
+        order_money_all = #orderMoneyAll#
+      </isNotNull>
+      <isNotNull prepend="and" property="paymentGoods" >
+        payment_goods = #paymentGoods#
+      </isNotNull>
+      <isNotNull prepend="and" property="commission" >
+        commission = #commission#
+      </isNotNull>
+      <isNotNull prepend="and" property="balanceMoney" >
+        balance_money = #balanceMoney#
+      </isNotNull>
+      <isNotNull prepend="and" property="balanceStatus" >
+        balance_status = #balanceStatus#
+      </isNotNull>
+      
+      <isNotNull prepend="and" property="startTime" >
+        <![CDATA[
+ 			balance_date >= #startTime#
+		]]>
+      </isNotNull>
+     <isNotNull prepend="and" property="endTime" >
+        <![CDATA[
+ 			balance_date < DATE_ADD(#endTime#,INTERVAL 1 DAY)
+		]]>
+      </isNotNull>
+      
+    </dynamic>
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BalanceInfoResult" parameterClass="java.lang.Integer" >
+    select <include refid="BalanceInfo.selectAllColunms" />
+    from balance_info
+    where balance_id = #balanceId#
+  </select>
+
+  <insert id="insert" parameterClass="com.ec.seller.domain.BalanceInfo" >
+    insert into balance_info (balance_date,vender_user_id,order_money_all,payment_goods,commission,balance_money,balance_status,created,modified,reason)
+    values (#balanceDate#,#venderUserId#,#orderMoneyAll#,#paymentGoods#,#commission#,#balanceMoney#,#balanceStatus#,now(), now(),#reason#)
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="balanceId">
+			<![CDATA[SELECT @@IDENTITY AS balance_id ]]>
+	  </selectKey>
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterClass="com.ec.seller.domain.BalanceInfo" >
+    update balance_info set modified = now()
+    <dynamic >
+  	  <isNotNull prepend="," property="reason" >
+        reason = #reason#
+      </isNotNull>
+      <isNotNull prepend="," property="orderMoneyAll" >
+        order_money_all = #orderMoneyAll#
+      </isNotNull>
+      <isNotNull prepend="," property="paymentGoods" >
+        payment_goods = #paymentGoods#
+      </isNotNull>
+      <isNotNull prepend="," property="commission" >
+        commission = #commission#
+      </isNotNull>
+      <isNotNull prepend="," property="balanceMoney" >
+        balance_money = #balanceMoney#
+      </isNotNull>
+      <isNotNull prepend="," property="balanceStatus" >
+        balance_status = #balanceStatus#
+      </isNotNull>
+    </dynamic>
+    where balance_id = #balanceId#
+  </update>
+  
+  <select id="countByCondition" parameterClass="com.ec.seller.domain.query.BalanceInfoQuery" resultClass="java.lang.Integer" >
+    select count(1) from balance_info
+    <include refid="BalanceInfo.condition" />
+  </select>
+  
+  <select id="selectByCondition" parameterClass="com.ec.seller.domain.query.BalanceInfoQuery" resultMap="BalanceInfoResult" >
+    select <include refid="BalanceInfo.selectAllColunms" />
+    from balance_info
+    <include refid="BalanceInfo.condition" />
+    order by balance_id desc
+  </select>
+  
+  <select id="selectByConditionForPage" parameterClass="com.ec.seller.domain.query.BalanceInfoQuery" resultMap="BalanceInfoResult" >
+    select <include refid="BalanceInfo.selectAllColunms" />
+    from balance_info
+    <include refid="BalanceInfo.condition" /> 
+    <isNotNull property="sort" >
+    	 <isNotNull property="order" >
+			order by #sort# #order#
+		</isNotNull>
+	</isNotNull>
+  	limit #start#,#pageSize#
+  </select>
+</sqlMap>

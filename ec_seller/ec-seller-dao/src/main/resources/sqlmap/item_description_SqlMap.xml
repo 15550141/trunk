@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ItemDescription" >
+  <resultMap id="ItemDescriptionResult" class="com.ec.seller.domain.ItemDescription" >
+    <result column="ID" property="id"  />
+    <result column="ITEM_ID" property="itemId"  />
+    <result column="PC_Description_INFO" property="pcDescriptionInfo" jdbcType="VARCHAR" />
+    <result column="APP_Description_INFO" property="appDescriptionInfo" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <select id="selectByItemId" resultMap="ItemDescriptionResult" parameterClass="java.lang.Integer" >
+    select ID, ITEM_ID, PC_Description_INFO, APP_Description_INFO, created, modified
+    from item_description
+    where ITEM_ID = #itemId:INTEGER#
+  </select>
+
+  <insert id="insert" parameterClass="com.ec.seller.domain.ItemDescription" >
+    insert into item_description (ITEM_ID, PC_Description_INFO, APP_Description_INFO, created,
+      modified)
+    values (#itemId:INTEGER#, #pcDescriptionInfo:VARCHAR#,
+      #appDescriptionInfo:VARCHAR#,now(), now())
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="id">
+			<![CDATA[SELECT @@IDENTITY AS ID ]]>
+	  </selectKey>
+  </insert>
+  
+  <update id="updateByItemId" parameterClass="com.ec.seller.domain.ItemDescription" >
+    update item_description set modified = now()
+    <dynamic >
+      <isNotNull prepend="," property="pcDescriptionInfo" >
+        PC_Description_INFO = #pcDescriptionInfo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="appDescriptionInfo" >
+        APP_Description_INFO = #appDescriptionInfo:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ITEM_ID = #itemId:INTEGER#
+  </update>
+  
+</sqlMap>

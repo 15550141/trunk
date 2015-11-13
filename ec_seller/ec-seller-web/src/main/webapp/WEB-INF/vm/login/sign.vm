@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>登录</title>
+<link type="text/css" rel="stylesheet" href="/misc/css/oauth_web.css" />
+
+</head>
+<body>
+<form id="formsign" method="post" onsubmit="return false;">
+	<div class="oauth-wrap oauth-shadow">
+		
+		<div class="oauth-main" id="loginForm">
+			<div class="oauth-main-top"></div>
+			<div class="oauth-con">
+			
+			    <div class="item"><span class="label">账户名（手机号）：</span>
+                    <div class="fl">
+                        <input type="text" id="mobile" name="mobile" tabindex="1" onblur="if(this.value==''){this.value='注册的手机号';this.style.color='#999'}" onfocus="if(this.value=='注册的手机号'){this.value='';this.style.color='#333'}" value="注册的手机号" class="text_blank" autocomplete="off">
+                        <label id="username_succeed" class="blank invisible"></label>
+                        <span class="clr"></span>
+                        <label id="username_error"></label>
+                    </div>
+                </div>
+                
+                <div class="item"><span class="label">商铺名称：</span>
+                    <div class="fl">
+                        <input type="text" id="shopName" name="shopName" tabindex="2" onblur="if(this.value==''){this.value='商铺名称';this.style.color='#999'}" onfocus="if(this.value=='商铺名称'){this.value='';this.style.color='#333'}" value="商铺名称" class="text_blank" autocomplete="off">
+                        <label id="mail_succeed" class="blank invisible"></label>
+                        <span class="clr"></span>
+                        <label id="mail_error"></label>
+                    </div>
+                </div>     
+                
+                <div class="item">
+                    <span class="label">密码：</span>
+                    <div class="fl">
+                        <input type="password" id="loginpwdSign" name="loginpwdSign" class="text" tabindex="3" autocomplete="off">
+                        <label id="loginpwdSign_succeed" class="blank invisible"></label>
+                        <span class="clr"></span>
+                        <label id="loginpwdSign_error"></label>
+                    </div>
+                </div>
+                
+                <div class="item">
+                    <span class="label">重新输入密码：</span>
+                    <div class="fl">
+                        <input type="password" id="loginpwdSign2" name="loginpwdSign2" class="text" tabindex="4" autocomplete="off">
+                        <label id="loginpwd2Sign_succeed" class="blank invisible"></label>
+                        <span class="clr"></span>
+                        <label id="loginpwd2Sign_error"></label>
+                    </div>
+                </div>
+				
+                <!--<div class="item">
+                    <span class="label">手机号码：</span>
+                    <div class="fl" >
+                        <input type="text" id="mobile" name="mobile" class="text" />
+						
+                    </div>
+                </div>   -->
+				
+                
+                <div class="item">
+                    <span class="label">验证码：</span>
+                    <div class="fl">
+                        <input type="text" id="verificationCode" name="verificationCode" class="text" tabindex="4" autocomplete="off">
+                        <input type="button" class="btn-img btn-entry" id="getSignSMSCode" value="获取短信验证码" tabindex="5" />
+                        <label id="verificationCode_succeed" class="blank invisible"></label>
+                        <span class="clr"></span>
+                        <label id="verificationCode_error"></label>
+                    </div>
+                </div>
+                
+                <div id="userProtocol" class="item" style="display: none;" >
+                	 <span class="label"> &nbsp;&nbsp;</span>
+                 	<div class="fl">
+                 	用户注册协议详细内容！
+
+                   </div>
+                </div>
+                
+                 <div class="item">
+                	 <span class="label"> &nbsp;&nbsp;</span>
+                 	<div class="fl">
+                		<input id="agree" type="checkbox" name="selectAll" value="checkbox"/>我已阅读并同意 <a id="" href="javascript:void(0)" onclick="userProtocol(this);">《用户注册协议》</a> 
+                		<a id="userHide" href="javascript:void(0)" onclick="userProtocolHide(this);" style="display: none;" >收起</a>
+                    <!--<span class="label">我已阅读并同意</span>
+                   --></div>
+                </div>
+                
+				
+                <div class="item">
+                    <span class="label">&nbsp;</span>
+                    <input type="button" class="btn-img btn-entry" id="onSignSubmit" value="注册" tabindex="5">
+                </div>
+
+			</div>
+			<div class="oauth-main-bottom"></div>
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="/js/jquery-1.2.6.js"></script>
+	<script type="text/javascript" src="/js/jQuery.md5.js"></script>
+    <script type="text/javascript" src="/misc/js/jdValidate.new.js"></script>
+    <script type="text/javascript" src="/misc/js/Validate.newEntry.js"></script>
+</form>
+<script langusge="javascript" >
+
+
+	function userProtocol(obj){
+		$("#userProtocol").show();
+		$("#userHide").show();
+		
+	}
+
+	function userProtocolHide(obj){
+		$("#userProtocol").hide();
+		$("#userHide").hide();
+	}
+</script>
+
+</body>
+</html>

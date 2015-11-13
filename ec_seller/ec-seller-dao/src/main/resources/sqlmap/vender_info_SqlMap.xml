@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="vender_info" >
+  <resultMap id="VenderInfoResult" class="com.ec.seller.domain.BusinessUserExt" >
+    <result column="id" property="id"  />
+    <result column="user_id" property="userId"  />
+    <result column="shop_name" property="shopName" />
+    <result column="status" property="status"  />
+    <result column="created" property="created"  />
+    <result column="modified" property="modified" />
+  </resultMap>
+
+  <select id="selectByPrimaryKey" resultMap="VenderInfoResult" parameterClass="com.ec.seller.domain.BusinessUserExt" >
+    select id, user_id, shop_name, status,
+      created, modified
+    from vender_info
+    where id = #id#
+  </select>
+
+  <insert id="addVender" parameterClass="com.ec.seller.domain.BusinessUserExt" >
+    insert into vender_info ( user_id, shop_name, status, created, modified)
+    values (#userId#, #shopName#, #status#, now(), now())
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.ec.seller.domain.BusinessUserExt" >
+    update vender_info
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="userId" >
+        user_id = #userId#
+      </isNotNull>
+      <isNotNull prepend="," property="shopName" >
+        shop_name = #shopName#
+      </isNotNull>
+      <isNotNull prepend="," property="venderState" >
+        status = #status#
+      </isNotNull>
+      <isNotNull prepend="," property="created" >
+        created = #created#
+      </isNotNull>
+      <isNotNull prepend="," property="modified" >
+        modified = now()
+      </isNotNull>
+    </dynamic>
+    where id = #id#
+  </update>
+
+</sqlMap>

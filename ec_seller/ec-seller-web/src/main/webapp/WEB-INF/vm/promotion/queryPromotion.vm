@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    	<meta http-equiv="expires" content="0" />
+        <title>管理页面</title>
+        <link href="/style/erpstyle.css"rel="stylesheet" type="text/css" />
+        <script language="javascript" src="/js/jquery-1.6.2.min.js"></script>
+        <script language="javascript" src="/js/erpstyle1.js"></script>
+        <script language="javascript" src="/js/common.js"></script>
+    </head>
+    <body>
+<!--盒子开始-->
+<form id="f1" name="f1" method="post">
+<div class="box"> 
+    <!--标题区开始-->
+    <div class="title">
+        <div class="left">
+            <div class="title_gl">促销管理</div>
+            <div class="title_fbt"></div>
+            <div class="bh"></div>
+        </div>
+    </div>
+    <!--标题区结束-->
+    <!--查询区开始-->
+    <div class="panel_search">
+        <table border="0" cellpadding="0" cellspacing="2">
+            <tr>
+                <td align="right">促销编号：</td>
+                <td>
+                    <input type="text" name="promotionId" id="promotionId" value="$!{promotionInfo.promotionId}" />
+                </td>
+                  
+                <td align="right">开始时间：</td>
+                <td>
+                    <input type="text" name="startTimeString" id="startTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" value="$!dateFormatUtils.format($!{promotionInfo.startTime},"yyyy-MM-dd")" />
+                </td>
+				 <td align="right">结束时间：</td>
+				<td>
+                    <input type="text" name="endTimeString" id="endTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" value="$!dateFormatUtils.format($!{promotionInfo.endTime},"yyyy-MM-dd")" />
+                </td>
+            </tr>
+			<tr>
+                <td align="right">促销名称：</td>
+                <td>
+                    <input type="text" name="promotionName" id="promotionName" value="$!{promotionInfo.promotionName}" />
+                </td>
+                <td align="right">促销类型：</td>
+                <td>
+                    <select id="promotionType" name="promotionType" style="width:130px">
+                   		<option #if($!{promotionInfo.promotionType}=="") selected="selected" #end value="">全选</option> 
+						<option #if($!{promotionInfo.promotionType}==1) selected="selected" #end value="1">1对应的促销类型</option>
+						<option #if($!{promotionInfo.promotionType}==2) selected="selected" #end value="2">2对应的促销类型</option>
+                    </select>
+                </td>
+            </tr>
+			<tr>
+                <td></td>
+                <td></td>
+				<td>
+					<input type="button" id="query" name="query" value="查询"/>
+				</td><!--
+                <td>
+					<input type="button" id="add" name="add" value="添加"/>
+				</td>
+                --><td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <!--查询区结束--> 
+    <!--列表区开始-->
+    <div class="panel_grid">
+        <table>
+            <tr>
+                <th>促销ID</th>
+                <th>促销名称</th>
+                <th>促销商品ID</th>
+				<th>商家ID</th>
+                <th>促销类型</th>
+                <th>起始时间</th>
+                <th>截止时间</th>
+                <th>最小购买数量</th>
+                <th>最大购买数量</th>
+				<th>促销库存数量</th>
+                <th>促销规则</th>
+                <th>促销状态</th>
+				<th>有效性</th>
+				<th>操作</th>
+            </tr>
+			#foreach($promotionInfo in $resultMap.promotionInfoList)
+            <tr>
+                <td>$!{promotionInfo.promotionId}</td>
+                <td>$!{promotionInfo.promotionName}</td>
+                <td>$!{promotionInfo.itemId}</td>
+                <td>$!{promotionInfo.venderUserId}</td>
+                <td>$!{promotionInfo.promotionType}</td>
+				<td>$!dateFormatUtils.format($!{promotionInfo.startTime},"yyyy-MM-dd")</td>
+				<td>$!dateFormatUtils.format($!{promotionInfo.endTime},"yyyy-MM-dd")</td>
+                <td>$!{promotionInfo.purchaseNumberMin}</td>
+                <td>$!{promotionInfo.purchaseNumberMax}</td>
+                <td>$!{promotionInfo.promotionStock}</td>
+                <td>$!{promotionInfo.promotionRule}</td>
+                
+				#if($!{promotionInfo.promotionStatus}==0)
+					<td>待上线</td>
+				#elseif($!{promotionInfo.promotionStatus}==1)
+					<td>进行中</td>
+				#else
+					<td>已关闭</td>
+				#end
+				
+				#if($!{promotionInfo.yn}==0)
+				 <td>无效</td>
+				#elseif($!{promotionInfo.yn}==1)
+				 <td>有效</td>
+				#end
+                <td>
+                    <a href="/monthly/updateMonthly.action?monthlyUser.pin=$!{monthly.pin}">下线</a>
+					<a href="/monthly/examineMonthly.action?monthlyUser.pin=$!{monthly.pin}">删除</a>
+					<a href="/monthly/doUpdateMonthly.action?monthlyUser.pin=$!{monthly.pin}&monthlyUser.applyStatus=2">修改</a>
+                </td>
+            </tr>
+			#end
+        </table>
+        <!--分页控件开始-->
+        
+        <div class="pager">
+			<!--  set($pageModule = $mainModule.getTarget("/promotion/queryPromotion").addQueryData("promotionInfo.promotionId",$!stringEscapeUtils.escapeJava($!{promotionInfo.promotionId})).addQueryData("promotionInfo.promotionName",$!stringEscapeUtils.escapeJava($!{promotionInfo.promotionName})).addQueryData("promotionInfo.promotionType",$!stringEscapeUtils.escapeJava($!{promotionInfo.promotionType})).addQueryData("promotionInfo.startTime",$!dateFormatUtils.format($!{promotionInfo.startTime},"yyyy-MM-dd")).addQueryData("promotionInfo.endTime",$!dateFormatUtils.format($!{promotionInfo.endTime},"yyyy-MM-dd")))
+			-->
+			#set($pageModule = $mainModule.getTarget("/promotion/queryPromotion").addQueryData("promotionId",$!{promotionInfo.promotionId}).addQueryData("startTimeString",$!dateFormatUtils.format($!{promotionInfo.startTime},"yyyy-MM-dd")).addQueryData("endTimeString",$!dateFormatUtils.format($!{promotionInfo.endTime},"yyyy-MM-dd")))
+			#showPage($pageModule $resultMap.promotionInfoList)  
+        </div>
+        <!--分页控件结束--> 
+    </div>
+    <!--列表区结束--> 
+</div>
+<!--盒子结束--> 
+</form>
+ <!--  <script language="javascript" src="/My97DatePicker/WdatePicker.js"></script> -->
+ <script language="javascript" src="$assetModule.getTarget("/My97DatePicker/WdatePicker.js")"></script>
+ <script language="javascript" src="$assetModule.getTarget("/js/promotion/promotionJS.js")"></script>
+ </body>
+ </html>

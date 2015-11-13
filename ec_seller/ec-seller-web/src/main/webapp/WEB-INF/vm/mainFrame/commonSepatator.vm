@@ -1,0 +1,48 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head >
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+	<title>资金风险</title>
+<script type="text/javascript" src="$!{contextPath}/misc/js/new/jquery-1.6.2.min.js"></script>
+</head>
+    <style>
+body {
+	font:12px Arial, Helvetica, sans-serif;
+	color: #000;
+	margin: 0px;
+	background-image:url(/misc/images/new/splitter_bg.gif);
+	background-repeat:repeat-y;
+}
+
+#switchpic {
+	width: 7px;
+	cursor:pointer;
+	clear: both;
+	vertical-align: bottom;
+	margin-top: 220px;
+}
+</style>
+<script language="JavaScript">
+function Submit_onclick(){
+	if(parent.document.getElementsByTagName("frameset")[0].cols == "230,10,*") {
+		parent.document.getElementsByTagName("frameset")[0].cols="0,10,*";
+		document.getElementById("ImgArrow").src="/misc/images/new/switch_right.gif";
+		document.getElementById("ImgArrow").alt="打开左侧导航栏";
+	} else {
+		parent.document.getElementsByTagName("frameset")[0].cols="230,10,*";
+		document.getElementById("ImgArrow").src="/misc/images/new/switch_left.gif";
+		document.getElementById("ImgArrow").alt="隐藏左侧导航栏";
+	}
+}
+
+</script>
+<body >
+	<div id="switchpic"><a href="javascript:Submit_onclick()">
+		<img src="$!{contextPath}/misc/images/new/switch_left.gif" alt="隐藏左侧导航栏" id="ImgArrow"></a>
+    </div>
+</body>
+</html>

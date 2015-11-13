@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="PropertyValue" >
+  <resultMap id="PropertyValueResult" class="com.ec.seller.domain.PropertyValue" >
+    <result column="property_value_id" property="propertyValueId"  />
+    <result column="property_id" property="propertyId"  />
+    <result column="property_value_name" property="propertyValueName" jdbcType="VARCHAR" />
+    <result column="property_value_type" property="propertyValueType"  />
+    <result column="sort_number" property="sortNumber"  />
+    <result column="vender_user_id" property="venderUserId"  />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <!-- 查询条件 -->
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="propertyValueId" >
+        property_value_id = #propertyValueId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="propertyId" >
+        property_id = #propertyId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="propertyValueName" >
+        property_value_name like '%$propertyValueName$%'
+      </isNotNull>
+      <isNotNull prepend="and" property="propertyValueType" >
+        property_value_type = #propertyValueType:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="sortNumber" >
+        sort_number = #sortNumber:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="venderUserId" >
+        vender_user_id = #venderUserId:INTEGER#
+      </isNotNull>
+    </dynamic>
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="PropertyValueResult" parameterClass="java.lang.Integer" >
+    select property_value_id, property_id, property_value_name, property_value_type, sort_number,
+      vender_user_id, created, modified
+    from property_value
+    where property_value_id = #propertyValueId:INTEGER#
+  </select>
+
+  <insert id="insert" parameterClass="com.ec.seller.domain.PropertyValue" >
+    insert into property_value ( property_id, property_value_name,
+      property_value_type, sort_number, vender_user_id, created, modified)
+    values (#propertyId:INTEGER#, #propertyValueName:VARCHAR#,
+      #propertyValueType:INTEGER#, #sortNumber:INTEGER#, #venderUserId:INTEGER#,
+      now(),now())
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="propertyValueId">
+			<![CDATA[SELECT @@IDENTITY AS property_value_id ]]>
+	  </selectKey>
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterClass="com.ec.seller.domain.PropertyValue" >
+    update property_value SET modified=now()
+    <dynamic >
+      <isNotNull prepend="," property="propertyId" >
+        property_id = #propertyId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="propertyValueName" >
+        property_value_name = #propertyValueName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="propertyValueType" >
+        property_value_type = #propertyValueType:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="sortNumber" >
+        sort_number = #sortNumber:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="venderUserId" >
+        vender_user_id = #venderUserId:INTEGER#
+      </isNotNull>
+    </dynamic>
+    where property_value_id = #propertyValueId:INTEGER#
+  </update>
+  
+  <select id="countByCondition" parameterClass="com.ec.seller.domain.query.PropertyValueQuery" resultClass="java.lang.Integer" >
+    select count(1) from property_value
+    <include refid="PropertyValue.condition" />
+  </select> 
+  
+  <select id="selectByCondition" parameterClass="com.ec.seller.domain.query.PropertyValueQuery" resultMap="PropertyValueResult" >
+    select property_value_id, property_id, property_value_name, property_value_type, sort_number,
+      vender_user_id, created, modified
+    from property_value
+    <include refid="PropertyValue.condition" />
+    order by sort_number
+  </select> 
+  
+  <select id="selectByConditionForPage" parameterClass="com.ec.seller.domain.query.PropertyValueQuery" resultMap="PropertyValueResult" >
+    select property_value_id, property_id, property_value_name, property_value_type, sort_number,
+      vender_user_id, created, modified
+    from property_value
+    <include refid="PropertyValue.condition" />
+    order by sort_number
+  	limit #start#,#pageSize#
+  </select> 
+  
+  
+  
+  <delete id="deleteById" parameterClass="java.lang.Integer">
+    delete from property_value where property_value_id=#propertyValueId# 
+  </delete>
+  
+</sqlMap>

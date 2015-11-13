@@ -1,0 +1,13 @@
+{"total":7,"rows":[
+	{"name":"balanceId","value":"$!balanceInfo.balanceId","editor":"text","field":"balanceId","frozen":true},
+	{"name":"balanceDate","value":"$!balanceInfo.balanceDate","editor":"text","field":"balanceDate"},
+	{"name":"venderUserId","value":"$!balanceInfo.venderUserId","editor":"text","field":"venderUserId"},
+	{"name":"orderMoneyAll","value":"$!balanceInfo.orderMoneyAll","editor":"text","field":"orderMoneyAll"},
+	{"name":"paymentGoods","value":"$!balanceInfo.paymentGoods","editor":"text","field":"paymentGoods"},
+	{"name":"commission","value":"$!balanceInfo.commission","editor":"text","field":"commission"},
+	{"name":"balanceMoney","value":"$!balanceInfo.balanceMoney","editor":"text","field":"balanceMoney"},
+	{"name":"balanceStatus","value":"$!balanceInfo.balanceStatus","editor":"text","field":"balanceStatus"},
+	{"name":"created","value":"$!balanceInfo.created","editor":"text","field":"created"},
+	{"name":"modified","value":"$!balanceInfo.modified","editor":"text","field":"modified"},
+	{"name":"reason","value":"$!balanceInfo.reason","editor":"text","field":"reason"}
+]}

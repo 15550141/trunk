@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="Favorites" >
+  <resultMap id="FavoritesResult" class="com.ec.seller.domain.Favorites" >
+    <result column="favorites_id" property="favoritesId"  />
+    <result column="user_id" property="userId"  />
+    <result column="item_id" property="itemId"  />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  
+  <sql id="condition" >
+    <dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="userId" >
+        user_id = #userId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="itemId" >
+        item_id = #itemId:INTEGER#
+      </isNotNull>
+    </dynamic>
+  </sql>
+  
+
+  <delete id="deleteByPrimaryKey" parameterClass="java.lang.Integer" >
+    delete from favorites
+    where favorites_id = #favoritesId:INTEGER#
+  </delete>
+  
+  <insert id="insert" parameterClass="com.ec.seller.domain.Favorites" >
+    insert into favorites (user_id, item_id, created, modified)
+    values ( #userId:INTEGER#, #itemId:INTEGER#, now(),now())
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="favoritesId">
+			<![CDATA[SELECT @@IDENTITY AS favorites_id ]]>
+	  </selectKey>
+  </insert>
+  
+  <select id="countByCondition" parameterClass="com.ec.seller.domain.query.FavoritesQuery" resultClass="java.lang.Integer" >
+    select count(1) from favorites
+    <include refid="Favorites.condition" />
+  </select>
+  
+  <select id="selectByCondition" parameterClass="com.ec.seller.domain.query.FavoritesQuery" resultMap="FavoritesResult" >
+    select favorites_id,user_id, item_id, created, modified
+     from favorites
+    <include refid="Favorites.condition" />
+  </select>
+  
+  <select id="selectByConditionForPage" parameterClass="com.ec.seller.domain.query.FavoritesQuery" resultMap="FavoritesResult" >
+    select favorites_id,user_id, item_id, created, modified
+     from favorites
+    <include refid="Favorites.condition" />
+    order by favorites_id
+  	limit #start#,#pageSize#
+  </select>
+  
+</sqlMap>

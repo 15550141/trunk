@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>登录</title>
+<link type="text/css" rel="stylesheet" href="/misc/css/oauth_web.css" />
+
+</head>
+<body>
+<form id="formlogin" method="post" onsubmit="return false;">
+	<div class="oauth-wrap oauth-shadow">		
+		<div class="oauth-main" id="loginForm">
+			<div class="oauth-main-top"></div>
+			<div class="oauth-con">
+                <div class="item"><span class="label">账户名：</span>
+                    <div class="fl">
+                        <input type="text" id="loginname" name="loginname" tabindex="1" onblur="if(this.value==''){this.value='注册的手机号';this.style.color='#999'}" onfocus="if(this.value=='注册的手机号'){this.value='';this.style.color='#333'}" value="注册的手机号" class="text_blank" autocomplete="off">
+                        <label id="loginname_succeed" class="blank invisible"></label>
+                        <span class="clr"></span>
+                        <label id="loginname_error"></label>
+                    </div>
+                </div>
+                <div class="item">
+                    <span class="label">密码：</span>
+
+                    <div class="fl">
+                        <input type="password" id="loginpwd" name="loginpwd" class="text" tabindex="2" autocomplete="off">
+                        <label id="loginpwd_succeed" class="blank invisible"></label>
+                        <!--  <label><a href="http://" class="flk13">忘记密码</a></label> -->
+                        <label><a href="/resetPwd" class="flk13">忘记密码</a></label>
+                        
+                        <span class="clr"></span>
+                        <div id="loginpwd_error_box">
+                        	<label id="loginpwd_error"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <span class="label">&nbsp;</span>
+                    <input type="button" class="btn-img btn-entry" id="loginsubmit" value="登录" tabindex="4">
+                    <input type="button" class="btn-img btn-entry" id="signsubmit" value="注册" tabindex="4">
+                </div>
+
+			</div>
+			<div class="oauth-main-bottom"></div>
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="/misc/js/jquery-1.2.6.pack.js"></script>
+	<script type="text/javascript" src="/misc/js/jQuery.md5.js"></script>
+    <script type="text/javascript" src="/misc/js/jdValidate.new.js"></script>
+    <script type="text/javascript" src="/misc/js/Validate.newEntry.js"></script>
+</form>
+</body>
+</html>

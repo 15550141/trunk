@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="PromotionSku" >
+  <resultMap id="PromotionSkuResult" class="com.ec.seller.domain.PromotionSku" >
+    <result column="id" property="id"  />
+    <result column="promotion_id" property="promotionId"  />
+    <result column="sku_id" property="skuId"  />
+    <result column="deduction_price" property="deductionPrice" jdbcType="DOUBLE" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+    <result column="yn" property="yn" />
+  </resultMap>
+  
+  <!-- 查询条件 -->
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="id" >
+        id = #id:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="promotionId" >
+        promotion_id = #promotionId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="skuId" >
+        sku_id = #skuId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="yn" >
+        yn = #yn:TINYINT#
+      </isNotNull>
+    </dynamic>
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="PromotionSkuResult" parameterClass="java.lang.Integer" >
+    select id,promotion_id,sku_id,deduction_price, created, modified,yn
+    from promotion_sku
+    where promotion_id = #promotionId:INTEGER#
+  </select>
+  
+  <select id="selectBySkuId" resultMap="PromotionSkuResult" parameterClass="java.lang.Integer" >
+    select id,promotion_id,sku_id,deduction_price, created, modified,yn
+    from promotion_sku
+    where sku_id = #skuId:INTEGER#
+  </select>
+
+  <insert id="insert" parameterClass="com.ec.seller.domain.PromotionSku" >
+    insert into promotion_sku (promotion_id,sku_id,deduction_price, created, modified,yn)
+    values ( #promotionId#,#skuId#,#deductionPrice#,now(),now(),1)
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="id">
+			<![CDATA[SELECT @@IDENTITY AS id ]]>
+	  </selectKey>
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterClass="com.ec.seller.domain.PromotionSku" >
+    update promotion_sku set modified = now()
+    <dynamic >
+   	  <isNotNull prepend="," property="promotionId" >
+        promotion_id = #promotionId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="skuId" >
+        sku_id = #skuId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="deductionPrice" >
+        deduction_price = #deductionPrice:DOUBLE#
+      </isNotNull>
+      <isNotNull prepend="," property="yn" >
+        yn = #yn:TINYINT#
+      </isNotNull>
+    </dynamic>
+    where id = #id:INTEGER#
+  </update>
+  
+  <update id="updateByPromotionId" parameterClass="com.ec.seller.domain.PromotionSku" >
+    update promotion_sku set modified = now()
+    <dynamic >
+      <isNotNull prepend="," property="skuId" >
+        sku_id = #skuId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="deductionPrice" >
+        deduction_price = #deductionPrice:DOUBLE#
+      </isNotNull>
+      <isNotNull prepend="," property="yn" >
+        yn = #yn:TINYINT#
+      </isNotNull>
+    </dynamic>
+    where promotion_id = #promotionId:INTEGER#
+  </update>
+  
+  <select id="countByCondition" parameterClass="com.ec.seller.domain.query.PromotionSkuQuery" resultClass="java.lang.Integer" >
+    select count(1) from promotion_sku
+    <include refid="PromotionSku.condition" />
+  </select>
+  
+  <select id="selectByCondition" parameterClass="com.ec.seller.domain.query.PromotionSkuQuery"  resultMap="PromotionSkuResult" >
+    select id,promotion_id,sku_id,deduction_price, created, modified,yn
+    from promotion_sku
+    <include refid="PromotionSku.condition" />
+  </select>
+  
+  <select id="selectByConditionForPage" parameterClass="com.ec.seller.domain.query.PromotionSkuQuery" resultMap="PromotionSkuResult" >
+    select id,promotion_id,sku_id,deduction_price, created, modified,yn
+    from promotion_sku
+    <include refid="PromotionSku.condition" />
+    order by modified desc
+  	limit #start#,#pageSize#
+  </select>
+  
+</sqlMap>

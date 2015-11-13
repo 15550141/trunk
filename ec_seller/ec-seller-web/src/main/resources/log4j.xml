@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %p - %C[%L] - %m \n" />
+		</layout>
+	</appender>
+
+	<appender name="File" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="encoding" value="UTF-8" />
+		<param name="File" value="D:/logs/api.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %p - %C[%L] - %m \n" />
+		</layout>
+	</appender>
+	
+	<appender name="RefuseMessageMq" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="encoding" value="UTF-8" />
+		<param name="DatePattern" value="'.'yyyy-ww" />
+		<param name="file" value="D:/logs/bizapi/RefuseMessageMq.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%7r] %6p - %30.30c - %m \n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<!--<param name="LevelMax" value="FATAL "/> -->
+		</filter>
+	</appender>
+
+	<category name="RefuseMessageMqLog" additivity="false">
+		<priority value="ERROR" />
+		<appender-ref ref="RefuseMessageMq" />
+	</category>
+	
+	<appender name="DlokMessageMQ" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="encoding" value="UTF-8" />
+		<param name="DatePattern" value="'.'yyyy-ww" />
+		<param name="file" value="D:/logs/bizapi/DlokMessageMQ.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%7r] %6p - %30.30c - %m \n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<!--<param name="LevelMax" value="FATAL "/> -->
+		</filter>
+	</appender>
+
+	<category name="DlokMessageMQLog" additivity="false">
+		<priority value="ERROR" />
+		<appender-ref ref="DlokMessageMQ" />
+	</category>
+	
+	<appender name="OrderMessageMQ" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="encoding" value="UTF-8" />
+		<param name="DatePattern" value="'.'yyyy-ww" />
+		<param name="file" value="D:/logs/bizapi/OrderMessageMQ.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%7r] %6p - %30.30c - %m \n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<!--<param name="LevelMax" value="FATAL "/> -->
+		</filter>
+	</appender>
+
+	<category name="OrderMessageMQLog" additivity="false">
+		<priority value="ERROR" />
+		<appender-ref ref="OrderMessageMQ" />
+	</category>
+	
+	<appender name="submitOrder" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="encoding" value="UTF-8" />
+		<param name="DatePattern" value="'.'yyyy-ww" />
+		<param name="file" value="D:/logs/bizapi/submitOrder.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%7r] %6p - %30.30c - %m \n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<!--<param name="LevelMax" value="FATAL "/> -->
+		</filter>
+	</appender>
+
+	<category name="submitOrderLog" additivity="false">
+		<priority value="ERROR" />
+		<appender-ref ref="submitOrder" />
+	</category>
+	
+	<appender name="submitGiftcardOrder" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="encoding" value="UTF-8" />
+		<param name="DatePattern" value="'.'yyyy-ww" />
+		<param name="file" value="D:/logs/bizapi/submitGiftcardOrder.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%7r] %6p - %30.30c - %m \n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<!--<param name="LevelMax" value="FATAL "/> -->
+		</filter>
+	</appender>
+
+	<category name="submitGiftcardOrderLog" additivity="false">
+		<priority value="ERROR" />
+		<appender-ref ref="submitGiftcardOrder" />
+	</category>
+	
+	<category name="java.sql" additivity="true">
+		<priority value="ERROR"/>
+		<appender-ref ref="CONSOLE"/>
+	</category>
+		
+	<root>
+		<priority value="ERROR" />
+		<appender-ref ref="File" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+</log4j:configuration>

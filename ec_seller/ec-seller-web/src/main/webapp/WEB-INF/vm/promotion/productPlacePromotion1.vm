@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    	<meta http-equiv="expires" content="0" />
+        <title>管理页面</title>
+        <link href="/style/erpstyle.css"rel="stylesheet" type="text/css" />
+        <script language="javascript" src="/js/jquery-1.6.2.min.js"></script>
+        <script language="javascript" src="/js/erpstyle1.js"></script>
+        <script language="javascript" src="/js/common.js"></script>
+    </head>
+    <body>
+<!--盒子开始-->
+<form id="f1" name="f1" method="post">
+<div class="box"> 
+    <!--标题区开始-->
+    <div class="title">
+        <div class="left">
+            <div class="title_gl">产地特供信息</div>
+            <div class="title_fbt"></div>
+            <div class="bh"></div>
+        </div>
+    </div>
+	
+    <!--标题区结束-->
+    <!--查询区开始-->
+    <div class="panel_search">
+		<div style="width:400px;height:40px;background:#faf8ea;border:#ffccff 1px solid;">
+			<p style="text-indent:25px;">促销规则，请仔细核算！</p>
+		</div>
+		<table border="0" cellpadding="0" cellspacing="5">
+    		<tr height="30px">
+    			<td align="right" width="80" >产地：</td>
+				<td align="left" >
+                    <select name="supplyProvince" id="supplyProvince" style="width: 110px">
+            			<option value="1">北京</option>
+            			<option value="2">上海</option>
+            			<option value="3">天津</option>
+            			<option value="4">重庆</option>
+            			<option value="5">河北</option>
+            			<option value="6">山西</option>
+            			<option value="7">河南</option>
+            			<option value="8">辽宁</option>
+            			<option value="9">吉林</option>
+            			<option value="10">黑龙江</option>
+            			<option value="11">内蒙古</option>
+            			<option value="12">江苏</option>
+            			<option value="13">山东</option>
+            			<option value="14">安徽</option>
+            			<option value="15">浙江</option>
+            			<option value="16">福建</option>
+            			<option value="17">湖北</option>
+            			<option value="18">湖南</option>
+            			<option value="19">广东</option>
+            			<option value="20">广西</option>
+            			<option value="21">江西</option>
+            			<option value="22">四川</option>
+            			<option value="23">海南</option>
+            			<option value="24">贵州</option>
+            			<option value="25">云南</option>
+            			<option value="26">西藏</option>
+            			<option value="27">陕西</option>
+            			<option value="28">甘肃</option>
+            			<option value="29">青海</option>
+            			<option value="30">宁夏</option>
+            			<option value="31">新疆</option>
+            			<option value="32">台湾</option>
+            			<option value="42">香港</option>
+            			<option value="43">澳门</option>
+            			<option value="84">钓鱼岛</option>
+    				</select>
+    				<select name="supplyCity" id="supplyCity" style="width: 110px"></select>
+    				<select name="supplyCounty" id="supplyCounty" style="width: 110px"></select>
+    			</td>
+    		</tr>
+            <tr height="30px">
+    			<td align="right">促销名称：</td>
+				<td align="left" >
+					<input type="text" name="promotionId" id="promotionId"  value="$!{promotionInfo.promotionId}" style="width:250px;" />
+    			<span>&nbsp;&nbsp;例如：山西农业基地合作社促销卖场（6-45个字）</span>                
+    			</td>
+    		</tr>
+			<tr height="30px">
+    			<td align="right">开始时间：</td>
+				<td align="left" >
+                <input type="text" name="startTimeString" id="startTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" value="$!dateFormatUtils.format($!{promotionInfo.startTime},"yyyy-MM-dd HH:mm:ss")" />
+    			<span>结束时间：</span>
+                <input type="text" name="endTimeString" id="endTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" value="$!dateFormatUtils.format($!{promotionInfo.endTime},"yyyy-MM-dd HH:mm:ss")" />
+    			</td>
+    		</tr>
+    		<tr height="30px">
+    			<td align="right">促销商品：</td>
+				<td align="left" >
+    				<input type="text" name="promotionId" id="promotionId" value="$!{promotionInfo.promotionId}"  style="width:320px;" />
+    			</td>
+    		</tr>
+            <tr height="30px">
+    			<td align="right">商品状态：</td>
+				<td align="left" >
+    				<input type="checkbox" name="promotionId" id="promotionId" value="promotionId" checked="true" >仅支持上架商品</input>
+				</td>
+    		</tr>
+			<tr height="30px">
+    			<td align="right">购买数量：</td>
+				<td align="left">
+					<span>单次最多购买数量</span>
+					<input type="text" name="promotionId" id="promotionId" value="$!{promotionInfo.promotionId}" />
+    				<input type="checkbox" name="promotionId" id="promotionId" value="promotionId" >不限</input>
+				</td>
+    		</tr>
+			<tr height="30px">
+    			<td align="right"> </td>
+				<td align="left" >
+					<span>单次最少购买数量</span>
+					<input type="text" name="promotionId" id="promotionId" value="$!{promotionInfo.promotionId}" />
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<input type="button" name="promotionId" id="promotionId" value="开始促销" />
+				</td>
+    		</tr>
+		</table>
+    </div>
+    <!--查询区结束--> 
+	<p style="text-indent:25px;"><font color="#FF0000">*促销设置完成后该商品编码下新增加的sku不会参与该促销！</font></p>
+    <!--列表区开始-->
+    <div class="panel_grid">
+        <table width="800px">
+			<thead>
+				<tr>
+					<th width="30px"><input type="checkbox" name="selectAll" id="selectAll" value="0"/></th>
+					<th width="100px">商品ID</th>
+					<th width="100px">SKU ID</th>
+					<th width="120px">商品名称</th>
+					<th width="100px">供应量</th>
+					<th width="60px">状态</th>
+					<th width="100px">目前售价</th>
+					<th width="100px">直降</th>
+					<th width="100px">新价格</th>
+					<th width="30px"></th>
+				</tr>
+			</thead>
+			#foreach($promotionInfo in $resultMap.promotionInfoList)
+            <tr>
+				<td><input type="checkbox" name="select" id="select" value="0"/>
+                <td>$!{promotionSku.itemId}</td>
+                <td>$!{promotionSku.skuId}</td>
+                <td>$!{promotionSku.itemName}</td>
+				<td>$!{promotionInfo.amount}</td>
+				<td>$!{promotionInfo.itemStatus}</td>
+				<td>$!{promotionSku.tbPrice}</td>
+                <td>$!{promotionSku.discount}</td>
+				<td>$!{promotionSku.deductionPrice}</td>
+				#if($!{promotionSku.itemId} != 0)
+				<td> </td>
+				#elseif($!{promotionSku.skuId} != 0)
+				<td>
+					<img src=""  alt="折叠按钮" />
+				</td>
+				#end
+            </tr>
+			#end
+        </table>
+        <!--分页控件开始-->
+        
+        <div class="pager">
+			#set($pageModule = $mainModule.getTarget("/promotion/queryPromotion").addQueryData("promotionInfo.promotionId",$!stringEscapeUtils.escapeJava($!{promotionInfo.promotionId})).addQueryData("promotionInfo.promotionName",$!stringEscapeUtils.escapeJava($!{promotionInfo.promotionName})).addQueryData("promotionInfo.promotionType",$!stringEscapeUtils.escapeJava($!{promotionInfo.promotionType})).addQueryData("promotionInfo.startTime",$!dateFormatUtils.format($!{promotionInfo.startTime},"yyyy-MM-dd")).addQueryData("promotionInfo.endTime",$!dateFormatUtils.format($!{promotionInfo.endTime},"yyyy-MM-dd")))
+			<!--  set($pageModule = $mainModule.getTarget("/list")) -->
+			#showPage($pageModule $resultMap.promotionInfoList)
+        </div>
+        <!--分页控件结束--> 
+    </div>
+    <!--列表区结束--> 
+</div>
+<!--盒子结束--> 
+</form>
+ <!--  <script language="javascript" src="/My97DatePicker/WdatePicker.js"></script> -->
+ <script language="javascript" src="$assetModule.getTarget("/My97DatePicker/WdatePicker.js")"></script>
+ <script language="javascript" src="$assetModule.getTarget("/js/promotion/promotionJS.js")"></script>
+ <script language="javascript" src="$assetModule.getTarget("/js/product/productJS.js")"></script>
+ 
+<script langusge="javascript" >
+//初始化页面
+$(document).ready(function(){
+	jQuery.ajax( {
+		url : "/category/getLevel",
+		type : "post",
+		dataType : "json",
+		data : "level=1",
+		success : function(data) {
+			if (data.msg == "success") {
+				$("#categoryId1").empty(); // 清空分类选项
+				var categoryList=data.categoryList;
+				for ( var i = 0; i < categoryList.length; i++) {
+					var category = categoryList[i];
+					
+					$("<option value='" + category.categoryId + "'>" 
+							+ category.categoryName + "</option>").appendTo("#categoryId1");
+					
+				}
+			} else {
+				alert("无商品一级分类！");
+			}
+		},
+		errot : function() {
+			alert("系统超时！");
+		}
+		});
+
+	jQuery.ajax( {
+		url : "/category/getLevel",
+		type : "post",
+		dataType : "json",
+		data : "level=2&pId=1",
+		success : function(data) {
+			if (data.msg == "success") {
+				$("#categoryId2").empty(); // 清空分类选项
+				var categoryList=data.categoryList;
+				for ( var i = 0; i < categoryList.length; i++) {
+					var category = categoryList[i];
+					
+					$("<option value='" + category.categoryId + "'>" 
+							+ category.categoryName + "</option>").appendTo("#categoryId2");
+					
+				}
+			} else {
+				alert("无商品一级分类！");
+			}
+		},
+		errot : function() {
+			alert("系统超时！");
+		}
+		});
+	//其他包装方式默认不选
+	$("#packingTypeCustom").hide();
+	
+	});
+</script>
+</body>
+</html>
+

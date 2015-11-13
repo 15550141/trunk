@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ItemImage" >
+  <resultMap id="ItemImageResult" class="com.ec.seller.domain.ItemImage" >
+    <result column="ID" property="id"  />
+    <result column="ITEM_ID" property="itemId"  />
+    <result column="IMAGE_URL" property="imageUrl" jdbcType="VARCHAR" />
+    <result column="SORT_NUMBER" property="sortNumber"  />
+    <result column="YN" property="yn"  />
+    <result column="CREATED" property="created" jdbcType="TIMESTAMP" />
+    <result column="MODIFIED" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+
+  <select id="selectByItemId" resultMap="ItemImageResult" parameterClass="java.lang.Integer" >
+    select ID, ITEM_ID, IMAGE_URL, SORT_NUMBER, YN, CREATED, MODIFIED
+    from item_image
+    where ITEM_ID = #itemId:INTEGER#
+  </select>
+  
+  <insert id="insert" parameterClass="com.ec.seller.domain.ItemImage" >
+    insert into item_image (ITEM_ID, IMAGE_URL, SORT_NUMBER, YN, CREATED, MODIFIED)
+    values (#itemId:INTEGER#, #imageUrl:VARCHAR#, #sortNumber:INTEGER#, 1,
+      now(), now())
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="id">
+			<![CDATA[SELECT @@IDENTITY AS ID ]]>
+	  </selectKey>
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterClass="com.ec.seller.domain.ItemImage" >
+    update item_image set MODIFIED = now()
+    <dynamic >
+      <isNotNull prepend="," property="itemId" >
+        ITEM_ID = #itemId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="imageUrl" >
+        IMAGE_URL = #imageUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sortNumber" >
+        SORT_NUMBER = #sortNumber:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="yn" >
+        YN = #yn:INTEGER#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:INTEGER#
+  </update>
+  
+</sqlMap>

@@ -1,0 +1,922 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    	<meta http-equiv="expires" content="0" />
+        <title>管理页面</title>
+        <link href="/style/erpstyle.css"rel="stylesheet" type="text/css" />
+        <script language="javascript" src="/js/jquery-1.6.2.min.js"></script>
+        <script language="javascript" src="/js/erpstyle1.js"></script>
+        <script language="javascript" src="/js/common.js"></script>
+    </head>
+    <body>
+
+<form id="f1" name="f1" method="post" >
+<div class="box"><!--标题区开始-->
+<div class="title1">
+<div class="left">
+<div class="title_gl">商品发布</div>
+<div class="title_fbt"></div>
+<div class="bh"></div>
+</div>
+<div class="right">
+<div class="zt"></span></div>
+</div>
+</div>
+<!--标题区结束-->
+<div style="height: 10px;"></div>
+
+
+<div class="panel_search1"><!--基本信息区开始-->
+<table>
+	<tr>
+		<td style="font-weight: bold;" align="right">基本信息</td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px">商品分类：</td>
+		<td align="left" style="width: 340px">
+			<select name="categoryId1" id="categoryId1" style="width: 110px"> 
+				<input type="hidden" id="categoryId1Hid" name="categoryId1Hid" value="$!{item.categoryId1}" />
+			
+			</select>
+			<select name="categoryId2" id="categoryId2" style="width: 110px">
+				<input type="hidden" id="categoryId2Hid" name="categoryId2Hid" value="$!{item.categoryId2}" />
+			 </select>
+			 <select name="categoryId3" id="categoryId3" style="width: 110px"> 
+				<input type="hidden" id="categoryId3Hid" name="categoryId3Hid" value="$!{item.categoryId3}" />
+			
+			</select>
+			<select name="categoryId4" id="categoryId4" style="width: 110px">
+				<input type="hidden" id="categoryId4Hid" name="categoryId4Hid" value="$!{item.categoryId4}" />
+			 </select>
+		</td>
+
+		<td></td>
+	</tr>
+	
+	<tr>
+		<td align="right" style="width: 100px">*商品名称：</td>
+		<td align="left" style="width: 600px">
+			<input type="text" name="itemName" maxlength="50" id="itemName" value="$!{item.itemName}" style="width: 200px" />例如：山西种植基地特供优质新玉米（6-45个字）
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><span id="itemNameSp"></span></td>
+	
+	</tr>
+</table>
+</div>
+<!--基本信息区结束-->
+
+
+<!--销售属性区开始-->
+<div id = "propertyDiv" class="panel_search1">
+<table>
+	<tr>
+		<td style="font-weight: bold; width: 100px" align="right">销售属性</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px">规格：</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+<table>
+
+	<tr  id="propertyTB">
+		<td align="left" style="width: 200px"><!--
+			<input type="checkbox" id="invoiceTypePT" name="bizOrder.invoiceType" value="1" />10公斤
+			<input type="checkbox" id="invoiceTypeZZ" name="bizOrder.invoiceType" value="2" checked="checked" />20公斤
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			--><!--  
+			<input type="text" name="newProperty" maxlength="30" id="newProperty" value="" style="width: 200px" />
+			<a id="delScript" href="#" style="color: blue;"> 添加 </a> -->
+		</td>
+		<td></td>
+	</tr>
+</table>
+</div>
+<!--销售属性区结束-->
+
+<!--价格库存开始-->
+<div id = "priceWithPropertyDiv" class="panel_search1" >
+<table>
+	<tr>
+		<td style="font-weight: bold; width: 100px" align="right">价格库存</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+<table id="priceTB">
+	<tr>
+
+	</tr>
+	<!--
+	
+	<tr>
+		<td style="width: 100px" align="right">10公斤:</td>
+		<td align="right" style="width: 100px">*价格：</td>
+		<td style="width: 80px">
+			<input type="text" name="tbPrice" id="tbPrice" value="" style="width: 80px" />
+		</td>
+		
+		<td align="right" style="width: 100px">供应量：</td>
+		<td style="width: 80px">
+			<input type="text" name="stock" id="stock" value="" style="width: 80px" />
+		</td>
+		
+		<td align="right" style="width: 100px">最低起卖量：</td>
+		<td style="width: 80px">
+			<input type="text" name="minSaleNum" id="minSaleNum" value="" style="width: 80px" />
+		</td>
+		<td align="right" style="width: 100px">条形码：</td>
+		<td style="width: 80px">
+			<input type="text" name="barCode" id="barCode" value="" style="width: 80px" />
+		</td>
+		<td></td>
+	</tr>
+	-->
+</table>
+</div>
+<!--价格库存区结束-->
+
+
+<!--价格库存开始-->
+<div id = "priceDiv" class="panel_search1" style="display: none;">
+
+<table>
+	<tr>
+		<td style="font-weight: bold; width: 100px" align="right">价格库存</td>
+		<td></td><!--
+		<td style="font-weight: bold;">					
+			单位：<select name="packingType" id="packingType" style="width: 40px">
+				<option value="1">件</option>
+				<option value="2">箱</option>
+				<option value="3">斤</option>
+				<option value="4">框</option>
+				<option value="5">吨</option>
+			</select></td>
+	--></tr>
+	
+	<tr>
+		<td align="right" style="width: 100px">*价格：</td>
+		<td style="width: 80px">
+			<input type="text" name="tbPriceNoPro" id="tbPriceNoPro" value="$!{tbPriceNoPro}" style="width: 80px" />
+		</td>
+		
+		<td align="right" style="width: 100px">*供应量：</td>
+		<td style="width: 80px">
+			<input type="text" name="stockNoPro" id="stockNoPro" value="$!{stockNoPro}" style="width: 80px" />
+		</td>
+		
+		<td align="right" style="width: 100px">*最低起卖量：</td>
+		<td style="width: 80px">
+			<input type="text" name="minSaleNumNoPro" id="minSaleNumNoPro" value="$!{minSaleNumNoPro}" style="width: 80px" />
+		</td>
+		<td align="right" style="width: 100px">条形码：</td>
+		<td style="width: 80px">
+			<input type="text" name="barCodeNpPro" id="barCodeNoPro" value="$!{barCodeNoPro}" style="width: 80px" />
+		</td>
+		<td></td>
+</table>
+</div>
+<!--价格库存区结束-->
+
+
+<!--扩展信息区开始-->
+<div class="panel_search1">
+<table>
+	<tr>
+		<td style="font-weight: bold; width: 100px" align="right">扩展信息</td>
+	</tr><!--
+	<tr>
+		<td align="right" style="width: 100px">供货地址：</td>
+		<td align="left" style="width: 340px">
+		<select name="supplyProvince" id="supplyProvince" style="width: 110px">
+			<option value="1">北京</option>
+			<option value="2">上海</option>
+			<option value="3">天津</option>
+			<option value="4">重庆</option>
+			<option value="5">河北</option>
+			<option value="6">山西</option>
+			<option value="7">河南</option>
+			<option value="8">辽宁</option>
+			<option value="9">吉林</option>
+			<option value="10">黑龙江</option>
+			<option value="11">内蒙古</option>
+			<option value="12">江苏</option>
+			<option value="13">山东</option>
+			<option value="14">安徽</option>
+			<option value="15">浙江</option>
+			<option value="16">福建</option>
+			<option value="17">湖北</option>
+			<option value="18">湖南</option>
+			<option value="19">广东</option>
+			<option value="20">广西</option>
+			<option value="21">江西</option>
+			<option value="22">四川</option>
+			<option value="23">海南</option>
+			<option value="24">贵州</option>
+			<option value="25">云南</option>
+			<option value="26">西藏</option>
+			<option value="27">陕西</option>
+			<option value="28">甘肃</option>
+			<option value="29">青海</option>
+			<option value="30">宁夏</option>
+			<option value="31">新疆</option>
+			<option value="32">台湾</option>
+			<option value="42">香港</option>
+			<option value="43">澳门</option>
+			<option value="84">钓鱼岛</option>
+		</select> 
+		<input type="hidden" id="supplyProvinceHid" name="supplyProvinceHid" value="$!{item.supplyProvince}" />
+		<select name="supplyCity" id="supplyCity" style="width: 110px">
+		<input type="hidden" id="supplyCityHid" name="supplyCityHid" value="$!{item.supplyCity}" />
+		</select> <select name="supplyCounty" id="supplyCounty" style="width: 110px">
+		<input type="hidden" id="supplyCountyHid" name="supplyCountyHid" value="$!{item.supplyCounty}" />
+		</select></td>
+	</tr>
+	--><tr>
+		<td align="right" style="width: 100px">*产地：</td>
+		<td align="left" style="width: 340px">
+		<select name="originProvince" id="originProvince" style="width: 110px">
+			<option value="1">北京</option>
+			<option value="2">上海</option>
+			<option value="3">天津</option>
+			<option value="4">重庆</option>
+			<option value="5">河北</option>
+			<option value="6">山西</option>
+			<option value="7">河南</option>
+			<option value="8">辽宁</option>
+			<option value="9">吉林</option>
+			<option value="10">黑龙江</option>
+			<option value="11">内蒙古</option>
+			<option value="12">江苏</option>
+			<option value="13">山东</option>
+			<option value="14">安徽</option>
+			<option value="15">浙江</option>
+			<option value="16">福建</option>
+			<option value="17">湖北</option>
+			<option value="18">湖南</option>
+			<option value="19">广东</option>
+			<option value="20">广西</option>
+			<option value="21">江西</option>
+			<option value="22">四川</option>
+			<option value="23">海南</option>
+			<option value="24">贵州</option>
+			<option value="25">云南</option>
+			<option value="26">西藏</option>
+			<option value="27">陕西</option>
+			<option value="28">甘肃</option>
+			<option value="29">青海</option>
+			<option value="30">宁夏</option>
+			<option value="31">新疆</option>
+			<option value="32">台湾</option>
+			<option value="42">香港</option>
+			<option value="43">澳门</option>
+			<option value="84">钓鱼岛</option>
+		</select> 
+		<input type="hidden" id="originProvinceHid" name="originProvinceHid" value="$!{item.originProvince}" />
+		<select name="originCity" id="originCity" style="width: 110px">
+		<input type="hidden" id="originCityHid" name="originCityHid" value="$!{item.originCity}" />
+		</select> <select name="originCounty" id="originCounty" style="width: 110px">
+		<input type="hidden" id="originCountyHid" name="originCountyHid" value="$!{item.originCounty}" />
+		</select></td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px">产地详细信息：</td>
+		<td>
+			<input type="text" name="originAddress" id="originAddress" value="$!{item.originAddress}" style="width: 250px" />
+		</td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px">包装方式：</td>
+		<td style="width: 100px" id="packingTypeTB">
+			<select name="packingType" id="packingType" style="width: 110px">
+				<option value="1">箱装</option>
+				<option value="2">袋装</option>
+				<option value="3">框装</option>
+				<option value="4">其他</option>
+			</select>
+			<input type="hidden" id="packingTypeHid" name="packingTypeHid" value="$!{item.packingType}" />
+			<input type="text" name="packingTypeCustom" id="packingTypeCustom" value="$!{item.packingTypeCustom}" style="width: 100px" />
+		</td>
+		<td align="right" >单位：</td>
+		<td align="left" style="width: 100px">					
+			<select name="unit" id="unit" style="width: 60px">
+				<option value="1">件</option>
+				<option value="2">箱</option>
+				<option value="3">斤</option>
+				<option value="4">框</option>
+				<option value="5">吨</option>
+			</select>
+			<input type="hidden" id="unitHid" name="unitHid" value="$!{item.unit}" />
+			</td>
+	</tr>
+	
+	<tr>
+		<td align="right" style="width: 100px">净重：</td>
+		<td style="width: 100px">
+			<input type="text" name="weight" id="weight" value="$!{item.weight}" style="width: 100px" />
+		</td>
+		<td align="right" style="width: 100px">正负差值：</td>
+		<td style="width: 100px">
+			<input type="text" name="differWeight" id="differWeight" value="$!{item.differWeight}" style="width: 100px" />
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px">检查报告：</td>
+		<td style="width: 100px">
+			<input type="radio" id="ifHaveZjbgNo" name="ifHaveZjbg" value="1" />无
+			<input type="radio" id="ifHaveZjbgYes" name="ifHaveZjbg" value="2" checked="checked" />有
+			<input type="hidden" id="ifHaveZjbgHid" name="ifHaveZjbgHid" value="$!{item.ifHaveZjbg}" />
+		</td>
+		<td align="right" style="width: 100px">产品认证：</td>
+		<td style="width: 100px">
+			<input type="radio" id="ifHaveCprzNo" name="ifHaveCprz" value="1" />无
+			<input type="radio" id="ifHaveCprzYes" name="ifHaveCprz" value="2" checked="checked" />有
+			<input type="hidden" id="ifHaveCprzHid" name="ifHaveCprzHid" value="$!{item.ifHaveCprz}" />
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px">上市时间：</td>
+		<td>
+			<input type="text" name="marketStartTimeString" id="marketStartTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" value="$!dateFormatUtils.format($!{item.marketStartTime},"yyyy-MM-dd HH:mm:ss")" style="width: 100px" />
+			至：
+			<input type="text" name="marketEndTimeString" id="marketEndTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" value="$!dateFormatUtils.format($!{item.marketEndTime},"yyyy-MM-dd HH:mm:ss")" style="width: 100px" />
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+	<td align="right" style="width: 100px">售卖时间：</td>
+		<td>
+			<input type="text" name="autoOnShelfTimeString" id="autoOnShelfTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" value="$!dateFormatUtils.format($!{item.autoOnShelfTime},"yyyy-MM-dd HH:mm:ss")" style="width: 100px" />
+			至：
+			<input type="text" name="autoOffShelfTimeString" id="autoOffShelfTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" value="$!dateFormatUtils.format($!{item.autoOffShelfTime},"yyyy-MM-dd HH:mm:ss")" style="width: 100px" />
+		</td>
+		<td></td>
+	</tr><!--
+	
+	<tr>
+		<td align="right" style="width: 100px">是否要定金支付：</td>
+		<td style="width: 100px">
+			<input type="radio" id="ifDepositNo" name="ifDeposit" value="1" />否
+			<input type="radio" id="ifDepositYes" name="ifDeposit" value="2"  />是
+			<input type="hidden" id="ifDepositHid" name="ifDepositHid" value="$!{item.ifDeposit}" />
+		</td>
+		<td id ="zfbl" align="right" style="width: 100px">定金支付比例：</td>
+		<td id = "zfblInput" style="width: 100px">
+			<input align="left" type="text" name="depositRate" id="depositRate" value="$!{item.depositRate}" style="width: 80px" />&nbsp;&nbsp;%
+		</td>
+		<td></td>
+	</tr>
+--></table>
+</div>
+<!--扩展信息区结束-->
+
+<!--图片区开始-->
+<div class="panel_search1">
+<table>
+	<tr>
+		<td style="font-weight: bold; width: 100px" align="right">图片</td>
+	</tr>
+	<tr>
+			<td align="right" style="width: 100px">商品主图：</td>
+			<td align="right"  style="width: 100px" >
+				<input id="mainImage" type="file" name="image"/>
+            </td>
+            <td align="left"   style="width: 200px" >
+				<input type="button" id="btupload0" value="上传"><span id="spUpload0"></span>
+			</td>
+            <td>&nbsp;</td>
+	</tr>
+	<tr>
+			<td align="right" style="width: 100px">细节图1：</td>
+			<td align="right"  style="width: 100px" >
+				<input id="image1" type="file" name="image1"/>
+            </td>
+            <td align="left"   style="width: 200px" >
+				<input type="button" id="btupload1" value="上传"><span id="spUpload1"></span>
+			</td>
+            <td>&nbsp;</td>
+	</tr>
+	<tr>
+			<td align="right" style="width: 100px">细节图2：</td>
+			<td align="right"  style="width: 100px" >
+				<input id="image2" type="file" name="image2"/>
+            </td>
+            <td align="left"   style="width: 200px" >
+				<input type="button" id="btupload2" value="上传"><span id="spUpload2"></span>
+			</td>
+            <td>&nbsp;</td>
+	</tr>
+	<tr>
+			<td align="right" style="width: 100px">细节图3：</td>
+			<td align="right"  style="width: 100px" >
+				<input id="image3" type="file" name="image3"/>
+            </td>
+            <td align="left"   style="width: 200px" >
+				<input type="button" id="btupload3" value="上传"><span id="spUpload3"></span>
+			</td>
+            <td>&nbsp;</td>
+	</tr>
+	<tr>
+			<td align="right" style="width: 100px">细节图4：</td>
+			<td align="right"  style="width: 100px" >
+				<input id="image4" type="file" name="image4"/>
+            </td>
+            <td align="left"   style="width: 200px" >
+				<input type="button" id="btupload4" value="上传"><span id="spUpload4"></span>
+			</td>
+            <td>&nbsp;</td>
+	</tr>
+</table>
+</div>
+<!--<div class="panel_search1">
+    <h1>PC端：</h1>
+    <script id="editorPC" type="text/plain" style="width:1024px;height:500px;"></script>
+</div>
+<div class="panel_search1">
+    <h1>手机端：</h1>
+    <script id="editorAPP" type="text/plain" style="width:1024px;height:500px;"></script>
+</div>
+-->
+
+<div class="panel_search1">
+    <h1>PC端商品描述：</h1>
+    <textarea  rows="20" cols="100" id="contentInfoPC" >$!{itemDescription.pcDescriptionInfo}</textarea>
+</div>
+<div class="panel_search1">
+    <h1>APP端商品描述：</h1>
+    <textarea  rows="20" cols="100" id="contentInfoAPP" >$!{itemDescription.appDescriptionInfo}</textarea>
+</div>
+
+
+<!--销售属性区结束-->
+<input type="button" id="editButton" value="提交修改" style="position: absolute; left: 50%; width: 100px;" />
+<input type="hidden" id="hasPropertyInput" name="hasPropertyInput" value="1" />
+<input type="hidden" id="imageUrl0" name="imageMainUrl" value="$!{imageUrl0}" />
+<input type="hidden" id="imageUrl1" name="imageUrl" value="$!{imageUrl1}" />
+<input type="hidden" id="imageUrl2" name="imageUrl" value="$!{imageUrl2}" />
+<input type="hidden" id="imageUrl3" name="imageUrl" value="$!{imageUrl3}" />
+<input type="hidden" id="imageUrl4" name="imageUrl" value="$!{imageUrl4}" />
+
+<input type="hidden" id="imageUrlId1" name="imageUrlId" value="$!{imageUrlId1}" />
+<input type="hidden" id="imageUrlId2" name="imageUrlId" value="$!{imageUrlId2}" />
+<input type="hidden" id="imageUrlId3" name="imageUrlId" value="$!{imageUrlId3}" />
+<input type="hidden" id="imageUrlId4" name="imageUrlId" value="$!{imageUrlId4}" />
+
+<input type="hidden" id="itemId" name="itemId" value="$!{item.itemId}" />
+<!--  <input type="hidden" id="proValIdList" name="proValIdList" value="$!{proValIdList}" />-->
+
+
+
+<input type="hidden" id="pcDescriptionInfo" name="pcDescriptionInfo" value="" /> 
+<input type="hidden" id="appDescriptionInfo" name="appDescriptionInfo" value="" />
+
+</form>
+<!--盒子结束-->
+<script language="javascript" src="$assetModule.getTarget("/My97DatePicker/WdatePicker.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/js/product/productJS.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/js/ajaxfileupload.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/js/jquery.showLoading.js")"></script>
+
+<script language="javascript" src="$assetModule.getTarget("/js/ajaxfileupload.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/js/jquery.showLoading.js")"></script>
+
+<!--<script type="text/javascript" charset="utf-8" src="/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+-->
+<!--<script type="text/javascript" src="/js/xheditor-zh-cn.min.js"></script>
+
+--><script type="text/javascript" src="/js/xheditor-1.2.1/xheditor-1.2.1.min.js"></script>
+<script type="text/javascript" src="/js/xheditor-1.2.1/xheditor_lang/zh-cn.js"></script>
+
+
+<script langusge="javascript" >
+var beforeEditorData = null;
+
+//实例化编辑器
+//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+//var ue = UE.getEditor('editorPC');
+//var ue2 = UE.getEditor('editorAPP');
+//初始化页面
+$(document).ready(function(){
+
+	var categoryId1 =$("#categoryId1Hid").val();//获取分类ID
+	var categoryId2 =$("#categoryId2Hid").val();
+	var categoryId3 =$("#categoryId3Hid").val();//获取分类ID
+	var categoryId4 =$("#categoryId4Hid").val();
+	//var proValIdList=$("#proValIdList").val();
+
+
+	
+	//加载一级分类
+	jQuery.ajax( {
+		url : "/category/getLevel",
+		type : "post",
+		dataType : "json",
+		data : "level=1",
+		success : function(data) {
+			if (data.msg == "success") {
+				$("#categoryId1").empty(); // 清空分类选项
+				var categoryList=data.categoryList;
+				for ( var i = 0; i < categoryList.length; i++) {
+					var category = categoryList[i];
+					
+					$("<option value='" + category.categoryId + "'>" 
+							+ category.categoryName + "</option>").appendTo("#categoryId1");
+					
+				}
+				//赋值一级分类
+				if(categoryId1!=null){
+					$("#categoryId1").val(categoryId1);
+				}
+
+				//加载二级分类 start
+				jQuery.ajax( {
+					url : "/category/getLevel",
+					type : "post",
+					dataType : "json",
+					data : "level=2&pId="+$("#categoryId1").val(),
+					success : function(data) {
+						if (data.msg == "success") {
+							$("#categoryId2").empty(); // 清空分类选项
+							var categoryList=data.categoryList;
+							for ( var i = 0; i < categoryList.length; i++) {
+								var category = categoryList[i];
+								if(i==0){
+									$("<option value='" + category.categoryId + "' checked=true>" 
+											+ category.categoryName + "</option>").appendTo("#categoryId2");
+									
+								}else{
+									$("<option value='" + category.categoryId + "'>" 
+												+ category.categoryName + "</option>").appendTo("#categoryId2");
+								}
+								
+							}
+							//赋值二级分类
+							if(categoryId2!=null){
+								$("#categoryId2").val(categoryId2);
+							}
+
+							//加载三级分类start
+							jQuery.ajax( {
+								url : "/category/getLevel",
+								type : "post",
+								dataType : "json",
+								data : "level=3&pId="+$("#categoryId2").val(),
+								success : function(data) {
+									if (data.msg == "success") {
+										$("#categoryId3").empty(); // 清空分类选项
+										var categoryList=data.categoryList;
+										for ( var i = 0; i < categoryList.length; i++) {
+											var category = categoryList[i];
+											if(i==0){
+												$("<option value='" + category.categoryId + "' checked=true>" 
+														+ category.categoryName + "</option>").appendTo("#categoryId3");
+												
+											}else{
+												$("<option value='" + category.categoryId + "'>" 
+															+ category.categoryName + "</option>").appendTo("#categoryId3");
+											}
+											
+										}
+													
+										//赋值三级分类
+										if(categoryId3!=null){
+											$("#categoryId3").val(categoryId3);
+										}
+
+										//加载四级分类start
+										jQuery.ajax( {
+											url : "/category/getLevel",
+											type : "post",
+											dataType : "json",
+											data : "level=4&pId="+$("#categoryId3").val(),
+											success : function(data) {
+												if (data.msg == "success") {
+													$("#categoryId4").empty(); // 清空分类选项
+													var categoryList=data.categoryList;
+													for ( var i = 0; i < categoryList.length; i++) {
+														var category = categoryList[i];
+														if(i==0){
+															$("<option value='" + category.categoryId + "' checked=true>" 
+																	+ category.categoryName + "</option>").appendTo("#categoryId4");
+															
+														}else{
+															$("<option value='" + category.categoryId + "'>" 
+																		+ category.categoryName + "</option>").appendTo("#categoryId4");
+														}
+														
+													}
+																
+													//赋值四级分类
+													if(categoryId4!=null){
+														$("#categoryId4").val(categoryId4);
+													}
+							
+
+
+							
+													$("#categoryId1").attr("disabled",true);
+													$("#categoryId2").attr("disabled",true);
+													$("#categoryId3").attr("disabled",true);
+													$("#categoryId4").attr("disabled",true);
+													//alert("获取四级分类前！");
+													//判断四级分类是否有销售属性start
+													$.ajax( {
+														url : "/category/getProperty",
+														type : "post",
+														dataType : "json",
+														data : "categoryId="+$("#categoryId4").val(),
+														success : function(data) {
+															if (data.success == "success") {
+																if(data.hasProperty=="no"){
+																	$("#propertyDiv").hide();
+																	$("#priceWithPropertyDiv").hide();
+																	$("#priceDiv").show();
+																	$("#hasPropertyInput").val("0");//没有销售属性
+																	return;
+																}else{
+																	$("#propertyDiv").show();
+																	$("#priceWithPropertyDiv").show();
+																	$("#priceDiv").hide();
+																	$("#hasPropertyInput").val("1");//有销售属性
+																	if(data.haveProperyValue=="no"){
+																		alert(data.msg);
+																		//没有销售属性，情况销售属性类表
+																		$("#propertyTB").empty();
+																		$("#priceTB").empty();
+																		return;
+																	}
+																	var propertyValueList=data.propertyValueList;
+																	$("#propertyTB").empty();
+																	$("#priceTB").empty();
+																	for(var i=0; i<propertyValueList.length; i++){
+																		var property = propertyValueList[i];
+																		
+																	
+																		//动态添加属性值区
+																		$("#propertyTB").append(
+																				"<td style='width: 20px'></td><td align='left' style='width: 70px'>"+
+																				"<input type='checkbox' id='"+property.propertyValueId+"' name='"+property.propertyValueName+"' value='"+
+																				property.propertyValueId+"' onclick='propertyCheck(this.value)'/>"+property.propertyValueName+
+																				"</td>");
+																		
+																		
+																		
+																		//动态添加价格库存区
+																		$("#priceTB").append(
+																				"<tr id='priceTR_"+ property.propertyValueId +"' style='display: none;'> <td style='width: 100px' align='right'>"+property.propertyValueName+
+																				"</td><td align='right' style='width: 100px'>*价格：</td>"+
+																				"<td style='width: 80px'><input type='text' name='tbPrice' id='tbPrice_"+property.propertyValueId+"' value='' style='width: 80px' /></td>"+
+																				"<td align='right' style='width: 100px'>*供应量：</td>"+
+																				"<td style='width: 80px'><input type='text' name='stock' id='stock_"+property.propertyValueId+"' value='' style='width: 80px' /></td>"+
+																				"<td align='right' style='width: 100px'>*最低起卖量：</td>"+
+																				"<td style='width: 80px'><input type='text' name='leastBuy' id='leastBuy_"+property.propertyValueId+"' value='' style='width: 80px' /></td>"+
+																				"<td align='right' style='width: 100px'>条形码：</td>"+
+																				"<td style='width: 80px'><input type='text' name='barCode' id='barCode_"+property.propertyValueId+"' value='' style='width: 80px' /></td>"+
+																				"<td><input type = 'hidden' id='ifChoose_"+property.propertyValueId+"' name= 'ifChoose' value =''/>"+
+																				"<input type = 'hidden' name= 'propertyId' value ='" +property.propertyId+"'/>"+
+																				"<input type = 'hidden' name= 'propertyValueId' value ='" +property.propertyValueId+"'/></td></tr>");
+																	}
+																}
+
+																
+																//有销售属性 赋值SKU相关信息（id为销售属性值ID）
+																if($!{proValIdList}!="null"){
+																	
+																	var proValIdList = $!{proValIdList};
+																	var tbPriceList = $!{tbPriceList};
+																	var stockList = $!{stockList};
+																	var leastBuyList = $!{leastBuyList};
+																	var barCodeList = $!{barCodeList};
+																	//alert("属性值数：" + proValIdList.length);
+																	for(var i = 0; i < proValIdList.length; i++){
+																		
+																		var id = proValIdList[i];
+																		var tbPrice = tbPriceList[i];
+																		var stock = stockList[i];
+																		var leastBuy = leastBuyList[i];
+																		
+																		//var barCode = barCodeList[i];
+																		
+																		//alert("barCode=="+barCode);
+							
+																		//选择多选按钮
+																		$("#" + id).attr("checked","true");
+																		//显示属性对应的SKU行
+																		document.getElementById("priceTR_"+id).style.display='table-row';
+																		//设置属性对应的SKU行为选中
+																		document.getElementById("ifChoose_"+id).value="1";
+																		//赋值SKU详细信息
+																		document.getElementById("tbPrice_"+id).value=tbPrice;
+																		document.getElementById("stock_"+id).value=stock;
+																		document.getElementById("leastBuy_"+id).value=leastBuy;
+																		if(barCodeList=="" || barCodeList[i]==""){
+																			document.getElementById("barCode_"+id).value="";
+																		}else if(barCodeList[i]==null){
+																			document.getElementById("barCode_"+id).value="";
+																		}else{
+																			document.getElementById("barCode_"+id).value=barCodeList[i];
+																		}
+																		
+																	}
+																	
+																	}
+
+						
+															} else {
+																alert(data.msg);
+															}
+														},
+														errot : function() {
+															alert("系统超时！");
+														}
+												});
+												//判断四级分类是否有销售属性end
+
+
+
+											} else {
+												alert("无商品一级分类！");
+											}
+										},
+										errot : function() {
+											alert("系统超时！");
+										}
+										});						
+									//加载四级分类 end
+										
+
+									} else {
+										alert("无商品一级分类！");
+									}
+								},
+								errot : function() {
+									alert("系统超时！");
+								}
+								});
+							//加载三级级分类 end	
+														
+							} else {
+								alert("无商品一级分类！");
+							}
+						},
+						errot : function() {
+							alert("系统超时！");
+						}
+						});
+					//加载二级分类 end
+	
+
+					
+			} else {
+				alert("无商品一级分类！");
+			}
+		},
+		errot : function() {
+			alert("系统超时！");
+		}
+		});
+	//加载一级分类end
+
+
+	//其他包装方式默认不选
+	$("#packingTypeCustom").hide();
+
+	//富文本控件
+	var plugins = {
+			searchReplace:{c:'xheIcon xheBtnCut',t:'查找替换',s:'ctrl+9',h:1,e:function(){
+                var _this=this;
+                var jTest=$('<div>查找替换</div><div style="text-align:left;">查找：<input type="text" id="bText" /><br/>替换：<input type="text" id="aText" /><input type="button" id="xheSave" value="确定" /></div>');
+                var jSave=$('#xheSave',jTest);
+                 _this.showDialog(jTest);
+				jSave.click(function(){
+					var dataBefore = $('#bText',jTest).val();
+					var dataAfter = $('#aText',jTest).val();
+					if(dataBefore.length > 0 && dataAfter.length > 0){
+						beforeEditorData = _this.getSource();
+                    	var data = _this.getSource();
+						dataBefore = dataBefore.replace("?", "\\?");
+						data = data.replace(new RegExp(dataBefore,"gm"), dataAfter);
+						_this.setSource(data);
+					}
+                    _this.hidePanel();
+                    return false;    
+                });
+               
+        	}}
+		}
+		
+		var editors = $("#contentInfoPC").xheditor({
+			plugins: plugins,
+            tools:'full',
+            skin:'default',
+			html5Upload:false,
+            upMultiple:false,
+			//wordDeepClean:false,
+            upImgUrl: "/category/upDescripImg",
+            upImgExt: "jpg,jpeg,gif,bmp,png"
+        });
+		function insertUpload(msg) {
+				var _msg = msg.toString();
+				alert(_msg);
+		};
+		$('#btnTest2').click(function(){editors.exec('searchReplace');});
+
+		var editors = $("#contentInfoAPP").xheditor({
+			plugins: plugins,
+            tools:'full',
+            skin:'default',
+			html5Upload:false,
+            upMultiple:false,
+			//wordDeepClean:false,
+            upImgUrl: "/category/upDescripImg",
+            upImgExt: "jpg,jpeg,gif,bmp,png"
+        });
+		function insertUpload(msg) {
+				var _msg = msg.toString();
+				alert(_msg);
+		};
+
+		//赋值供货地址省份ID
+		if($("#supplyProvinceHid").val()!=null){
+			$("#supplyProvince").val($("#supplyProvinceHid").val());
+			$("#supplyProvince").change();
+		}
+
+		//赋值产地省份ID
+		if($("#originProvinceHid").val()!=null){
+			$("#originProvince").val($("#originProvinceHid").val());
+			$("#originProvince").change();
+		}
+
+		
+		//赋值包装方式
+		if($("#packingTypeHid").val()!=null){
+			$("#packingType").val($("#packingTypeHid").val());
+			if($("#packingTypeHid").val()==4){
+				$("#packingTypeCustom").show();
+				}else{
+					$("#packingTypeCustom").hide();
+				}
+		}
+		
+		//赋值价格单位
+		if($("#unitHid").val()!=null){
+			$("#unit").val($("#unitHid").val());
+		}
+
+		//赋值是否定金支付
+//		if($("#ifDepositHid").val()==1){
+//			$("#ifDepositNo").attr("checked","checked");
+//			$("#depositRate").val("");
+//			$("#zfbl").hide();
+//			$("#zfblInput").hide();
+			
+//		}else if($("#ifDepositHid").val()==2){
+//			$("#ifDepositYes").attr("checked","checked");
+//			$("#zfbl").show();
+//			$("#zfblInput").show();
+			
+//		}
+		
+		//赋值是检查报告
+		if($("#ifHaveZjbgHid").val()==1){
+			$("#ifHaveZjbgNo").attr("checked","checked");
+		}else if($("#ifHaveZjbgHid").val()==2){
+			$("#ifHaveZjbgYes").attr("checked","checked");
+		}
+		//赋值是产品认证
+		if($("#ifHaveCprzHid").val()==1){
+			$("#ifHaveCprzNo").attr("checked","checked");
+		}else if($("#ifHaveCprzHid").val()==2){
+			$("#ifHaveCprzYes").attr("checked","checked");
+		}
+
+
+
+		
+
+		
+	
+	});
+</script>
+</body>
+</html>

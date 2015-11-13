@@ -1,0 +1,75 @@
+    <div class="box">
+           <div class="title">
+				填写录入信息
+           </div>
+		   
+           <div class="panel_form">
+				<table width="100%" cellspacing="0" cellpadding="0" border="0" id="ctl00_CPform_tab_userinfo">
+					<tbody>
+                    	<tr>
+                    		<td class="TdLabel"><div align="right"></div></td>
+                    		<td width="78%" align="left" colspan="10" class="TdValue" style="color:red">
+                    			补录金额为线下收款金额，支持多次录入。
+                    		</td>
+                    	</tr>
+                    	<tr>
+                    		<td class="TdLabel"><div align="right">补录金额：</div></td>
+                    		<td width="78%" align="left" colspan="10" class="TdValue">
+                    			<input type="text" id="paymentMoney" name="paymentMoney" />
+                    		</td>
+                    	</tr>
+                    	<tr>
+                    		<td class="TdLabel"><div align="right">订单款项类型：</div></td>
+                    		<td width="78%" align="left" colspan="10" class="TdValue">
+                    			<select name="orderPayType" id="orderPayType">
+                    				<option value="1">全款支付</option>
+                    				<option value="2">尾款支付</option>
+                    			</select>
+                    		</td>
+                    	</tr>
+                    	<tr>
+                    		<td class="TdLabel"><div align="right">收款方式</div></td>
+                    		<td width="78%" align="left" colspan="10" class="TdValue">
+                    			<input type="radio" id="paymentMode" name="paymentMode" id="paymentMode1" value="1" />现金&nbsp;&nbsp;&nbsp;&nbsp;
+                    			<input type="radio" id="paymentMode" name="paymentMode" checked="checked" id="paymentMode2" value="2" />银行卡
+                    		</td>
+                    	</tr>
+                    	<tr>
+                    		<td class="TdLabel"><div align="right"></div></td>
+                    		<td width="78%" align="left" colspan="10" class="TdValue">
+                    			<input type="button" value="确认全部收到" onclick="doEntry($!orderInfo.orderId);">&nbsp;&nbsp;&nbsp;&nbsp;
+                    			<input type="button" value="取消" onclick="$.modal.close();">
+                    		</td>
+                    	</tr>
+                	</tbody>
+				</table>
+		   </div>
+	</div>
+
+	<script type="text/javascript">
+		function doEntry(orderId){
+			var paymentMode = $('input[name="paymentMode"]:checked').val()
+			
+			if($("#paymentMoney").val() == null || $("#paymentMoney").val() == ''){
+				alert("补录金额不能为空");
+				return;
+			}
+		
+			$.ajax({
+				type : "post",
+		    	url : "/orderInfo/doEntry",
+		    	data : "orderId="+$!orderId+"&orderPayType="+$("#orderPayType").val()+"&paymentMode="+paymentMode+"&paymentMoney="+$("#paymentMoney").val(),
+		    	contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+		    	dataType: "json", 
+		    	success : function(data) {
+		    		if(data.success){
+		    			alert("添加成功！");
+		    		}else{
+		    			alert(data.message);
+		    		}
+		    		window.location.reload();
+		    	}
+			});
+		};
+		
+	</script>

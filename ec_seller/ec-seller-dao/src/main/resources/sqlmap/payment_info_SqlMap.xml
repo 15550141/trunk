@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="PaymentInfo" >
+  <resultMap id="PaymentInfoResult" class="com.ec.seller.domain.PaymentInfo" >
+    <result column="payment_id" property="paymentId"  />
+    <result column="order_id" property="orderId"  />
+    <result column="order_pay_type" property="orderPayType"  />
+    <result column="payment_mode" property="paymentMode"  />
+    <result column="payment_info_type" property="paymentInfoType"  />
+    <result column="payment_money" property="paymentMoney"  />
+    <result column="payment_number" property="paymentNumber" jdbcType="VARCHAR" />
+    <result column="busi_partner" property="busiPartner" jdbcType="VARCHAR" />
+    <result column="dt_order" property="dtOrder" jdbcType="VARCHAR" />
+    <result column="valid_order" property="validOrder"  />
+    <result column="settle_date" property="settleDate" jdbcType="VARCHAR" />
+    <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="orderId" >
+        order_id = #orderId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="orderPayType" >
+        order_pay_type = #orderPayType:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="paymentInfoType" >
+        payment_info_type = #paymentInfoType:INTEGER#
+      </isNotNull>
+    </dynamic>
+  </sql>
+
+  <select id="selectByCondition" resultMap="PaymentInfoResult" parameterClass="com.ec.seller.domain.query.PaymentInfoQuery" >
+    select payment_id, order_id, order_pay_type, payment_mode, payment_info_type, payment_money,
+      payment_number, busi_partner, dt_order, valid_order, settle_date, bank_name, bank_code,
+      created, modified
+    from payment_info
+    <include refid="PaymentInfo.condition" />
+    order by payment_id 
+  </select>
+  
+  <insert id="insert" parameterClass="com.ec.seller.domain.PaymentInfo" >
+    insert into payment_info (order_id, order_pay_type, payment_mode, payment_info_type,
+      payment_money, payment_number, busi_partner, dt_order, valid_order, settle_date, bank_name,
+      bank_code, created, modified)
+    values ( #orderId:INTEGER#, #orderPayType:INTEGER#, #paymentMode:INTEGER#,
+      #paymentInfoType:INTEGER#, #paymentMoney:INTEGER#, #paymentNumber:VARCHAR#,
+      #busiPartner:VARCHAR#, #dtOrder:VARCHAR#, #validOrder:INTEGER#, #settleDate:VARCHAR#,
+      #bankName:VARCHAR#, #bankCode:VARCHAR#, now(), now())
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="paymentId">
+			<![CDATA[SELECT @@IDENTITY AS payment_id ]]>
+	  </selectKey>
+  </insert>
+ 
+ 
+</sqlMap>

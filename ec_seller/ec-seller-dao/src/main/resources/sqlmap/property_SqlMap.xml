@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="Property" >
+  <resultMap id="PropertyResult" class="com.ec.seller.domain.Property" >
+    <result column="property_id" property="propertyId"  />
+    <result column="category_id" property="categoryId"  />
+    <result column="property_name" property="propertyName" jdbcType="VARCHAR" />
+    <result column="property_type" property="propertyType"  />
+    <result column="if_multi_select" property="ifMultiSelect"  />
+    <result column="if_can_custom" property="ifCanCustom"  />
+    <result column="sort_number" property="sortNumber"  />
+    <result column="yn" property="yn"  />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <!-- 查询条件 -->
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="propertyId" >
+        property_id = #propertyId:INTEGER#
+      </isNotNull>
+       <isNotNull prepend="and" property="categoryId" >
+        category_id = #categoryId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="propertyName" >
+        property_name like '%$propertyName$%'
+      </isNotNull>
+      <isNotNull prepend="and" property="propertyType" >
+        property_type = #propertyType:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="ifMultiSelect" >
+        if_multi_select = #ifMultiSelect:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="ifCanCustom" >
+        if_can_custom = #ifCanCustom:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="sortNumber" >
+        sort_number = #sortNumber:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="yn" >
+        yn = #yn:INTEGER#
+      </isNotNull>
+    </dynamic>
+  </sql>
+  
+  
+  <select id="selectByPrimaryKey" resultMap="PropertyResult" parameterClass="java.lang.Integer" >
+    select property_id, category_id, property_name, property_type, if_multi_select, if_can_custom,
+      sort_number, yn, created, modified
+    from property
+    where property_id = #propertyId:INTEGER#
+  </select>
+  
+  <insert id="insert" parameterClass="com.ec.seller.domain.Property" >
+    insert into property ( category_id, property_name, property_type, if_multi_select,
+      if_can_custom, sort_number, yn, created, modified)
+    values ( #categoryId:INTEGER#, #propertyName:VARCHAR#,
+      #propertyType:INTEGER#, #ifMultiSelect:INTEGER#, #ifCanCustom:INTEGER#, #sortNumber:INTEGER#,
+      #yn:INTEGER#, #created:TIMESTAMP#, #modified:TIMESTAMP#)
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="propertyId">
+			<![CDATA[SELECT @@IDENTITY AS property_id ]]>
+	  </selectKey>
+  </insert>
+  
+
+  <update id="updateByPrimaryKey" parameterClass="com.ec.seller.domain.Property" >
+    update property set modified = now()
+    <dynamic>
+      <isNotNull prepend="," property="categoryId" >
+        category_id = #categoryId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="propertyName" >
+        property_name = #propertyName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="propertyType" >
+        property_type = #propertyType:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="ifMultiSelect" >
+        if_multi_select = #ifMultiSelect:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="ifCanCustom" >
+        if_can_custom = #ifCanCustom:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="sortNumber" >
+        sort_number = #sortNumber:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="yn" >
+        yn = #yn:INTEGER#
+      </isNotNull>
+    </dynamic>
+    where property_id = #propertyId:INTEGER#
+  </update>
+  
+  <select id="countByCondition" parameterClass="com.ec.seller.domain.query.PropertyQuery" resultClass="java.lang.Integer" >
+    select count(1) from property
+    <include refid="Property.condition" />
+  </select>
+  
+  <select id="selectByCondition" parameterClass="com.ec.seller.domain.query.PropertyQuery" resultMap="PropertyResult" >
+    select property_id, category_id, property_name, property_type, if_multi_select, if_can_custom,
+      sort_number, yn, created, modified
+    from property
+    <include refid="Property.condition" />
+    order by property_id
+  </select>
+  
+  <select id="selectByConditionForPage" parameterClass="com.ec.seller.domain.query.PropertyQuery" resultMap="PropertyResult" >
+    select property_id, category_id, property_name, property_type, if_multi_select, if_can_custom,
+      sort_number, yn, created, modified
+    from property
+    <include refid="Property.condition" />
+    order by property_id
+  	limit #start#,#pageSize#
+  </select>
+  
+</sqlMap>

@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link type="text/css" rel="stylesheet" href="/misc/css/admin.css">
+		<script type="text/javascript" src="/misc/js/jquery-1.2.6.pack.js"></script>
+	</head>
+	
+	<body>
+    <form id="userForm" action="/admin/user/index" name="userForm" method="get">
+
+     <div class="box">
+     <!--标题区-->
+           <div class="title">
+				企销API-用户管理
+           </div>
+    <!--查询区-->
+
+           <div class="panel_search">
+              <table cellspacing="0" cellpadding="0" border="0">
+	<tbody><tr>
+		<td style="width:15%" class="TdLabel">client_id:</td>
+		<td class="TdValue">
+        <input type="text" value="$!user.client_id" style="width:200px;" id="client_id" name="client_id" class="txt"></td>
+		<td style="width:15%" class="TdLabel">用户名称:</td>
+		<td class="TdValue">
+        <input type="text" value="$!user.name" style="width:200px;" id="name" name="name" class="txt">
+        </td>
+		<td style="width:15%" class="TdLabel">域名:</td>
+		<td class="TdValue">
+        <input type="text" value="$!user.domain" style="width:200px;" id="domain" name="domain" class="txt">
+        </td>
+		<td class="TdValue">
+			<a href="/admin/user/add">创建</a>
+        </td>
+		<td width="1%" class="panelSearch1" rowspan="4">
+			<input type="submit" value="" style="background:url(http://cc.360buy.com/SiteManage/skin/default/images/search1.jpg)" class="btn1">
+        </td>
+	</tr>
+</tbody></table>
+
+           </div>
+    <!--功能区-->
+
+           <div class="panel_function">
+                
+
+           </div>
+     <!--列表区-->
+           <div class="panel_grid">
+                
+<table>
+<tbody>
+	<tr>
+        <th>编号</th>
+        <th>client_id</th>
+		<th>client_secret</th>
+        <th>公司名称</th>
+        <th>域名</th>
+        <th>回调地址</th>
+        <th>scope</th>
+		<th>img</th>
+		<th>创建时间</th>
+		<th>修改时间</th>
+		<th>操作</th>
+	</tr>
+
+	#foreach($item in $list)
+    	<tr id="tr_$item.id">
+    		<td>$item.id</td>
+    		<td>$item.client_id</td>
+			<td>$item.client_secret</td>
+    		<td>$item.name</td>
+    		<td>$item.domain</td>
+    		<td>$item.redirect_uri</td>
+    		<td>$item.scope</td>
+    		<td>$item.img</td>
+			<td>$item.created</td>
+			<td>$item.updated</td>
+			<td><a href="/admin/user/detail?id=$!item.id">修改</a> &nbsp;&nbsp;<a href="javascript:void(0);" onclick="del($!item.id);">删除</a></td>
+    	</tr>
+    #end
+
+</tbody></table>
+    
+<!--分页控件 start-->
+
+<!-- 分页控件 end-->
+           </div>
+
+    </div>
+	<script type="text/javascript">
+		function del(id){
+			if(confirm("是否删除该条记录？")){
+				jQuery.ajax({
+                type:"POST",
+                url:"/admin/user/delete",
+                data:"id="+id,
+                dataType:"json",
+                success:function (data) {
+					if(data.success == true){
+						alert("删除成功");
+						$("#tr_"+id).remove();
+					}else{
+						alert("删除失败");
+					}
+                },
+            	error : function() {
+        			alert("删除失败");
+            	}
+            });
+            }
+		}
+	</script>
+    </form>
+
+ </body>
+</html>
+
+
