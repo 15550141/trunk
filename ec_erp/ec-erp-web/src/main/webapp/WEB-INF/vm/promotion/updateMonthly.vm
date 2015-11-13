@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    	<meta http-equiv="expires" content="0" />
+        <title>管理页面</title>
+        <link href="/style/erpstyle.css"rel="stylesheet" type="text/css" />
+        <script language="javascript" src="/js/jquery-1.6.2.min.js"></script>
+        <script language="javascript" src="/js/erpstyle1.js"></script>
+        <script language="javascript" src="/js/common.js"></script>
+    </head>
+    <body>
+<!--盒子开始-->
+<form id="f1" name="f1" method="post">
+	<!--盒子开始-->
+    <div class="box">
+		<!--标题区开始-->
+        <div class="title">
+            <div class="left">
+                <div class="title_gl">月结用户修改</div>
+            </div>
+        </div>
+        <!--标题区结束-->
+		<!--列表区开始-->
+        <div class="panel_grid2">
+            <table>
+                <tr>
+                    <th>账户：</th>
+                    <td colspan="5">
+                        <input type="text" style="width: 170px;" value="$!{monthlyUser.pin}" disabled="true">
+					</td>
+					<th>姓名：</th>
+                    <td colspan="5">
+                        <input type="text" name="monthlyUser.name" id="name" style="width: 170px;" value="$!{monthlyUser.name}">
+						<span id="nameSp"></span>
+					</td>
+				</tr>
+				<tr>
+                    <th>电话：</th>
+                    <td colspan="5">
+                        <input type="text" name="monthlyUser.phone" id="phone" style="width: 170px;" value="$!{monthlyUser.phone}">
+						<span id="phoneSp"></span>
+					</td>
+					<th>邮箱：</th>
+                    <td colspan="5">
+                        <input type="text" name="monthlyUser.email" id="email" style="width: 170px;" value="$!{monthlyUser.email}">
+						<span id="emailSp"></span>
+					</td>
+				</tr>
+				<tr>
+                    <th>公司名称：</th>
+                    <td colspan="5">
+                        <input type="text" name="monthlyUser.companyName" id="companyName" style="width: 170px;" value="$!{monthlyUser.companyName}">
+						<span id="companyNameSp"></span>
+					</td>
+					<th>地址：</th>
+                    <td colspan="5">
+                        <input type="text" name="monthlyUser.address" id="address" style="width: 170px;" value="$!{monthlyUser.address}">
+						<span id="addressSp"></span>
+					</td>
+				</tr>
+				<tr>
+                    <th>用户限额：</th>
+                    <td colspan="5">
+                        <input type="text" style="width: 170px;" value="$!{monthlyUser.userQuota}" disabled="true">
+					</td>
+					<th>当前余额：</th>
+                    <td colspan="5">
+                        <input type="text" style="width: 170px;" value="$!{monthlyUser.balance}" disabled="true">
+					</td>
+				</tr>
+				<tr>
+                    <th>分配销售：</th>
+                    <td colspan="5">
+                        <input type="text" name="monthlyUser.saleName" id="saleName" style="width: 170px;" value="$!{monthlyUser.saleName}">
+						<span id="saleNameSp"></span>
+					</td>
+					<th>截止日期：</th>
+                    <td colspan="5">
+                        <input type="text" name="monthlyUser.endDate" id="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" style="width: 170px;" value="$!dateFormatUtils.format($!{monthlyUser.endDate},"yyyy-MM-dd HH:mm:ss")">
+						<span id="endDateSp"></span>
+					</td>
+				</tr>
+				<tr>
+                    <th>所属区域：</th>
+                    <td colspan="5">
+                    <input type="text" style="width: 170px;" value="$!{monthlyUser.saleArea}"  name="monthlyUser.saleArea" id="saleArea"/>
+						<span id="saleAreaSp"></span>
+					</td>
+					 <th>申请修改限额：</th>
+                    <td colspan="5">
+                        <input type="text" style="width: 170px;" value="$!{monthlyUser.updateQuota}" name="monthlyUser.updateQuota" id="updateQuota"/>
+						<span id="updateQuotaSp"></span>
+					</td>
+				</tr>
+				<tr>
+                    <th>合同编号：</th>
+                    <td colspan="5">
+                        <input type="text" name="monthlyUser.code" id="code" style="width: 170px;" value="$!{monthlyUser.code}"/>
+						<span id="codeSp"></span>
+					</td>
+					<th>纳税人识别号：</th>
+                    <td colspan="5">
+                        <input type="text" name="monthlyUser.taxpayerId" id="taxpayerId" style="width: 170px;" value="$!{monthlyUser.taxpayerId}"/>
+						<span id="taxpayerIdSp"></span>
+					</td>
+				</tr>
+                <tr>
+                   <th>账期信息：</th>
+                    <td colspan="5">
+                    <input type="text" style="width: 80px;" value="$!{monthlyUser.paymentInfo}"  name="monthlyUser.paymentInfo" id="paymentInfo" disabled="true"/>
+						<span id="paymentInfoSp">天</span>
+                    &nbsp;+&nbsp;
+                    <input type="text" style="width: 55px;" value="$!{monthlyUser.unstableInfo}"  name="monthlyUser.unstableInfo" id="unstableInfo" disabled="true"/>
+						<span id="unstableInfoSp">天</span>
+                    &nbsp;<font color=red>固定时间+浮动时间</font>
+					</td>
+					<th>申请修改浮动账期：</th>
+                    <td colspan="5">
+                        <input type="text" style="width: 160px;" value="$!{monthlyUser.updateUnstableInfo}" name="monthlyUser.updateUnstableInfo" id="updateUnstableInfo"/>
+						<span id="updateUnstableInfoSp">天</span>
+					</td>
+				</tr>
+				<tr>
+                    <th>申请原因：</th>
+                    <td colspan="11">
+                        <input type="text" name="monthlyUser.applyReason" id="applyReason" style="width: 800px;height: 100px;" value="$!{monthlyUser.applyReason}">
+						<span id="applyReasonSp"></span>
+					</td>
+				</tr>
+                <tr>
+                   <th>是否冻结：</th>
+                    <td colspan="5">
+                        #if($!{monthlyUser.status}==0||$!{monthlyUser.status}==1)
+                            否
+                        #elseif($!{monthlyUser.status}==2||$!{monthlyUser.status}==3)
+                            系统冻结
+                        #elseif($!{monthlyUser.status}==4||$!{monthlyUser.status}==5)
+                            人工冻结
+                        #else
+                            否
+                        #end
+					</td>
+					 <th>超期订单金额：</th>
+                    <td colspan="5">
+                        <input type="text" style="width: 170px;"  name="price" id="priceCount" disabled="true"/>
+						<span id="price"></span>
+                        &nbsp;<a href="http://erp1.biz.360buy.com/monthly/getDeductionMonthly.action?deduction.pin=$!{monthlyUser.pin}" target="_blank">查看明细</a>
+					</td>
+				</tr>
+				<tr>
+                    <td colspan="12" style="text-align:center" >
+                        <input type="button" id="upsub" name="upsub" value="提交" />
+                        <input type="button" id="upPaymentsub" name="upPaymentsub" value="申请延期激活" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="button" id="dongjieSub" name="dongjieSub" value="人工冻结" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="button" id="jiedongSub" name="jiedongSub" value="人工解冻" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						 <input type="button" id="rtn" name="rtn" value="返回" />
+                        <!--
+						 <input type="button" id="upsub" name="upsub" value="提交" />
+						 <input type="button" id="rtn" name="rtn" value="返回" />
+						 -->
+					</td>
+				</tr>
+			</table>
+         </div>
+         <!--列表区结束-->
+		 <input type="hidden" name="monthlyUser.applyStatus" id="applyStatus" value="3"/>
+		 <input type="hidden" name="monthlyUser.status" id="status" value="$!{monthlyUser.status}"/>
+		 <input type="hidden" name="monthlyUser.pin" id="pin" value="$!{monthlyUser.pin}"/>
+	 </div>
+	 <!--盒子结束-->
+</form>
+<script language="javascript" src="$assetModule.getTarget("/js/monthly/jquery.validationEngine-cn.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/js/monthly/jquery.validate.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/My97DatePicker/WdatePicker.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/js/monthly/monthlyJS.js")"></script>
+<script langusge="javascript" >
+//获得账期下来列表
+//jQuery.ajax( {
+//	url : "/monthly/getPaymentInfoMap.action",
+//	type : "get",
+//	dataType : "json",
+//	success : function(data) {
+//	jQuery.each(data.paymentInfoMap,function(key,values){ 
+//		 if(key!=$("#paymentInfoOption1").val()){
+//			    jQuery(
+//						"<option  value='" + key + "'>"
+//								+ values + "</option>").appendTo(
+//								"#paymentInfo");
+//		 }
+//		 }); 
+//	},
+//error: function (XMLHttpRequest, textStatus, errorThrown) {     
+//	alert(errorThrown);     
+//	} 
+//});
+
+	//验证纳税人识别号
+$(function(){
+	var validator=$('#f1').validate({
+	        rules: {
+	            "monthlyUser.taxpayerId":{
+	                required:true,
+	                maxlength:20,
+	                isTaxNumber:true
+	            }          
+	        },
+	        messages:{
+	            "monthlyUser.taxpayerId":{
+	                required:"请填写税号",
+	                maxlength:"最多输入20位",
+	                isTaxNumber:"税号不符合规则"
+	            }
+	        },
+	        errorElement:'label',
+	        errorPlacement: function(error, element) {
+				$(element).parents().find('#taxpayerIdSp').css("color", "red");
+				$(element).parents().find('#taxpayerIdSp').append(error); //根据各自系统自行设计
+	        }
+	    });
+	});
+
+	$(document).ready(function() {
+		jQuery.ajax({
+    		type : "GET",
+    		dataType : "json",
+    		url : "http://erp1.biz.360buy.com/monthly/updateMonthlyJson.action",
+            data :  "pin=$!{monthlyUser.pin}",
+    		success : function(json) {
+                val = $("#priceCount")[0].value;
+                if("" != json){
+                    $("#priceCount")[0].value = json.totalPrice;
+                }
+                //json.data
+				//$("#priceCount").text("100");
+    		}
+    	}); 
+	});
+
+</script>
+</body>
+</html>

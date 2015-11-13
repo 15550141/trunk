@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <title>鲜果味道</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE-9">
+    <meta name="apple-mobile-web-app-capable" content="no">
+    <meta name="mobile-web-app-capable" content="no"> 
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    
+    <link rel="shortcut icon" href="/favicon.ico" >
+    <link rel="apple-touch-icon" sizes="76x76" href="/misc/style/webIcon.png" />  
+    <link rel="apple-touch-icon" sizes="152x152" href="/misc/style/webIcon.png" />  
+    <link rel="apple-touch-icon" sizes="120x120" href="/misc/style/webIcon.png" />    
+    <link rel="apple-touch-icon" sizes="180x180" href="/misc/style/webIcon.png" />  
+    <link type="image/x-icon" rel="Shortcut Icon" href="/misc/style/webIcon.png">
+
+    <!-- Bootstrap -->
+    <link href="/misc/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/misc/css/style.css">
+	 
+    <!--[if lt IE 9]>
+    <script src="/misc/js/html5shiv.min.js"></script>
+    <![endif]-->
+    <script src="/misc/js/require.js" data-main="/misc/style/main"></script>
+	<script src="/misc/js/jquery-1.11.0.min.js"></script>
+	<script src="/misc/js/dsp-zz.js"></script>
+    <script src="/misc/js/prefixfree.min.js"></script>
+
+  </head>
+<body>
+	<div class="trasfrm ds768">
+        <div class="padArow"></div>
+        <div class="iconPad_1">
+            <div class="iconpad_2"></div>
+        </div>
+        <div class="iconPad_1 trmoct">
+            <div class="iconpad_2"></div>
+        </div>
+        <p class="trapf"><strong></strong> 请 <strong>切换到竖屏</strong> 以达到最佳浏览效果</p>
+	</div>
+
+    <nav class="navbar navbar-default navbar-fixed-top m-component-nav" role="navigation">
+      	<div class="container-fluid">
+        	<div class="navbar-header text-center clearfix">
+	          	<a class="navbar-func pull-left" href="/"><span class="glyphicon fdayicon fdayicon-home"></span></a>      
+	          	<a class="navbar-func pull-right" href="/cart#"><span class="glyphicon fdayicon fdayicon-cart"></span></a>     
+	          	<span class="navbar-title">我的果园</span>
+    		</div>
+      	</div>
+    </nav>
+
+    <section class="m-component-user" id="m-user">
+      	<div class="m-userorder-tab">
+
+	        <ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" #if($!type==1)class="active"#end><a href="/order/my"  >未完成</a></li>
+	          	<li role="presentation" #if($!type==2)class="active"#end><a href="/order/my?type=2&page=1"  >已完成</a></li>
+	          	<li role="presentation" #if($!type==3)class="active"#end><a href="/order/my?type=3&page=1"  >已取消</a></li>
+	        </ul>
+        	<div class="tab-content">
+          		<!-- 未完成订单 -->
+            	<div class="tab-pane fade in active m-user-order" id="undone">
+              		<div class="m-cartlist">
+                  		<ul class="list-unstyled">
+                  			#foreach($order in $orders)
+	                    		<li>
+	                        		<div class="m-orderinfo"><span class="pull-right m-ordering">$!order.buyerOrderStatusName</span>订单编号：$!order.orderId</div>
+	                        			#foreach($detail in $order.orderDetails)
+	                        				<a href="/order/detail?orderId=$!detail.orderId">
+		                        				<img class="lazy pull-left" data-original="$!detail.itemImage" src="$!detail.itemImage" alt="">
+		                            			<div class="m-cartlist-info">
+			                                		<h3>$!detail.itemName</h3>
+			                                		<h4>$!detail.salesPropertyName</h4>              
+		                            			</div>
+		                        			</a>
+	                        			#end
+	                        		<div class="m-ordertotal">
+	                            		<!-- <span>共 <strong>1</strong> 件商品 </span> -->
+	                            		<span>订单金额<strong>￥$!order.bigDecimalOrderMoney</strong></span>
+	                       		 	</div>
+	                       		 	#if($!order.orderStatus == 1)
+		                    			<div data-order="$!order.orderId" class="m-orderfun">
+	                                    	<button data-order="$!order.orderId" class="btn btn-default btn-sm btn-order-cancal" type="button">取消订单</button>
+	                                    </div>
+                                    #end
+	                    		</li>
+	                    	#end
+                      	</ul>
+                  	</div>
+  				</div>
+	            <!-- 未完成订单 -->
+	            <!-- 已完成订单 -->
+	            <div role="tabpanel" class="tab-pane fade m-user-order" id="done">
+	                <div class="m-cartlist">
+	                </div>
+	            </div>
+	            <!-- 已完成订单 -->
+	            <!-- 已取消订单 -->
+	            <div role="tabpanel" class="tab-pane fade m-user-order" id="cancal">
+	                <div class="m-cartlist">
+	                </div>
+	            </div>
+            	<!-- 已取消订单 -->
+        	</div>    
+      	</div>
+      	<input type="hidden" id="order_curr_type" value="$!type">
+ 	 	<input type="hidden" id="order_curr_page" value="1">
+      	<div class="text-center m-component-more ajax_loading">     
+    		<span class="glyphicon  fdayicon fdayicon-loading"></span>加载更多...       
+        	<!-- <button type="button" class="btn btn-success">加载更多...</button> -->
+  		</div>
+    </section>
+    
+    
+<script src="/misc/style/user/orders.js"></script>
+
+</body></html>

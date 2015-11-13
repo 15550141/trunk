@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="UmpInfo" >
+  <resultMap id="UmpInfoResult" class="com.ec.api.domain.UmpInfo" >
+  	<result column="id" property="id"  />
+    <result column="order_id" property="orderId"  />
+    <result column="user_id" property="userId"  />
+    <result column="type" property="type"/>
+    <result column="trade_no" property="tradeNo"  />
+    <result column="param" property="param"  />
+    <result column="amount" property="amount"  />
+    <result column="trade_state" property="tradeState" />
+    <result column="mer_date" property="merDate"/>
+    <result column="pay_date" property="payDate"/>
+    <result column="settle_date" property="settleDate"  />
+    <result column="created" property="created" />
+    <result column="modified" property="modified" />
+  </resultMap>
+  
+  <sql id="selectAllColunms">
+  	id,order_id,user_id,type,trade_no,param,amount,trade_state,mer_date,pay_date,settle_date,created,modified
+  </sql>
+  
+  <!-- 查询条件 -->
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="id" >
+        id = #id#
+      </isNotNull>
+  	  <isNotNull prepend="and" property="orderId" >
+        order_id = #orderId#
+      </isNotNull>
+      <isNotNull prepend="and" property="userId" >
+        user_id = #userId#
+      </isNotNull>
+      <isNotNull prepend="and" property="type" >
+        type = #type#
+      </isNotNull>
+      <isNotNull prepend="and" property="tradeNo" >
+        trade_no = #tradeNo#
+      </isNotNull>
+      <isNotNull prepend="and" property="param" >
+        param = #param#
+      </isNotNull>
+      <isNotNull prepend="and" property="amount" >
+        amount = #amount#
+      </isNotNull>
+      <isNotNull prepend="and" property="tradeState" >
+        trade_state = #tradeState#
+      </isNotNull>
+      <isNotNull prepend="and" property="merDate" >
+        mer_ate = #merDate#
+      </isNotNull>
+      <isNotNull prepend="and" property="payDate" >
+        pay_date = #payDate#
+      </isNotNull>
+      <isNotNull prepend="and" property="settleDate" >
+        settle_date = #settleDate#
+      </isNotNull>
+    </dynamic>
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="UmpInfoResult" parameterClass="java.lang.Integer" >
+    select <include refid="UmpInfo.selectAllColunms" />
+    from ump_info
+    where id = #id#
+  </select>
+
+  <insert id="insert" parameterClass="com.ec.api.domain.UmpInfo" >
+    insert into ump_info (order_id,user_id,type,trade_no,param,amount,trade_state,mer_date,pay_date,settle_date,created,modified)
+    values (#orderId#,#userId#,#type#,#tradeNo#,#param#,#amount#,#tradeState#,#merDate#,#payDate#,#settleDate#,now(),now())
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="id">
+			<![CDATA[SELECT @@IDENTITY AS id ]]>
+	  </selectKey>
+  </insert>
+  
+
+  <update id="updateByPrimaryKey" parameterClass="com.ec.api.domain.UmpInfo" >
+    update ump_info set modified = now()
+    <dynamic >
+      <isNotNull prepend="," property="id" >
+        id = #id#
+      </isNotNull>
+  	  <isNotNull prepend="," property="orderId" >
+        order_id = #orderId#
+      </isNotNull>
+      <isNotNull prepend="," property="userId" >
+        user_id = #userId#
+      </isNotNull>
+      <isNotNull prepend="," property="type" >
+        type = #type#
+      </isNotNull>
+      <isNotNull prepend="," property="tradeNo" >
+        trade_no = #tradeNo#
+      </isNotNull>
+      <isNotNull prepend="," property="param" >
+        param = #param#
+      </isNotNull>
+      <isNotNull prepend="," property="amount" >
+        amount = #amount#
+      </isNotNull>
+      <isNotNull prepend="and" property="tradeState" >
+        trade_state = #tradeState#
+      </isNotNull>
+      <isNotNull prepend="," property="merDate" >
+        mer_ate = #merDate#
+      </isNotNull>
+      <isNotNull prepend="," property="payDate" >
+        pay_date = #payDate#
+      </isNotNull>
+      <isNotNull prepend="," property="settleDate" >
+        settle_date = #settleDate#
+      </isNotNull>
+    </dynamic>
+    where id = #id#
+  </update>
+  
+  <select id="countByCondition" parameterClass="com.ec.api.domain.query.UmpInfoQuery" resultClass="java.lang.Integer" >
+    select count(1) from ump_info
+    <include refid="UmpInfo.condition" />
+  </select>
+  
+  <select id="selectByCondition" parameterClass="com.ec.api.domain.query.UmpInfoQuery" resultMap="UmpInfoResult" >
+    select <include refid="UmpInfo.selectAllColunms" />
+    from ump_info
+    <include refid="UmpInfo.condition" />
+    order by id desc
+  </select>
+  
+  <select id="selectByConditionForPage" parameterClass="com.ec.api.domain.query.UmpInfoQuery" resultMap="UmpInfoResult" >
+    select <include refid="UmpInfo.selectAllColunms" />
+    from ump_info
+    <include refid="UmpInfo.condition" />
+    order by id desc
+  	limit #start#,#pageSize#
+  </select>
+</sqlMap>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName">
+	
+	<bean id="promotionInfoDao" class="com.ec.api.dao.impl.PromotionInfoDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="propertyDao" class="com.ec.api.dao.impl.PropertyDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="propertyValueDao" class="com.ec.api.dao.impl.PropertyValueDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="skuDao" class="com.ec.api.dao.impl.SkuDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="userInfoDao" class="com.ec.api.dao.impl.UserInfoDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="paymentInfoDao" class="com.ec.api.dao.impl.PaymentInfoDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="orderDetailDao" class="com.ec.api.dao.impl.OrderDetailDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="orderInfoDao" class="com.ec.api.dao.impl.OrderInfoDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="itemPropertyDao" class="com.ec.api.dao.impl.ItemPropertyDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="itemImageDao" class="com.ec.api.dao.impl.ItemImageDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="itemDescriptionDao" class="com.ec.api.dao.impl.ItemDescriptionDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="itemDao" class="com.ec.api.dao.impl.ItemDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="consigneeInfoDao" class="com.ec.api.dao.impl.ConsigneeInfoDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="categoryDao" class="com.ec.api.dao.impl.CategoryDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="businessUserExtDao" class="com.ec.api.dao.impl.BusinessUserExtDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="addressDao" class="com.ec.api.dao.impl.AddressDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="promotionSkuDao" class="com.ec.api.dao.impl.PromotionSkuDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="favoritesDao" class="com.ec.api.dao.impl.FavoritesDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="sellerBookkeepingDao" class="com.ec.api.dao.impl.SellerBookkeepingDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="smsDao" class="com.ec.api.dao.impl.SmsDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="sellerEntryDao" class="com.ec.api.dao.impl.SellerEntryDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="indexImageDao" class="com.ec.api.dao.impl.IndexImageDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="versionControlDao" class="com.ec.api.dao.impl.VersionControlDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="umpInfoDao" class="com.ec.api.dao.impl.UmpInfoDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="receiveAddrDao" class="com.ec.api.dao.impl.ReceiveAddrDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="accessTokenDao" class="com.ec.api.dao.impl.AccessTokenDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+</beans>
+

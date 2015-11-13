@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    	<meta http-equiv="expires" content="0" />
+        <title>首页联播图管理页面</title>
+        <link href="/style/erpstyle.css"rel="stylesheet" type="text/css" />
+        <script language="javascript" src="/js/jquery-1.6.2.min.js"></script>
+        <script language="javascript" src="/js/erpstyle1.js"></script>
+        <script language="javascript" src="/js/common.js"></script>
+    </head>
+    <body>
+
+<form id="f1" name="f1" method="post" >
+<div class="box"><!--标题区开始-->
+<div class="title1">
+<div class="left">
+<div class="title_gl">首页联播图管理页面</div>
+<div class="title_fbt"></div>
+<div class="bh"></div>
+</div>
+<div class="right">
+<div class="zt"></span></div>
+</div>
+</div>
+<!--标题区结束-->
+<div style="height: 10px;"></div>
+
+
+<div class="panel_search1"><!--属性编辑区开始-->
+<table border="0" cellpadding="0" cellspacing="2"style="width:800px;">
+	<tr>
+		<td style="font-weight: bold; width: 100px" align="right">添加图片</td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px" >图片名称：</td>
+		<td style="width: 100px">
+			<input type="text" id="imageName" name = "imageName" value="" style="width:100px" />
+		</td>
+		<td align="right" style="width: 100px">链接：</td>
+		<td style="width: 200px">
+			<input type="text" id="imageWebUrl" name = "imageWebUrl" value="" style="width: 200px" /></td>
+		<td><span id="imageWebUrlSP"> </span></td>
+		<td align="right" style="width: 100px">排序：</td>
+		<td style="width:100px">
+			<input type="text" id="sortNumber" name = "sortNumber" value="" style="width: 100px" /></td>
+		<td><span id="skuName"> </span></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px">选择图片：</td>
+		<td align="left"  style="width: 100px" >
+			<input id="image1" type="file" name="image1"/>
+		</td>
+	    <td align="right"   style="width: 150px" >
+	    	<input type="button" id="btupload1" value="上传"><span id="spUpload1"></span>
+		</td>
+		
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px"></td>
+		<td style="width: 200px"><input type="button" id="addIndexImage"
+			value="添加轮播图" /></td>
+	</tr>
+</table>
+<!--查询区结束--></div>
+<div class="panel_search1"><!--查询区开始-->
+<table style="border-collapse: collapse;" id="propertyTH">
+	<tr>
+		<td style="font-weight: bold;" align="left" colspan="8">已添加的轮播图
+		</td>
+	</tr><!--
+	<tr style="font-weight: bold;">
+		<td class="tdgoods" style="width: 100px" >图片名称</td>
+		<td class="tdgoods" style="width: 100px">图片URL</td>
+		<td class="tdgoods" style="width: 100px">图片链接</td>
+		<td class="tdgoods" style="width: 100px">图片</td>
+		<td class="tdgoods" style="width: 100px">排序</td>
+		<td class="tdgoods" style="width: 100px">操作</td>
+	</tr>
+--></table>
+<table style="border-collapse: collapse;" id="propertyTab">
+
+</table>
+<!--查询区结束--></div>
+<br />
+<input type="hidden" id="propertyId" name="propertyId" value="" />
+
+<input type="hidden" id="imageUrl1" name="imageUrl" value="" />
+</form>
+<!--盒子结束-->
+<script language="javascript" src="$assetModule.getTarget("/My97DatePicker/WdatePicker.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/js/image/imageJS.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/js/ajaxfileupload.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/js/jquery.showLoading.js")"></script>
+
+
+<script langusge="javascript" >
+//初始化页面
+$(document).ready(function(){
+
+	$.ajax( {
+		url : "/image/getIndexImage",
+		type : "post",
+		dataType : "json",
+		data : "categoryId="+$("#categoryId2").val(),
+		success : function(data) {
+			if (data.success == "success") {
+					$("#propertyTH").show();
+					$("#propertyTab").empty();	
+					$("#propertyTab").append(	"<tr style='font-weight: bold;'>"+
+							"<th class='tdgoods' style='width: 100px' >图片名称</th>"+
+							"<th class='tdgoods' style='width: 100px'>图片URL</th>"+
+							"<th class='tdgoods' style='width: 100px'>图片链接</th>"+
+							"<th class='tdgoods' style='width: 100px'>图片</th>"+
+							"<th class='tdgoods' style='width: 100px'>排序</th>"+
+							"<th class='tdgoods' style='width: 100px'>操作</th></tr>");
+					
+					//$("#property").val(data.propertyName);
+					//$("#propertyId").val(data.propertyId);
+					var indexImageList=data.indexImageList;
+					//properId存放在页面上
+					//$("#propertyId").val(propertyValueList[0].propertyId);
+					for(var i=0; i<indexImageList.length; i++){
+						var indexImage=indexImageList[i];
+						
+						//动态添加属性值区
+						
+						$("#propertyTab").append(
+								"<tr id='" + indexImage.sortNumber + "'><td class='tdgoods' style='width: 100px'>" + indexImage.imageName + 
+								"</td><td class='tdgoods' style='width: 100px'>" + indexImage.imageWebUrl
+										+ "</td><td class='tdgoods' style='width: 100px'>" + indexImage.imageUrl
+										+ "</td><td class='tdgoods' style='width: 100px'> <img src='"+indexImage.imageUrl+"' width='60' height='60' alt='图片' /> " 
+										+ "</td><td class='tdgoods' style='width: 100px'> <input style='width: 50px' type='text' name='sortNumber' id='sortNumber_"+indexImage.id+"' value='"+indexImage.sortNumber+"' />"
+										+ "<td class='tdgoods' style='width: 100px'>"+
+										"<a id='"+indexImage.id+"' href='javascript:void(0)' onclick='removePbss(this);'>删除</a>"
+										+"&nbsp&nbsp&nbsp<a id='"+indexImage.id+"' href='javascript:void(0)' onclick='modifyNum(this);'>修改序号</a></td></tr>");
+						
+					}
+
+			} else {
+				alert(data.msg);
+			}
+		},
+		errot : function() {
+			alert("系统超时！");
+		}
+});
+
+
+	
+	});
+</script>
+</body>
+</html>

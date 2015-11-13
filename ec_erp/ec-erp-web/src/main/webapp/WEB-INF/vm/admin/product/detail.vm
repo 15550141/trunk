@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>
+	会员管理-基本信息
+</title>
+  <link type="text/css" rel="stylesheet" href="/misc/css/admin.css">
+  <script type="text/javascript" src="/misc/js/jquery-1.2.6.pack.js"></script>
+</head>
+<body>
+    <form id="productForm" name="productForm">
+
+        <div class="box">
+         <!--标题区-->
+               <div class="title">
+    商品池管理-修改
+               </div>
+         <!--表单区-->
+               <div class="panel_form">
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" id="ctl00_CPform_tab_userinfo">
+				<tbody>
+	<tr>
+		<td align="left" style="height: 23px" class="TdLabel">id：</td>
+		<td style="height: 23px" colspan="10" class="TdValue">
+			$!productPool.id
+        </td>
+	</tr>
+
+	<tr>
+		<td class="TdLabel"><div align="right">client_id：</div></td>
+		<td width="78%" align="left" colspan="10" class="TdValue">
+			$!productPool.client_id
+		</td>
+	</tr>
+	<tr>
+		<td class="TdLabel"><div align="right">公司名称：</div></td>
+		<td align="left" colspan="10" class="TdValue">
+			$!productPool.name
+        </td>
+	</tr>
+	<tr>
+		<td align="right" class="TdLabel">商品池：</td>
+		<td align="left" colspan="10" class="TdValue">
+			<textarea style="width:500px;height:200px;" id="sku_ids" name="sku_ids">$productPool.sku_ids</textarea>
+		</td>
+	</tr>
+	<tr>
+		<td class="TdLabel"><div align="right">商品池名称：</div></td>
+		<td align="left" colspan="10" class="TdValue">
+            <input type="text" value="$!productPool.pool_name" id="pool_name" name="pool_name" class="txt"></td>
+	</tr>
+	<tr>
+		<td class="TdLabel"><div align="right">页码：</div></td>
+		<td align="left" colspan="10" class="TdValue">
+			<input type="text" value="$!productPool.page_num" id="page_num" name="page_num" class="txt">
+		</td>
+	</tr>
+	<tr>
+		<td align="center" style="height:35px;" class="split1" colspan="11">
+
+		<input type="button" onclick="update();" value="保存修改" class="btn2">
+      </td>
+	</tr>
+	
+</tbody></table>
+    		   </div>
+    	</div>
+	</form>
+	
+	 <script type="text/javascript">
+	 	function update(){
+			jQuery.ajax({
+                type:"POST",
+                url:"/admin/product/update",
+                data:$("#productForm").serialize()+"&id="+$!productPool.id,
+                dataType:"json",
+                success:function (data) {
+					alert(data);
+					window.location.href="/admin/product/detail?id="+$!productPool.id;
+                }
+            });
+		}
+	 </script>
+	
+</body>
+</html>

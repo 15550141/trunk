@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    	<meta http-equiv="expires" content="0" />
+        <title>管理页面</title>
+        <link href="/style/erpstyle.css"rel="stylesheet" type="text/css" />
+        <script language="javascript" src="/js/jquery-1.6.2.min.js"></script>
+        <script language="javascript" src="/js/erpstyle1.js"></script>
+        <script language="javascript" src="/js/common.js"></script>
+    </head>
+    <body>
+
+<!--盒子开始-->
+<form id="f1" name="f1" method="post">
+<div class="box"> 
+    <!--标题区开始-->
+    <div class="title">
+        <div class="left">
+            <div class="title_gl">结算管理</div>
+            <div class="title_fbt"></div>
+            <div class="bh"></div>
+        </div>
+    </div>
+    <!--标题区结束-->
+    <!--查询区开始-->
+    
+	<div class="panel_search">
+		<p><strong>往期结算</strong></p>
+		<p>结算单编号：<span>786001</span>  <span>2014-04-01</span> 至 <span> 2014-04-30</span><p>
+		<p><strong>商家应收款项</strong></p>
+		<p>应收货款：<span>786001</span> 元 = <span>1234</span> (货款) - <span> 1234 </span>元(佣金)<p>
+	</div>		
+	<div class="panel_search">
+        <table cellspacing="2" style="width:700px;" border="0"  bordercolor="#00CCCC"">
+			 <tr height="40">
+				<td align="right" style="width:60px;">订单编号：</td>
+				<td align="left"  style="width:60px;">
+					<input type="text" name="orderId" maxlength="30" id="orderId" value=""/>
+				</td>
+                <td align="right" style="width:80px;">订单时间：</td>
+                <td align="right" style="width:40px;">
+                    <input type="text" name="startTimeString" id="startTime" onclick="WdatePicker();" value="$!dateFormatUtils.format($!{promotionInfo.startTime},"yyyy-MM-dd")" />
+                </td>
+				<td align="right" style="width:20px;"> 至</td>
+				<td align="right" style="width:40px;">
+                    <input type="text" name="endTimeString" id="endTime" onclick="WdatePicker();" value="$!dateFormatUtils.format($!{promotionInfo.endTime},"yyyy-MM-dd")" />
+                </td>                
+               
+            </tr>
+			<tr height="40">
+				<td align="right" style="width:60px;">用户名：</td>
+				<td align="left"  style="width:60px;">
+					<input type="text" name="userId" maxlength="30" id="itemContent" value=""/>
+				</td>
+				<td></td> 
+				<td align="right">
+					<button type="button" id="query" name="query" />查询 </button>
+				</td>
+				<td align="center" colspan="2">
+					<button type="button" id="export" name="export"/>导出查询结果 </button>
+				</td>
+			</tr>
+        </table>
+    </div>
+    <!--查询区结束--> 
+    <!--列表区开始-->
+    <br />
+    <div class="panel_grid">
+        <table>
+            <tr>
+                <th>订单编号</th>
+                <th>下单时间</th>
+                <th>计费时间</th>
+				<th>总货款</th>
+                <th>佣金</th>
+                <th>在线支付货款</th>
+                <th>线下货款补录</th>
+				<th>操作</th>
+            </tr>
+			#foreach($promotionInfo in $resultMap.promotionInfoList)
+            <tr>
+                <td>$!{sku.skuId}</td>
+				<td>$!dateFormatUtils.format($!{promotionInfo.startTime},"yyyy-MM-dd")</td>
+                <td>$!dateFormatUtils.format($!{promotionInfo.startTime},"yyyy-MM-dd")</td>
+                <td>$!{item.itemName}</td>
+                <td>$!{sku.tb_price}</td>
+                <td>$!{sku.stock}</td>
+                <td>$!{sku.purchaseNumberMin}</td>
+                <td>
+                    <a href="/monthly/updateMonthly.action?monthlyUser.pin=$!{monthly.pin}">查看</a>
+                </td>
+            </tr>
+			#end
+        </table>
+        <!--分页控件开始-->
+        
+        <div class="pager">
+			#set($pageModule = $mainModule.getTarget("/promotion/queryPromotion").addQueryData("promotionInfo.promotionId",$!stringEscapeUtils.escapeJava($!{promotionInfo.promotionId})).addQueryData("promotionInfo.promotionName",$!stringEscapeUtils.escapeJava($!{promotionInfo.promotionName})).addQueryData("promotionInfo.promotionType",$!stringEscapeUtils.escapeJava($!{promotionInfo.promotionType})).addQueryData("promotionInfo.startTime",$!dateFormatUtils.format($!{promotionInfo.startTime},"yyyy-MM-dd")).addQueryData("promotionInfo.endTime",$!dateFormatUtils.format($!{promotionInfo.endTime},"yyyy-MM-dd")))
+			<!--  set($pageModule = $mainModule.getTarget("/list")) -->
+			#showPage($pageModule $resultMap.promotionInfoList)
+        </div>
+        <!--分页控件结束--> 
+    </div>
+    <!--列表区结束--> 
+</div>
+<!--盒子结束--> 
+</form>
+ <!--  <script language="javascript" src="/My97DatePicker/WdatePicker.js"></script> -->
+ <script language="javascript" src="$assetModule.getTarget("/My97DatePicker/WdatePicker.js")"></script>
+ </body>
+ </html>
+ 

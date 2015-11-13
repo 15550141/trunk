@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head >
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="0">
+	<title>用户数据报表</title>
+
+ 	<link rel="stylesheet" href="$!{contextPath}/style/new/base.css" type="text/css"/>
+    <link rel="stylesheet" href="$!{contextPath}/style/new/common.css" type="text/css"/>
+    <link rel="stylesheet" href="$!{contextPath}/style/new/page.css" type="text/css"/>
+    <link rel="stylesheet" href="$!{contextPath}/style/new/calendar.css" type="text/css"/>
+    <script type="text/javascript" src="$!{contextPath}/misc/js/new/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="$!{contextPath}/misc/js/new/jquery-json.js"></script>
+</head>
+    <!doctype html>
+<html>
+<head>
+</head>
+
+<frameset id="belowMainFrame" cols="230,10,*">
+    <frame style="overflow-x:hidden;word-break:break-all;" frameborder="0" marginheight="0" marginwidth="0" noresize="noresize"
+		id="leftFrame" name="leftFrame" src="$!{contextPath}/index/leftFrame"></frame>
+    <frame scrolling="No" id="commonSepatator" noresize="noresize" frameborder="no" name="commonSepatator" src="$!{contextPath}/index/commonSepatator"></frame>
+    <frame scrolling="auto" frameborder="0" marginheight="0" marginwidth="0" id="rightFrame" name="rightFrame" src="$!{contextPath}/index/rightFrame"></frame>
+</frameset>
+
+</html>
+</html>

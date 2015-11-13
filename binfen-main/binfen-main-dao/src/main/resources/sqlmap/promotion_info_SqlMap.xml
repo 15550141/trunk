@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="PromotionInfo" >
+  <resultMap id="PromotionInfoResult" class="com.ec.api.domain.PromotionInfo" >
+    <result column="promotion_id" property="promotionId"  />
+    <result column="promotion_name" property="promotionName" jdbcType="VARCHAR" />
+    <result column="item_id" property="itemId" jdbcType="VARCHAR" />
+    <result column="vender_user_id" property="venderUserId"  />
+    <result column="promotion_type" property="promotionType"  />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="purchase_number_min" property="purchaseNumberMin"  />
+    <result column="purchase_number_max" property="purchaseNumberMax"  />
+    <result column="promotion_stock" property="promotionStock"  />
+    <result column="promotion_rule" property="promotionRule" jdbcType="VARCHAR" />
+    <result column="promotion_status" property="promotionStatus"  />
+    <result column="yn" property="yn"  />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+    <result column="discount_flag" property="discountFlag"  />
+    <result column="discount_time" property="discountTime" jdbcType="TIMESTAMP" />
+    <result column="special_flag" property="specialFlag"  />
+    <result column="special_time" property="specialTime" jdbcType="TIMESTAMP" />
+    
+  </resultMap>
+  
+  <!-- 查询条件 -->
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="promotionId" >
+        promotion_id = #promotionId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="promotionName" >
+        promotion_name like '%$promotionName$%'
+      </isNotNull>
+      <isNotNull prepend="and" property="itemId" >
+        item_id = #itemId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="venderUserId" >
+        vender_user_id = #venderUserId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="promotionType" >
+        promotion_type = #promotionType:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="startTime" >
+        <![CDATA[
+ 			start_time > #startTime#
+		]]>
+      </isNotNull>
+      <isNotNull prepend="and" property="endTime" >
+        <![CDATA[
+ 			end_time < #endTime#
+		]]>
+      </isNotNull>
+      <isNotNull prepend="and" property="purchaseNumberMin" >
+        purchase_number_min = #purchaseNumberMin:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="purchaseNumberMax" >
+        purchase_number_max = #purchaseNumberMax:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="promotionStock" >
+        promotion_stock = #promotionStock:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="promotionRule" >
+        promotion_rule = #promotionRule:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="promotionStatus" >
+        promotion_status = #promotionStatus:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="yn" >
+        yn = #yn:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="discountFlag" >
+        discount_flag = #discountFlag:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="specialFlag" >
+        special_flag = #specialFlag:INTEGER#
+      </isNotNull>
+    </dynamic>
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="PromotionInfoResult" parameterClass="java.lang.Integer" >
+    select promotion_id, promotion_name, item_id,vender_user_id, promotion_type, start_time, end_time,
+      purchase_number_min, purchase_number_max, promotion_stock, promotion_rule, promotion_status,
+      yn, created, modified, discount_flag, discount_time, special_flag, special_time
+    from promotion_info
+    where promotion_id = #promotionId:INTEGER# and yn=1
+  </select>
+
+  <insert id="insert" parameterClass="com.ec.api.domain.PromotionInfo" >
+    insert into promotion_info (promotion_name, item_id,vender_user_id, promotion_type,
+      start_time, end_time, purchase_number_min, purchase_number_max, promotion_stock,
+      promotion_rule, promotion_status, yn, created, modified, discount_flag, discount_time, special_flag, special_time)
+    values ( #promotionName:VARCHAR#, #itemId:INTEGER#, #venderUserId:INTEGER#,
+      #promotionType:INTEGER#, #startTime:TIMESTAMP#, #endTime:TIMESTAMP#,
+      #purchaseNumberMin:INTEGER#, #purchaseNumberMax:INTEGER#, #promotionStock:INTEGER#,
+      #promotionRule:VARCHAR#, #promotionStatus:INTEGER#, 1,now(),now(), #discountFlag#, #discountTime#, #specialFlag#, #specialTime#)
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="promotionId">
+			<![CDATA[SELECT @@IDENTITY AS promotion_id ]]>
+	  </selectKey>
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterClass="com.ec.api.domain.PromotionInfo" >
+    update promotion_info set modified = now()
+    <dynamic >
+      <isNotNull prepend="," property="promotionName" >
+        promotion_name = #promotionName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="venderUserId" >
+        vender_user_id = #venderUserId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="promotionType" >
+        promotion_type = #promotionType:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="startTime" >
+        start_time = #startTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="endTime" >
+        end_time = #endTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="purchaseNumberMin" >
+        purchase_number_min = #purchaseNumberMin:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="purchaseNumberMax" >
+        purchase_number_max = #purchaseNumberMax:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="promotionStock" >
+        promotion_stock = #promotionStock:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="promotionRule" >
+        promotion_rule = #promotionRule:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="promotionStatus" >
+        promotion_status = #promotionStatus:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="yn" >
+        yn = #yn:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="discountFlag" >
+        discount_flag = #discountFlag:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="specialFlag" >
+        special_flag = #specialFlag:INTEGER#
+      </isNotNull>
+      
+    </dynamic>
+    where promotion_id = #promotionId:INTEGER#
+  </update>
+  
+  <update id="updatePromotionInfoStock" parameterClass="com.ec.api.domain.PromotionInfo" >
+    update promotion_info set modified = now(),promotion_stock=promotion_stock-#promotionStock#
+    where promotion_id = #promotionId:INTEGER# and promotion_stock > #promotionStock#
+  </update>
+  
+  
+  <select id="countByCondition" parameterClass="com.ec.api.domain.query.PromotionInfoQuery" resultClass="java.lang.Integer" >
+    select count(1) from promotion_info
+    <include refid="PromotionInfo.condition" />
+  </select>
+
+  <select id="countPromotionProductByCondition" parameterClass="com.ec.api.domain.query.PromotionInfoQuery" resultClass="java.lang.Integer" >
+    select count(1) from promotion_product
+    <include refid="PromotionInfo.condition" />
+  </select>
+  
+  <select id="selectByCondition" parameterClass="com.ec.api.domain.query.PromotionInfoQuery"  resultMap="PromotionInfoResult" >
+    select promotion_id, promotion_name, item_id,vender_user_id, promotion_type, start_time, end_time,
+      purchase_number_min, purchase_number_max, promotion_stock, promotion_rule, promotion_status,
+      yn, created, modified, discount_flag, discount_time, special_flag, special_time
+    from promotion_info
+    <include refid="PromotionInfo.condition" />
+  </select>
+  
+  <select id="selectByConditionForPage" parameterClass="com.ec.api.domain.query.PromotionInfoQuery" resultMap="PromotionInfoResult" >
+    select promotion_id, promotion_name, item_id,vender_user_id, promotion_type, start_time, end_time,
+      purchase_number_min, purchase_number_max, promotion_stock, promotion_rule, promotion_status,
+      yn, created, modified, discount_flag, discount_time, special_flag, special_time
+    from promotion_info
+    <include refid="PromotionInfo.condition" />
+    order by modified desc
+  	limit #start#,#pageSize#
+  </select>
+    
+  <select id="selectPromotionProductByConditionForPage" parameterClass="com.ec.api.domain.query.PromotionInfoQuery" resultMap="PromotionInfoResult" >
+    select promotion_id, promotion_name, item_id,vender_user_id, promotion_type, start_time, end_time,
+      purchase_number_min, purchase_number_max, promotion_stock, promotion_rule, promotion_status,
+      yn, created, modified, discount_flag, discount_time, special_flag, special_time
+    from promotion_product
+    <include refid="PromotionInfo.condition" />
+    order by modified desc
+  	limit #start#,#pageSize#
+  </select>
+  
+</sqlMap>

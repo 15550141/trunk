@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>登录</title>
+<link type="text/css" rel="stylesheet" href="/misc/css/oauth_web.css" />
+
+</head>
+<body>
+<form id="formresetPwd" method="post" onsubmit="return false;">
+	<div class="oauth-bline">
+		<div class="oauth-oline"></div>
+	</div>
+	
+	<div class="oauth-wrap oauth-shadow">
+		
+		<div class="oauth-main" id="loginForm">
+			<div class="oauth-main-top"></div>
+			<div class="oauth-con">
+			   <div class="item"><span class="label">注册时使用的手机号：</span>
+                    <div class="fl">
+                        <input type="text" id="moblie" name="moblie" tabindex="1"  class="text_blank" autocomplete="off">
+                        <label id="moblie_succeed" class="blank invisible"></label>
+                        <span class="clr"></span>
+                        <label id="moblie_error"></label>
+                    </div>
+                </div>
+                
+                <div class="item"><span class="label">手机验证码：</span>
+                    <div class="fl">
+                        <input type="text" id="verification" name="verification" tabindex="1"  class="text_blank" autocomplete="off">
+                        <label id="verification_succeed" class="blank invisible"></label>
+                        <span class="clr"></span>
+                        <label id="verification_error"></label>
+                    </div>
+                </div>
+                <div class="item"><span class="label">请输入新密码：</span>
+
+                    <div class="fl">
+                        <input type="password" id="newpassword" name="newpassword" tabindex="1"  class="text_blank" autocomplete="off">
+                        <label id="newpassword_succeed" class="blank invisible"></label>
+                        <span class="clr"></span>
+                        <label id="newpassword_error"></label>
+                    </div>
+                </div>
+                <div class="item">
+                    <span class="label">请重新输入新密码：</span>
+
+                    <div class="fl">
+                        <input type="password" id="newpassword2" name="newpassword2" class="text" tabindex="2" autocomplete="off">
+                        <label id="newpassword2_succeed" class="blank invisible"></label>
+                        <span class="clr"></span>
+                        <label id="newpassword2_error"></label>
+                    </div>
+                </div>
+                <div class="item">
+                    <span class="label">&nbsp;</span>
+                    <input type="button" class="btn-img btn-entry" id="resetpswSubmit" value="重置密码" tabindex="4">
+                </div>
+
+			</div>
+			<div class="oauth-main-bottom"></div>
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="/misc/js/jquery-1.2.6.pack.js"></script>
+	<script type="text/javascript" src="/misc/js/jQuery.md5.js"></script>
+    <script type="text/javascript" src="/misc/js/jdValidate.new.js"></script>
+    <script type="text/javascript" src="/misc/js/Validate.newEntry.js"></script>
+</form>
+</body>
+</html>

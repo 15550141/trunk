@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="UserInfo" >
+  <resultMap id="UserInfoResult" class="com.ec.api.domain.UserInfo" >
+    <result column="USER_ID" property="userId"  />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="USER_TYPE" property="userType"  />
+    <result column="YN" property="yn"  />
+    <result column="REGISTER_TIME" property="registerTime" jdbcType="TIMESTAMP" />
+    <result column="REGISTER_IP" property="registerIp" jdbcType="VARCHAR" />
+    <result column="LAST_LOGIN_TIME" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_LOGIN_IP" property="lastLoginIp" jdbcType="VARCHAR" />
+    <result column="CREATED" property="created" jdbcType="TIMESTAMP" />
+    <result column="MODIFIED" property="modified" jdbcType="TIMESTAMP" />
+    
+    <result column="nickname" property="nickname"  />
+    <result column="sex" property="sex"  />
+    <result column="user_level" property="user_level"  />
+    <result column="province" property="province"  />
+    <result column="city" property="city"  />
+    <result column="country" property="country"  />
+    <result column="email" property="email"  />
+    <result column="headimgurl" property="headimgurl"  />
+    <result column="truename" property="truename"  />
+    <result column="postcode" property="postcode"  />
+    <result column="address" property="address"  />
+    <result column="regist_source" property="regist_source"  />
+    
+  </resultMap>
+  
+   <!-- 查询条件 -->
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="userId" >
+        USER_ID = #userId:VARCHAR#
+      </isNotNull>
+  	  <isNotNull prepend="and" property="mobile" >
+        MOBILE = #mobile:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="password" >
+        PASSWORD = #password:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="userType" >
+        USER_TYPE = #userType:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="yn" >
+        YN = #yn:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="regist_source" >
+        regist_source = #regist_source#
+      </isNotNull>
+      <isNotNull prepend="and" property="user_level" >
+        user_level = #user_level#
+      </isNotNull>
+      <isNotNull prepend="and" property="truename" >
+        truename = #truename#
+      </isNotNull>
+      
+    </dynamic>
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="UserInfoResult" parameterClass="java.lang.Integer" >
+    select USER_ID, MOBILE, PASSWORD, USER_TYPE, YN, REGISTER_TIME, REGISTER_IP, LAST_LOGIN_TIME,
+      LAST_LOGIN_IP, CREATED, MODIFIED, nickname, sex, user_level, province, city, country, email, headimgurl, truename, postcode, address, regist_source
+    from user_info
+    where USER_ID = #userId:INTEGER#
+  </select>
+
+  <insert id="insert" parameterClass="com.ec.api.domain.UserInfo" >
+    insert into user_info (MOBILE, PASSWORD, USER_TYPE, YN, REGISTER_TIME, REGISTER_IP,
+      LAST_LOGIN_TIME, LAST_LOGIN_IP, CREATED, MODIFIED, nickname, sex, user_level, province, city, country, email, headimgurl, truename, postcode, address, regist_source)
+    values (#mobile:VARCHAR#, #password:VARCHAR#, #userType:INTEGER#,
+      1, now(), #registerIp:VARCHAR#, #lastLoginTime:TIMESTAMP#,
+      #lastLoginIp:VARCHAR#, now(), now(), #nickname#, #sex#, #user_level#, #province#, #city#, #country#, #email#, #headimgurl#, #truename#, #postcode#, #address#, #regist_source#)
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="userId">
+			<![CDATA[SELECT @@IDENTITY AS USER_ID ]]>
+	  </selectKey>
+  </insert>
+  
+  
+  <update id="updateByPrimaryKey" parameterClass="com.ec.api.domain.UserInfo" >
+    update user_info set MODIFIED = now()
+    <dynamic >
+      <isNotNull prepend="," property="mobile" >
+        MOBILE = #mobile:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="password" >
+        PASSWORD = #password:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="userType" >
+        USER_TYPE = #userType:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="yn" >
+        YN = #yn:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="lastLoginTime" >
+        LAST_LOGIN_TIME = #lastLoginTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastLoginIp" >
+        LAST_LOGIN_IP = #lastLoginIp:VARCHAR#
+      </isNotNull>
+      
+      <isNotNull prepend="," property="nickname" >
+        nickname = #nickname#
+      </isNotNull>
+      <isNotNull prepend="," property="user_level" >
+        user_level = #user_level#
+      </isNotNull>
+      <isNotNull prepend="," property="truename" >
+        truename = #truename#
+      </isNotNull>
+      
+    </dynamic>
+    where USER_ID = #userId:INTEGER#
+  </update>
+  
+  <select id="countByCondition" parameterClass="com.ec.api.domain.query.UserInfoQuery" resultClass="java.lang.Integer" >
+    select count(1) from user_info
+    <include refid="UserInfo.condition" />
+  </select>
+  
+  <select id="selectByCondition" parameterClass="com.ec.api.domain.query.UserInfoQuery"  resultMap="UserInfoResult" >
+    select USER_ID, MOBILE, PASSWORD, USER_TYPE, YN, REGISTER_TIME, REGISTER_IP, LAST_LOGIN_TIME,
+      LAST_LOGIN_IP, CREATED, MODIFIED, nickname, sex, user_level, province, city, country, email, headimgurl, truename, postcode, address, regist_source
+    from user_info
+    <include refid="UserInfo.condition" />
+  </select>
+  
+  <select id="selectByConditionForPage" parameterClass="com.ec.api.domain.query.UserInfoQuery"  resultMap="UserInfoResult">
+    select USER_ID, MOBILE, PASSWORD, USER_TYPE, YN, REGISTER_TIME, REGISTER_IP, LAST_LOGIN_TIME,
+      LAST_LOGIN_IP, CREATED, MODIFIED, nickname, sex, user_level, province, city, country, email, headimgurl, truename, postcode, address, regist_source
+    from user_info
+    <include refid="UserInfo.condition" />
+    order by USER_ID DESC
+  	limit #start#,#pageSize#
+  </select>
+  
+</sqlMap>

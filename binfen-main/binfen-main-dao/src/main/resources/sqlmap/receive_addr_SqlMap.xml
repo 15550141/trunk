@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ReceiveAddr" >
+  <resultMap id="ReceiveAddrResult" class="com.ec.api.domain.ReceiveAddr" >
+    <result column="id" property="id"  />
+    <result column="uid" property="uid" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="province" property="province" />
+    <result column="city" property="city" />
+    <result column="county" property="county" />
+    <result column="province_name" property="provinceName" />
+    <result column="city_name" property="cityName" />
+    <result column="county_name" property="countyName" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="default_flag" property="defaultFlag" />
+    <result column="addr_type" property="addrType" />
+    <result column="CREATED" property="created" jdbcType="TIMESTAMP" />
+    <result column="MODIFIED" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <!-- 查询条件 -->
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="id" >
+        id = #id#
+      </isNotNull>
+      <isNotNull prepend="and" property="uid" >
+        uid = #uid#
+      </isNotNull>
+      <isNotNull prepend="and" property="name" >
+        name = #name#
+      </isNotNull>
+      <isNotNull prepend="and" property="mobile" >
+        mobile = #mobile#
+      </isNotNull>
+      <isNotNull prepend="and" property="defaultFlag" >
+        default_flag = #defaultFlag#
+      </isNotNull>
+      <isNotNull prepend="and" property="addrType" >
+        addr_type = #addrType#
+      </isNotNull>
+    </dynamic>
+  </sql>
+  
+  <!-- 依据主键进行查询 -->
+  <select id="selectByPrimaryKey" resultMap="ReceiveAddrResult" parameterClass="java.lang.Integer" >
+    select id,uid,name,province,province_name,city,city_name,county,county_name,address,mobile,default_flag,addr_type,created,modified
+    from receive_addr 
+    where id = #id#
+  </select>
+  
+  <!-- 添加信息 -->
+  <insert id="insert" parameterClass="com.ec.api.domain.ReceiveAddr" >
+    insert into receive_addr (uid,name,province,province_name,city,city_name,county,county_name,address,mobile,default_flag,addr_type,created,modified)
+    values (#uid#,#name#,#province#,#provinceName#,#city#,#cityName#,#county#,#countyName#,#address#,#mobile#,#defaultFlag#,#addrType#, now(), now())
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="id">
+			<![CDATA[SELECT @@IDENTITY AS id ]]>
+	  </selectKey>
+  </insert>
+  
+  <!-- 依据主键进行修改 -->
+  <update id="updateByReceiveAddr" parameterClass="com.ec.api.domain.ReceiveAddr" >
+    update receive_addr set MODIFIED = now()
+    <dynamic>
+      <isNotNull prepend="," property="name" >
+        name = #name#
+      </isNotNull>
+      <isNotNull prepend="," property="province" >
+        province = #province#
+      </isNotNull>
+      <isNotNull prepend="," property="provinceName" >
+        province_name = #provinceName#
+      </isNotNull>
+      <isNotNull prepend="," property="city" >
+        city = #city#
+      </isNotNull>
+      <isNotNull prepend="," property="cityName" >
+        city_name = #cityName#
+      </isNotNull>
+      <isNotNull prepend="," property="county" >
+        county = #county#
+      </isNotNull>
+      <isNotNull prepend="," property="countyName" >
+        county_name = #countyName#
+      </isNotNull>
+      <isNotNull prepend="," property="address" >
+        address = #address#
+      </isNotNull>
+      <isNotNull prepend="," property="mobile" >
+        mobile = #mobile#
+      </isNotNull>
+      <isNotNull prepend="," property="defaultFlag" >
+        default_flag = #defaultFlag#
+      </isNotNull>
+      <isNotNull prepend="," property="addrType" >
+        addr_type = #addrType#
+      </isNotNull>
+    </dynamic>
+    where 1=1 
+    
+    <dynamic>
+      <isNotNull prepend="and" property="id" >
+        id=#id#
+      </isNotNull>
+      <isNotNull prepend="and" property="uid" >
+        uid=#uid#
+      </isNotNull>
+    </dynamic>
+    
+  </update>
+  
+  <!-- 条件查询总数 -->
+  <select id="countByCondition" parameterClass="com.ec.api.domain.query.ReceiveAddrQuery" resultClass="java.lang.Integer" >
+    select count(1) from receive_addr
+    <include refid="ReceiveAddr.condition" />
+  </select>
+  
+  <!-- 条件查询列表 -->
+  <select id="selectByCondition" parameterClass="com.ec.api.domain.query.ReceiveAddrQuery" resultMap="ReceiveAddrResult" >
+    select id,uid,name,province,province_name,city,city_name,county,county_name,address,mobile,default_flag,addr_type,created,modified
+    from receive_addr
+    <include refid="ReceiveAddr.condition" />
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterClass="java.lang.Integer" >
+    delete from receive_addr
+    where id = #value:INTEGER#
+  </delete>
+  
+</sqlMap>

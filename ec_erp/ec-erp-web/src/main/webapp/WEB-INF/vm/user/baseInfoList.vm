@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    	<meta http-equiv="expires" content="0" />
+        <title>管理页面</title>
+        <link href="/style/erpstyle.css"rel="stylesheet" type="text/css" />
+        <script language="javascript" src="/js/jquery-1.6.2.min.js"></script>
+        <script language="javascript" src="/js/erpstyle1.js"></script>
+        <script language="javascript" src="/js/common.js"></script>
+    </head>
+    <body>
+<!--盒子开始-->
+<form id="f1" name="f1" method="post">
+<div class="box"> 
+    <!--标题区开始-->
+    <div class="title">
+        <div class="left">
+            <div class="title_gl">商家账号基本信息管理</div>
+            <div class="title_fbt"></div>
+            <div class="bh"></div>
+        </div>
+    </div>
+    <!--标题区结束-->
+    <!--查询区开始-->
+    <div class="panel_search">
+        <table border="0" cellpadding="0" cellspacing="2"style="width:800px;">
+            <tr>
+                <td align="right">商家ID：</td>
+                <td>
+                    <input type="text" name="userId" id="userId" value="$!{businessUserExtQuery.userId}" />
+                </td>
+                  
+                <td align="right">商家名称：</td>
+                <td>
+                    <input type="text" name="shopName" id="shopName" value="$!{businessUserExtQuery.shopName}" />
+                </td><!--
+                <td align="right" style="width: 100px">审核状态：</td>
+                <td style="width: 100px">
+		           <select name="bankStatus" id="bankStatus" style="width: 110px">
+		           		<option #if($!{businessUserExtQuery.bankStatus}=="") selected="selected" #end value="">全选</option> 
+		           		<option #if($!{businessUserExtQuery.bankStatus}==0) selected="selected" #end value="0">未审核</option>
+						<option #if($!{businessUserExtQuery.bankStatus}==1) selected="selected" #end value="1">审核通过</option>
+						<option #if($!{businessUserExtQuery.bankStatus}==2) selected="selected" #end value="2">审核不通过</option>
+                    </select>
+                </td>
+               	--><td align="right">
+					<input type="button" id="queryNew" name="queryNew" value="查询"/>
+				</td>
+            </tr>
+        </table>
+    </div>
+    <!--查询区结束--> 
+    <!--列表区开始-->
+    <div class="panel_grid">
+        <table>
+            <tr>
+                <th>商家ID</th>
+                <th>商家名称</th>
+                <th>佣金</th>
+				<th>操作</th>
+            </tr>
+			#foreach($businessUserExt in $resultMap.businessUserExtList)
+            <tr>
+                <td>$!{businessUserExt.userId}</td>
+                <td>$!{businessUserExt.shopName}</td>
+                <td>$!{businessUserExt.commision}</td>
+				<td>
+					<a href="/user/showBaseInfo?userId=$!{businessUserExt.userId}">编辑</a>
+					<!--  <a href="/monthly/doUpdateMonthly.action?monthlyUser.pin=$!{monthly.pin}&monthlyUser.applyStatus=2">修改</a> -->
+                </td>
+            </tr>
+			#end
+        </table>
+        <!--分页控件开始-->
+        
+        <div class="pager">
+        	#set($pageModule = $mainModule.getTarget("/user/bankList").addQueryData("bankStatus",$!{businessUserExtQuery.bankStatus}))
+			#showPage($pageModule $resultMap.businessUserExtList)  
+        </div>
+        <!--分页控件结束--> 
+    </div>
+    <!--列表区结束--> 
+</div>
+<!--盒子结束--> 
+</form>
+ <!--  <script language="javascript" src="/My97DatePicker/WdatePicker.js"></script> -->
+ <script language="javascript" src="$assetModule.getTarget("/My97DatePicker/WdatePicker.js")"></script>
+ <script language="javascript" src="$assetModule.getTarget("/js/user/bankJS.js")"></script>
+ </body>
+ </html>

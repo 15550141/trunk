@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    	<meta http-equiv="expires" content="0" />
+        <title>管理页面</title>
+        <link href="/style/erpstyle.css"rel="stylesheet" type="text/css" />
+        <script language="javascript" src="/js/jquery-1.6.2.min.js"></script>
+        <script language="javascript" src="/js/erpstyle1.js"></script>
+        <script language="javascript" src="/js/common.js"></script>
+    </head>
+    <body>
+
+<form id="f1" name="f1" method="post" >
+<div class="box"><!--标题区开始-->
+<div class="title1">
+<div class="left">
+<div class="title_gl">无银行信息请录入:</div>
+<div class="title_fbt"></div>
+<div class="bh"></div>
+</div>
+<div class="right">
+<div class="zt"></span></div>
+</div>
+</div>
+<!--标题区结束-->
+<div style="height: 10px;"></div>
+
+<!--扩展信息区开始-->
+<div class="panel_search1">
+<table>
+	<tr>
+		<td style="font-weight: bold; width: 200px" align="right">录入验证银行信息</td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 200px">*银行开户名：</td>
+		<td>
+			<input type="text" name="bank" id="bank" value="$!{businessUserExt.bank}" style="width: 250px" />
+		</td>
+		<td align="right" style="width: 200px">*公司银行账号：</td>
+		<td>
+			<input type="text" name="bankAc" id="bankAc" value="$!{businessUserExt.bankAc}" style="width: 250px" />
+		</td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 200px">*开户银行支行名称：</td>
+		<td>
+			<input type="text" name="branch" id="branch" value="$!{businessUserExt.branch}" style="width: 250px" />
+		</td>
+		<td align="right" style="width: 100px">支行联行号：</td>
+		<td>
+			<input type="text" name="CNAPSCode" id="CNAPSCode" value="$!{businessUserExt.CNAPSCode}" style="width: 250px" />
+		</td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 200px">*开户银行所在地：</td>
+		<td >
+			<input type="text" name="bankProvince" id="bankProvince" value="$!{businessUserExt.bankProvince}" style="width: 250px" />&nbsp;
+			<!--  <input type="text" name="bankCity" id="bankCity" value="$!{businessUserExt.bankCity}" style="width: 100px" />&nbsp; -->
+		</td><!--
+		<td style="width: 100px">
+			<input type="text" name="bankCity" id="bankCity" value="$!{businessUserExt.bankCity}" style="width: 100px" />&nbsp;
+		</td>
+
+	--></tr>
+	</table>
+</div>
+
+<input type="hidden" id="userId" name="userId" value="$!{businessUserExt.userId}" />
+<!--销售属性区结束-->
+<input type="button" id="subButton" value="提交" style="position: absolute; left: 50%; width: 100px;" />
+
+
+</form>
+<!--盒子结束-->
+ <script language="javascript" src="$assetModule.getTarget("/My97DatePicker/WdatePicker.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/js/user/bankJS.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/js/ajaxfileupload.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/js/jquery.showLoading.js")"></script>
+
+
+<script type="text/javascript" src="/js/xheditor-zh-cn.min.js"></script>
+
+
+<script langusge="javascript" >
+
+
+
+//初始化页面
+$(document).ready(function(){
+
+
+	
+	});
+</script>
+
+</body>
+</html>

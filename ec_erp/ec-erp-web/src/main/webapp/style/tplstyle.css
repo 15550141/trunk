@@ -1,0 +1,17 @@
+.content_tpl {margin:0 auto;width:753px;height:auto}
+.formwork {	width:753px;height:auto;padding:10px 0;text-align:left;font-size:12px;line-height:23px;border-bottom:1px solid #e6e6e6;overflow:hidden}
+.formwork p {margin:0;padding:0;}
+.formwork_img {width:710px;height:auto;text-align:center;margin:0 auto}
+.formwork_titleleft {font-size:14px;font-weight:bold;line-height:25px;}
+.formwork_titlecenter {font-size:14px;font-weight:bold;line-height:25px;text-align:center}
+.formwork_text {width:100%;height:auto;text-indent:2em;}
+.formwork_imgleft {width:200px;height:auto;padding:10px 20px 10px 0;float:left}
+.formwork_imgright {width:200px;height:auto;padding:10px 0 10px 20px;float:right}
+.formwork_imgleft1 {width:360px;height:auto;padding:10px 20px 10px 0;float:left}
+.formwork_imgright1 {width:360px;height:auto;padding:10px 0 10px 20px;float:right}
+.formwork_tpl_left {width:375px;height:auto;float:left;}
+.formwork_tpl_imgleft {width:150px;height:auto;padding:10px 20px 10px 0;float:left}
+.formwork_tpl_imgright {width:150px;height:auto;padding:10px 20px 10px 10px;float:left}
+.formwork_tpl_left1 {width:375px;height:auto;float:left;text-align:center}
+.formwork_tpl_img {width:100%;height:auto;padding:20px;}
+.formwork_title1 {font-size:14px;font-weight:bold;line-height:25px;text-align:center}

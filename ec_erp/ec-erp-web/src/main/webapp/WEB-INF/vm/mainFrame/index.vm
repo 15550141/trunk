@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="0">
+    <title>ERP管理平台</title>
+   	<link rel="stylesheet" href="$!{contextPath}/style/new/base.css" type="text/css"/>
+    <link rel="stylesheet" href="$!{contextPath}/style/new/common.css" type="text/css"/>
+    <link rel="stylesheet" href="$!{contextPath}/style/new/page.css" type="text/css"/>
+    <link rel="stylesheet" href="$!{contextPath}/style/new/calendar.css" type="text/css"/>
+    <script type="text/javascript" src="$!{contextPath}/misc/js/new/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="$!{contextPath}/misc/js/new/jquery-json.js"></script>
+    <script type="text/javascript" src="$!{contextPath}/misc/js/new/header.js"></script>
+</head>
+<body class="MCenter">
+<div id="header" class="width100">
+    <div id="headerInner" class="mCenter clearfix w1200 help">
+        <h1 title="ERP管理平台" class="fl">ERP管理平台</h1>
+        <div class="fr">
+    		<span class="headerIco">
+    		</span>
+    		<span class="headerIco">
+    		</span>
+    		<span class="headerIco">
+    		</span>
+    		<span class="headerIco">
+    		</span>
+    		<span class="headerIco">
+    		<a id="" href="javascript:void(0)" onclick="logout(this);"><font color="#FFFFF">注销</font></a>
+    		</span>
+        </div>
+    </div>
+    
+    <iframe name="contentFrame" id="contentFrame" width="100%" scrolling="auto" frameborder="0" marginheight="0" marginwidth="0" flush="true" src="$!{contextPath}/index/contentFrame"></iframe>
+</div>
+</body>
+
+</html>

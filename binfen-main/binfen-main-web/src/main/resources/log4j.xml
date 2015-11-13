@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %p - %C[%L] - %m \n" />
+		</layout>
+	</appender>
+	
+	
+    <appender name="activexAppender" class="org.apache.log4j.DailyRollingFileAppender">       
+        <param name="File" value="D:/activex.log" />         
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />         
+        <layout class="org.apache.log4j.PatternLayout">       
+         <param name="ConversionPattern"         
+            value="[%d{MMdd HH:mm:ss SSS\} %-5p] [%t] %c{3\} - %m%n" />       
+        </layout>         
+    </appender>       
+          
+    <!-- 指定logger的设置，additivity指示是否遵循缺省的继承机制-->       
+    <logger name="com.runway.bssp.activeXdemo" additivity="false">       
+        <priority value ="ERROR"/>         
+        <appender-ref ref="activexAppender" />         
+    </logger>       
+
+	<category name="java.sql" additivity="true">
+		<priority value="DEBUG"/>
+		<appender-ref ref="CONSOLE"/>
+	</category>
+	
+    <!-- 根logger的设置-->       
+    <root>       
+        <priority value ="ERROR"/>       
+        <appender-ref ref="CONSOLE"/>       
+        <appender-ref ref="activexAppender"/>          
+    </root>       
+    
+    
+
+</log4j:configuration>

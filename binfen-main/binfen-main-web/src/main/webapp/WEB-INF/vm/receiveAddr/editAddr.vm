@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <title>鲜果味道</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE-9">
+    <meta name="apple-mobile-web-app-capable" content="no">
+    <meta name="mobile-web-app-capable" content="no"> 
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    
+    <link rel="shortcut icon" href="/favicon.ico" >
+    <link rel="apple-touch-icon" sizes="76x76" href="/misc/style/webIcon.png" />  
+    <link rel="apple-touch-icon" sizes="152x152" href="/misc/style/webIcon.png" />  
+    <link rel="apple-touch-icon" sizes="120x120" href="/misc/style/webIcon.png" />    
+    <link rel="apple-touch-icon" sizes="180x180" href="/misc/style/webIcon.png" />  
+    <link type="image/x-icon" rel="Shortcut Icon" href="/misc/style/webIcon.png">
+
+    <!-- Bootstrap -->
+    <link href="/misc/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/misc/css/style.css">
+	 
+    <!--[if lt IE 9]>
+    <script src="/misc/js/html5shiv.min.js"></script>
+    <![endif]-->
+    <script src="/misc/js/require.js" data-main="/misc/style/main"></script>
+	<script src="/misc/js/jquery-1.11.0.min.js"></script>
+	<script src="/misc/js/dsp-zz.js"></script>
+    <script src="/misc/js/prefixfree.min.js"></script>
+
+  </head>
+<body>
+	<div class="trasfrm ds768">
+        <div class="padArow"></div>
+        <div class="iconPad_1">
+            <div class="iconpad_2"></div>
+        </div>
+        <div class="iconPad_1 trmoct">
+            <div class="iconpad_2"></div>
+        </div>
+        <p class="trapf"><strong></strong> 请 <strong>切换到竖屏</strong> 以达到最佳浏览效果</p>
+	</div>
+
+    <input type="hidden" id="api_msg_type" value="">
+    <input type="hidden" id="api_msg" value="">
+    <input type="hidden" id="api_goto_url" value="">
+    
+	<nav class="navbar navbar-default navbar-fixed-top m-component-nav" role="navigation">
+		<input type="hidden" id="selected_id" value="3851821">
+  		<div class="container-fluid">
+    		<div class="navbar-header text-center clearfix">
+      			<a class="navbar-func pull-left" href="/receiveAddr/addrList/"><span class="glyphicon fdayicon fdayicon-navback"></span></a>   
+      			<span class="pull-right navbar-func">
+          			<button type="button" class="btn btn-warning btn-xs" id="editEnd">完成</button>
+      			</span>      
+      			<span class="navbar-title">编辑收货地址</span>
+        	</div>
+      	</div>
+    </nav>
+
+	<section class="m-component-order" id="m-order">
+        <input type="hidden" id="address_id" value="$!addr.id" />
+        <div class="container">
+        	<form class="form-horizontal m-order-address-form" role="form">
+              	<div class="form-group">
+                	<label for="name" class="col-xs-3 control-label">收货人</label>
+                	<div class="col-xs-9 text-right">
+                  		<input type="text" id="name" class="text-right" placeholder="" value="$!addr.name"/>
+                	</div>
+              	</div>
+              	<div class="form-group">
+                	<label for="addressArea" class="col-xs-3 control-label">区域选择</label>
+                	<div class="col-xs-9 text-right">
+                  		<span class="myarea" id="myarea">$!{addr.provinceName}&nbsp;&nbsp;$!{addr.cityName}&nbsp;&nbsp;$!{addr.countyName}</span> <input type="hidden" id="addressArea" value="" />
+                	</div>
+              	</div>
+              	<div class="modal fade modal-orderadd-area" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                	<input type="hidden" id="province" areavalue="$!{addr.provinceName}" areaid="$!{addr.province}"/>
+                	<input type="hidden" id="city" areavalue="$!{addr.cityName}" areaid="$!{addr.city}"/>
+                	<input type="hidden" id="county" areavalue="$!{addr.countyName}" areaid="$!{addr.county}"/>
+                	<div class="modal-dialog modal-sm">
+                  		<div class="modal-content">
+                      		<dl class="area province" style="">
+                          		<dt>请选择 省份 <span class="pull-right m-dialog-close"></span></dt>
+                      		</dl>
+                      		<dl class="area city" style="display:none">
+                          		<dt>请选择 城市<span class="pull-right m-dialog-back"></span></dt>
+                      		</dl>
+                      		<dl class="area county" style="display:none">
+                          		<dt>请选择 区/县<span class="pull-right m-dialog-back"></span></dt>
+                      		</dl>                                
+                  		</div>
+                	</div>
+              	</div>
+              	<div class="form-group">
+                	<label for="addressDetail" class="col-xs-3 control-label">详细地址</label>
+                	<div class="col-xs-9 text-right">
+                  		<input type="text" id="addressDetail" class="text-right" placeholder="" value="$!{addr.address}"/>
+                	</div>
+              	</div>
+              	<div class="form-group">
+                	<label for="tel" class="col-xs-3 control-label">收货手机</label>
+                	<div class="col-xs-9 text-right">
+                  		<input type="tel" id="tel" class="text-right" placeholder="" value="$!{addr.mobile}"/>
+                	</div>
+              	</div>
+              	<!--
+              	<div class="form-group">
+                	<label for="addressType" class="col-xs-3 control-label">地址类型</label>
+                	<div class="col-xs-9 text-right">
+                  		<input type="text" id="addressType" class="text-right" placeholder="家 / 公司 / 其他" value=""/>
+                	</div>
+              	</div>
+              	-->
+              	<div class="form-group">
+                	<label for="name" class="col-xs-5 control-label">设为默认地址</label>
+                	<div class="col-xs-7 text-right">
+                    	<div class="onoffswitch">
+                        	<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox hide" id="myonoffswitch" value="0" >
+                        	<label class="onoffswitch-label" for="myonoffswitch">
+                            	<div class="onoffswitch-inner">
+                                	<div class="onoffswitch-active"></div>
+                                	<div class="onoffswitch-inactive"></div>
+                            	</div>
+                            	<div class="onoffswitch-switch"></div>
+                        	</label>
+                    	</div>
+                	</div>
+              	</div>
+        	</form>
+        </div>    
+    </section>
+
+<script src="/misc/style/address/api_error.js"></script>
+<script src="/misc/style/address/order-addr.js"></script>
+</body></html>
+

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <title>鲜果味道</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE-9">
+    <meta name="apple-mobile-web-app-capable" content="no">
+    <meta name="mobile-web-app-capable" content="no"> 
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    
+    <link rel="shortcut icon" href="/favicon.ico" >
+    <link rel="apple-touch-icon" sizes="76x76" href="/misc/style/webIcon.png" />  
+    <link rel="apple-touch-icon" sizes="152x152" href="/misc/style/webIcon.png" />  
+    <link rel="apple-touch-icon" sizes="120x120" href="/misc/style/webIcon.png" />    
+    <link rel="apple-touch-icon" sizes="180x180" href="/misc/style/webIcon.png" />  
+    <link type="image/x-icon" rel="Shortcut Icon" href="/misc/style/webIcon.png">
+
+    <!-- Bootstrap -->
+    <link href="/misc/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/misc/css/style.css">
+	 
+    <!--[if lt IE 9]>
+    <script src="/misc/js/html5shiv.min.js"></script>
+    <![endif]-->
+    <script src="/misc/js/require.js" data-main="/misc/style/main"></script>
+	<script src="/misc/js/jquery-1.11.0.min.js"></script>
+	<script src="/misc/js/dsp-zz.js"></script>
+    <script src="/misc/js/prefixfree.min.js"></script>
+
+  </head>
+<body>
+	<div class="trasfrm ds768">
+        <div class="padArow"></div>
+        <div class="iconPad_1">
+            <div class="iconpad_2"></div>
+        </div>
+        <div class="iconPad_1 trmoct">
+            <div class="iconpad_2"></div>
+        </div>
+        <p class="trapf"><strong></strong> 请 <strong>切换到竖屏</strong> 以达到最佳浏览效果</p>
+	</div>
+
+    <input type="hidden" id="api_msg_type" value="">
+    <input type="hidden" id="api_msg" value="">
+    <input type="hidden" id="api_goto_url" value="">
+    
+	<nav class="navbar navbar-default navbar-fixed-top m-component-nav" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header text-center clearfix">
+				<a class="navbar-func pull-left" href="/order"><span class="glyphicon fdayicon fdayicon-navback"></span></a>   
+				<a class="navbar-func pull-right" href="/receiveAddr/addAddrPage"><span class="glyphicon fdayicon fdayicon-add"></span></a>        
+          		<span class="navbar-title">收货地址</span>
+        	</div>
+      	</div>
+    </nav>
+    
+    #if($!addrList)
+		<section id="m-order" class="m-component-order">
+			<ul id="m-orderaddlist" class="list-unstyled m-order-addresslist" style="min-height: 363px;">
+				#foreach($addr in $addrList)
+					<li class="m-order-item #if($!addr.defaultFlag == 1)cur#end">
+						<div class="m-order-address">
+							<input type="hidden" value="$!addr.id" class="address_id">
+							$!{addr.name}&nbsp;&nbsp;$!{addr.mobile}
+							<p>$!{addr.provinceName}$!{addr.cityName}$!{addr.countyName}$!{addr.address}</p>
+		              	</div>
+		              	<a class="m-order-address-edit" href="/receiveAddr/editAddr?id=$!addr.id">
+		                  	<span class="glyphicon fdayicon fdayicon-edit"></span>
+		              	</a>
+		              	<a class="m-order-address-delete" href="javascript:;">
+		                  	<span class="glyphicon fdayicon fdayicon-delete"></span>
+		              	</a>
+		          	</li>
+				#end
+			</ul>
+		</section>
+	#else
+	  	<section class="m-component-order" id="m-order">
+			<div class="text-center">
+				<span class="glyphicon fdayicon fdayicon-local"></span>
+	           	<h4>您还没有添加地址噢~</h4>
+	           	<a href="/receiveAddr/addAddrPage" class="btn btn-warning navbar-btn">新增地址</a>
+	        </div> 
+		</section>
+	#end
+
+<script src="/misc/style/address/api_error.js"></script>
+<script src="/misc/style/address/order-addr.js"></script>
+</body></html>
+
+

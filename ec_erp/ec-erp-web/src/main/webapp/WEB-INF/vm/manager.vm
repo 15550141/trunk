@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    	<meta http-equiv="expires" content="0" />
+        <title>管理页面</title>
+        <link href="/style/erpstyle.css"rel="stylesheet" type="text/css" />
+        <script language="javascript" src="/js/jquery-1.6.2.min.js"></script>
+        <script language="javascript" src="/js/erpstyle1.js"></script>
+        <script language="javascript" src="/js/common.js"></script>
+    </head>
+    <body>
+
+<link href="style/manager.css" rel="stylesheet" type="text/css" />
+<div id="manager-title">
+	<div id="manager-logo">
+		<img />
+	</div>
+	<div id="manager-text">
+		<p>ERP后台</p>
+	</div>
+</div>
+<div id="manager-main">
+	<div class="left">
+		<div id="menu" class="main_l">
+			<ul>
+				<li><span class="close">订单管理</span>
+					<ul>
+						<li><span><a id="manager1-1" href="#">订单管理</a> </span></li>
+					</ul>
+				</li>
+				<li><span class="close">商品管理</span>
+				
+					<ul>
+						<li><span><a id="manager2-6" href="#">一级类目管理</a> </span></li>
+					</ul>
+					<ul>
+						<li><span><a id="manager2-7" href="#">二级类目管理</a> </span></li>
+					</ul>
+					<ul>
+						<li><span><a id="manager2-5" href="#">属性管理</a> </span></li>
+					</ul>
+					<ul>
+						<li><span><a id="manager2-2" href="#">发布供应新品</a> </span></li>
+					</ul>
+					<ul>
+						<li><span><a id="manager2-3" href="#">待售商品管理</a> </span></li>
+					</ul>
+					<ul>
+						<li><span><a id="manager2-1" href="#">在售商品管理</a> </span></li>
+					</ul>
+					<ul>
+						<li><span><a id="manager2-4" href="#">下架商品管理</a> </span></li>
+					</ul>
+				</li>
+				<li><span class="close">促销管理</span><!--
+					<ul>
+						<li><span><a id="manager3-1" href="#">单品促销</a> </span></li>
+					</ul>
+					--><!--  
+					<ul>
+						<li><span><a id="manager3-2" href="#">产地特供</a> </span></li>
+					</ul> -->
+					<ul>
+						<li><span><a id="manager3-3" href="#">待审核促销列表</a> </span></li>
+					</ul><!--
+					
+					<ul>
+						<li><span><a id="manager3-4" href="#">待上线促销列表</a> </span></li>
+					</ul>
+					<ul>
+						<li><span><a id="manager3-5" href="#">上线促销列表</a> </span></li>
+					</ul>
+
+					<ul>
+						<li><span><a id="manager3-6" href="#">下线促销列表</a> </span></li>
+					</ul>	
+					<ul>
+						<li><span><a id="manager3-7" href="#">驳回促销列表</a> </span></li>
+					</ul>
+				--></li>
+				<li><span class="close">结算管理</span>
+					<ul>
+						<li><span><a id="manager4-1" href="#">结算</a> </span></li>
+					</ul>
+				</li>
+				<li><span class="close">会员管理</span>
+					<ul>
+						<li><span><a id="manager5-1" href="#">用户管理</a> </span></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+		
+			$(function(){
+				$("#menu ul li span").each(function(){ 
+					if($(this).siblings().length>0){
+						$(this).attr("class","open");
+						$(this).siblings().show();
+						}
+				});
+				$("#menu>ul>li>span").click(function(){
+					if($(this).siblings().length>0){
+						if($(this).attr("class")=="close"){
+							$(this).attr("class","open");
+							$(this).siblings().show();
+							//$(this).parent().siblings().find("span").eq(0).attr("class","close").siblings().hide();
+							
+							}
+						else{
+						$(this).attr("class","close");
+							$(this).siblings().hide();
+							}
+						}
+				})
+				$("#menu>ul>li>ul>li>span").click(function(){
+					if($(this).siblings().length>0){
+						if($(this).attr("class")=="close"){
+							$(this).attr("class","open");
+							$(this).siblings().show();
+						//	$(this).parent().parent().siblings().find("li").find("span").each(function(){
+							//	if($(this).siblings().length>0){
+							//	$(this).attr("class","close").siblings().hide();
+								//}
+						//	})
+						}
+						else{
+							$(this).attr("class","close");
+							$(this).siblings().hide();
+						}
+					}
+				})
+				$("#menu a").click(function(){
+					$("#menu a").removeClass("on");
+					$(this).addClass("on");
+				})
+				$("#manager1-1").click(function(){
+					$("#manager-right").attr("src", "/orderInfo/index");
+				});
+				$("#manager2-1").click(function(){
+					$("#manager-right").attr("src", "/product/onSaleProduct");
+				});
+				$("#manager2-2").click(function(){
+					$("#manager-right").attr("src", "/product/detail");
+				});
+				$("#manager2-3").click(function(){
+					$("#manager-right").attr("src", "/product/preSaleProduct");
+				});
+				$("#manager2-4").click(function(){
+					$("#manager-right").attr("src", "/product/stopSaleProduct");
+				});
+				$("#manager2-5").click(function(){
+					$("#manager-right").attr("src", "/item/addPro");
+				});
+				$("#manager2-6").click(function(){
+					$("#manager-right").attr("src", "/category/category1");
+				});
+				$("#manager2-7").click(function(){
+					$("#manager-right").attr("src", "/category/category2");
+				});
+				$("#manager3-1").click(function(){
+					$("#manager-right").attr("src", "/promotion/singleItemPromotion");
+				});
+			//	$("#manager3-2").click(function(){
+			//		$("#manager-right").attr("src", "/promotion/productPlacePromotion");
+			//	});
+				$("#manager3-3").click(function(){
+					$("#manager-right").attr("src", "/promotion/plannedPromotion");
+				});
+				$("#manager3-4").click(function(){
+					$("#manager-right").attr("src", "/promotion/examinedPromotion");
+				});
+				$("#manager3-5").click(function(){
+					$("#manager-right").attr("src", "/promotion/ongoingPromotion");
+				});
+				$("#manager3-6").click(function(){
+					$("#manager-right").attr("src", "/promotion/stoppedPromotion");
+				});
+				$("#manager3-7").click(function(){
+					$("#manager-right").attr("src", "/promotion/rejectPromotion");
+				});
+				$("#manager4-1").click(function(){
+					$("#manager-right").attr("src", "/bookKeeping/sellerBookKeeping");
+				});
+				$("#manager5-1").click(function(){
+					$("#manager-right").attr("src", "/user/list");
+				}); 
+				
+				
+				
+				$("#manager-right").load(function(){
+					var mainheight = $("#manager-right").contents().find("body").height()+30;
+					$("#manager-right").height(mainheight);
+				});
+				
+			})				
+				
+        </script>
+	<iframe id="manager-right" src="/product/detail" >
+	</iframe>
+	<div class="clr"></div>
+</div>
+</body>
+</html>
+
+
+

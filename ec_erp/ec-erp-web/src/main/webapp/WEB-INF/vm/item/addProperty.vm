@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    	<meta http-equiv="expires" content="0" />
+        <title>管理页面</title>
+        <link href="/style/erpstyle.css"rel="stylesheet" type="text/css" />
+        <script language="javascript" src="/js/jquery-1.6.2.min.js"></script>
+        <script language="javascript" src="/js/erpstyle1.js"></script>
+        <script language="javascript" src="/js/common.js"></script>
+    </head>
+    <body>
+
+<form id="f1" name="f1" method="post" >
+<div class="box"><!--标题区开始-->
+<div class="title1">
+<div class="left">
+<div class="title_gl">增加商品属性</div>
+<div class="title_fbt"></div>
+<div class="bh"></div>
+</div>
+<div class="right">
+<div class="zt"></span></div>
+</div>
+</div>
+<!--标题区结束-->
+<div style="height: 10px;"></div>
+
+
+<div class="panel_search1"><!--属性编辑区开始-->
+<table>
+	<tr>
+		<td style="font-weight: bold; width: 100px" align="right">添加属性</td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px">商品分类：</td>
+		<td align="left" style="width: 340px">
+			<select name="categoryId1" id="categoryId1" style="width: 100px"> 
+			
+			</select>
+			<select name="categoryId2" id="categoryId2" style="width: 100px"> 
+			
+			
+			</select>
+		</td>
+		<td align="right" style="width: 100px">销售属性：</td>
+		<td style="width: 200px">
+		<input type="text" id="property" name="property" value="" readonly= "true" style="width: 200px" /></td>
+
+		<td></td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px" >销售属性值：</td>
+		<td style="width: 200px">
+		<input type="text" id="propertyValueName" name = "propertyValueName" value="$!{propertyValue.propertyName}" style="width: 200px" /></td>
+		<td align="right" style="width: 100px">排序：</td>
+		<td style="width: 200px">
+			<input type="text" id="sortNumber" name = "sortNumber" value="$!{propertyValue.sortNumber}" style="width: 200px" /></td>
+		<td><span id="skuName"> </span></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px"></td>
+		<td style="width: 200px"><input type="button" id="addProVal"
+			value="添加" /></td>
+	</tr>
+</table>
+<!--查询区结束--></div>
+<div class="panel_search1"><!--查询区开始-->
+<table style="border-collapse: collapse;" id="propertyTH">
+	<tr>
+		<td style="font-weight: bold;" align="left" colspan="8">已添加的属性信息
+		</td>
+	</tr>
+	<tr style="font-weight: bold;">
+		<td class="tdgoods" style="width: 100px" >一级分类</td>
+		<td class="tdgoods" style="width: 100px">二级分类</td>
+		<td class="tdgoods" style="width: 100px">属性值</td>
+		<td class="tdgoods" style="width: 100px">排序</td>
+		<td class="tdgoods" style="width: 60px">操作</td>
+	</tr>
+</table>
+<table style="border-collapse: collapse;" id="propertyTab">
+
+</table>
+<!--查询区结束--></div>
+<br />
+<input type="hidden" id="propertyId" name="propertyId" value="" />
+</form>
+<!--盒子结束-->
+<script language="javascript" src="$assetModule.getTarget("/My97DatePicker/WdatePicker.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/js/item/itemJS.js")"></script>
+
+
+<script langusge="javascript" >
+//初始化页面
+$(document).ready(function(){
+
+	//获取一级分类
+	jQuery.ajax( {
+		url : "/category/getLevel",
+		type : "post",
+		dataType : "json",
+		data : "level=1",
+		success : function(data) {
+			if (data.msg == "success") {
+				$("#categoryId1").empty(); // 清空分类选项
+				var categoryList=data.categoryList;
+				for ( var i = 0; i < categoryList.length; i++) {
+					var category = categoryList[i];
+					
+					$("<option value='" + category.categoryId + "'>" 
+							+ category.categoryName + "</option>").appendTo("#categoryId1");
+					
+				}
+				//获取二级分类
+				$("#categoryId1").change();
+			} else {
+				alert("无商品一级分类！");
+			}
+		},
+		errot : function() {
+			alert("系统超时！");
+		}
+		});
+
+
+
+	
+	});
+</script>
+</body>
+</html>

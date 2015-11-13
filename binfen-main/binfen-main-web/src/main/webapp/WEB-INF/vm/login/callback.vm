@@ -1,0 +1,230 @@
+    <html>
+	<head>
+		<script type="text/javascript" src="/misc/js/jquery-1.2.6.pack.js"> </script>
+	</head>
+	
+	<body>
+		<div>
+			<form id="formlogin">
+			code：<input type="text" id="code" name="code" value="${code}" /> <br />
+			grant_type：<input type="text" id="grant_type" name="grant_type" value="authorization_code" /> <br />
+			client_id：<input type="text" id="client_id" name="client_id" value="client_id_1" /> <br />
+			client_secret：<input type="text" id="client_secret" name="client_secret" value="client_secret_1" /><br />
+			username：<input type="text" id="username" name="username" value="" /><br />
+			password：<input type="text" id="password" name="password" value="" /><br />
+			redirect_uri：<input type="text" id="redirect_uri" name="redirect_uri" value="http://bizapi.jd.com/test/callback" /><br />
+			refresh_token：<input type="text" id="refresh_token" name="refresh_token" value="F9K58gvRtfPAEKaVGgKt4Nt6dxqL9VeobnamBj5e" /><br />
+            scope：<input type="text" id="scope" name="scope" value="" /><br />
+            time：<input type="text" id="timestamp" name="timestamp" value="" /><br />
+			sign：<input type="text" id="sign" name="sign" value="" /><br />
+			<input type="button" value="确定" onclick="getToken();" /> &nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="button" value="直接获取token" onclick="getAccessToken();" /> &nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="button" value="刷新" onclick="refreshToken();" />
+			<span id="tokenText"></span>
+			</form>
+		</div>
+		<hr />
+		token：<input type="text" id="token" /><br />
+		areaId：<input type="text" id="areaId" /><br />
+		sku：<input type="text" id="sku" /><br />
+		area：<input type="text" id="area" /><br />
+		pagNum：<input type="text" id="pagNum" /><br />
+		id：<input type="text" id="id" /><br />
+		type：<input type="text" id="type" /><br />
+		del：<input type="text" id="del" />
+		<div>
+			<select id="areaSelect">
+				<option value="getProvince">getProvince</option>
+				<option value="getCity">getCity</option>
+				<option value="getCounty">getCounty</option>
+				<option value="getTown">getTown</option>
+			</select>
+			<input value="确定" type="button" id="areaButton" onclick="seachArea()" />
+		</div>
+		<span id="areaText"></span>
+		<hr />
+		<div>
+			<select id="price">
+				<option value="getPrice">getPrice</option>
+				<option value="selectBalance">selectBalance</option>
+			</select>
+			<input value="确定" type="button" id="priceButton" onclick="seachPrice()" />
+		</div>
+		<span id="priceText"></span>
+		<hr />
+		
+		<div>
+			<select id="product">
+				<option value="getPageNum">getPageNum</option>
+				<option value="getSku">getSku</option>
+				<option value="getDetail">getDetail</option>
+				<option value="skuState">skuState</option>
+				<option value="skuImage">skuImage</option>
+			</select>
+			<input value="确定" type="button" id="productButton" onclick="searchProduct()" />
+		</div>
+		<span id="productText"></span>
+		<hr />
+		
+		<div>
+			<select id="stock">
+				<option value="getStockById">getStockById</option>
+			</select>
+			<input value="确定" type="button" id="stockButton" onclick="searchStock()" />
+		</div>
+		<span id="stockText"></span>
+		<hr />
+		
+		<div>
+			<select id="message">
+				<option value="get">get</option>
+				<option value="del">del</option>
+			</select>
+			<input value="确定" type="button" id="messageButton" onclick="searchMessage()" />
+		</div>
+		<span id="messageText"></span>
+		<hr />
+		
+		<!-- 订单核对 -->
+		<div>
+			<select id="checkOrder">
+				<option value="checkNewOrder">checkNewOrder</option>
+				<option value="checkDlokOrder">checkDlokOrder</option>
+				<option value="checkRefuseOrder">checkRefuseOrder</option>
+				<option value="checkUnOpenInvoiceOrder">checkUnOpenInvoiceOrder</option>
+				<option value="checkHangUpOrder">checkHangUpOrder</option>
+			</select> <br />
+			date：<input type="text" id="date" /><br />
+			page：<input type="text" id="page" /><br />
+			<input value="确定" type="button" id="checkOrderButton" onclick="searchCheckOrder()" />
+		</div>
+		<span id="checkOrderText"></span>
+		<hr />
+		
+		<!-- 礼品卡下单 -->
+		<div>
+			礼品卡下单<select id="giftcard">
+				<option value="buy">buy</option>
+				<option value="select">select</option>
+				<option value="selectByThirdOrder">selectByThirdOrder</option>
+			</select> &nbsp;&nbsp; thirdOrder:<input type="text" id="thirdOrder" />&nbsp;&nbsp; mobile:<input type="text" id="mobile" />
+			<br />
+			jdOrderId:<input type="text" id="jdOrderId" /><br />
+			<input value="确定" type="button" id="giftcardButton" onclick="searchGiftcard()" />
+		</div>
+		<span id="giftcardText"></span>
+		<hr />
+		
+		<script type="text/javascript">
+			function getToken(){
+				 jQuery.ajax({
+                    type:"POST",
+                    url:"/test/getToken",
+                    data:$("#formlogin").serialize(),
+                    success:function (result) {
+						$("#tokenText").html(result);
+                    }
+                });
+			}
+			
+			function getAccessToken(){
+				 jQuery.ajax({
+                    type:"POST",
+                    url:"/oauth2/access_token",
+                    data:$("#formlogin").serialize(),
+                    success:function (result) {
+						$("#tokenText").html(result);
+                    }
+                });
+			}
+			
+			function refreshToken(){
+				 jQuery.ajax({
+                    type:"POST",
+                    url:"/oauth2/refresh_token",
+                    data:$("#formlogin").serialize(),
+                    success:function (result) {
+						$("#tokenText").html(result);
+                    }
+                });
+			}
+			
+			function seachArea(){
+				jQuery.ajax({
+                    type:"POST",
+                    url:"/api/area/"+$("#areaSelect").val(),
+					data : "id="+$("#areaId").val()+"&token="+$("#token").val(),
+                    success:function (result) {
+						$("#areaText").html(result);
+                    }
+                });
+			}
+			
+			function seachPrice(){
+				jQuery.ajax({
+                    type:"POST",
+                    url:"/api/price/"+$("#price").val(),
+					data : "sku="+$("#sku").val()+"&token="+$("#token").val(),
+                    success:function (result) {
+						$("#priceText").html(result);
+                    }
+                });
+			}
+			
+			function searchProduct(){
+				jQuery.ajax({
+                    type:"POST",
+                    url:"/api/product/"+$("#product").val(),
+					data : "sku="+$("#sku").val()+"&token="+$("#token").val()+"&pageNum="+$("#pagNum").val(),
+                    success:function (result) {
+						$("#productText").html(result);
+                    }
+                });
+			}
+			
+			function searchStock(){
+				jQuery.ajax({
+                    type:"POST",
+                    url:"/api/stock/"+$("#stock").val(),
+					data : "sku="+$("#sku").val()+"&token="+$("#token").val()+"&area="+$("#area").val(),
+                    success:function (result) {
+						$("#stockText").html(result);
+                    }
+                });
+			}
+			function searchMessage(){
+				jQuery.ajax({
+                    type:"POST",
+                    url:"/api/message/"+$("#message").val(),
+					data : "type="+$("#type").val()+"&token="+$("#token").val()+"&del="+$("#del").val()+"&id="+$("#id").val(),
+                    success:function (result) {
+						$("#messageText").html(result);
+                    }
+                });
+			}
+			
+			function searchCheckOrder(){
+				jQuery.ajax({
+                    type:"POST",
+                    url:"/api/checkOrder/"+$("#checkOrder").val(),
+					data : "token="+$("#token").val()+"&date="+$("#date").val()+"&page="+$("#page").val(),
+                    success:function (result) {
+						$("#checkOrderText").html(result);
+                    }
+                });
+			}
+			
+			function searchGiftcard(){
+				jQuery.ajax({
+                    type:"POST",
+                    url:"/api/giftCard/"+$("#giftcard").val(),
+					data : "token="+$("#token").val()+"&mobile="+$("#mobile").val()+"&sku="+$("#sku").val()+"&thirdOrder="+$("#thirdOrder").val()+"&jdOrderId="+$("#jdOrderId").val(),
+                    success:function (result) {
+						$("#giftcardText").html(result);
+                    }
+                });
+			}
+			
+		</script>
+	</body>
+</html>

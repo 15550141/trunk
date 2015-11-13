@@ -1,0 +1,80 @@
+    <input type="hidden" value="$!orderId" id="orderId" name="orderId" />
+    <div class="box">
+           <div class="title">
+				锁定提示
+           </div>
+		   
+           <div class="panel_form">
+				<table width="100%" cellspacing="0" cellpadding="0" border="0" id="ctl00_CPform_tab_userinfo">
+					<tbody>
+                    	<tr>
+                    		<td class="TdLabel"><div align="right">锁定：</div></td>
+                    		<td width="78%" align="left" colspan="10" class="TdValue">
+                    			订单将不继续流转，如要继续，请锁定后点击解锁。
+                    		</td>
+                    	</tr>
+                    	<tr>
+                    		<td class="TdLabel"><div align="right">锁定原因：</div></td>
+                    		<td width="78%" align="left" colspan="10" class="TdValue">
+                    			<select name="lockReason" id="lockReason" onChange="changeReason();">
+									<option value="商品无货">商品无货</option>
+									<option value="天气原因不能发货">天气原因不能发货</option>
+									<option value="其他">其他</option>
+								</select>
+                    		</td>
+                    	</tr>
+                    	<tr>
+                    		<td class="TdLabel"><div align="right"></div></td>
+                    		<td width="78%" align="left" colspan="10" class="TdValue">
+                    			<input disabled="disabled" type="text" value="" name="lockReasonText" id="lockReasonText">
+                    		</td>
+                    	</tr>
+                    	<tr>
+                    		<td class="TdLabel"><div align="right"></div></td>
+                    		<td width="78%" align="left" colspan="10" class="TdValue">
+                    			<input type="button" value="提交" onclick="doLock($!orderId);">&nbsp;&nbsp;&nbsp;&nbsp;
+                    			<input type="button" value="取消" onclick="$.modal.close();">
+                    		</td>
+                    	</tr>
+                	</tbody>
+				</table>
+		   </div>
+	</div>
+
+	<script type="text/javascript">
+		function doLock(orderId){
+			var lockReason = $("#lockReason").val();
+			if(lockReason == '其他'){
+				var lockReasonText = $("#lockReasonText").val();
+				if(lockReasonText == null || lockReasonText ==''){
+					alert("锁定原因不能为空");
+					return;
+				}
+				lockReason = $("#lockReasonText").val();
+			}
+			$.ajax({
+				type : "post",
+		    	url : "/orderInfo/doLock",
+		    	data : "orderId="+orderId+"&lockReason="+lockReason,
+		    	contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+		    	dataType: "json", 
+		    	success : function(data) {
+		    		if(data.success){
+		    			alert("修改成功！");
+		    		}else{
+		    			alert(data.message);
+		    		}
+		    		window.location.reload();
+		    	}
+			});
+		};
+		
+		function changeReason(){
+			if($("#lockReason").val() == "其他"){
+				$("#lockReasonText").removeAttr("disabled");
+			}else{
+				$('#lockReasonText').val("");
+				$('#lockReasonText').attr("disabled","disabled"); 
+			}
+		}
+	</script>

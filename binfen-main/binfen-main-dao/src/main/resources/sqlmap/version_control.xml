@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="VersionControl" >
+  <resultMap id="VersionControlResult" class="com.ec.api.domain.version.VersionControl" >
+    <result column="id" property="id"  />
+    <result column="version_name" property="versionName" jdbcType="VARCHAR" />
+    <result column="version_no" property="versionNo" jdbcType="INTEGER" />
+    <result column="version_url" property="versionUrl" jdbcType="VARCHAR" />
+    <result column="version_type" property="versionType" jdbcType="VARCHAR" />
+    <result column="version_intro" property="versionIntro" jdbcType="VARCHAR" />
+    <result column="yn" property="yn" jdbcType="INTEGER" />
+    <result column="update_flag" property="updateFlag" jdbcType="INTEGER" />
+    <result column="CREATED" property="created" jdbcType="TIMESTAMP" />
+    <result column="MODIFIED" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <!-- 查询条件 -->
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="id" >
+        id = #id:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="versionName" >
+        version_name = #versionName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="versionNo" >
+        version_no = #versionNo:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="versionUrl" >
+        version_url = #versionUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="versionType" >
+        version_type = #versionType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="versionIntro" >
+        version_intro = #versionIntro:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="yn" >
+        yn = #yn:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="updateFlag" >
+        update_flag = #updateFlag:INTEGER#
+      </isNotNull>
+    </dynamic>
+  </sql>
+  
+  <!-- 依据主键进行查询 -->
+  <select id="selectByPrimaryKey" resultMap="VersionControlResult" parameterClass="java.lang.Integer" >
+    select id,version_name,version_no,version_url,version_type,version_intro,yn,update_flag,CREATED,MODIFIED
+    from version_control
+    where id = #id:INTEGER#
+  </select>
+  
+ 
+  <!-- 依据主键进行修改 -->
+  <update id="updateByPrimaryKey" parameterClass="com.ec.api.domain.version.VersionControl" >
+    update version_control set MODIFIED = now()
+    <dynamic>
+      <isNotNull prepend="," property="versionName" >
+        version_name = #versionName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="versionNo" >
+        version_no = #versionNo:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="versionUrl" >
+        version_url = #versionUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="versionType" >
+        version_type = #versionType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="versionIntro" >
+        version_intro = #versionIntro:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="yn" >
+        yn = #yn:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="updateFlag" >
+        update_flag = #updateFlag:INTEGER#
+      </isNotNull>
+    </dynamic>
+    where id = #id:INTEGER#
+  </update>
+  
+  <!-- 条件查询总数 -->
+  <select id="countByCondition" parameterClass="com.ec.api.domain.version.query.VersionControlQuery" resultClass="java.lang.Integer" >
+    select count(1) from version_control
+    <include refid="VersionControl.condition" />
+  </select>
+  
+  <!-- 条件查询列表 -->
+  <select id="selectByCondition" parameterClass="com.ec.api.domain.version.query.VersionControlQuery" resultMap="VersionControlResult" >
+   select id,version_name,version_no,version_url,version_type,version_intro,yn,update_flag,CREATED,MODIFIED
+    from version_control
+    <include refid="VersionControl.condition" />
+     order by id desc
+  </select>
+
+  <!-- 条件分页查询列表 -->
+  <select id="selectByConditionForPage" parameterClass="com.ec.api.domain.version.query.VersionControlQuery" resultMap="VersionControlResult" >
+   select id,version_name,version_no,version_url,version_type,version_intro,yn,update_flag,CREATED,MODIFIED
+    from version_control
+    <include refid="VersionControl.condition" />
+    order by id desc
+  	limit #start#,#pageSize#
+  </select>
+  
+</sqlMap>

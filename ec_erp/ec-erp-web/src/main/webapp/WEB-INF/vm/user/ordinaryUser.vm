@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    	<meta http-equiv="expires" content="0" />
+        <title>管理页面</title>
+        <link href="/style/erpstyle.css"rel="stylesheet" type="text/css" />
+        <script language="javascript" src="/js/jquery-1.6.2.min.js"></script>
+        <script language="javascript" src="/js/erpstyle1.js"></script>
+        <script language="javascript" src="/js/common.js"></script>
+    </head>
+    <body>
+<!--盒子开始-->
+<form id="f1" name="f1" method="post">
+<div class="box"> 
+    <!--标题区开始-->
+    <div class="title">
+        <div class="left">
+            <div class="title_gl">用户管理</div>
+            <div class="title_fbt"></div>
+            <div class="bh"></div>
+        </div>
+    </div>
+    <!--标题区结束-->
+    <!--查询区开始-->
+    <div class="panel_search">
+        <table >
+            <tr>
+                <td align="right" style="width: 100px">手机号：</td>
+                <td style="width: 100px">
+                    <input type="text" name="mobile" id="mobile" value="$!{userInfoQuery.mobile}" />
+                </td>
+                <td align="right" style="width: 100px">用户类型：</td>
+                <td style="width: 100px">
+		           <select name="userType" id="userType" style="width: 110px">
+		          		<option #if($!{userInfoQuery.userType}=="") selected="selected" #end value="">全选</option> 
+		           		<option #if($!{userInfoQuery.userType}==1) selected="selected" #end value="1">erp用户</option>
+		           		<option #if($!{userInfoQuery.userType}==2) selected="selected" #end value="2">卖家</option>
+		           		<option #if($!{userInfoQuery.userType}==3) selected="selected" #end value="3">买家</option>
+					</select>
+                </td>
+                <td align="right" style="width: 100px">
+					<input type="button" id="query" name="query" value="查询"/>
+				</td>
+				<td style="width: 100px"></td>
+				<td style="width: 100px"></td>
+				<td style="width: 100px"></td>
+				<td style="width: 100px"></td>
+				<td style="width: 100px"></td>
+				<td style="width: 100px"></td>
+
+            </tr>
+
+        </table>
+    </div>
+    <!--查询区结束--> 
+    <!--列表区开始-->
+    <div class="panel_grid">
+        <table>
+            <tr>
+                <th>用户ID</th>
+                <th>手机号</th>
+                <th>用户类型</th>
+                <th>是否有效</th>
+                <th>注册时间</th>
+				<th>商家级别</th>
+                <th>操作</th>
+            </tr>
+			#foreach($user in $resultMap.userList)
+            <tr>
+            	<td>$!{user.userId}</td>
+                <td>$!{user.mobile}</td>
+                #if($!{user.userType}==1)
+                <td>erp用户</td>
+                #elseif($!{user.userType}==2)
+                <td>卖家用户</td>
+                #elseif($!{user.userType}==3)
+                <td>买家用户</td>
+                #end
+                #if($!{user.yn}==0)
+				 <td>无效</td>
+				#elseif($!{user.yn}==1)
+				 <td>有效</td>
+				#end
+                <td>$!dateFormatUtils.format($!{user.registerTime},"yyyy-MM-dd")</td>            
+                #if($!{user.BusinessUserExt.businessType}==1)
+                <td>普通商家</td>
+                #elseif($!{user.BusinessUserExt.businessType}==2)
+                <td>认证商家</td>
+                #else
+                    <td></td>
+                #end
+                <td>
+                    <!--  <a href="/user/effect?mobile=$!{user.mobile}">生效</a>
+					<a href="/user/unEffect?mobile=$!{user.mobile}">失效</a> -->
+					#if($!{user.yn}==0)
+					<a id="$!{user.mobile}" href="javascript:void(0)" onclick="effect(this);">生效</a>
+					#elseif($!{user.yn}==1)
+					<a id="$!{user.mobile}" href="javascript:void(0)" onclick="unEffect(this);">失效</a>
+					#end
+                    #if($!{user.BusinessUserExt.businessType}==2)
+					<a id="$!{user.userId}" href="javascript:void(0)" onclick="unCf(this);">解除认证</a>
+					#elseif($!{user.BusinessUserExt.businessType}!=2)
+					<a id="$!{user.userId}" href="javascript:void(0)" onclick="cf(this);">认证</a>
+					#end
+					
+					<!--  <a href="/monthly/doUpdateMonthly.action?monthlyUser.pin=$!{monthly.pin}&monthlyUser.applyStatus=2">修改</a> -->
+                </td>
+            </tr>
+			#end
+        </table>
+        <!--分页控件开始-->
+        
+        <div class="pager">
+            #set($pageModule = $mainModule.getTarget("/user/list").addQueryData("userType",$!{userInfoQuery.userType}))
+			#showPage($pageModule $resultMap.userList)  
+        </div>
+        <!--分页控件结束--> 
+    </div>
+    <!--列表区结束--> 
+</div>
+<!--盒子结束--> 
+</form>
+ <!--  <script language="javascript" src="/My97DatePicker/WdatePicker.js"></script> -->
+ <script language="javascript" src="$assetModule.getTarget("/js/user/userJS.js")"></script>
+## <script language="javascript" src="http://localhost:8080/js/user/userJS.js"></script>
+ </body>
+ </html>

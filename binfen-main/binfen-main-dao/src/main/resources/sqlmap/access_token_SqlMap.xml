@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="AccessToken" >
+  <resultMap id="AccessTokenResult" class="com.ec.api.domain.AccessToken" >
+    <result column="id" property="id"  />
+    <result column="uid" property="uid" />
+    <result column="appid" property="appid" />
+    <result column="access_token" property="access_token" />
+    <result column="expires_in" property="expires_in" />
+    <result column="refresh_token" property="refresh_token" />
+    <result column="openid" property="openid" />
+    <result column="scope" property="scope" />
+    <result column="unionid" property="unionid" />
+    <result column="created" property="created" />
+    <result column="modified" property="modified" />
+  </resultMap>
+  
+  <!-- 查询条件 -->
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="id" >
+        id = #id#
+      </isNotNull>
+      <isNotNull prepend="and" property="uid" >
+        uid = #uid#
+      </isNotNull>
+      <isNotNull prepend="and" property="appid" >
+        appid = #appid#
+      </isNotNull>
+      <isNotNull prepend="and" property="access_token" >
+        access_token = #access_token#
+      </isNotNull>
+      <isNotNull prepend="and" property="expires_in" >
+        expires_in = #expires_in#
+      </isNotNull>
+      <isNotNull prepend="and" property="refresh_token" >
+        refresh_token = #refresh_token#
+      </isNotNull>
+      <isNotNull prepend="and" property="openid" >
+        openid = #openid#
+      </isNotNull>
+      <isNotNull prepend="and" property="scope" >
+        scope = #scope#
+      </isNotNull>
+      <isNotNull prepend="and" property="unionid" >
+        unionid = #unionid#
+      </isNotNull>
+      <isNotNull prepend="and" property="created" >
+        created = #created#
+      </isNotNull>
+      <isNotNull prepend="and" property="modified" >
+        modified = #modified#
+      </isNotNull>
+    </dynamic>
+  </sql>
+  
+  <!-- 依据主键进行查询 -->
+  <select id="selectByPrimaryKey" resultMap="AccessTokenResult" parameterClass="java.lang.Integer" >
+    select id,uid,appid,access_token,expires_in,refresh_token,openid,scope,unionid,created,modified
+    from access_token 
+    where id = #id#
+  </select>
+  
+  <!-- 添加信息 -->
+  <insert id="insert" parameterClass="com.ec.api.domain.AccessToken" >
+    insert into access_token (uid,appid,access_token,expires_in,refresh_token,openid,scope,unionid,created,modified)
+    values (#uid#,#appid#,#access_token#,#expires_in#,#refresh_token#,#openid#,#scope#,#unionid#, now(), now())
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="id">
+			<![CDATA[SELECT @@IDENTITY AS id ]]>
+	  </selectKey>
+  </insert>
+  
+  <!-- 依据主键进行修改 -->
+  <update id="modify" parameterClass="com.ec.api.domain.AccessToken" >
+    update access_token set MODIFIED = now()
+    <dynamic>
+      <isNotNull prepend="," property="access_token" >
+        access_token = #access_token#
+      </isNotNull>
+      <isNotNull prepend="," property="expires_in" >
+        expires_in = #expires_in#
+      </isNotNull>
+      <isNotNull prepend="," property="refresh_token" >
+        refresh_token = #refresh_token#
+      </isNotNull>
+    </dynamic>
+    where 1=1 
+    
+    <dynamic>
+      <isNotNull prepend="and" property="id" >
+        id=#id# 
+      </isNotNull>
+      <isNotNull prepend="and" property="uid" >
+        uid=#uid# 
+      </isNotNull>
+      <isNotNull prepend="and" property="openId" >
+        openId=#openId# 
+      </isNotNull>
+    </dynamic>
+    
+  </update>
+  
+  <!-- 条件查询列表 -->
+  <select id="selectByCondition" parameterClass="com.ec.api.domain.AccessToken" resultMap="AccessTokenResult" >
+    select id,uid,appid,access_token,expires_in,refresh_token,openid,scope,unionid,created,modified
+    from access_token
+    <include refid="AccessToken.condition" />
+  </select>
+  
+</sqlMap>

@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    	<meta http-equiv="expires" content="0" />
+        <title>管理页面</title>
+        <link href="/style/erpstyle.css"rel="stylesheet" type="text/css" />
+        <script language="javascript" src="/js/jquery-1.6.2.min.js"></script>
+        <script language="javascript" src="/js/erpstyle1.js"></script>
+        <script language="javascript" src="/js/common.js"></script>
+    </head>
+    <body>
+
+
+
+<!--盒子开始-->
+<form id="f1" name="f1" method="post">
+<div class="box"> 
+    <!--标题区开始-->
+    <div class="title">
+        <div class="left">
+            <div class="title_gl">首页轮播图管理</div>
+            <div class="title_fbt"></div>
+            <div class="bh"></div>
+        </div>
+    </div>
+	<!--标题区结束-->
+    <br />
+	<div class="panel_search1"><!--图片1-->
+	<table>
+		<tr>
+			<td style="font-weight: bold;" align="right">图片1</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td align="right" style="width: 100px">名称：</td>
+			<td align="left" style="width: 340px">
+				<input type="text" name="imageName" maxlength="50" id="imageName1" value="" style="width: 200px" />
+				<input type="hidden" id="sortNumber1" name="sortNumber" value="1" />
+				
+			</td>
+			<td align="right" style="width: 100px">图片：</td>
+			<td align="left" style="width: 340px">
+			<img id="" src="http://img14.360buyimg.com/n7/jfs/t211/320/1832839440/139546/dc06d2e1/53fea3bdNc8d7961b.jpg" width="60" height="60" alt="图片" />
+
+				
+			</td>
+		</tr>
+		
+		<tr>
+			<td align="right" style="width: 100px">连接：</td>
+			<td align="left" style="width: 340px">
+				<input type="text" name="imageWebUrl" maxlength="50" id="imageWebUrl1" value="" style="width: 200px" />
+			</td>
+		</tr>
+		<tr>
+			 <td align="right" style="width: 100px">请选择图片：</td>
+			  <td align="left"  style="width: 100px" >
+					<input id="image1" type="file" name="image1"/>
+	            </td>
+	            <td align="left"   style="width: 800px" >
+					<input type="button" id="btupload1" value="上传"><span id="spUpload1"></span>
+				</td>
+		
+		</tr>
+	</table>
+	</div>
+	<!--基本信息区结束-->
+	<br />
+	
+	<div class="panel_search1"><!--图片1-->
+	<table>
+		<tr>
+			<td style="font-weight: bold;" align="right">图片2</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td align="right" style="width: 100px">名称：</td>
+			<td align="left" style="width: 340px">
+				<input type="text" name="imageName" maxlength="50" id="imageName2" value="" style="width: 200px" />
+				<input type="hidden" id="sortNumber1" name="sortNumber" value="2" />
+			</td>
+
+		</tr>
+		
+		<tr>
+			<td align="right" style="width: 100px">连接：</td>
+			<td align="left" style="width: 340px">
+				<input type="text" name="imageWebUrl" maxlength="50" id="imageWebUrl2" value="" style="width: 200px" />
+			</td>
+
+		</tr>
+		<tr>
+			 <td align="right" style="width: 100px">请选择图片：</td>
+			  <td align="left"  style="width: 100px" >
+					<input id="image2" type="file" name="image2"/>
+	            </td>
+	            <td align="left"   style="width: 800px" >
+					<input type="button" id="btupload2" value="上传"><span id="spUpload2"></span>
+				</td>
+		</tr>
+	</table>
+	</div>
+	<!--基本信息区结束-->
+	<br />
+	
+		<div class="panel_search1"><!--图片1-->
+	<table>
+		<tr>
+			<td style="font-weight: bold;" align="right">图片3</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td align="right" style="width: 100px">名称：</td>
+			<td align="left" style="width: 340px">
+				<input type="text" name="imageName" maxlength="50" id="imageName3" value="" style="width: 200px" />
+				<input type="hidden" id="sortNumber3" name="sortNumber" value="3" />
+			</td>
+
+		</tr>
+		
+		<tr>
+			<td align="right" style="width: 100px">连接：</td>
+			<td align="left" style="width: 340px">
+				<input type="text" name="imageWebUrl" maxlength="50" id="imageWebUrl3" value="" style="width: 200px" />
+			</td>
+
+		</tr>
+		<tr>
+			 <td align="right" style="width: 100px">请选择图片：</td>
+			  <td align="left"  style="width: 100px" >
+					<input id="image3" type="file" name="image3"/>
+	            </td>
+	            <td align="left"   style="width: 800px" >
+					<input type="button" id="btupload3" value="上传"><span id="spUpload3"></span>
+				</td>
+		
+		</tr>
+	</table>
+	</div>
+	<!--基本信息区结束-->
+	<br />
+	
+		<div class="panel_search1"><!--图片1-->
+	<table>
+		<tr>
+			<td style="font-weight: bold;" align="right">图片4</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td align="right" style="width: 100px">名称：</td>
+			<td align="left" style="width: 340px">
+				<input type="text" name="imageName" maxlength="50" id="imageName4" value="" style="width: 200px" />
+				<input type="hidden" id="sortNumber4" name="sortNumber" value="4" />
+			</td>
+
+		</tr>
+		
+		<tr>
+			<td align="right" style="width: 100px">连接：</td>
+			<td align="left" style="width: 340px">
+				<input type="text" name="imageWebUrl" maxlength="50" id="imageWebUrl4" value="" style="width: 200px" />
+			</td>
+
+		</tr>
+		<tr>
+			 <td align="right" style="width: 100px">请选择图片：</td>
+			  <td align="left"  style="width: 100px" >
+					<input id="image4" type="file" name="image4"/>
+	            </td>
+	            <td align="left"   style="width: 800px" >
+					<input type="button" id="btupload4" value="上传"><span id="spUpload4"></span>
+				</td>
+		</tr>
+	</table>
+	</div>
+	<!--基本信息区结束-->
+	<br />
+	
+			<div class="panel_search1"><!--图片1-->
+	<table>
+		<tr>
+	            <td align="center"   style="width: 800px" >
+					<input type="button" id="save" value="提交保存"><span id="saveSp"></span>
+				</td>
+		</tr>
+	</table>
+	</div>
+	<!--基本信息区结束-->
+	<br />
+
+    
+    
+    
+<input type="hidden" id="imageUrl1" name="imageUrl" value="" />
+<input type="hidden" id="imageUrl2" name="imageUrl" value="" />
+<input type="hidden" id="imageUrl3" name="imageUrl" value="" />
+<input type="hidden" id="imageUrl4" name="imageUrl" value="" />
+
+</div>
+<!--盒子结束--> 
+</form>
+ <!--  <script language="javascript" src="/My97DatePicker/WdatePicker.js"></script> -->
+ <script language="javascript" src="$assetModule.getTarget("/My97DatePicker/WdatePicker.js")"></script>
+ <script language="javascript" src="$assetModule.getTarget("/js/image/imageJS.js")"></script>
+ <script language="javascript" src="$assetModule.getTarget("/js/ajaxfileupload.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/js/jquery.showLoading.js")"></script>
+ 
+ </body>
+ </html>

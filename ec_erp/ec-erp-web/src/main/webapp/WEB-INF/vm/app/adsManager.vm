@@ -1,0 +1,89 @@
+<!--盒子开始-->
+<form id="f1" name="f1" method="post">
+<div class="box"> 
+    <!--标题区开始-->
+    <div class="title">
+        <div class="left">
+            <div class="title_gl">首页轮播图</div>
+            <div class="title_fbt"></div>
+            <div class="bh"></div>
+        </div>
+    </div>
+    <!--标题区结束-->
+    <!--查询区开始-->
+    <div class="panel_search">
+		<p>图片尺寸：xxx &nbsp;&nbsp;&nbsp;&nbsp;图片格式：gif、bmp、jpg、png &nbsp;&nbsp;&nbsp;&nbsp; 图片大小：不超过****K
+</P>
+    </div>
+    <!--查询区结束--> 
+    <!--列表区开始-->
+    <div class="panel_grid">
+        <table>
+			#foreach($promotionInfo in $resultMap.promotionInfoList)
+            <tr>
+                <td>大图1</td>
+                <td>
+					<p>项目ID：100001</p>
+					<p>名称：</p>
+					<p>链接：</p>
+					<p>上线时间：$!dateFormatUtils.format($!{promotionInfo.startTime},"yyyy-MM-dd")<p>
+				</td>
+                <td>
+					<img src="/style/images/info2.png" />
+				</td>
+                <td>
+					<a href="#">修改</a>
+				</td>
+                <td>
+					<p>最后操作人：<p>
+					<p>$!dateFormatUtils.format($!{promotionInfo.startTime},"yyyy-MM-dd")<p>
+				</td>
+            </tr>
+			#end
+			<tr>
+                <td>大图1</td>
+                <td style="text-align:left;text-indent:1em;">
+					<p>
+						<span style="display:inline-block;width:80px;text-align:right;">项目ID：</span>
+						<span>100001</span>
+					</p>
+					<p>
+						<span style="display:inline-block;width:80px;text-align:right;">名称：</span>
+						<input type="text" name="promotionId" id="promotionId" value="$!{promotionInfo.promotionId}" />
+					</p>
+					<p>
+						<span style="display:inline-block;width:80px;text-align:right;">链接：</span>
+						<input type="text" name="promotionId" id="promotionId" value="$!{promotionInfo.promotionId}" />
+					</p>
+					<p>
+						<span style="display:inline-block;width:80px;text-align:right;">上线时间：</span>
+						<input type="text" name="startTimeString" id="startTime" onclick="WdatePicker();" value="$!dateFormatUtils.format($!{promotionInfo.startTime},"yyyy-MM-dd")" />
+					</p>
+				</td>
+                <td>
+					<input type="button" id="uploadImage" name="query" value="上传图片"/>
+				</td>
+                <td>
+					<input type="button" id="submit" name="query" value="保存"/>
+				</td>
+                <td>
+				</td>
+            </tr>
+
+        </table>
+        <!--分页控件开始-->
+        
+        <div class="pager">
+			#set($pageModule = $mainModule.getTarget("/promotion/queryPromotion").addQueryData("promotionInfo.promotionId",$!stringEscapeUtils.escapeJava($!{promotionInfo.promotionId})).addQueryData("promotionInfo.promotionName",$!stringEscapeUtils.escapeJava($!{promotionInfo.promotionName})).addQueryData("promotionInfo.promotionType",$!stringEscapeUtils.escapeJava($!{promotionInfo.promotionType})).addQueryData("promotionInfo.startTime",$!dateFormatUtils.format($!{promotionInfo.startTime},"yyyy-MM-dd")).addQueryData("promotionInfo.endTime",$!dateFormatUtils.format($!{promotionInfo.endTime},"yyyy-MM-dd")))
+			<!--  set($pageModule = $mainModule.getTarget("/list")) -->
+			#showPage($pageModule $resultMap.promotionInfoList)
+        </div>
+        <!--分页控件结束--> 
+    </div>
+    <!--列表区结束--> 
+</div>
+<!--盒子结束--> 
+</form>
+ <!--  <script language="javascript" src="/My97DatePicker/WdatePicker.js"></script> -->
+ <script language="javascript" src="$assetModule.getTarget("/My97DatePicker/WdatePicker.js")"></script>
+ <script language="javascript" src="$assetModule.getTarget("/js/promotion/promotionJS.js")"></script>

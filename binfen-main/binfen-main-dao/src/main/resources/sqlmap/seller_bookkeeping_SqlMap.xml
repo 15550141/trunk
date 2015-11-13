@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="SellerBookkeeping" >
+
+  <resultMap id="SellerBookkeepingResult" class="com.ec.api.domain.SellerBookkeeping" >
+    <result column="ID" property="id"  />
+    <result column="vender_user_id" property="venderUserId"  />
+    <result column="trade_money" property="tradeMoney"  />
+    <result column="payment_money" property="paymentMoney"  />
+    <result column="linkman" property="linkman" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+    <result column="item_price" property="itemPrice"  />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="venderUserId" >
+        vender_user_id = #venderUserId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="startTime" >
+       <![CDATA[
+ 			created > #startTime:TIMESTAMP#
+		]]>
+      </isNotNull>
+       <isNotNull prepend="and" property="endTime" >
+       <![CDATA[
+ 			created < #endTime:TIMESTAMP#
+		]]>
+      </isNotNull>
+    </dynamic>
+  </sql>
+  
+
+  <insert id="insert" parameterClass="com.ec.api.domain.SellerBookkeeping" >
+    insert into seller_bookkeeping (vender_user_id, trade_money, payment_money, linkman, mobile,
+      remark, created, modified, item_name, item_price,company_name)
+    values (#venderUserId:INTEGER#, #tradeMoney:INTEGER#, #paymentMoney:INTEGER#,
+      #linkman:VARCHAR#, #mobile:VARCHAR#, #remark:VARCHAR#, now(),
+      now(), #itemName#, #itemPrice#,#companyName#)
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="id">
+			<![CDATA[SELECT @@IDENTITY AS ID ]]>
+	  </selectKey>
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterClass="com.ec.api.domain.SellerBookkeeping" >
+    update seller_bookkeeping SET modified=now()
+    <dynamic >
+      <isNotNull prepend="," property="tradeMoney" >
+        trade_money = #tradeMoney:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="paymentMoney" >
+        payment_money = #paymentMoney:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="linkman" >
+        linkman = #linkman:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mobile" >
+        mobile = #mobile:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where id = #id:INTEGER#
+  </update>
+  
+  <select id="countByCondition" parameterClass="com.ec.api.domain.query.SellerBookkeepingQuery" resultClass="java.lang.Integer" >
+    select count(1) from seller_bookkeeping
+    <include refid="SellerBookkeeping.condition" />
+  </select>
+  
+  <select id="selectByConditionForPage" parameterClass="com.ec.api.domain.query.SellerBookkeepingQuery" resultMap="SellerBookkeepingResult" >
+    select id,vender_user_id, trade_money, payment_money, linkman, mobile,
+      remark, created, modified, item_name, item_price,company_name 
+       from seller_bookkeeping
+    <include refid="SellerBookkeeping.condition" />
+    order by id
+  	limit #start#,#pageSize#
+  </select>
+  
+  <select id="selectByConditionForCountMoney" parameterClass="com.ec.api.domain.query.SellerBookkeepingQuery" resultClass="com.ec.api.domain.SellerBookkeeping" >
+    select  sum(trade_money) as tradeMoney, sum(payment_money) as paymentMoney
+       from seller_bookkeeping
+    <include refid="SellerBookkeeping.condition" />
+  </select>
+  
+</sqlMap>

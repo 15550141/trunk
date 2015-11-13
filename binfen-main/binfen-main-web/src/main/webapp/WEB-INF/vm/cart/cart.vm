@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <title>鲜果味道</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE-9">
+    <meta name="apple-mobile-web-app-capable" content="no">
+    <meta name="mobile-web-app-capable" content="no"> 
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    
+    <link rel="shortcut icon" href="/favicon.ico" >
+    <link rel="apple-touch-icon" sizes="76x76" href="/misc/style/webIcon.png" />  
+    <link rel="apple-touch-icon" sizes="152x152" href="/misc/style/webIcon.png" />  
+    <link rel="apple-touch-icon" sizes="120x120" href="/misc/style/webIcon.png" />    
+    <link rel="apple-touch-icon" sizes="180x180" href="/misc/style/webIcon.png" />  
+    <link type="image/x-icon" rel="Shortcut Icon" href="/misc/style/webIcon.png">
+
+    <!-- Bootstrap -->
+    <link href="/misc/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/misc/css/style.css">
+	 
+    <!--[if lt IE 9]>
+    <script src="/misc/js/html5shiv.min.js"></script>
+    <![endif]-->
+    <script src="/misc/js/require.js" data-main="/misc/style/main"></script>
+	<script src="/misc/js/jquery-1.11.0.min.js"></script>
+	<script src="/misc/js/dsp-zz.js"></script>
+    <script src="/misc/js/prefixfree.min.js"></script>
+
+  </head>
+<body>
+	<div class="trasfrm ds768">
+        <div class="padArow"></div>
+        <div class="iconPad_1">
+            <div class="iconpad_2"></div>
+        </div>
+        <div class="iconPad_1 trmoct">
+            <div class="iconpad_2"></div>
+        </div>
+        <p class="trapf"><strong></strong> 请 <strong>切换到竖屏</strong> 以达到最佳浏览效果</p>
+	</div>
+
+	<nav class="navbar navbar-default navbar-fixed-top m-component-nav" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header text-center clearfix">
+		      	<a class="navbar-func pull-left" href="/"><span class="glyphicon fdayicon fdayicon-home"></span></a>
+		      	<span class="pull-right navbar-func">
+					<a href="/user" class="navbar-login"><span class="glyphicon fdayicon fdayicon-login"></span></a>        
+				</span>
+		      	<span class="navbar-title">购物车</span>
+		    </div>
+	  	</div>
+	</nav>
+
+	<div class='cart-body'>
+		#if($!cartInfo)
+			<section class="m-component-cart" id="m-cart">
+				<div class="m-cartlist">
+					<ul class="list-unstyled">
+						#foreach($sku in $cartInfo.skuList)
+							#if($!sku.gift == false)
+								<li id='c_normal_$!sku.skuId' type="normal" itemId="$!sku.itemId" skuId="$!sku.skuId" salesPropertyName="$!sku.salesPropertyName">
+									<a href="/detail/index/$!{sku.skuId}.html" >
+										<img class="lazy pull-left" data-original="$!sku.image" src="$!sku.image" alt="">
+					                    <div class="m-cartlist-info">
+					                        <h3>$!sku.name #if($!sku.gift)（赠品）#end</h3>
+					                        <h4>$!sku.salesPropertyName</h4>
+					                        <h5>￥$!sku.skuPrice</h5>                           
+					                    </div>
+					                </a>
+									<span class="m-cartlist-delete" data-dismiss="alert"><i class="glyphicon fdayicon fdayicon-delete"></i></span>
+									<div class="m-cart-numswrap">
+					                    <div class="num_sel_lage pull-right clearfix">
+				                        	<span class="inC">-</span>
+					                        <input type="text" disabled="" name='qty' autocomplete='on' value="$!sku.num"  >
+					                        <span class="deC">+</span>
+					                    </div>
+					                </div>
+								</li> 
+							#else
+								<li id='zengpin' type="normal" itemId="$!sku.itemId" skuId="$!sku.skuId" salesPropertyName="$!sku.salesPropertyName">
+									<a href="/detail/index/$!{sku.skuId}.html" >
+										<img class="lazy pull-left" data-original="$!sku.image" src="$!sku.image" alt="">
+					                    <div class="m-cartlist-info">
+					                        <h3>$!sku.name （赠品）</h3>
+					                        <h4>$!sku.salesPropertyName</h4>
+					                        <h5>￥$!sku.skuPrice</h5>                           
+					                    </div>
+					                </a>
+								</li> 
+							#end
+							
+							
+						#end                        
+			        </ul>    
+			    </div>
+				<div class="m-carttips">
+					<ul class="list-unstyled">
+						#if($!cartInfo.totleOriginalPrice < 19 && $!cartInfo.first)
+							<li  class="donationTips" data-toggle="tooltip" data-placement="top" title="首单满19元，立减5元，快去凑单吧" >
+								<i>减</i>首单满19元，立减5元，快去凑单吧
+							</li>
+						#end
+						#if($!cartInfo.totleOriginalPrice < 50)
+							<li  class="donationTips" data-toggle="tooltip" data-placement="top" title="满50元，送精品大石榴，快去凑单吧" >
+								<i>促</i>满50元，送精品大石榴，快去凑单吧
+							</li>
+						#end
+						<!--
+						<li  class="donationTips" data-toggle="tooltip" data-placement="top" title="满158元送智利富士苹果,还差80元，去凑单" >
+							<i>促</i>满158元送智利富士苹果,还差80元，去凑单
+						</li>
+						-->
+					</ul> 
+					
+			    </div>
+	    	</section>
+			<input type="hidden" id="dsp_page" value="1">
+	
+			<nav class="navbar navbar-default navbar-fixed-bottom m-component-foot" role="navigation">
+				<div class="container">
+					<div class="navbar-text navbar-left pull-left m-cart-disbursement">合计：￥$!cartInfo.totleSalePrice
+						<p>商品总价￥$!cartInfo.totleOriginalPrice， 优惠￥ $!cartInfo.totlePreferentialPrice</p>
+					</div> 
+				<button type="button" class="btn btn-warning navbar-btn pull-right" onclick="MessageBox.loading();location.href='/order'">去结算</button>
+		  		</div>
+			</nav>
+		#else
+			<section class="m-component-cart" id="m-cart">
+				<div class="text-center">
+					<span class="glyphicon fdayicon fdayicon-procart"></span>
+					<h4>您的购物车现在是空的噢~</h4>
+					<h5>现在就去选购吧</h5>
+					<a href="/" class="btn btn-warning navbar-btn">去逛逛</a>
+				</div>
+			</div>
+		#end
+
+	</div>
+
+</body></html>

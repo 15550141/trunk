@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="Sku" >
+  <resultMap id="SkuResult" class="com.ec.api.domain.Sku" >
+    <result column="SKU_ID" property="skuId"  />
+    <result column="ITEM_ID" property="itemId"  />
+    <result column="sales_property" property="salesProperty" jdbcType="VARCHAR" />
+    <result column="sales_property_name" property="salesPropertyName" jdbcType="VARCHAR" />
+    <result column="least_buy" property="leastBuy"  />
+    <result column="bar_code" property="barCode" jdbcType="VARCHAR" />
+    <result column="Cost_price" property="costPrice"  />
+    <result column="sale_price" property="salePrice"  />
+    <result column="original_price" property="originalPrice"  />
+    <result column="stock" property="stock"  />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+    <result column="yn" property="yn"  />
+  </resultMap>
+  
+   <!-- 查询条件 -->
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="skuId" >
+        SKU_ID = #skuId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="itemId" >
+        ITEM_ID = #itemId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="salesProperty" >
+        sales_property = #salesProperty:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="leastBuy" >
+        least_Buy = #leastBuy:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="barCode" >
+        bar_code = #barCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="costPrice" >
+        Cost_price = #costPrice:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="salePrice" >
+        sale_price = #salePrice:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="originalPrice" >
+        original_price = #originalPrice#
+      </isNotNull>
+      <isNotNull prepend="and" property="stock" >
+        stock = #stock:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="yn" >
+        yn = #yn:INTEGER#
+      </isNotNull>
+    </dynamic>
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="SkuResult" parameterClass="java.lang.Integer" >
+    select SKU_ID, ITEM_ID, sales_property,sales_property_name , least_buy, bar_code, Cost_price, sale_price, original_price, stock, created, modified,yn
+    from sku
+    where SKU_ID = #skuId:INTEGER# and yn=1
+  </select>
+
+  <insert id="insert" parameterClass="com.ec.api.domain.Sku" >
+    insert into sku ( ITEM_ID, sales_property, least_buy , bar_code ,Cost_price, sale_price, original_price, stock, created,
+      modified,yn)
+    values ( #itemId:INTEGER#, #salesProperty:VARCHAR#, #leastBuy:INTEGER#,#barCode:VARCHAR#,
+      #costPrice:INTEGER#, #salePrice:INTEGER#, #stock:INTEGER#, now(),now(), 1)
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="skuId">
+			<![CDATA[SELECT @@IDENTITY AS SKU_ID ]]>
+	  </selectKey>
+  </insert>
+ 
+
+  <update id="updateByPrimaryKey" parameterClass="com.ec.api.domain.Sku" >
+    update sku set modified=now()
+    <dynamic >
+      <isNotNull prepend="," property="itemId" >
+        ITEM_ID = #itemId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="salesProperty" >
+        sales_property = #salesProperty:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="leastBuy" >
+        least_buy = #leastBuy:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="barCode" >
+        bar_code = #barCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="costPrice" >
+        Cost_price = #costPrice:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="salePrice" >
+        sale_price = #salePrice:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="originalPrice" >
+        original_price = #originalPrice:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="stock" >
+        stock = #stock:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="yn" >
+        yn = #yn:INTEGER#
+      </isNotNull>
+    </dynamic>
+    where SKU_ID = #skuId:INTEGER#
+  </update>
+  
+  <update id="delStock" parameterClass="com.ec.api.domain.Sku" >
+    update sku set modified=now(),stock=stock-#stock#
+    where SKU_ID = #skuId:INTEGER# and stock>#stock#
+  </update>
+  
+  <select id="countByCondition" parameterClass="com.ec.api.domain.query.SkuQuery" resultClass="java.lang.Integer" >
+    select count(1) from sku
+    <include refid="Sku.condition" />
+  </select>
+  
+  <select id="selectByCondition" parameterClass="com.ec.api.domain.query.SkuQuery" resultMap="SkuResult" >
+    select SKU_ID, ITEM_ID, sales_property,sales_property_name, least_buy, bar_code, Cost_price, sale_price, original_price, stock, created, modified, yn
+    from sku
+    <include refid="Sku.condition" />
+    order by SKU_ID
+  </select>
+  
+  <select id="selectByConditionForPage" parameterClass="com.ec.api.domain.query.SkuQuery" resultMap="SkuResult" >
+    select SKU_ID, ITEM_ID, sales_property,sales_property_name, least_buy, bar_code, Cost_price, sale_price, original_price, stock, created, modified, yn
+    from sku
+    <include refid="Sku.condition" />
+    order by SKU_ID
+  	limit #start#,#pageSize#
+  </select>
+ 
+</sqlMap>

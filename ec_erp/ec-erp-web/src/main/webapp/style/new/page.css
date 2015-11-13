@@ -1,0 +1,501 @@
+/**
+ * @subsection MCenter 应用监控平台
+ */
+ 
+#addOpt{
+ display:none;
+ }
+body.MCenter{
+	color:#666666;
+	background-color: #ffffff;
+}
+body.special .fixedTable .scrollTbody{
+	margin-top:0;
+}
+.MCenter .btn span em,
+.MCenter input,
+.MCenter select{
+	color:#666666;
+}
+.MCenter .btn.btnM span em{
+	color:#ffffff;
+}
+.MCenter .mCenter{
+	margin-left:auto;
+	margin-right:auto;
+}
+.MCenter .w1200{
+	width: 98%;
+}
+
+.MCenter .w520{
+	width: 520px;
+}
+.MCenter .mb40{
+	margin-bottom: 40px;
+}
+.MCenter .pl20{
+	padding-left: 20px;
+}
+#content{
+	padding-top: 2px;
+}
+.MCenter .search {
+    background-color: #f6f6f6;
+    border-top:1px dashed #999;
+    border-bottom:1px dashed #999;
+}
+.MCenter .dropHidden{
+	visibility: hidden;
+}
+.MCenter .vHidden{
+	visibility: hidden;
+	position: absolute;
+	opacity: 0;
+}
+.MCenter .searchContent{
+	width:100%;
+}
+.MCenter .reQuery{
+	width: 346px;
+} 
+.clearFloat{
+	clear:both;height:0;line-height:0;font-size:0;overflow:hidden;
+}
+/**
+ * @subsection MCenter header头部
+ */
+#header{
+	height:44px;
+	background: url(/misc/images/new/MCenter_header.png) repeat-x;
+	position: fixed;
+    z-index: 2998;
+    top:0;
+    left:0;
+}
+#headerInner{
+	height:44px;
+	background: url(/misc/images/new/MCenter_header_inner.png) no-repeat 0 0;
+}
+#headerInner h1{
+	width: 300px;
+	height: 44px;
+	text-indent: -99999px;
+}
+#headerInner1{
+	height:44px;
+	background: url(/misc/images/new/MCenter_header_inner_en.png) no-repeat 0 0;
+}
+#headerInner1 h1{
+	width: 300px;
+	height: 44px;
+	text-indent: -99999px;
+}
+.headerIco{
+	float:left;
+	display: block;
+	height: 44px;
+	padding: 0 15px;
+	background: url(/misc/images/new/MCenter_header.png) no-repeat right -74px ;
+	line-height: 44px;
+}
+.headerIco a{
+	display: inline-block;
+	height: 44px;
+	padding-left: 20px;
+	color: #fff;
+	text-decoration: none;
+}
+.headerIco1{
+	float:left;
+	display: block;
+	height: 44px;
+	padding: 0 15px;
+	background: url(/misc/images/new/MCenter_header.png) no-repeat right -74px ;
+	line-height: 44px;
+}
+.slideToggle{
+	background-image:url('/misc/images/new/jiantou.jpg');
+	background-position:-89px -120px;
+	width:20px;height:20px;
+	margin-top: 300px;
+	cursor:pointer;
+}
+.hideToggle{
+	background-image:url('/misc/images/new/jiantou.jpg');
+	background-position:-60px -120px;
+	width:20px;height:20px;
+	margin-top: 300px;
+	cursor:pointer;
+}
+.headerIco1 a{
+	display: inline-block;
+	height: 44px;
+	padding-left: 10px;
+	color: #fff;
+	text-decoration: none;
+}
+.headerIco a.aUser{background: url(/misc/images/new/MCenter_header_ico.png) no-repeat 0 -74px;}
+.headerIco a.aPassword{background: url(/misc/images/new/MCenter_header_ico.png) no-repeat 0 -108px;}
+.headerIco a.aInfo{background: url(/misc/images/new/MCenter_header_ico.png) no-repeat 0 -144px;}
+.headerIco a.aLogout{background: url(/misc/images/new/MCenter_header_ico.png) no-repeat 0 -179px;}
+.headerIco a.china{background: url(/misc/images/new/china.png) no-repeat;}
+/**
+ * @subsection MCenter navTabs Tabs导航切换
+ */
+#navTabs{
+	height:30px;
+	background: url(/misc/images/new/MCenter_header.png) 0 -44px repeat-x;
+	left:0;
+	top:44px;
+    z-index: 2998;
+}
+.nav_tabDefault{
+	text-decoration: none;
+	display: block;
+}
+.nav_tabDefault a.nav_tabItem{
+	display: block;
+	padding:1px 1px 1px 16px;
+	height: 26px;
+	margin-top:2px;
+	text-decoration: none;
+	position: relative;
+	z-index: 1999;
+	cursor: pointer;
+}
+.nav_tabDefault span{
+	height: 30px;display:inline-block;cursor: pointer;
+}
+.nav_tabDefault em{
+	height: 26px; line-height: 24px;padding-right: 15px;color: #fff;display: inline-block;vertical-align:baseline;WHITE-SPACE: nowrap;font-style:normal;text-decoration: none;
+}
+.nav_tabDefault span em b{
+	border-color: #ffffff #2c2c2c #2c2c2c;
+    border-style: solid;
+    border-width: 4px;
+    font-size:0;
+    height: 0;
+    width: 0;
+    line-height: 0;
+    position: absolute;
+    top: 11px;
+    right: 5px;
+}
+.nav_tabSelected{
+	background-color: #000000;
+	
+}
+.nav_tabSelected span em b{border-color: #ffffff #000000 #000000;}
+.nav_tab span{}
+.nav_tab span em{color:#ffffff;}
+.nav_tabHover a.nav_tabItem{padding:0 0 0 15px;height:26px; border-width:1px; border-color: #787878 #787878 #e6e6e6 #787878; border-style:solid; background-color: #ebebeb;}
+.nav_tabHover span{}
+.nav_tabHover span em{color:#666666;}
+.nav_tabHover span em b{border-color: #666666 #ececec #ececec;}
+.btnOver span{ background: url(/misc/images/new/btn.gif) no-repeat 0 -24px; }
+.btnOver span em{ background: url(/misc/images/new/btn.gif) no-repeat right -72px; }
+
+.nav_Droplist{
+	border:1px solid #787878;
+	background-color: #ffffff;
+	top:74px;
+	position: absolute;
+	z-index: 1998;
+	cursor: default;
+}
+.nav_Droplist ul{
+	padding: 5px 4px;
+}
+.nav_Droplist li{
+	padding: 2px 6px;
+}
+.nav_Droplist li.hover{
+	background-color: #ededed;
+	cursor: pointer;
+}
+.nav_Droplist a{
+	color:#666666;
+	text-decoration: none;
+	display: block;
+    height: 22px;
+    line-height: 22px;
+    text-decoration: none;
+    width: auto;
+}
+/**
+ * @subsection MCenter titH3
+ */
+.MCenter .titH3{
+	display: block;
+	color: #419CD0;
+	font-size:14px;
+	line-height: 18px;
+	height: 18px;
+	vertical-align: left;
+	text-align: left
+}
+.MCenter .titH3.Condition{background: url(/misc/images/new/MCenter_ico.png) no-repeat 0 0px;}
+.MCenter .titH3.Result{background: url(/misc/images/new/MCenter_ico.png) no-repeat 0 -36px;}
+.MCenter .titH3.Grid{background: url(/misc/images/new/MCenter_ico.png) no-repeat 0 -71px;}
+.MCenter .titH3.Log{background: url(/misc/images/new/MCenter_ico.png) no-repeat 0 -106px;}
+.MCenter .titH3.Table{background: url(/misc/images/new/MCenter_ico.png) no-repeat 0 -142px;}
+/*
+ * @subsection MCenter resultGrid 结果表格
+ */
+.resultGrid{
+    border-left: 1px solid #e0e0e0;
+    border-top: 1px solid #e0e0e0;
+}
+.resultGrid tbody td, 
+.resultGrid tbody th {
+    border-bottom: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    padding: 5px 2px;
+}
+.resultGrid .textR{
+	background-color: #f6f6f6;
+}
+/*
+ * @subsection MCenter chartBox 图表展示
+ */
+.chartBox{
+	border: 1px solid #e0e0e0;
+	background-color: #fafafa;
+}
+.chartBoxTitle{
+	height: 28px;
+	border-bottom: 1px solid #e0e0e0;
+	background: url(/misc/images/new/chartBoxTitle_bg.png) repeat-x;
+}
+.chartBox h4{
+	line-height: 28px;
+	font-size: 12px;
+	color: #555555;
+}
+.btn.chartBoxCtrl{height: 28px; display: inline-block; border-left:1px solid #d9d9d9;}
+.btn.chartBoxCtrl span{height: 28px;  border-left:1px solid #ffffff; padding-left: 10px; background:none;}
+.btn.chartBoxCtrl span em{height: 28px; line-height: 28px; padding-right:10px; padding-left: 20px;background:none; font-size: 12px;}
+
+.btnOver.chartBoxCtrl span{background:#ffffff;}
+.btnOver.chartBoxCtrl span em{background:#ffffff;}
+.btn.chartBoxCtrl span em.Back{background: url(/misc/images/new/chartBoxCtrl.png) no-repeat 0 7px;}
+.btn.chartBoxCtrl span em.CopyUrl{background: url(/misc/images/new/chartBoxCtrl.png) no-repeat 0 -29px;}
+.btn.chartBoxCtrl span em.SildUp{background: url(/misc/images/new/chartBoxCtrl.png) no-repeat 0 -65px;}
+.btn.chartBoxCtrl span em.SildDown{background: url(/misc/images/new/chartBoxCtrl.png) no-repeat 0 -100px;}
+
+.btn span em.addOpt b{height: 24px; width:16px;line-height: 24px;background: url(/misc/images/new/add.png) no-repeat 0 0px; padding-left: 18px;padding-bottom: 3px; font-weight: normal;}
+.btn span em.deleteOpt b{
+	height: 24px;
+	width:16px;line-height: 24px;
+	background-image:url(/misc/images/new/ico.png); 
+	background-position:3px -55px;	
+	padding-left: 18px;padding-bottom: 3px;
+	font-weight: normal;
+	}
+.btn span em.uploadOpt b{
+	height: 24px; width:16px;
+	padding-left: 22px;padding-bottom: 3px; font-weight: normal;
+	background-image:url(/misc/images/new/ico.png);
+}
+.btn span em.uploadOpt b.disable{
+	background-position:3px -55px;	
+}
+.btn span em.uploadOpt b.active{
+	background-position:3px -36px;	
+}
+.chartBoxContent{
+	overflow: hidden;
+}
+.chartBoxContentInner{
+	padding: 10px 15px;
+}
+/**
+ * @subsection MCenter Grid表格样式
+ */
+.MCenter .grid{
+	 border:0;
+	 border-top: 1px solid #e0e0e0;
+	 border-left: 1px solid #e0e0e0;
+	 border-right: 1px solid #e0e0e0;
+	 width:100%; 
+	 clear: both; 
+	 background-color: #fff;
+	 table-layout:fixed;
+}
+.MCenter .grid th,
+.MCenter .grid td{line-height: 22px;}
+.MCenter .grid thead,
+.MCenter .grid tr.thead{
+	background: url(/misc/images/new/chartBoxTitle_bg.png) repeat-x;
+	font-weight: bold;
+}
+.MCenter .grid thead th,
+.MCenter .grid thead td,
+.MCenter .grid tr.thead th,
+.MCenter .grid tr.thead td{
+	 border:0;
+	 border-bottom: 1px solid #e0e0e0;	
+	 border-right: 1px solid #e0e0e0;
+}
+.MCenter .grid td.theadTd{
+	border-right: 1px solid #e0e0e0;
+	border-bottom: 1px solid #e0e0e0;
+}
+.MCenter .grid tbody td,
+.MCenter .grid tbody th{
+	 border:0;
+	 border-bottom: 1px solid #FFFFFF; 
+	 word-wrap : break-word;
+}
+.MCenter .grid tbody tr{
+}
+.MCenter .grid tr.trOdd{background: #F2F2F2; }
+.MCenter .grid tr.trOdd td{border-bottom: 1px solid #F2F2F2;}
+.MCenter .grid tr.trHover{background: #e6e6e6;}
+.MCenter .grid tr.trHover td{border-bottom: 1px solid #e6e6e6;}
+.MCenter .grid tr.trLast{}
+.MCenter .grid tr.trLast td{border-bottom: 1px solid #e0e0e0;}
+.MCenter .grid tr.selected{background: #ffffcc;}
+.MCenter .grid tr.selected td{border-bottom: 1px solid #EBEBB7;}
+.MCenter .grid .addr{
+	line-height: 14px;
+	overflow: hidden;
+	height: 28px;
+}
+
+.MCenter .grid2{
+	border-top: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+}
+.MCenter .grid2 thead th,
+.MCenter .grid2 thead td,
+.MCenter .grid2 tr.thead th,
+.MCenter .grid2 tr.thead td{
+	 border:0;
+	 border-bottom: 1px solid #cccccc;	
+	 border-right: 1px solid #cccccc;
+}
+.MCenter .grid2 tbody td,
+.MCenter .grid2 tbody th{
+	 border:0;
+	 border-bottom: 1px solid #cccccc; 
+	 border-right: 1px solid #cccccc;
+	 padding: 5px 4px;
+	 line-height: 18px;
+}
+.MCenter .grid2 tr.trOdd{background: #ffffff; }
+.MCenter .grid2 tr.trOdd td{border-bottom: 1px solid #cccccc;}
+.MCenter .grid2 tr.trHover{background-color: #e8f9fe;}
+.MCenter .grid2 tr.trHover td{border-bottom: 1px solid #cccccc;}
+.MCenter .grid tr.trLast{}
+.MCenter .grid tr.trLast td{border-bottom: 1px solid #cccccc;}
+
+.urlData{
+	display: block;
+	overflow: hidden;
+	word-wrap:normal;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.j_urlData_a{
+	text-decoration: none;
+}
+/*
+ * @subsection URL弹出
+ */
+.urlBox{
+	width:200px;
+	height: auto;
+	border:1px solid #cccccc;
+	background-color: #fff7e2;
+	padding: 5px 10px 10px 10px;
+	text-align: right;
+	position: absolute;
+	z-index: 2000;
+	margin-left: -226px;
+}
+.urlBox p{
+	margin-top: 0;
+	word-wrap: break-word;
+	text-align: left;
+	height:100px;
+	overflow-y: auto;
+}
+.urlBox a{}
+.urlBoxClose{
+	display: inline-block;
+	background: url(/misc/images/new/close.png) no-repeat center;
+	width: 20px;
+	height: 20px;
+}
+/*
+ * @subsection 报警基本标示
+ */
+.alertLevel{
+	width: 60px;
+	height: 10px;
+	position: relative;
+}
+.alertLevelBg{
+	background-color: #c0c0c0;
+	width: 60px;
+	height: 10px;
+}
+.alertLevel span{
+	display: block;
+	font-size:0;
+	position: absolute;
+	top:-1px;
+	left:-1px;
+}
+.alertLevel em{
+	display: inline-block;
+	width: 20px;
+	height: 10px;
+}
+.alertLevel.LevelA em.LevelC_card{background-color: #ffdf9a;}
+.alertLevel.LevelA em.LevelB_card{background-color: #ffb579;}
+.alertLevel.LevelA em.LevelA_card{background-color: #ff8989;}
+
+.alertLevel.LevelB em.LevelC_card{background-color: #ffdf9a;}
+.alertLevel.LevelB em.LevelB_card{background-color: #ffb579;}
+.alertLevel.LevelB em.LevelA_card{background-color: #ffffff;}
+
+.alertLevel.LevelC em.LevelC_card{background-color: #ffdf9a;}
+.alertLevel.LevelC em.LevelB_card{background-color: #ffffff;}
+.alertLevel.LevelC em.LevelA_card{background-color: #ffffff;}
+
+.headerIco.userHelp{
+	position: relative;
+}
+.userHelp ul{
+	position: absolute;
+	z-index: 9999;
+	background-color: #ffffff;
+	border: 1px solid #787878;
+	left: 0;
+	padding: 3px 0;
+}
+
+.userHelp ul li{
+	padding: 2px 6px;
+}
+
+.userHelp ul li a{
+	color: #666666;
+	display: block;
+	height: 22px;
+	line-height: 22px;
+	padding-left: 0;
+}
+
+.userHelp ul li a:hover{
+	background-color: #ededed;
+	cursor: pointer;
+	display: block;
+}
+.MCenter .w1200.help{
+	width: 90%;
+}

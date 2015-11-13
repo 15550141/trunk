@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="IndexImage" >
+  <resultMap id="IndexImageResult" class="com.ec.api.domain.IndexImage" >
+    <result column="id" property="id"  />
+    <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
+    <result column="image_name" property="imageName" jdbcType="VARCHAR" />
+    <result column="image_web_url" property="imageWebUrl" jdbcType="VARCHAR" />
+    <result column="sort_number" property="sortNumber"  />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+    <result column="yn" property="yn"  />
+  </resultMap>
+  
+  <!-- 查询条件 -->
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="id" >
+        id = #id#
+      </isNotNull>
+      <isNotNull prepend="and" property="imageUrl" >
+        image_url = 'imageUrl'
+      </isNotNull>
+      <isNotNull prepend="and" property="imageName" >
+        image_name = 'imageName'
+      </isNotNull>
+      <isNotNull prepend="and" property="imageWebUrl" >
+        image_web_url = 'imageWebUrl'
+      </isNotNull>
+       <isNotNull prepend="and" property="sortNumber" >
+        sort_number = #sortNumber#
+      </isNotNull>
+      <isNotNull prepend="and" property="yn" >
+        yn = #yn#
+      </isNotNull>
+    </dynamic>
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="IndexImageResult" parameterClass="java.lang.Integer" >
+    select id,image_url,image_name,image_web_url,sort_number,created,modified,yn 
+    from index_image
+    where id = #id#
+  </select>
+  
+
+  <insert id="insert" parameterClass="com.ec.api.domain.IndexImage" >
+    insert into index_image (image_url,image_name,image_web_url,sort_number,created,modified,yn)
+    values (#imageUrl#,#imageName#,#imageWebUrl#,#sortNumber#,#created#,#modified#,#yn#) 
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="id">
+			<![CDATA[SELECT @@IDENTITY AS id ]]>
+	  </selectKey>
+  </insert>
+
+	<update id="updateByPrimaryKey" parameterClass="com.ec.api.domain.IndexImage" >
+    update index_image set MODIFIED = now()
+    <dynamic >
+      <isNotNull prepend="," property="imageUrl" >
+        image_url = #imageUrl#
+      </isNotNull>
+      <isNotNull prepend="," property="image_name" >
+        image_name = #imageName#
+      </isNotNull>
+      <isNotNull prepend="," property="image_web_url" >
+        image_web_url = #imageWebUrl#
+      </isNotNull>
+      <isNotNull prepend="," property="sort_number" >
+        sort_number = #sortNumber#
+      </isNotNull>
+      <isNotNull prepend="," property="yn" >
+        yn = #yn#
+      </isNotNull>
+    </dynamic>
+    where id = #id#
+  </update>
+  
+  <select id="countByCondition" parameterClass="com.ec.api.domain.query.IndexImageQuery" resultClass="java.lang.Integer" >
+    select count(1) from index_image
+    <include refid="IndexImage.condition" />
+  </select>
+  
+  <select id="selectByCondition" parameterClass="com.ec.api.domain.query.IndexImageQuery" resultMap="IndexImageResult" >
+    select id,image_url,image_name,image_web_url,sort_number,created,modified,yn 
+    from index_image
+    <include refid="IndexImage.condition" />
+    order by sort_number desc
+  </select>
+  
+  <select id="selectByConditionForPage" parameterClass="com.ec.api.domain.query.IndexImageQuery" resultMap="IndexImageResult" >
+   select id,image_url,image_name,image_web_url,sort_number,created,modified,yn 
+    from index_image
+    <include refid="IndexImage.condition" />
+    order by id desc
+  	limit #start#,#pageSize#
+  </select>
+  
+</sqlMap>

@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head><title>
+	会员管理-基本信息
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link type="text/css" rel="stylesheet" href="/misc/css/admin.css">
+  <script type="text/javascript" src="/misc/js/jquery-1.2.6.pack.js"></script>
+</head>
+<body>
+    <form id="userForm" name="userForm">
+
+        <div class="box">
+         <!--标题区-->
+               <div class="title">
+    用户管理-修改
+               </div>
+         <!--表单区-->
+               <div class="panel_form">
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" id="ctl00_CPform_tab_userinfo">
+				<tbody>
+	<tr>
+		<td align="left" style="height: 23px" class="TdLabel">id：</td>
+		<td style="height: 23px" colspan="10" class="TdValue">
+			$!user.id
+		</td>
+	</tr>
+
+	<tr>
+		<td class="TdLabel"><div align="right">client_id：</div></td>
+		<td width="78%" align="left" colspan="10" class="TdValue">
+			$!user.client_id
+		</td>
+	</tr>
+	<tr>
+		<td class="TdLabel"><div align="right">公司名称：</div></td>
+		<td align="left" colspan="10" class="TdValue">
+			<input type="text" value="$!user.name" id="name" name="name" class="txt">
+        </td>
+	</tr>
+	<tr>
+		<td align="right" class="TdLabel">域名：</td>
+		<td align="left" colspan="10" class="TdValue">
+			<input type="text" value="$user.domain" id="domain" name="domain" class="txt"></td>
+		</td>
+	</tr>
+	<tr>
+		<td class="TdLabel"><div align="right">回调地址：</div></td>
+		<td align="left" colspan="10" class="TdValue">
+            <input type="text" value="$!user.redirect_uri" id="redirect_uri" name="redirect_uri" class="txt"></td>
+	</tr>
+	<tr>
+		<td class="TdLabel"><div align="right">scope：</div></td>
+		<td align="left" colspan="10" class="TdValue">
+			<input type="text" value="$!user.scope" id="scope" name="scope" class="txt">
+		</td>
+	</tr>
+	<tr>
+		<td class="TdLabel"><div align="right">img：</div></td>
+		<td align="left" colspan="10" class="TdValue">
+			<input type="text" value="$!user.img" id="img" name="img" class="txt">
+		</td>
+	</tr>
+	<tr>
+		<td align="center" style="height:35px;" class="split1" colspan="11">
+
+		<input type="button" onclick="update();" value="保存修改" class="btn2">
+      </td>
+	</tr>
+	
+</tbody></table>
+    		   </div>
+    	</div>
+	</form>
+	
+	 <script type="text/javascript">
+	 	function update(){
+			jQuery.ajax({
+                type:"POST",
+                url:"/admin/user/update",
+                data:$("#userForm").serialize()+"&id="+$!user.id,
+                dataType:"json",
+                success:function (data) {
+					if(data.success){
+						alert("修改成功");
+						window.location.href="/admin/user/detail?id="+$!user.id;
+					}else{
+						alert(data.resultMessage);
+					}
+                }
+            });
+		}
+	 </script>
+	
+</body>
+</html>

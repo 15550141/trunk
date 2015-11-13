@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <title>鲜果味道</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE-9">
+    <meta name="apple-mobile-web-app-capable" content="no">
+    <meta name="mobile-web-app-capable" content="no"> 
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    
+    <link rel="shortcut icon" href="/favicon.ico" >
+    <link rel="apple-touch-icon" sizes="76x76" href="/misc/style/webIcon.png" />  
+    <link rel="apple-touch-icon" sizes="152x152" href="/misc/style/webIcon.png" />  
+    <link rel="apple-touch-icon" sizes="120x120" href="/misc/style/webIcon.png" />    
+    <link rel="apple-touch-icon" sizes="180x180" href="/misc/style/webIcon.png" />  
+    <link type="image/x-icon" rel="Shortcut Icon" href="/misc/style/webIcon.png">
+
+    <!-- Bootstrap -->
+    <link href="/misc/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/misc/css/style.css">
+	 
+    <!--[if lt IE 9]>
+    <script src="/misc/js/html5shiv.min.js"></script>
+    <![endif]-->
+    <script src="/misc/js/require.js" data-main="/misc/style/main"></script>
+	<script src="/misc/js/jquery-1.11.0.min.js"></script>
+	<script src="/misc/js/dsp-zz.js"></script>
+    <script src="/misc/js/prefixfree.min.js"></script>
+
+  </head>
+<body>
+	<div class="trasfrm ds768">
+        <div class="padArow"></div>
+        <div class="iconPad_1">
+            <div class="iconpad_2"></div>
+        </div>
+        <div class="iconPad_1 trmoct">
+            <div class="iconpad_2"></div>
+        </div>
+        <p class="trapf"><strong></strong> 请 <strong>切换到竖屏</strong> 以达到最佳浏览效果</p>
+	</div>
+
+	<nav class="navbar navbar-default navbar-fixed-top m-component-nav" role="navigation">
+      	<div class="container-fluid">
+        	<div class="navbar-header text-center clearfix">
+          		<a class="navbar-func pull-left" href="/"><span class="glyphicon fdayicon fdayicon-home"></span></a>      
+          		<a class="navbar-func pull-right" href="/cart#"><span class="glyphicon fdayicon fdayicon-cart"></span></a>     
+          		<span class="navbar-title">我的果园</span>
+        	</div>
+      	</div>
+    </nav>
+
+	<section class="m-component-user" id="m-user">
+		<div class="m-user-avatar text-center">
+        	<span class="avatarPic"><img class="lazy img-circle" data-original="$!userinfo.headimgurl" src="/misc/images/default_userpic.jpg" /></span>
+        	<div>$!userinfo.nickname</div>
+        </div>
+        
+        <ul class="list-unstyled m-user-content">
+			<li>
+                <div class="m-user-item">
+                   <a href="/order/my" class="user-order">我的订单</a>
+                </div>
+                <!--
+                <div class="m-user-item">
+                   <a href="javascript:void(0);" class="user-address"><span class="pull-right">已绑定</span>绑定手机</a>
+                </div>
+                -->
+            </li>
+            <li>
+                <div class="m-user-item">
+                   	<div class="user-level"><span class="icon-level user-level_0"></span>会员等级</div>
+                </div>
+                <div class="m-user-item">
+                   	<div class="user-score"><span class="pull-right">0</span>积分</div>
+                </div>
+                <div class="m-user-item">
+               		<div class="user-balance"><span class="pull-right">￥0.00</span>余额</div>
+            	</div>
+            	<!--
+            	<div class="m-user-item">
+               		<a href="/user/coupon" class="user-coupon">优惠券</a>
+            	</div>
+            	<div class="m-user-item">
+               		<a href="/user/giftsget" class="user-gift">我的赠品</a>
+            	</div>
+            	-->
+        	</li>
+         	<li>
+        		<div class="m-user-item">
+                	<a href="/aboutus.html" class="user-info">关于我们</a>
+                </div>
+            </li>
+        </ul>
+    	<!-- <div class="m-user-quit" id="m-quit"><button type="button" class="btn btn-warning btn-block ">注 销</button></div> -->
+	</section>
+
+</body></html>

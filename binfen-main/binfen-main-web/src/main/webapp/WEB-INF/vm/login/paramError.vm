@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>京东商城</title>
+<link href="/misc/css/2012base.css"  type="text/css"  rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="/misc/css/oauth_web.css" />
+</head>
+    <body>
+    	<div class="oauth-bline">
+    		<div class="oauth-oline"></div>
+    	</div>
+    	<!-- logo start-->
+    	<div class="oauth-dline">
+    		<div class="oauth-wrap">
+    			<div class="oauth-logo">
+    				<a href="http://www.jd.com/"><img src="/misc/images/logo.png" alt="京东" /></a>
+    			</div>
+    		</div>
+    	</div>
+    	<!-- logo end -->
+    	<div class="oauth-wrap oauth-shadow">
+    		<!-- <p class="oauth-tit">使用您的的京东账户访问<strong>第三方网站</strong>，一键通行更方便</p> -->
+    		<div class="oauth-main">
+    			<div class="oauth-main-top"></div>
+    			<div class="oauth-con">
+                    <h5 class="oauth-error-tit"><img src="/misc/images/error.gif">访问出错了！</h5>
+                    <p class="oauth-error-con">
+                    	$!{result.resultCode}
+                    </p>
+                    <div class="oauth-tips">提示：为保障账户安全，请认准本页URL地址必须以 bizapi.jd.com 开头</div>
+    			</div>
+    			<div class="oauth-main-bottom"></div>
+    		</div>
+    	</div>
+    </body>
+</html>

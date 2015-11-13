@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <title>鲜果味道</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE-9">
+    <meta name="apple-mobile-web-app-capable" content="no">
+    <meta name="mobile-web-app-capable" content="no"> 
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    
+    <link rel="shortcut icon" href="/favicon.ico" >
+    <link rel="apple-touch-icon" sizes="76x76" href="/misc/style/webIcon.png" />  
+    <link rel="apple-touch-icon" sizes="152x152" href="/misc/style/webIcon.png" />  
+    <link rel="apple-touch-icon" sizes="120x120" href="/misc/style/webIcon.png" />    
+    <link rel="apple-touch-icon" sizes="180x180" href="/misc/style/webIcon.png" />  
+    <link type="image/x-icon" rel="Shortcut Icon" href="/misc/style/webIcon.png">
+
+    <!-- Bootstrap -->
+    <link href="/misc/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/misc/css/style.css">
+	 
+    <!--[if lt IE 9]>
+    <script src="/misc/js/html5shiv.min.js"></script>
+    <![endif]-->
+    <script src="/misc/js/require.js" data-main="/misc/style/main"></script>
+	<script src="/misc/js/jquery-1.11.0.min.js"></script>
+	<script src="/misc/js/dsp-zz.js"></script>
+    <script src="/misc/js/prefixfree.min.js"></script>
+
+  </head>
+<body>
+	<div class="trasfrm ds768">
+        <div class="padArow"></div>
+        <div class="iconPad_1">
+            <div class="iconpad_2"></div>
+        </div>
+        <div class="iconPad_1 trmoct">
+            <div class="iconpad_2"></div>
+        </div>
+        <p class="trapf"><strong></strong> 请 <strong>切换到竖屏</strong> 以达到最佳浏览效果</p>
+	</div>
+
+    <nav class="navbar navbar-default navbar-fixed-top m-component-nav" role="navigation">
+      	<div class="container-fluid">
+        	<div class="navbar-header text-center clearfix">
+				<a class="navbar-func pull-left" href="/"><span class="glyphicon fdayicon fdayicon-home"></span></a>      
+				<!-- <a class="navbar-func pull-right" href="tel:4007200770"><span class="glyphicon fdayicon fdayicon-contact"></span></a> -->
+				<a href="javascript:MessageBox.error('售后服务电话：13313331080','','联系客服');" class="navbar-func pull-right"><span class="glyphicon fdayicon fdayicon-contact"></span></a>
+          		<span class="navbar-title">订单详情</span>
+        	</div>
+      	</div>
+    </nav>
+
+    <section class="m-component-order" id="m-order">
+    	<ul class="list-unstyled m-order-content m-orderdetail">
+        	<li id="order-status-li">
+        		<div class="m-order-item">
+                    <span class="pull-right m-ordering">$!order.buyerOrderStatusName</span>订单编号 $!order.orderId
+                </div>
+                <div class="m-order-item">
+                   	 下单时间 $!order.createdTime
+                </div>
+            </li>
+            <li>   
+            	<div class="m-order-item">                  
+                    <div class="m-order-address">
+                		$!{order.consigneeName}$!order.consigneeMobile
+                        <p>$!order.consigneeAddress</p>
+                    </div>    
+                </div>
+                <!-- 
+	                <div class="m-order-item">
+	                	<span class="pull-right">2015-06-17 09:00-18:00</span>配送时间
+	                </div>
+                 -->
+                <div class="m-order-item">
+                    <span class="pull-right">货到付款</span>支付方式
+                </div>   
+                <!--
+	                <div class="m-order-item">
+	                    <span class="pull-right"></span>发票信息
+	                </div>
+                -->
+            </li>
+            <li>
+               	<div class="m-order-item">
+                	<div class="clearfix m-order-prolist-tips"><span class="glyphicon fdayicon fdayicon-unfold pull-right" id="m-order-prolist"></span>商品清单<i></i></div>
+                    <div class="m-cartlist">
+                        <ul class="list-unstyled">
+							#foreach($detail in $order.orderDetails)
+								<li>
+									<a href="/detail/index/$!{detail.itemId}.html">
+										<img class="lazy pull-left" data-original="$!detail.itemImage" src="$!detail.itemImage" alt="">
+	                                    <div class="m-cartlist-info">
+	                                        <h3>$!detail.itemName</h3>
+	                                        <h4>$!detail.salesPropertyName</h4>
+	                                        <h5>￥$!detail.bigDecimalPrice</h5>                           
+	                                    </div>
+	                                </a>
+	                                <span class="m-cartlist-nums">x $!detail.num</span>
+	                            </li>  
+							#end 
+                        </ul>    
+                	</div>
+        		</div>
+            </li>
+            <li>
+                <div class="m-order-item">
+                    <span class="pull-right orange">￥$!order.bigDecimalOrderMoney</span>订单金额
+                </div>
+                <!--
+	                <div class="m-order-item">
+	                    <span class="pull-right orange">￥0</span>运费
+	                </div>
+	                <div class="m-order-item">
+	                    <span class="pull-right">￥0</span>积分抵扣
+	                </div>
+	                <div class="m-order-item">
+	                    <span class="pull-right">￥0</span>优惠券抵扣
+	                </div>
+	                <div class="m-order-item">
+	                    <span class="pull-right">￥0</span>其他抵扣
+	                </div>
+                -->
+                <div class="m-order-item">
+                    <span class="pull-right">￥$order.bigDecimalDiscountMoney</span>优惠金额
+                </div>
+            </li>
+            <!--
+            <li>
+                <div class="m-order-item">
+                   <span class="pull-right orange">￥$!order.bigDecimalOrderMoney</span>实际支付
+                </div>
+            </li>
+            -->
+        </ul>
+    </section>
+
+</body></html>

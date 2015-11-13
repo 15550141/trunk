@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <title>鲜果味道</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE-9">
+    <meta name="apple-mobile-web-app-capable" content="no">
+    <meta name="mobile-web-app-capable" content="no"> 
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    
+    <link rel="shortcut icon" href="/favicon.ico" >
+    <link rel="apple-touch-icon" sizes="76x76" href="/misc/style/webIcon.png" />  
+    <link rel="apple-touch-icon" sizes="152x152" href="/misc/style/webIcon.png" />  
+    <link rel="apple-touch-icon" sizes="120x120" href="/misc/style/webIcon.png" />    
+    <link rel="apple-touch-icon" sizes="180x180" href="/misc/style/webIcon.png" />  
+    <link type="image/x-icon" rel="Shortcut Icon" href="/misc/style/webIcon.png">
+
+    <!-- Bootstrap -->
+    <link href="/misc/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/misc/css/style.css">
+	 
+    <!--[if lt IE 9]>
+    <script src="/misc/js/html5shiv.min.js"></script>
+    <![endif]-->
+    <script src="/misc/js/require.js" data-main="/misc/style/main"></script>
+	<script src="/misc/js/jquery-1.11.0.min.js"></script>
+	<script src="/misc/js/dsp-zz.js"></script>
+    <script src="/misc/js/prefixfree.min.js"></script>
+
+  </head>
+<body>
+	<div class="trasfrm ds768">
+        <div class="padArow"></div>
+        <div class="iconPad_1">
+            <div class="iconpad_2"></div>
+        </div>
+        <div class="iconPad_1 trmoct">
+            <div class="iconpad_2"></div>
+        </div>
+        <p class="trapf"><strong></strong> 请 <strong>切换到竖屏</strong> 以达到最佳浏览效果</p>
+	</div>
+
+	<nav class="navbar navbar-default navbar-fixed-top m-component-nav" role="navigation">
+      	<div class="container-fluid">
+        	<div class="navbar-header text-center clearfix">
+          		<a class="navbar-func pull-left" href="/cart#"><span class="glyphicon fdayicon fdayicon-navback"></span></a>          
+          		<span class="navbar-title">订单确认</span>
+        	</div>
+      	</div>
+    </nav>
+
+
+    <input type="hidden" id="api_msg_type" value="">
+    <input type="hidden" id="api_msg" value="">
+    <input type="hidden" id="api_goto_url" value="">
+    <input type="hidden" id="order_error" value="">
+
+    <section class="m-component-order" id="m-order">
+        <ul class="list-unstyled m-order-content">
+            <li>
+            	<div class="m-order-item">
+                    <input type="hidden" id="address_id" value="$!addr.id">
+                    #if($!addr)
+						<a class="m-order-address" href="/receiveAddr/addrList">
+							$!{addr.name}&nbsp;&nbsp;$!{addr.mobile}<span class="orange"></span>
+                            <p>$!{addr.provinceName}$!{addr.cityName}$!{addr.countyName}$!addr.address</p>
+						</a>
+                    #else
+                    	<a href="/receiveAddr/addrList" class="m-order-address">
+							<span class="pull-right">请选择</span>送货地址
+	 					</a>
+                    #end
+                </div>
+                
+                <div class="m-order-item">
+					<a href="javascript:;" id="ordertime"><span class="pull-right">两小时内送达</span>配送时间</a>
+				</div>
+				
+                <!--
+                <div class="m-order-item">
+					<a href="javascript:;" id="ordertime"><span class="pull-right">请选择</span>配送时间</a>
+				</div>
+                <div class="modal fade modal-order modal-ordertime" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+						<div class="modal-content">
+                            <h4>配送时间<span class="pull-right m-dialog-close"></span></h4>
+                            <table class="table table-condensed text-center">
+                                <!--
+                                <thead>
+                                    <tr>
+                                        <td><b>时间段</b></td>
+                                        <td>09:00-18:00</td>
+									</tr>
+                            	</thead>
+                                -->
+                        		<tbody>
+                                    <tr class="s_tr" datakey="20150731" datavalue="07-31|周五">
+                                        <td>07-31|周五</td>
+										<td class='s_td' timekey="0918" timevalue="09:00-18:00">
+                                            <div class="input-group text-center">
+                                                <input type="radio" id="ordertime1" name="ordertime" disabled='disabled'  />
+                                                <label for="ordertime1" class="glyphicon fdayicon fdayicon-delivery"></label>
+                                            </div>    
+                                        </td>
+									</tr>
+									<tr class="s_tr" datakey="20150801" datavalue="08-01|周六">
+                                    	<td>08-01|周六</td>
+											<td class='s_td' timekey="0918" timevalue="09:00-18:00">
+                                            <div class="input-group text-center">
+                                                <input type="radio" id="ordertime2" name="ordertime"   />
+                                                <label for="ordertime2" class="glyphicon fdayicon fdayicon-delivery"></label>
+                                            </div>    
+                                    	</td>
+									</tr>
+									<tr class="s_tr" datakey="20150802" datavalue="08-02|周日">
+                                    	<td>08-02|周日</td>
+										<td class='s_td' timekey="0918" timevalue="09:00-18:00">
+                                        	<div class="input-group text-center">
+                                            	<input type="radio" id="ordertime3" name="ordertime"   />
+                                            	<label for="ordertime3" class="glyphicon fdayicon fdayicon-delivery"></label>
+                                        	</div>    
+                                    	</td>
+									</tr>
+									<tr class="s_tr" datakey="20150803" datavalue="08-03|周一">
+                                    	<td>08-03|周一</td>
+										<td class='s_td' timekey="0918" timevalue="09:00-18:00">
+                                            <div class="input-group text-center">
+                                                <input type="radio" id="ordertime4" name="ordertime"   />
+                                                <label for="ordertime4" class="glyphicon fdayicon fdayicon-delivery"></label>
+                                            </div>    
+                                    	</td>
+									</tr>
+									<tr class="s_tr" datakey="20150804" datavalue="08-04|周二">
+                                    	<td>08-04|周二</td>
+										<td class='s_td' timekey="0918" timevalue="09:00-18:00">
+                                            <div class="input-group text-center">
+                                                <input type="radio" id="ordertime5" name="ordertime"   />
+                                                <label for="ordertime5" class="glyphicon fdayicon fdayicon-delivery"></label>
+                                            </div>    
+                                        </td>
+									</tr>
+								</tbody>
+                        	</table>          
+                    	</div>
+					</div>
+            	</div>
+                -->
+            </li>
+            <li>
+                <div class="m-order-item">
+                    <a href="javascript:;" id="orderpay"><span class="pull-right">货到付款</span>支付方式</a>
+                </div>
+                <!--
+                <div class="m-order-item">
+                    <a href="javascript:;" id="orderpay"><span class="pull-right">请选择</span>支付方式</a>
+                </div>
+                <div aria-hidden="true" aria-labelledby="mySmallModalLabel" role="dialog" tabindex="-1" class="modal fade modal-order modal-orderpay" style="display: none;">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content ">
+                            <h4>支付方式<span class="pull-right m-dialog-close"></span></h4>
+							<h5>在线支付</h5>
+                            <ul class="list-unstyled modal-orderpay-list">
+  								<li class="clearfix">
+									<input type="hidden" value="1" class="pay_parent_id">
+                                    <input type="hidden" value="0" class="pay_id">
+                                    <input type="hidden" value="支付宝" class="pay_name">
+                                    <input type="hidden" value="在线支付" class="payment_name">
+                                    <input type="radio" id="radiopay1" name="radiopay" class="show">
+                                	<label for="radiopay1"><img style="height:20px;margin-right:5px;" src="http://img4.fruitday.com/assets/images/bank/app/1_0.png">支付宝</label>
+                                </li>
+                            </ul>
+                            <h5>网上银行支付</h5>
+                            <ul class="list-unstyled modal-orderpay-list">
+                               	<li class="clearfix">
+                                   	<input type="hidden" value="3" class="pay_parent_id">
+                                   	<input type="hidden" value="00102" class="pay_id">
+                                   	<input type="hidden" value="浦发银行信用卡(活动中)" class="pay_name">
+                                   	<input type="hidden" value="网上银行支付" class="payment_name">
+                                   	<input type="radio" id="radiopay2" name="radiopay" class="show">
+                                   	<label for="radiopay2"><img style="height:20px;margin-right:5px;" src="http://img4.fruitday.com/assets/images/bank/app/3_00102.png">浦发银行信用卡(活动中)</label>
+                              	</li>
+								<li class="clearfix">
+	                                <input type="hidden" value="3" class="pay_parent_id">
+	                                <input type="hidden" value="00003" class="pay_id">
+	                                <input type="hidden" value="中国建设银行" class="pay_name">
+	                                <input type="hidden" value="网上银行支付" class="payment_name">
+	                                <input type="radio" id="radiopay3" name="radiopay" class="show">
+	                                <label for="radiopay3"><img style="height:20px;margin-right:5px;" src="http://img4.fruitday.com/assets/images/bank/app/3_00003.png">中国建设银行</label>
+	                           	</li>
+	                 			<li class="clearfix">
+	                                <input type="hidden" value="3" class="pay_parent_id">
+	                                <input type="hidden" value="00100" class="pay_id">
+	                                <input type="hidden" value="民生银行家园卡" class="pay_name">
+	                                <input type="hidden" value="网上银行支付" class="payment_name">
+	                                <input type="radio" id="radiopay4" name="radiopay" class="show">
+	                                <label for="radiopay4"><img style="height:20px;margin-right:5px;" src="http://img4.fruitday.com/assets/images/bank/app/3_00100.png">民生银行家园卡</label>
+	                                <small class="help-block">民生银行（家园卡）支付优惠；民生银行（家园卡）支付优惠</small>                                    </li>
+	            			</ul>
+        					<h5>帐户余额支付</h5>
+                            <ul class="list-unstyled modal-orderpay-list">
+                   				<li class="clearfix">
+	                                <input type="hidden" value="5" class="pay_parent_id">
+	                                <input type="hidden" value="0" class="pay_id">
+	                                <input type="hidden" value="账户余额支付" class="pay_name">
+	                                <input type="hidden" value="帐户余额支付" class="payment_name">
+	                                <input type="radio" id="radiopay5" name="radiopay" class="show">
+	                                <label for="radiopay5"><img style="height:20px;margin-right:5px;" src="http://img4.fruitday.com/assets/images/bank/app/5_0.png">账户余额支付</label>
+                                </li>
+                            </ul>
+                        </div>                        
+                    </div>
+                </div>
+                -->
+                
+                <!--
+				<div class="m-order-item">
+                	<a href="/order/couponList//0"><span class="pull-right">请选择</span>使用优惠券(0)</a>
+                </div>                
+                -->
+                
+                <!--
+                <div class="m-order-item">使用积分(最多可抵扣¥<font id="order_jf_limit">5</font>元)
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" value="1" checked='checked'>
+                        <label class="onoffswitch-label" for="myonoffswitch">
+                            <div class="onoffswitch-inner">
+                                <div class="onoffswitch-active">ON</div>
+                                <div class="onoffswitch-inactive">OFF</div>
+                            </div>
+                            <div class="onoffswitch-switch"></div>
+                        </label>
+                    </div>
+                    <div class="m-order-integral" style="display:block;">
+                        <p><span class="pull-right"><input id="order_use_jf" type="number" orderusejf="5" value="5" class="form-control input-sm m-order-int" /> 元</span>使用整数金额</p>
+                    </div>
+                </div>
+                -->  
+            </li>
+
+           	<!--
+           	<li id="fp_li" >
+				<div class="m-order-item">是否开发票
+                    <input type="hidden" id="fp" value="">
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="onoffswitch2" class="onoffswitch-checkbox" id="myonoffswitch2" value="0" >
+                        <label class="onoffswitch-label" for="myonoffswitch2">
+                            <div class="onoffswitch-inner">
+                                <div class="onoffswitch-active">ON</div>
+                                <div class="onoffswitch-inactive">OFF</div>
+                            </div>
+                            <div class="onoffswitch-switch"></div>
+                        </label>
+                    </div>
+                    <div class="m-order-item m-order-integral" id="integral-fp" >
+                        <a href="/order/orderInvoice"><span class="pull-right"> 请选择</span>发票信息</a>
+                    </div>
+                </div>
+           	</li>
+           	-->
+           	
+           	<li>
+                <div class="m-order-item">
+                    <div class="clearfix m-order-prolist-tips"><span class="glyphicon fdayicon fdayicon-unfold pull-right" id="m-order-prolist"></span>商品清单</div>
+                    <div class="m-cartlist">
+						<ul class="list-unstyled">
+           					#foreach($sku in $cartInfo.skuList)
+           						<li>
+									<a href="/detail/index/$!{sku.itemId}.html">
+	                  					<img class="lazy pull-left" data-original="$!sku.image" src="$!sku.image" alt="">
+	                                    <div class="m-cartlist-info">
+	                                        <h3>$!sku.name</h3>
+	                                        <h4>$!sku.salesPropertyName</h4>
+	                                        <h5>￥$!sku.skuPrice</h5>                           
+	                                    </div>
+	                                </a>
+	                           		<span class="m-cartlist-nums">x&nbsp;$!sku.num</span>
+	                       		</li> 
+           					#end               
+                        </ul>    
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="m-order-item">
+                    <span class="pull-right orange" id="goods_amount" money="$!cartInfo.totleSalePrice">￥$!cartInfo.totleSalePrice</span>商品总价
+                </div>
+                <!--
+                <div class="m-order-item">
+                    <span class="pull-right orange" id="method_money" money="0">￥0</span>运费
+                </div>
+                <div class="m-order-item">
+                    <span class="pull-right" id="pmt_goods" money="0">￥0</span>商品减免
+                </div>
+                <div class="m-order-item">
+                    <span class="pull-right" id="use_jf_money" money="5">￥<font>5</font></span>积分抵扣
+                </div>
+                <div class="m-order-item">
+                    <span class="pull-right" id="card_money" money="0">￥0</span>优惠券抵扣
+                </div>
+                <div class="m-order-item">
+                    <span class="pull-right" id="pay_discount" money="0">￥0</span>其他抵扣
+                </div>
+                -->
+            </li>
+        </ul>
+    </section>
+
+    <input type="hidden" id="usermobile" value="18514255209">
+    <input type="hidden" id="pay_parent_id" value="7">
+    
+
+    <!--
+    <div class="alert alert-warning m-order-tips" id="pay_send_code" role="alert" style="display:none;">
+        <div class="input-group">
+            <input type="number" class="form-control" id="identcode" placeholder="输入验证码" disabled />
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" id="TestGetCode"><span>点击获取</span><span class="hide">还剩<b id="timeout">30</b>秒</span></button>
+            </span>
+        </div>
+    </div>
+    -->
+
+	<div style="height:200px;">&nbsp;</div>
+    
+	<nav class="navbar navbar-default navbar-fixed-bottom m-component-foot" role="navigation">
+      	<div class="container">
+        	<div class="navbar-text navbar-left pull-left" id="order_money">￥<span>$!cartInfo.totleSalePrice</span></div> 
+        	<button type="button" class="btn btn-warning navbar-btn pull-right" id="order-submit">提交订单</button>
+      	</div>
+    </nav>
+
+
+<script src="/misc/style/address/api_error.js"></script>
+<script src="/misc/style/order/order.js"></script>
+
+</body></html>

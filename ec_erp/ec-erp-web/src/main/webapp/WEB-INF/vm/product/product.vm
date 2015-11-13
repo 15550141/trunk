@@ -1,0 +1,668 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    	<meta http-equiv="expires" content="0" />
+        <title>管理页面</title>
+        <link href="/style/erpstyle.css"rel="stylesheet" type="text/css" />
+        <script language="javascript" src="/js/jquery-1.6.2.min.js"></script>
+        <script language="javascript" src="/js/erpstyle1.js"></script>
+        <script language="javascript" src="/js/common.js"></script>
+    </head>
+    <body>
+
+<form id="f1" name="f1" method="post" >
+<div class="box"><!--标题区开始-->
+<div class="title1">
+<div class="left">
+<div class="title_gl">商品发布</div>
+<div class="title_fbt"></div>
+<div class="bh"></div>
+</div>
+<div class="right">
+<div class="zt"></span></div>
+</div>
+</div>
+<!--标题区结束-->
+<div style="height: 10px;"></div>
+
+
+<div class="panel_search1"><!--基本信息区开始-->
+<table>
+	<tr>
+		<td style="font-weight: bold;" align="right">基本信息</td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px">商品分类：</td>
+		<td align="left" style="width: 340px">
+			<select name="categoryId1" id="categoryId1" style="width: 100px"> </select>
+			<select name="categoryId2" id="categoryId2" style="width: 100px"> </select>
+		</td>
+
+		<td></td>
+	</tr>
+	
+	<tr>
+		<td align="right" style="width: 100px">*商品名称：</td>
+		<td align="left" style="width: 600px">
+			<input type="text" name="itemName" maxlength="50" id="itemName" value="$!{item.itemName}" style="width: 200px" />例如：山西种植基地特供优质新玉米（6-45个字）
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><span id="itemNameSp"></span></td>
+	
+	</tr>
+</table>
+</div>
+<!--基本信息区结束-->
+
+
+<!--销售属性区开始-->
+<div id = "propertyDiv" class="panel_search1">
+<table>
+	<tr>
+		<td style="font-weight: bold; width: 100px" align="right">销售属性</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px">规格：</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+<table>
+
+	<tr  id="propertyTB">
+		<td align="left" style="width: 200px"><!--
+			<input type="checkbox" id="invoiceTypePT" name="bizOrder.invoiceType" value="1" />10公斤
+			<input type="checkbox" id="invoiceTypeZZ" name="bizOrder.invoiceType" value="2" checked="checked" />20公斤
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			--><!--  
+			<input type="text" name="newProperty" maxlength="30" id="newProperty" value="" style="width: 200px" />
+			<a id="delScript" href="#" style="color: blue;"> 添加 </a> -->
+		</td>
+		<td></td>
+	</tr>
+</table>
+</div>
+<!--销售属性区结束-->
+
+<!--价格库存开始-->
+<div id = "priceWithPropertyDiv" class="panel_search1" >
+<table>
+	<tr>
+		<td style="font-weight: bold; width: 100px" align="right">价格库存</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+<table id="priceTB">
+	<tr>
+
+	</tr><!--
+	
+	<tr>
+		<td style="width: 100px" align="right">10公斤:</td>
+		<td align="right" style="width: 100px">*阿土价：</td>
+		<td style="width: 80px">
+			<input type="text" name="tbPrice" id="tbPrice" value="" style="width: 80px" />
+		</td>
+		
+		<td align="right" style="width: 100px">供应量：</td>
+		<td style="width: 80px">
+			<input type="text" name="stock" id="stock" value="" style="width: 80px" />
+		</td>
+		
+		<td align="right" style="width: 100px">最低起卖量：</td>
+		<td style="width: 80px">
+			<input type="text" name="minSaleNum" id="minSaleNum" value="" style="width: 80px" />
+		</td>
+		<td align="right" style="width: 100px">条形码：</td>
+		<td style="width: 80px">
+			<input type="text" name="barCode" id="barCode" value="" style="width: 80px" />
+		</td>
+		<td></td>
+	</tr>
+	--></table>
+</div>
+<!--价格库存区结束-->
+
+
+<!--价格库存开始-->
+<div id = "priceDiv" class="panel_search1" style="display: none;">
+
+<table>
+	<tr>
+		<td style="font-weight: bold; width: 100px" align="right">价格库存</td>
+		<td></td>
+		</tr>
+	
+	<tr>
+		<td align="right" style="width: 100px">*阿土价：</td>
+		<td style="width: 80px">
+			<input type="text" name="tbPriceNoPro" id="tbPriceNoPro" value="" style="width: 80px" />&nbsp;元
+		</td>
+		
+		<td align="right" style="width: 100px">供应量：</td>
+		<td style="width: 80px">
+			<input type="text" name="stockNoPro" id="stockNoPro" value="" style="width: 80px" />
+		</td>
+		
+		<td align="right" style="width: 100px">最低起卖量：</td>
+		<td style="width: 80px">
+			<input type="text" name="minSaleNumNoPro" id="minSaleNumNoPro" value="" style="width: 80px" />
+		</td>
+		<td align="right" style="width: 100px">条形码：</td>
+		<td style="width: 80px">
+			<input type="text" name="barCodeNpPro" id="barCodeNoPro" value="" style="width: 80px" />
+		</td>
+		<td></td>
+</table>
+</div>
+<!--价格库存区结束-->
+
+
+<!--扩展信息区开始-->
+<div class="panel_search1">
+<table>
+	<tr>
+		<td style="font-weight: bold; width: 100px" align="right">扩展信息</td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px">供货地址：</td>
+		<td align="left" style="width: 340px">
+		<select name="supplyProvince" id="supplyProvince" style="width: 110px">
+			<option value="1">北京</option>
+			<option value="2">上海</option>
+			<option value="3">天津</option>
+			<option value="4">重庆</option>
+			<option value="5">河北</option>
+			<option value="6">山西</option>
+			<option value="7">河南</option>
+			<option value="8">辽宁</option>
+			<option value="9">吉林</option>
+			<option value="10">黑龙江</option>
+			<option value="11">内蒙古</option>
+			<option value="12">江苏</option>
+			<option value="13">山东</option>
+			<option value="14">安徽</option>
+			<option value="15">浙江</option>
+			<option value="16">福建</option>
+			<option value="17">湖北</option>
+			<option value="18">湖南</option>
+			<option value="19">广东</option>
+			<option value="20">广西</option>
+			<option value="21">江西</option>
+			<option value="22">四川</option>
+			<option value="23">海南</option>
+			<option value="24">贵州</option>
+			<option value="25">云南</option>
+			<option value="26">西藏</option>
+			<option value="27">陕西</option>
+			<option value="28">甘肃</option>
+			<option value="29">青海</option>
+			<option value="30">宁夏</option>
+			<option value="31">新疆</option>
+			<option value="32">台湾</option>
+			<option value="42">香港</option>
+			<option value="43">澳门</option>
+			<option value="84">钓鱼岛</option>
+		</select> <select name="supplyCity" id="supplyCity" style="width: 110px">
+		</select> <select name="supplyCounty" id="supplyCounty" style="width: 110px">
+		</select></td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px">*产地：</td>
+		<td align="left" style="width: 340px">
+		<select name="originProvince" id="originProvince" style="width: 110px">
+			<option value="1">北京</option>
+			<option value="2">上海</option>
+			<option value="3">天津</option>
+			<option value="4">重庆</option>
+			<option value="5">河北</option>
+			<option value="6">山西</option>
+			<option value="7">河南</option>
+			<option value="8">辽宁</option>
+			<option value="9">吉林</option>
+			<option value="10">黑龙江</option>
+			<option value="11">内蒙古</option>
+			<option value="12">江苏</option>
+			<option value="13">山东</option>
+			<option value="14">安徽</option>
+			<option value="15">浙江</option>
+			<option value="16">福建</option>
+			<option value="17">湖北</option>
+			<option value="18">湖南</option>
+			<option value="19">广东</option>
+			<option value="20">广西</option>
+			<option value="21">江西</option>
+			<option value="22">四川</option>
+			<option value="23">海南</option>
+			<option value="24">贵州</option>
+			<option value="25">云南</option>
+			<option value="26">西藏</option>
+			<option value="27">陕西</option>
+			<option value="28">甘肃</option>
+			<option value="29">青海</option>
+			<option value="30">宁夏</option>
+			<option value="31">新疆</option>
+			<option value="32">台湾</option>
+			<option value="42">香港</option>
+			<option value="43">澳门</option>
+			<option value="84">钓鱼岛</option>
+		</select> <select name="originCity" id="originCity" style="width: 110px">
+		</select> <select name="originCounty" id="originCounty" style="width: 110px">
+		</select></td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px">产地详细信息：</td>
+		<td>
+			<input type="text" name="originAddress" id="originAddress" value="" style="width: 250px" />
+		</td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px">包装方式：</td>
+		<td style="width: 100px" id="packingTypeTB">
+			<select name="packingType" id="packingType" style="width: 110px">
+				<option value="1">箱装</option>
+				<option value="2">袋装</option>
+				<option value="3">框装</option>
+				<option value="4">其他</option>
+			</select>
+			<input type="text" name="packingTypeCustom" id="packingTypeCustom" value="" style="width: 100px" />
+		</td>
+		<td align="right" >单位：</td>
+		<td align="left" style="width: 100px">					
+			<select name="unit" id="unit" style="width: 60px">
+				<option value="1">件</option>
+				<option value="2">箱</option>
+				<option value="3">斤</option>
+				<option value="4">框</option>
+				<option value="5">吨</option>
+			</select>
+			</td>
+	</tr>
+	
+	<tr>
+		<td align="right" style="width: 100px">净重：</td>
+		<td style="width: 150px">
+			<input type="text" name="weight" id="weight" value="" style="width: 100px" />&nbsp;（例：10千克）
+		</td>
+		<td align="right" style="width: 100px">正负差值：</td>
+		<td style="width: 100px">
+			<input type="text" name="differWeight" id="differWeight" value="" style="width: 100px" />&nbsp;（例：0.1千克）
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px">检查报告：</td>
+		<td style="width: 100px">
+			<input type="radio" id="ifHaveZjbg" name="ifHaveZjbg" value="1" />无
+			<input type="radio" id="ifHaveZjbg" name="ifHaveZjbg" value="2" checked="checked" />有
+		</td>
+		<td align="right" style="width: 100px">产品认证：</td>
+		<td style="width: 100px">
+			<input type="radio" id="ifHaveCprz" name="ifHaveCprz" value="1" />无
+			<input type="radio" id="ifHaveCprz" name="ifHaveCprz" value="2" checked="checked" />有
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td align="right" style="width: 100px">上市时间：</td>
+		<td>
+			<input type="text" name="marketStartTimeString" id="marketStartTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" value="$!dateFormatUtils.format($!{item.marketStartTime},"yyyy-MM-dd HH:mm:ss")" style="width: 100px" />
+			至：
+			<input type="text" name="marketEndTimeString" id="marketEndTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" value="$!dateFormatUtils.format($!{item.marketEndTime},"yyyy-MM-dd HH:mm:ss")" style="width: 100px" />
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+	<td align="right" style="width: 100px">售卖时间：</td>
+		<td>
+			<input type="text" name="autoOnShelfTimeString" id="autoOnShelfTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" value="$!dateFormatUtils.format($!{item.autoOnShelfTime},"yyyy-MM-dd HH:mm:ss")" style="width: 150px" />
+			至：
+			<input type="text" name="autoOffShelfTimeString" id="autoOffShelfTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" value="$!dateFormatUtils.format($!{item.autoOffShelfTime},"yyyy-MM-dd HH:mm:ss")" style="width: 150px" />
+		</td>
+		<td></td>
+	</tr>
+	
+	<tr>
+		<td align="right" style="width: 100px">是否支持定金支付：</td>
+		<td style="width: 100px">
+			<input type="radio" id="ifDepositNo" name="ifDeposit" value="1" />否
+			<input type="radio" id="ifDepositYes" name="ifDeposit" value="2" checked="checked" />是
+		</td>
+		<td align="right" style="width: 100px">定金支付比例：</td>
+		<td style="width: 100px">
+			<input align="left" type="text" name="depositRate" id="depositRate" value="" style="width: 80px" />&nbsp;&nbsp;%
+		</td>
+		<td></td>
+	</tr>
+</table>
+</div>
+<!--扩展信息区结束-->
+
+<!--图片区开始-->
+<div class="panel_search1">
+<table>
+	<tr>
+		<td style="font-weight: bold; width: 100px" align="right">图片</td>
+	</tr>
+	<tr>
+			<td align="right" style="width: 100px">商品主图：</td>
+			<td align="right"  style="width: 100px" >
+				<input id="mainImage" type="file" name="image"/>
+            </td>
+            <td align="left"   style="width: 200px" >
+				<input type="button" id="btupload0" value="上传"><span id="spUpload0"></span>
+			</td>
+            <td>&nbsp;</td>
+	</tr>
+	<tr>
+			<td align="right" style="width: 100px">细节图1：</td>
+			<td align="right"  style="width: 100px" >
+				<input id="image1" type="file" name="image1"/>
+            </td>
+            <td align="left"   style="width: 200px" >
+				<input type="button" id="btupload1" value="上传"><span id="spUpload1"></span>
+			</td>
+            <td>&nbsp;</td>
+	</tr>
+	<tr>
+			<td align="right" style="width: 100px">细节图2：</td>
+			<td align="right"  style="width: 100px" >
+				<input id="image2" type="file" name="image2"/>
+            </td>
+            <td align="left"   style="width: 200px" >
+				<input type="button" id="btupload2" value="上传"><span id="spUpload2"></span>
+			</td>
+            <td>&nbsp;</td>
+	</tr>
+	<tr>
+			<td align="right" style="width: 100px">细节图3：</td>
+			<td align="right"  style="width: 100px" >
+				<input id="image3" type="file" name="image3"/>
+            </td>
+            <td align="left"   style="width: 200px" >
+				<input type="button" id="btupload3" value="上传"><span id="spUpload3"></span>
+			</td>
+            <td>&nbsp;</td>
+	</tr>
+	<tr>
+			<td align="right" style="width: 100px">细节图4：</td>
+			<td align="right"  style="width: 100px" >
+				<input id="image4" type="file" name="image4"/>
+            </td>
+            <td align="left"   style="width: 200px" >
+				<input type="button" id="btupload4" value="上传"><span id="spUpload4"></span>
+			</td>
+            <td>&nbsp;</td>
+	</tr>
+	<tr>
+			<td align="right" style="width: 100px">商品描述：</td>
+	</tr>
+</table>
+</div>
+<!--<div class="panel_search1">
+    <h1>PC端：</h1>
+    <script id="editorPC" type="text/plain" style="width:1024px;height:500px;"></script>
+</div>
+<div class="panel_search1">
+    <h1>手机端：</h1>
+    <script id="editorAPP" type="text/plain" style="width:1024px;height:500px;"></script>
+</div>
+-->
+<div class="panel_search1">
+    <h1>PC端：</h1>
+    <textarea  rows="30" cols="90" id="contentInfoPC" class="xheditor"> pcDescriptionInfo</textarea>
+</div>
+<div class="panel_search1">
+    <h1>APP端：</h1>
+    <textarea  rows="30" cols="90" id="contentInfoAPP" class="xheditor"> appDescriptionInfo</textarea>
+</div>
+
+<!--销售属性区结束-->
+<input type="button" id="subButton" value="提交" style="position: absolute; left: 50%; width: 100px;" />
+<input type="hidden" id="hasPropertyInput" name="hasPropertyInput" value="1" />
+<input type="hidden" id="imageUrl0" name="imageMainUrl" value="" />
+<input type="hidden" id="imageUrl1" name="imageUrl" value="" />
+<input type="hidden" id="imageUrl2" name="imageUrl" value="" />
+<input type="hidden" id="imageUrl3" name="imageUrl" value="" />
+<input type="hidden" id="imageUrl4" name="imageUrl" value="" />
+
+<input type="hidden" id="pcDescriptionInfo" name="pcDescriptionInfo" value="" /> 
+<input type="hidden" id="appDescriptionInfo" name="appDescriptionInfo" value="" />
+
+</form>
+<!--盒子结束-->
+ <script language="javascript" src="$assetModule.getTarget("/My97DatePicker/WdatePicker.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/js/product/productJS.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/js/ajaxfileupload.js")"></script>
+<script language="javascript" src="$assetModule.getTarget("/js/jquery.showLoading.js")"></script>
+
+
+<script type="text/javascript" charset="utf-8" src="/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+<script type="text/javascript" src="/js/xheditor-zh-cn.min.js"></script>
+
+
+<script langusge="javascript" >
+var beforeEditorData = null;
+
+//实例化编辑器
+//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+//var ue = UE.getEditor('editorPC');
+//var ue2 = UE.getEditor('editorAPP');
+//初始化页面
+$(document).ready(function(){
+
+	//加载一级分类
+	jQuery.ajax( {
+		url : "/category/getLevel",
+		type : "post",
+		dataType : "json",
+		data : "level=1",
+		success : function(data) {
+			if (data.msg == "success") {
+				$("#categoryId1").empty(); // 清空分类选项
+				var categoryList=data.categoryList;
+				for ( var i = 0; i < categoryList.length; i++) {
+					var category = categoryList[i];
+					
+					$("<option value='" + category.categoryId + "'>" 
+							+ category.categoryName + "</option>").appendTo("#categoryId1");
+					
+				}
+
+				
+				//加载二级分类 start
+				jQuery.ajax( {
+					url : "/category/getLevel",
+					type : "post",
+					dataType : "json",
+					data : "level=2&pId=1",
+					success : function(data) {
+						if (data.msg == "success") {
+							$("#categoryId2").empty(); // 清空分类选项
+							var categoryList=data.categoryList;
+							for ( var i = 0; i < categoryList.length; i++) {
+								var category = categoryList[i];
+								if(i==0){
+									$("<option value='" + category.categoryId + "' checked=ture>" 
+											+ category.categoryName + "</option>").appendTo("#categoryId2");
+									
+									}else{
+										$("<option value='" + category.categoryId + "'>" 
+												+ category.categoryName + "</option>").appendTo("#categoryId2");
+										}
+								
+							}
+
+							//判断二级分类是否有销售属性start
+							$.ajax( {
+								url : "/category/getProperty",
+								type : "post",
+								dataType : "json",
+								data : "categoryId="+$("#categoryId2").val(),
+								success : function(data) {
+									if (data.success == "success") {
+										if(data.hasProperty=="no"){
+											$("#propertyDiv").hide();
+											$("#priceWithPropertyDiv").hide();
+											$("#priceDiv").show();
+											$("#hasPropertyInput").val("0");//没有销售属性
+											return;
+										}else{
+											$("#propertyDiv").show();
+											$("#priceWithPropertyDiv").show();
+											$("#priceDiv").hide();
+											$("#hasPropertyInput").val("1");//有销售属性
+											if(data.haveProperyValue=="no"){
+												alert(data.msg);
+												//没有销售属性，情况销售属性类表
+												$("#propertyTB").empty();
+												$("#priceTB").empty();
+												return;
+											}
+											var propertyValueList=data.propertyValueList;
+											$("#propertyTB").empty();
+											$("#priceTB").empty();
+											for(var i=0; i<propertyValueList.length; i++){
+												var property=propertyValueList[i];
+												
+											
+												//动态添加属性值区
+												$("#propertyTB").append(
+														"<td style='width: 20px'></td><td align='left' style='width: 70px'>"+
+														"<input type='checkbox' id='"+property.propertyValueId+"' name='"+property.propertyValueName+"' value='"+
+														property.propertyValueId+"' onclick='propertyCheck(this.value)'/>"+property.propertyValueName+
+														"</td>");
+												
+												
+												
+												//动态添加价格库存区
+												$("#priceTB").append(
+														"<tr id='priceTR_"+property.propertyValueId+"' style='display: none;'> <td style='width: 100px' align='right'>"+property.propertyValueName+
+														"</td><td align='right' style='width: 100px'>*阿土价：</td>"+
+														"<td style='width: 100px'><input type='text' name='tbPrice' id='tbPrice_"+property.propertyValueId+"' value='' style='width: 80px' />&nbsp;元</td>"+
+														"<td align='right' style='width: 100px'>供应量：</td>"+
+														"<td style='width: 80px'><input type='text' name='stock' id='stock_"+property.propertyValueId+"' value='' style='width: 80px' /></td>"+
+														"<td align='right' style='width: 100px'>最低起卖量：</td>"+
+														"<td style='width: 80px'><input type='text' name='leastBuy' id='leastBuy_"+property.propertyValueId+"' value='' style='width: 80px' /></td>"+
+														"<td align='right' style='width: 100px'>条形码：</td>"+
+														"<td style='width: 80px'><input type='text' name='barCode' id='barCode_"+property.propertyValueId+"' value='' style='width: 80px' /></td>"+
+														"<td><input type = 'hidden' id='ifChoose_"+property.propertyValueId+"' name= 'ifChoose' value =''/>"+
+														"<input type = 'hidden' name= 'propertyId' value ='" +property.propertyId+"'/>"+
+														"<input type = 'hidden' name= 'propertyValueId' value ='" +property.propertyValueId+"'/></td></tr>");
+											}
+										}
+
+									} else {
+										alert(data.msg);
+									}
+								},
+								errot : function() {
+									alert("系统超时！");
+								}
+						});
+						//判断二级分类是否有销售属性end
+
+
+
+						} else {
+							alert("无商品一级分类！");
+						}
+					},
+					errot : function() {
+						alert("系统超时！");
+					}
+					});
+				//加载二级分类 end
+
+					
+			} else {
+				alert("无商品一级分类！");
+			}
+		},
+		errot : function() {
+			alert("系统超时！");
+		}
+		});
+	//加载一级分类end
+
+
+	//其他包装方式默认不选
+	$("#packingTypeCustom").hide();
+
+	//富文本控件
+	var plugins = {
+			searchReplace:{c:'xheIcon xheBtnCut',t:'查找替换',s:'ctrl+9',h:1,e:function(){
+                var _this=this;
+                var jTest=$('<div>查找替换</div><div style="text-align:left;">查找：<input type="text" id="bText" /><br/>替换：<input type="text" id="aText" /><input type="button" id="xheSave" value="确定" /></div>');
+                var jSave=$('#xheSave',jTest);
+                 _this.showDialog(jTest);
+				jSave.click(function(){
+					var dataBefore = $('#bText',jTest).val();
+					var dataAfter = $('#aText',jTest).val();
+					if(dataBefore.length > 0 && dataAfter.length > 0){
+						beforeEditorData = _this.getSource();
+                    	var data = _this.getSource();
+						dataBefore = dataBefore.replace("?", "\\?");
+						data = data.replace(new RegExp(dataBefore,"gm"), dataAfter);
+						_this.setSource(data);
+					}
+                    _this.hidePanel();
+                    return false;    
+                });
+               
+        	}}
+		}
+		
+		var editors = $("#contentInfoPC").xheditor({
+			plugins: plugins,
+            tools:'full',
+            skin:'default',
+			html5Upload:false,
+            upMultiple:false,
+			//wordDeepClean:false,
+            upImgUrl: "/upload/upload.action?_charset_=utf-8",
+            upImgExt: "jpg,jpeg,gif,bmp,png"
+        });
+		function insertUpload(msg) {
+				var _msg = msg.toString();
+				alert(_msg);
+		};
+		$('#btnTest2').click(function(){editors.exec('searchReplace');});
+
+		var editors = $("#contentInfoAPP").xheditor({
+			plugins: plugins,
+            tools:'full',
+            skin:'default',
+			html5Upload:false,
+            upMultiple:false,
+			//wordDeepClean:false,
+            upImgUrl: "/upload/upload.action?_charset_=utf-8",
+            upImgExt: "jpg,jpeg,gif,bmp,png"
+        });
+		function insertUpload(msg) {
+				var _msg = msg.toString();
+				alert(_msg);
+		};
+
+	
+	});
+</script>
+
+</body>
+</html>

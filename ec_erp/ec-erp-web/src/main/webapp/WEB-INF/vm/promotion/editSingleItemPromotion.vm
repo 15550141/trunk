@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    	<meta http-equiv="expires" content="0" />
+        <title>管理页面</title>
+        <link href="/style/erpstyle.css"rel="stylesheet" type="text/css" />
+        <script language="javascript" src="/js/jquery-1.6.2.min.js"></script>
+        <script language="javascript" src="/js/erpstyle1.js"></script>
+        <script language="javascript" src="/js/common.js"></script>
+    </head>
+    <body>
+<!--盒子开始-->
+<form id="f1" name="f1" method="post">
+<div class="box"> 
+    <!--标题区开始-->
+    <div class="title">
+        <div class="left">
+            <div class="title_gl">促销详情</div>
+            <div class="title_fbt"></div>
+            <div class="bh"></div>
+        </div>
+    </div>
+    <!--标题区结束-->
+    <!--查询区开始-->
+    <div class="panel_search">
+		<table border="0" cellpadding="0" cellspacing="5">
+    		<tr height="30px">
+    			<td align="right" width="80" >促销名称：</td>
+				<td align="left" >
+                <input type="text" name="promotionName" id="promotionName" value="$!{promotionInfo.promotionName}" />
+    			</td>
+    		</tr>
+            <tr height="30px">
+    			<td align="right">开始时间：</td>
+				<td align="left" >
+                <input type="text" name="startTimeString" id="startTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" value="$!dateFormatUtils.format($!{promotionInfo.startTime},"yyyy-MM-dd HH:mm:ss")" />
+    			<span>结束时间：</span>
+                <input type="text" name="endTimeString" id="endTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" value="$!dateFormatUtils.format($!{promotionInfo.endTime},"yyyy-MM-dd HH:mm:ss")" />
+    			</td>
+    		</tr>
+    		
+    		<tr height="30px">
+    			<td align="right" >促销商品ID：</td>
+				<td align="left" >
+    				<input type="text" name="itemId" id="itemId" value="" style="width:80px;" />
+    				<input type="button" name="addProductBut" id="addProductBut" value="添加商品" />
+    				<input type="button" name="clearProductBut" id="clearProductBut" value="重置商品" />
+    			</td>
+    			<td></td>
+    			<td></td>
+    		</tr>
+    		<tr>
+    			<td></td>
+    			<td>
+    				<span id="itemIdSp"></span>
+    			</td>
+    		</tr>
+    		<!--
+    		
+            <tr height="30px">
+    			<td align="right">商品状态：</td>
+				<td align="left" >
+    				<input type="checkbox" name="promotionId" id="promotionId" value="" checked="true" >仅支持上架商品</input>
+				</td>
+    		</tr>
+			--><tr height="30px">
+    			<td align="right">购买数量：</td>
+				<td align="left">
+					<span>单次最多购买数量</span>
+					<input type="text" name="purchaseNumberMax" id="purchaseNumberMax" value="$!{promotionInfo.purchaseNumberMax}" />
+    				<!--  <input type="checkbox" name="promotionId" id="promotionId" value="promotionId" >不限</input> -->
+				</td>
+    		</tr>
+			<tr height="30px">
+    			<td align="right"> </td>
+				<td align="left" >
+					<span>单次最少购买数量</span>
+					<input type="text" name="purchaseNumberMin" id="purchaseNumberMin" value="$!{promotionInfo.purchaseNumberMin}" />
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					
+				</td>
+    		</tr>
+		</table>
+    </div>
+    <!--查询区结束--> 
+	<p style="text-indent:25px;"><font color="#FF0000">*促销设置完成后该商品编码下新增加的sku不会参与该促销！</font></p>
+    <!--列表区开始-->
+    <div class="panel_grid">
+        <table style="border-collapse: collapse;" id="TH">
+        	<tr style="font-weight: bold;">
+				<th class="tdgoods" style="width: 100px" >商品ID</th>
+				<th class="tdgoods" style="width: 100px">SKU ID</th>
+				<th class="tdgoods" style="width: 100px">供应量</th>
+				<th class="tdgoods" style="width: 100px">状态</th>
+				<th class="tdgoods" style="width: 100px">目前售价(元)</th>
+				<th class="tdgoods" style="width: 100px">直降(元)</th>
+				<th class="tdgoods" style="width: 100px">直降后售价(元)</th>
+			</tr>
+
+			
+			</table>
+			<table style="border-collapse: collapse;" id="skuPromotionTB">
+			#foreach($promotionProductSku in $promotionProductSkuList)
+			 <tr>
+                <td style="width: 100px">$!{promotionProductSku.itemId}</td>
+                <td style="width: 100px">$!{promotionProductSku.skuId}</td>
+                <td style="width: 100px">$!{promotionProductSku.stock}</td>
+                <td style="width: 100px">$!{promotionProductSku.status}</td>
+                <td style="width: 100px">$!{promotionProductSku.tbPrice}</td>
+                <td style="width: 100px">
+	                <input type="text" name="deductionPrice" id="$!{promotionProductSku.skuId}" onblur="jg(this);" value="$!{promotionProductSku.deductionPrice}" style="width: 100px"  />
+	                <input type = "hidden" name= "skuId" value ="$!{promotionProductSku.skuId}"/>
+					<input type = "hidden" name= "itemIdHid" value ="$!{promotionProductSku.itemId}"/>
+					<input type = "hidden" id="tbPrice_$!{promotionProductSku.skuId}" name= "tbPriceHid" value ="$!{promotionProductSku.tbPrice}"/>
+                </td>
+                <td style="width: 100px">
+                <span id="newPrice_$!{promotionProductSku.skuId}">$!{promotionProductSku.lastPrice}</span>
+                </td>
+              </tr>
+             #end
+        	</table>	
+        	<br/>
+        	<input type="button" name="editPromotionBut" id="editPromotionBut" value="提交修改"  style="position: absolute; left: 40%; width: 100px;"/>
+        	<input type="button" name="cancelEditPromotionBut" id="cancelEditPromotionBut" value="取消修改"  style="position: absolute; left: 70%; width: 100px;"/>   
+    </div>
+    <!--列表区结束--> 
+    <input type="hidden" id="promotionType" name="promotionType" value="1" />
+    <input type="hidden" id="promotionId" name="promotionId" value="$!{promotionInfo.promotionId}" />
+</div>
+<!--盒子结束--> 
+</form>
+ <!--  <script language="javascript" src="/My97DatePicker/WdatePicker.js"></script> -->
+ <script language="javascript" src="$assetModule.getTarget("/My97DatePicker/WdatePicker.js")"></script>
+ <script language="javascript" src="$assetModule.getTarget("/js/promotion/promotionJS.js")"></script>
+ </body>
+ </html>

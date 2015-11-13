@@ -1,0 +1,10 @@
+<html>
+<head></head>
+<body>
+顺利打开页面<br />
+
+$!user.id <br />
+$!user.username <br />
+$!user.yn <br />
+</body>
+</html>
