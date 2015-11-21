@@ -97,13 +97,13 @@
 
 				<entry key="mainModule">
 					<bean class="com.ec.seller.common.utils.EcUrl">
-						<property name="url" value="http://shop.atu360.com/" />
+						<property name="url" value="http://www.binfenguoyuan.cn:8081/" />
 					</bean>
 				</entry>
 
 				<entry key="assetModule">
 					<bean class="com.ec.seller.common.utils.EcUrl">
-						<property name="url" value="http://shop.atu360.com/" />
+						<property name="url" value="http://www.binfenguoyuan.cn:8081/" />
 					</bean>
 				</entry>
 			</map>
