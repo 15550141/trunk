@@ -256,7 +256,7 @@
                 </div>
                 #if($!cartInfo.totlePreferentialPrice != 0)
 	                <div class="m-order-item">
-	                    <span class="pull-right" id="pmt_goods" money="$!cartInfo.totlePreferentialPrice">￥-$!cartInfo.totlePreferentialPrice</span>首单满19减5元优惠
+	                    <span class="pull-right" id="pmt_goods" money="$!cartInfo.totlePreferentialPrice">￥-$!cartInfo.totlePreferentialPrice</span>首单满19减5元优惠(首单减免活动不能使用会员卡支付)
 	                </div>
 	            #else
 	            	<div class="m-order-item">

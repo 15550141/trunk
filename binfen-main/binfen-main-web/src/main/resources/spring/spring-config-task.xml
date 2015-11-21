@@ -4,6 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- 刷新access_token 和 jsapi_ticket -->
+	<!-- 
 	<bean id="weixinUtils" class="com.ec.api.service.utils.WeixinUtils" />
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
@@ -21,6 +22,7 @@
 			</list>
 		</property>
 	</bean>
+	 -->
 	<!-- 刷新access_token 和 jsapi_ticket -->
 	
 	

@@ -128,6 +128,11 @@
                 <div class="m-order-item">
                     <span class="pull-right">￥$order.bigDecimalDiscountMoney</span>优惠金额
                 </div>
+                #if($order.bigDecimalDiscountMoney != 0)
+                	<div class="m-order-item">
+	                    <span class="pull-right">(首单减免活动不能使用会员卡支付)</span>
+	                </div>
+                #end
             </li>
             <!--
             <li>
