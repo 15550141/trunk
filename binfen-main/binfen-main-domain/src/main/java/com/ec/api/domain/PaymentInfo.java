@@ -17,18 +17,21 @@ public class PaymentInfo  implements Serializable{
     
     /** 支付记录ID-自增 */
     private Integer paymentId;
+    
+    private Integer uid;
 
     /** 订单ID */
     private Integer orderId;
     
-    /** 订单款项类型（1-定金OR全款支付  2-尾款支付） */
+    /** 订单支付方式（1、微信支付） */
     private Integer orderPayType;
 
-    /** 支付方式（1、连连支付 ） */
-    private Integer paymentMode;
 
     /** 支付信息类型(1、支付信息   2、支付成功确认信息) */
     private Integer paymentInfoType;
+    
+    /** 支付信息、第三方返回内容信息 */
+    private String paymentInfoMessage;
     
     /** 支付金额 */
     private Integer paymentMoney;
@@ -36,23 +39,14 @@ public class PaymentInfo  implements Serializable{
     /** 第三方支付单号 */
     private String paymentNumber;
 
-    /** 业务类型 (虚拟商品销售： 101001 实物商品销售： 109001) */
-    private String busiPartner;
-
     /** 支付订单时间 */
-    private String dtOrder;
+    private Date dtOrder;
 
     /** 订单有效时间 */
-    private Integer validOrder;
+    private Date validOrder;
 
     /** 清算日期 */
-    private String settleDate;
-
-    /** 银行名称 */
-    private String bankName;
-
-    /** 银行编号 */
-    private String bankCode;
+    private Date settleDate;
 
     /** 创建时间 */
     private Date created;
@@ -84,14 +78,6 @@ public class PaymentInfo  implements Serializable{
 		this.orderPayType = orderPayType;
 	}
 
-	public Integer getPaymentMode() {
-		return paymentMode;
-	}
-
-	public void setPaymentMode(Integer paymentMode) {
-		this.paymentMode = paymentMode;
-	}
-
 	public Integer getPaymentInfoType() {
 		return paymentInfoType;
 	}
@@ -117,52 +103,28 @@ public class PaymentInfo  implements Serializable{
 		this.paymentNumber = paymentNumber;
 	}
 
-	public String getBusiPartner() {
-		return busiPartner;
-	}
-
-	public void setBusiPartner(String busiPartner) {
-		this.busiPartner = busiPartner;
-	}
-
-	public String getDtOrder() {
+	public Date getDtOrder() {
 		return dtOrder;
 	}
 
-	public void setDtOrder(String dtOrder) {
+	public void setDtOrder(Date dtOrder) {
 		this.dtOrder = dtOrder;
 	}
 
-	public Integer getValidOrder() {
+	public Date getValidOrder() {
 		return validOrder;
 	}
 
-	public void setValidOrder(Integer validOrder) {
+	public void setValidOrder(Date validOrder) {
 		this.validOrder = validOrder;
 	}
 
-	public String getSettleDate() {
+	public Date getSettleDate() {
 		return settleDate;
 	}
 
-	public void setSettleDate(String settleDate) {
+	public void setSettleDate(Date settleDate) {
 		this.settleDate = settleDate;
-	}
-
-	public String getBankName() {
-		return bankName;
-	}
-
-	public void setBankName(String bankName) {
-		this.bankName = bankName;
-	}
-
-	public String getBankCode() {
-		return bankCode;
-	}
-
-	public void setBankCode(String bankCode) {
-		this.bankCode = bankCode;
 	}
 
 	public Date getCreated() {
@@ -181,6 +143,20 @@ public class PaymentInfo  implements Serializable{
 		this.modified = modified;
 	}
 
-    
+	public String getPaymentInfoMessage() {
+		return paymentInfoMessage;
+	}
+
+	public void setPaymentInfoMessage(String paymentInfoMessage) {
+		this.paymentInfoMessage = paymentInfoMessage;
+	}
+
+	public Integer getUid() {
+		return uid;
+	}
+
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
     
 }
