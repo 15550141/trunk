@@ -1,7 +1,17 @@
 package com.ec.api.service.impl;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -10,11 +20,13 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import com.ec.api.common.utils.JsonUtils;
 import com.ec.api.dao.OrderInfoDao;
 import com.ec.api.dao.PaymentInfoDao;
 import com.ec.api.domain.OrderInfo;
 import com.ec.api.domain.PaymentInfo;
 import com.ec.api.domain.query.PaymentInfoQuery;
+import com.ec.api.service.OrderInfoService;
 import com.ec.api.service.PaymentInfoService;
 import com.ec.api.service.result.Result;
 import com.ec.api.service.utils.EcUtils;
@@ -27,7 +39,129 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 	private OrderInfoDao orderInfoDao;
 	private DataSourceTransactionManager transactionManager;
 	
+	private OrderInfoService orderInfoService;
 	
+	//用户发起支付请求
+	@Override
+	public Result userCreatePayment(PaymentInfo paymentInfo) {
+		Result result = new Result();
+		try{
+			if(paymentInfo == null || paymentInfo.getOrderId() == null || paymentInfo.getUid() == null){
+				result.setSuccess(false);
+				result.setResultMessage("参数不正确");
+				return result;
+			}
+			//获取订单信息
+			OrderInfo orderInfo = orderInfoService.getOrderInfoByOrderIdAndUserId(paymentInfo.getOrderId(), paymentInfo.getUid());
+			if(orderInfo == null){
+				result.setSuccess(false);
+				result.setResultMessage("该订单号不存在");
+				return result;
+			}
+			
+			//此处放订单详细信息
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("orderMoney", orderInfo.getBigDecimalOrderMoney());
+			map.put("orderId", orderInfo.getOrderId());
+			map.put("consigneeName", orderInfo.getConsigneeName());
+			paymentInfo.setPaymentInfoMessage(JsonUtils.writeValue(map));
+
+			//发起支付类型
+			paymentInfo.setPaymentInfoType(1);
+			//订单总金额
+			paymentInfo.setPaymentMoney(orderInfo.getOrderMoney());
+			//第三方支付单号
+			String paymentNumber = this.getWxPayId(paymentInfo);
+			if(StringUtils.isBlank(paymentNumber)){
+				result.setSuccess(false);
+				result.setResultMessage("调用微信支付失败，请稍后重试");
+				return result;
+			}
+			paymentInfo.setPaymentNumber(paymentNumber);
+			
+			Calendar c = Calendar.getInstance();
+			c.add(Calendar.DATE, 1);
+			paymentInfo.setValidOrder(c.getTime());
+			
+			paymentInfoDao.insert(paymentInfo);
+			
+			result.setSuccess(true);
+		}catch (Exception e) {
+			log.error("添加支付信息异常	orderId="+paymentInfo.getOrderId(), e);
+			EcUtils.setExceptionResult(result);
+		}
+		
+		return result;
+	}
+	
+	//微信支付结果回调函数
+	@Override
+	public String wxCallback(String callbackString) {
+//		Result result = new Result();
+//		try{
+//			Document doc = DocumentHelper.parseText(callbackString);
+//			Element root = doc.getRootElement();
+//			Iterator<Element> it = root.elementIterator();
+//			
+////			String 
+//			while(it.hasNext()){
+//				
+//			}
+//			
+//			
+//			
+//			PaymentInfo paymentInfo = new PaymentInfo();
+//			//获取订单信息
+//			OrderInfo orderInfo = orderInfoService.getOrderInfoByOrderIdAndUserId(paymentInfo.getOrderId(), paymentInfo.getUid());
+//			if(orderInfo == null){
+//				result.setSuccess(false);
+//				result.setResultMessage("该订单号不存在");
+//				return null;
+//			}
+//			
+//			//此处放订单详细信息
+//			Map<String, Object> map = new HashMap<String, Object>();
+//			map.put("orderMoney", orderInfo.getBigDecimalOrderMoney());
+//			map.put("orderId", orderInfo.getOrderId());
+//			map.put("consigneeName", orderInfo.getConsigneeName());
+//			paymentInfo.setPaymentInfoMessage(JsonUtils.writeValue(map));
+//
+//			//发起支付类型
+//			paymentInfo.setPaymentInfoType(1);
+//			//订单总金额
+//			paymentInfo.setPaymentMoney(orderInfo.getOrderMoney());
+//			//第三方支付单号
+//			String paymentNumber = this.getWxPayId(paymentInfo);
+//			if(StringUtils.isBlank(paymentNumber)){
+//				result.setSuccess(false);
+//				result.setResultMessage("调用微信支付失败，请稍后重试");
+//				return null;
+//			}
+//			paymentInfo.setPaymentNumber(paymentNumber);
+//			
+//			Calendar c = Calendar.getInstance();
+//			c.add(Calendar.DATE, 1);
+//			paymentInfo.setValidOrder(c.getTime());
+//			
+//			paymentInfoDao.insert(paymentInfo);
+//			
+//			result.setSuccess(true);
+//		}catch (Exception e) {
+//			log.error("添加支付信息异常	orderId="+paymentInfo.getOrderId(), e);
+//			EcUtils.setExceptionResult(result);
+//		}
+//		
+//		return result;
+		
+		return null;
+	}
+	
+	private String getWxPayId(PaymentInfo paymentInfo){
+		
+		return null;
+	}
+	
+	//------------------------------------------------------------------------------------------------------------
 	@Override
 	public Result addPaymentInfo(final PaymentInfo paymentInfo) {
 		final Result result = new Result();
@@ -109,6 +243,8 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 			DataSourceTransactionManager transactionManager) {
 		this.transactionManager = transactionManager;
 	}
+
+	
 
 	
 }
