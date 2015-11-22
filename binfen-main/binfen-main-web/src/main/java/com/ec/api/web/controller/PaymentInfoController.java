@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ec.api.common.utils.CookieUtils;
 import com.ec.api.domain.PaymentInfo;
 import com.ec.api.domain.query.PaymentInfoQuery;
 import com.ec.api.service.AddressService;
@@ -20,12 +21,36 @@ import com.ec.api.service.result.Result;
 import com.ec.api.web.base.BaseController;
 
 @Controller
-@RequestMapping("/paymentInfo")
+@RequestMapping("/wxpay")
 public class PaymentInfoController extends BaseController {
 	private static final Logger log = LoggerFactory.getLogger(PaymentInfoController.class);
 	
 	private PaymentInfoService paymentInfoService;
 	
+	@RequestMapping(value="pay", method={RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody Result pay(PaymentInfo paymentInfo, HttpServletRequest request,HttpServletResponse response, ModelMap context){
+		Result result = new Result();
+		
+		if(paymentInfo.getOrderId() == null){
+			result.setResultCode("1001");
+			result.setResultMessage("orderId不能为空");
+			return result;
+		}
+		if(paymentInfo.getOrderPayType() == null){
+			result.setResultCode("1001");
+			result.setResultMessage("orderPayType不能为空");
+			return result;
+		}
+		Integer uid = CookieUtils.getUid(request);
+		paymentInfo.setUid(uid);
+		
+		return paymentInfoService.userCreatePayment(paymentInfo);
+	}
+	
+	
+	
+	
+	//---------------------------------------------------------------------------------------------------------------------------
 	@RequestMapping(value="addPaymentInfo", method={RequestMethod.GET, RequestMethod.POST})
 	public @ResponseBody Result addPaymentInfo(PaymentInfo paymentInfo, HttpServletRequest request,HttpServletResponse response, ModelMap context){
 		Result result = new Result();
@@ -53,10 +78,6 @@ public class PaymentInfoController extends BaseController {
 			result.setResultCode("1001");
 			result.setResultMessage("paymentNumber不能为空");
 			return result;
-		}
-		
-		if(paymentInfo.getPaymentMode() == null){
-			paymentInfo.setPaymentMode(1);//连连支付
 		}
 		
 		return paymentInfoService.addPaymentInfo(paymentInfo);

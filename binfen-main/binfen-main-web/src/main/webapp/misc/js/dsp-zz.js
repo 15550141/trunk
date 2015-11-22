@@ -98,7 +98,8 @@ function getWxConfig(){
 				   'checkJsApi',  //判断当前客户端版本是否支持指定JS接口
 			       'onMenuShareTimeline', //分享给好友
 			       'onMenuShareAppMessage', //分享到朋友圈
-			       'onMenuShareQQ'  //分享到QQ
+			       'onMenuShareQQ',  //分享到QQ
+			       'chooseWXPay'  //微信支付
 				] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 			});
 			

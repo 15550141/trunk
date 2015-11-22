@@ -16,6 +16,11 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.httpclient.util.DateUtil;
 import org.apache.commons.lang.time.DateUtils;
+import org.dom4j.Attribute;
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 
 import com.ec.api.common.utils.BFConstants;
 import com.ec.api.common.utils.DESUtil;
@@ -72,8 +77,33 @@ public class Test {
 //		cal.add(Calendar.DATE, 5);
 //		System.out.println((cal.get(Calendar.MONTH)+ 1)+"-"+cal.get(Calendar.DAY_OF_MONTH)+"|"+weekDays[(cal.get(Calendar.DAY_OF_WEEK) - 1)]);
 		
-		System.out.println(DESUtil.encrypt("10003", BFConstants.loginCookieKey));
+//		System.out.println(DESUtil.encrypt("10003", BFConstants.loginCookieKey));
 		
-		
+		Document document = DocumentHelper.parseText("<xml><appid><![CDATA[wx2421b1c4370ec43b]]></appid><attach><![CDATA[支付测试]]></attach><bank_type><![CDATA[CFT]]></bank_type><fee_type><![CDATA[CNY]]></fee_type><is_subscribe><![CDATA[Y]]></is_subscribe><mch_id><![CDATA[10000100]]></mch_id><nonce_str><![CDATA[5d2b6c2a8db53831f7eda20af46e531c]]></nonce_str><openid><![CDATA[oUpF8uMEb4qRXf22hE3X68TekukE]]></openid><out_trade_no><![CDATA[1409811653]]></out_trade_no><result_code><![CDATA[SUCCESS]]></result_code><return_code><![CDATA[SUCCESS]]></return_code><sign><![CDATA[B552ED6B279343CB493C5DD0D78AB241]]></sign><sub_mch_id><![CDATA[10000100]]></sub_mch_id><time_end><![CDATA[20140903131540]]></time_end><total_fee>1</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><transaction_id><![CDATA[1004400740201409030005092168]]></transaction_id></xml>");
+		Element node = document.getRootElement();
+//		List<Element> e = node.selectNodes("appid");
+//		System.out.println(e.get(0).getName()+":"+e.get(0).getText());
+		listNodes(node);
 	}
+	
+	public static void listNodes(Element node){  
+        System.out.println("当前节点的名称：" + node.getName());  
+        //首先获取当前节点的所有属性节点  
+        List<Attribute> list = node.attributes();  
+        //遍历属性节点  
+        for(Attribute attribute : list){  
+            System.out.println("属性"+attribute.getName() +":" + attribute.getValue());  
+        }  
+        //如果当前节点内容不为空，则输出  
+        if(!(node.getTextTrim().equals(""))){  
+             System.out.println( node.getName() + "：" + node.getText());    
+        }  
+        //同时迭代当前节点下面的所有子节点  
+        //使用递归  
+        Iterator<Element> iterator = node.elementIterator();  
+        while(iterator.hasNext()){  
+            Element e = iterator.next();  
+            listNodes(e);  
+        }  
+    }  
 }
