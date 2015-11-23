@@ -192,6 +192,11 @@ public class OrderInfoController extends BaseController {
 		return orderInfoService.orderCancle(orderId, uid, request, response);
 	}
 	
+	@RequestMapping(value="testWxPay", method={RequestMethod.GET, RequestMethod.POST})
+	public String testWxPay(HttpServletRequest request,HttpServletResponse response, ModelMap context){
+		return "/order/testWxPay";
+	}
+	
 	
 	/**
 	 * 下单

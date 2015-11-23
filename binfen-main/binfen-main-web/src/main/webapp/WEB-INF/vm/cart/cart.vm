@@ -125,7 +125,7 @@
 					<div class="navbar-text navbar-left pull-left m-cart-disbursement">合计：￥$!cartInfo.totleSalePrice
 						<p>商品总价￥$!cartInfo.totleOriginalPrice， 优惠￥ $!cartInfo.totlePreferentialPrice#if($!cartInfo.totlePreferentialPrice!=0)(首单减免活动不能使用会员卡支付)#end</p>
 					</div> 
-				<button type="button" class="btn btn-warning navbar-btn pull-right" onclick="MessageBox.loading();location.href='/order'">去结算</button>
+				<button type="button" class="btn btn-warning navbar-btn pull-right" onclick="MessageBox.loading();location.href='/order?showwxpaytitle=1'">去结算</button>
 		  		</div>
 			</nav>
 		#else

@@ -43,7 +43,6 @@ public class PaymentInfoController extends BaseController {
 		}
 		Integer uid = CookieUtils.getUid(request);
 		paymentInfo.setUid(uid);
-		
 		return paymentInfoService.userCreatePayment(paymentInfo);
 	}
 	

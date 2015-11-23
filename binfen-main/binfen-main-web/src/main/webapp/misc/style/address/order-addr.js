@@ -125,7 +125,7 @@ function choseAddr(address_id,usecase){
     };
     $.post('/receiveAddr/choseAddr',data,function(resp){
         if(resp.success == true){
-            window.location.href='/order';
+            window.location.href='/order?showwxpaytitle=1';
         }else{
             if(usecase=='addAddr'){
                 $("#editEnd").text('完成');

@@ -50,7 +50,7 @@
 	<nav class="navbar navbar-default navbar-fixed-top m-component-nav" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header text-center clearfix">
-				<a class="navbar-func pull-left" href="/order"><span class="glyphicon fdayicon fdayicon-navback"></span></a>   
+				<a class="navbar-func pull-left" href="/order?showwxpaytitle=1"><span class="glyphicon fdayicon fdayicon-navback"></span></a>   
 				<a class="navbar-func pull-right" href="/receiveAddr/addAddrPage"><span class="glyphicon fdayicon fdayicon-add"></span></a>        
           		<span class="navbar-title">收货地址</span>
         	</div>
