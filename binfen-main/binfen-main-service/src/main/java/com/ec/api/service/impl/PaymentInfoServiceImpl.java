@@ -58,6 +58,7 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 		Result result = new Result();
 		try{
 			if(paymentInfo == null || paymentInfo.getOrderId() == null || paymentInfo.getUid() == null){
+				log.error("访问参数不正确");
 				result.setSuccess(false);
 				result.setResultMessage("参数不正确");
 				return result;
@@ -65,22 +66,16 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 			//获取订单信息
 			OrderInfo orderInfo = orderInfoService.getOrderInfoByOrderIdAndUserId(paymentInfo.getOrderId(), paymentInfo.getUid());
 			if(orderInfo == null){
+				log.error("微信支付，订单不存在	orderId="+paymentInfo.getOrderId() + "	uid="+paymentInfo.getUid());
 				result.setSuccess(false);
 				result.setResultMessage("该订单号不存在");
 				return result;
 			}
+			paymentInfo.setOrderId(orderInfo.getOrderId());
+			paymentInfo.setOrderPayType(1);//微信支付
+			paymentInfo.setPaymentInfoType(1);//发起支付类型
 			
-			//此处放订单详细信息
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("orderMoney", orderInfo.getBigDecimalOrderMoney());
-			map.put("orderId", orderInfo.getOrderId());
-			map.put("consigneeName", orderInfo.getConsigneeName());
-			paymentInfo.setPaymentInfoMessage(JsonUtils.writeValue(map));
-
-			//发起支付类型
-			paymentInfo.setPaymentInfoType(1);
-			//订单总金额
-			paymentInfo.setPaymentMoney(orderInfo.getOrderMoney());
+			paymentInfo.setPaymentMoney(orderInfo.getOrderMoney());//订单总金额
 			//第三方支付单号
 			String paymentNumber = this.getPrepayId(paymentInfo, orderInfo);
 			if(StringUtils.isBlank(paymentNumber)){
@@ -96,6 +91,15 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 			
 			paymentInfoDao.insert(paymentInfo);
 			
+			Map<String, String> resultMap = new HashMap<String, String>();
+			resultMap.put("appId", BFConstants.appId);
+			resultMap.put("timeStamp", System.currentTimeMillis()/1000+"");
+			resultMap.put("nonceStr", "xianguoweidao");
+			resultMap.put("package", "prepay_id="+paymentNumber);
+			resultMap.put("signType", "MD5");
+			resultMap.put("paySign", this.getPaySign(resultMap));
+			
+			result.setResult(resultMap);
 			result.setSuccess(true);
 		}catch (Exception e) {
 			log.error("添加支付信息异常	orderId="+paymentInfo.getOrderId(), e);
@@ -103,6 +107,17 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 		}
 		
 		return result;
+	}
+	
+	private String getPaySign(Map<String, String> map){
+		StringBuilder sb = new StringBuilder();
+		sb.append("appId=").append(map.get("appId")).append("&");
+		sb.append("nonceStr=").append(map.get("nonceStr")).append("&");
+		sb.append("package=").append(map.get("package")).append("&");
+		sb.append("signType=").append(map.get("signType")).append("&");
+		sb.append("timeStamp=").append(map.get("timeStamp")).append("&");
+		sb.append("key=").append(BFConstants.wxPaySkey);
+		return MD5Util.md5Hex(sb.toString());
 	}
 	
 	//微信支付结果回调函数
@@ -128,6 +143,11 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 				return "<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>";
 			}
 			
+			if(orderInfo.getOrderStatus() > 8){
+				log.error("该订单已支付过，无需再次支付，当前订单状态："+orderInfo.getOrderStatus() + "	订单号："+wxPayCallback.getOut_trade_no());
+				return "<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>";
+			}
+			
 			//添加了一条支付信息
 			paymentInfo.setUid(orderInfo.getUserId());
 			paymentInfo.setOrderId(orderInfo.getOrderId());
@@ -137,8 +157,6 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 			paymentInfo.setPaymentMoney(wxPayCallback.getTotal_fee());//订单总金额
 			paymentInfo.setPaymentNumber(wxPayCallback.getTransaction_id());//第三方支付单号
 			paymentInfo.setDtOrder(new Date(Long.parseLong(wxPayCallback.getTime_end())*1000));
-			
-			
 			
 			new TransactionTemplate(transactionManager).execute(new TransactionCallbackWithoutResult() {
 				@Override
@@ -298,7 +316,7 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 		sb.append("<trade_type>").append(wxPay.getTrade_type()).append("</trade_type>");
 		sb.append("<openid>").append(wxPay.getOpenid()).append("</openid>");
 		sb.append("</xml>");
-		
+		log.error("调用腾讯借口的data是："+sb.toString());
 		return sb.toString();
 		
 	}
@@ -347,7 +365,8 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 		sb.append("out_trade_no=").append(wxPay.getOut_trade_no()).append("&");
 		sb.append("spbill_create_ip=").append(wxPay.getSpbill_create_ip()).append("&");
 		sb.append("total_fee=").append(wxPay.getTotal_fee()).append("&");
-		sb.append("trade_type=").append(wxPay.getTrade_type());
+		sb.append("trade_type=").append(wxPay.getTrade_type()).append("&");
+		sb.append("key=").append(BFConstants.wxPaySkey);
 		wxPay.setSign(MD5Util.md5Hex(sb.toString()).toUpperCase());//签名
 		
 		String callbackString = HttpUtils.httpPostData(urlPath, this.parseWxPayToXml(wxPay), "utf-8");
@@ -363,6 +382,7 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 				&& result_code != null && result_code.getTextTrim().equals("SUCCESS")
 				&& prepay_id != null && StringUtils.isNotBlank(prepay_id.getTextTrim())){
 			log.error("成功调用微信支付接口，生成微信支付ID = "+prepay_id.getTextTrim());
+			paymentInfo.setPaymentInfoMessage(callbackString);
 			return prepay_id.getTextTrim();
 		}
 		
