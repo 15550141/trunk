@@ -120,7 +120,7 @@
     insert into order_info ( order_type, payment_type, payment_id, vender_user_id, user_id, consignee_name, consignee_province, consignee_city, consignee_county,
     consignee_address, consignee_mobile, remark, order_money, discount_money,discount_info, order_time, pay_time ,hope_arrival_time ,send_out_time ,finish_time,
     order_status, ip, lock_status, lock_reason, created, modified, parent_order_id ,yn )
-    values (#orderType#, #paymentType#, #venderUserId#, #userId#, #consigneeName#, #consigneeProvince#, #consigneeCity#, #consigneeCounty#,
+    values (#orderType#, #paymentType#, #paymentId#, #venderUserId#, #userId#, #consigneeName#, #consigneeProvince#, #consigneeCity#, #consigneeCounty#,
     #consigneeAddress#, #consigneeMobile#, #remark#, #orderMoney#, #discountMoney#, #discountInfo#, now(), #payTime# ,#hopeArrivalTime#,#sendOutTime# ,#finishTime#,
     #orderStatus#, #ip#, #lockStatus#, #lockReason#, now(), #modified#, #parentOrderId# ,#yn# )
       <!-- 返回自增主键 -->
