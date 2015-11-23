@@ -9,4 +9,6 @@ public class BFConstants {
 	public static String appSecret = "bb248e2e5130422cf43414d31c72e622";
 	
 	public static String loginCookieKey = "19871104";
+	//微信支付商户号
+	public static String mchId = "1267232401";
 }
