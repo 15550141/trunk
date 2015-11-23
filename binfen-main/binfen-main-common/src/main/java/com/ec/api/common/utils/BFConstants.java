@@ -11,4 +11,5 @@ public class BFConstants {
 	public static String loginCookieKey = "19871104";
 	//微信支付商户号
 	public static String mchId = "1267232401";
+	public static String wxPaySkey = "fa5ca894163fca44f53fcdc455ef5525";
 }
