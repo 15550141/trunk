@@ -17,7 +17,8 @@ public class OrderInfoQuery extends BaseSearchForMysqlVo implements Serializable
     private Integer orderType;
     /** 支付类型 */
     private Integer paymentType;
-
+    /** 支付单号 */
+    private Integer paymentId;
     /** 商家ID */
     private Integer venderUserId;
 
@@ -325,6 +326,14 @@ public class OrderInfoQuery extends BaseSearchForMysqlVo implements Serializable
 
 	public void setPaymentType(Integer paymentType) {
 		this.paymentType = paymentType;
+	}
+
+	public Integer getPaymentId() {
+		return paymentId;
+	}
+
+	public void setPaymentId(Integer paymentId) {
+		this.paymentId = paymentId;
 	}
     
 }
