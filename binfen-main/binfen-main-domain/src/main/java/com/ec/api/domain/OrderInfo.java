@@ -26,6 +26,9 @@ public class OrderInfo implements Serializable{
     
     /** 支付方式 （1现金，2银行卡，3微信支付 ， 4支付宝支付） */
     private Integer paymentType;
+    
+    /** 支付单号 */
+    private Integer paymentId;
 
     /** 商家ID */
     private Integer venderUserId;
@@ -439,4 +442,13 @@ public class OrderInfo implements Serializable{
 	public BigDecimal getBigDecimalDiscountMoney(){
 		return new BigDecimal(this.getDiscountMoney()).divide(new BigDecimal(100));
 	}
+
+	public Integer getPaymentId() {
+		return paymentId;
+	}
+
+	public void setPaymentId(Integer paymentId) {
+		this.paymentId = paymentId;
+	}
+	
 }

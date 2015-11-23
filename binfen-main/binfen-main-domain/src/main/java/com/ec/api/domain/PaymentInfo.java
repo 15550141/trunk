@@ -53,6 +53,8 @@ public class PaymentInfo  implements Serializable{
 
     /** 修改时间 */
     private Date modified;
+    
+    private Integer yn;
 
 	public Integer getPaymentId() {
 		return paymentId;
@@ -157,6 +159,14 @@ public class PaymentInfo  implements Serializable{
 
 	public void setUid(Integer uid) {
 		this.uid = uid;
+	}
+
+	public Integer getYn() {
+		return yn;
+	}
+
+	public void setYn(Integer yn) {
+		this.yn = yn;
 	}
     
 }
