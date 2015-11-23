@@ -27,7 +27,10 @@ import com.ec.api.common.utils.DESUtil;
 import com.ec.api.common.utils.JsonUtils;
 import com.ec.api.common.utils.MD5Util;
 import com.ec.api.domain.OrderDetail;
+import com.ec.api.domain.PaymentInfo;
 import com.ec.api.domain.SkuList;
+import com.ec.api.domain.WxPay;
+import com.ec.api.domain.WxPayCallback;
 import com.ec.api.service.utils.WeixinUtils;
 import com.ec.api.service.utils.WxJsConfig;
 
@@ -79,11 +82,24 @@ public class Test {
 		
 //		System.out.println(DESUtil.encrypt("10003", BFConstants.loginCookieKey));
 		
-		Document document = DocumentHelper.parseText("<xml><appid><![CDATA[wx2421b1c4370ec43b]]></appid><attach><![CDATA[支付测试]]></attach><bank_type><![CDATA[CFT]]></bank_type><fee_type><![CDATA[CNY]]></fee_type><is_subscribe><![CDATA[Y]]></is_subscribe><mch_id><![CDATA[10000100]]></mch_id><nonce_str><![CDATA[5d2b6c2a8db53831f7eda20af46e531c]]></nonce_str><openid><![CDATA[oUpF8uMEb4qRXf22hE3X68TekukE]]></openid><out_trade_no><![CDATA[1409811653]]></out_trade_no><result_code><![CDATA[SUCCESS]]></result_code><return_code><![CDATA[SUCCESS]]></return_code><sign><![CDATA[B552ED6B279343CB493C5DD0D78AB241]]></sign><sub_mch_id><![CDATA[10000100]]></sub_mch_id><time_end><![CDATA[20140903131540]]></time_end><total_fee>1</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><transaction_id><![CDATA[1004400740201409030005092168]]></transaction_id></xml>");
-		Element node = document.getRootElement();
+//		Document document = DocumentHelper.parseText("<xml><appid><![CDATA[wx2421b1c4370ec43b]]></appid><attach><![CDATA[支付测试]]></attach><bank_type><![CDATA[CFT]]></bank_type><fee_type><![CDATA[CNY]]></fee_type><is_subscribe><![CDATA[Y]]></is_subscribe><mch_id><![CDATA[10000100]]></mch_id><nonce_str><![CDATA[5d2b6c2a8db53831f7eda20af46e531c]]></nonce_str><openid><![CDATA[oUpF8uMEb4qRXf22hE3X68TekukE]]></openid><out_trade_no><![CDATA[1409811653]]></out_trade_no><result_code><![CDATA[SUCCESS]]></result_code><return_code><![CDATA[SUCCESS]]></return_code><sign><![CDATA[B552ED6B279343CB493C5DD0D78AB241]]></sign><sub_mch_id><![CDATA[10000100]]></sub_mch_id><time_end><![CDATA[20140903131540]]></time_end><total_fee>1</total_fee><trade_type><![CDATA[JSAPI]]></trade_type><transaction_id><![CDATA[1004400740201409030005092168]]></transaction_id></xml>");
+//		Element node = document.getRootElement();
+//		Element node1 = node.element("appid1");
+//		if(node1 != null){
+//			System.out.println(node1.asXML());
+//			System.out.println(node1.getName() + ":"+node1.getTextTrim());
+//		}else{
+//			System.out.println("node1 == null");
+//		}
+		WxPay wxPay = new WxPay();
+		wxPay.setAppid(BFConstants.appId);
+		
+//		System.out.println(DocumentHelper);
+		
+		
 //		List<Element> e = node.selectNodes("appid");
 //		System.out.println(e.get(0).getName()+":"+e.get(0).getText());
-		listNodes(node);
+//		listNodes(node);
 	}
 	
 	public static void listNodes(Element node){  
