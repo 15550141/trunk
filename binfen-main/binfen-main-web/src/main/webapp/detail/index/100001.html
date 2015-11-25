@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <title>鲜果味道</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE-9">
+    <meta name="apple-mobile-web-app-capable" content="no">
+    <meta name="mobile-web-app-capable" content="no"> 
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    
+    <link rel="shortcut icon" href="/favicon.ico" >
+    <link rel="apple-touch-icon" sizes="76x76" href="/misc/style/webIcon.png" />  
+    <link rel="apple-touch-icon" sizes="152x152" href="/misc/style/webIcon.png" />  
+    <link rel="apple-touch-icon" sizes="120x120" href="/misc/style/webIcon.png" />    
+    <link rel="apple-touch-icon" sizes="180x180" href="/misc/style/webIcon.png" />  
+    <link type="image/x-icon" rel="Shortcut Icon" href="/misc/style/webIcon.png">
+
+    <!-- Bootstrap -->
+    <link href="/misc/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/misc/css/style.css">
+	
+    <script src="/misc/js/jquery-1.11.0.min.js"></script>
+    <script src="/misc/js/checklogin.js"></script>
+    <!--[if lt IE 9]>
+    <script src="/misc/js/html5shiv.min.js"></script>
+    <![endif]-->
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="/misc/js/require.js" data-main="/misc/style/main"></script>
+	<script src="/misc/js/dsp-zz.js"></script>
+    <script src="/misc/js/prefixfree.min.js"></script>
+
+  </head>
+<body>
+	<div class="trasfrm ds768">
+        <div class="padArow"></div>
+        <div class="iconPad_1">
+            <div class="iconpad_2"></div>
+        </div>
+        <div class="iconPad_1 trmoct">
+            <div class="iconpad_2"></div>
+        </div>
+        <p class="trapf"><strong></strong> 请 <strong>切换到竖屏</strong> 以达到最佳浏览效果</p>
+	</div>
+
+	<nav class="navbar navbar-default navbar-fixed-top m-component-nav" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header text-center clearfix">
+				<a class="navbar-func pull-left" href="/"><span class="glyphicon fdayicon fdayicon-home"></span></a>
+				<span class="pull-right navbar-func">
+					<a href="/user" class="navbar-login"><span class="glyphicon fdayicon fdayicon-login"></span></a>
+					<a href="/cart" class="navbar-cart"><span class="glyphicon fdayicon fdayicon-cart"></span></a>
+				</span>
+				<span class="navbar-title">产品详情</span>
+			</div>
+		</div>
+	</nav>
+    
+	<section class="m-component-prodetail" id="m-prodetail">
+		<div class="m-proslide">
+			<div class="frame" id="proslide">
+				<ul class="slidee">   
+					<li><img src="/misc/style/image/20151022144.jpg"></li> 
+				</ul>
+			</div>
+			<ul class="slidebtn"></ul>
+        </div>
+		<div class="m-pro-parameter">
+            <h3>测试商品，请勿下单</h3>
+				<h4 class="m-proselect-item" data-sid="1"  style='display:none;'>
+				<ul class="sys_spec_text list-unstyled clearfix">
+	                <li data-aid="1" class="selected" pid="100001" ppid="100001" pno="20150713" salesPropertyName="规格:2个(约500g)" >
+	                    <a href="javascript:;" title="2个(约500g)">2个(约500g)</a><i class="glyphicon fdayicon fdayicon-proselect"></i>
+	                </li>
+				</ul>
+            </h4>
+			<h4>
+				规格：<span class="selectnorms">2个</span>
+				<div class="num_sel_lage pull-right clearfix">
+					<span class="inC">-</span>
+					<input type="text" id="buy_num" disabled="" value="1">
+					<span class="deC">+</span>
+				</div> 
+            </h4>
+            <h5 class="clearfix">
+				￥<span class="price">3</span>
+				<div class="pull-right">                  
+                  <button type="button" class="btn btn-warning add-cart">加入购物车</button>
+                  <button type="button" class="btn btn-danger">立即购买</button>
+                </div>
+            </h5>
+        </div>
+        <div class="m-pro-tab">
+			<div class="tab-content">
+				<div id="proinfo" class="tab-pane fade in active m-pro-info" role="tabpanel">	
+					<img alt="" data-original="/misc/style/image/12312415151.jpg" class="lazy" src="/misc/style/image/12312415151.jpg" style="display: inline;">
+            	</div>
+            
+				<input type="hidden" id="product_id" value="4449">
+				<input type="hidden" id="comment_curr_page" value="0">
+			</div>
+		</div>           
+    </section>
+
+	<!-- 
+	<section class="m-component-download clearfix" id="downloadApp">
+		<div class="m-close"><span class="glyphicon glyphicon-remove"></span></div>
+		<span class="pull-left"><img class="m-img" src="/misc/style/logo2.jpg"></span>
+		<span class="pull-left m-tips">下载APP，惊喜优惠价<br/>世界鲜果，一手掌握</span>
+		<span class="pull-right m-btn"><a href="javascript:void(0)" class="btn btn-success " role="button"  data-product-id="4449" name="apk_url">立刻体验</a></span>             
+	</section>
+	 -->
+	<div class="m-component-float">
+       	<ul class="list-unstyled">              
+            <li id="goToTop" style="display:none;"><span class="glyphicon fdayicon fdayicon-toTop"></span></li>
+            <li id="addCart"><span class="glyphicon fdayicon fdayicon-procart"></span></li>
+        </ul>
+    </div> 
+       
+<script type="text/javascript">
+  var sys_item={
+    "mktprice":"0",
+    "price":"0.01",
+    "sys_attrprice":{
+       
+      "1":{"price":"0.01","mktprice":"0"},
+          }
+};
+</script>
+<input type="hidden" id="dsp_page" value="1">
+<!-- <img src="" width="0" height="0" style="position: absolute;bottom: 0;left: 0;"/> -->
+</body></html>

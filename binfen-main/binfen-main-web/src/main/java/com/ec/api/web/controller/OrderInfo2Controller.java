@@ -1,7 +1,6 @@
 package com.ec.api.web.controller;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,7 +31,6 @@ import com.ec.api.domain.OrderInfo;
 import com.ec.api.domain.ReceiveAddr;
 import com.ec.api.domain.SkuList;
 import com.ec.api.domain.query.OrderInfoQuery;
-import com.ec.api.service.CartService;
 import com.ec.api.service.OrderInfoService;
 import com.ec.api.service.ReceiveAddrService;
 import com.ec.api.service.result.Result;
@@ -40,13 +38,12 @@ import com.ec.api.service.utils.EcUtils;
 import com.ec.api.web.base.BaseController;
 
 @Controller
-@RequestMapping("/order")
-public class OrderInfoController extends BaseController {
-	private static final Logger log = LoggerFactory.getLogger(OrderInfoController.class);
+@RequestMapping("/order2")
+public class OrderInfo2Controller extends BaseController {
+	private static final Logger log = LoggerFactory.getLogger(OrderInfo2Controller.class);
 	private OrderInfoService orderInfoService;
 	
 	private ReceiveAddrService receiveAddrService;
-	private CartService cartService;
 	
 	private String[] weekDays = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
 	
@@ -69,19 +66,21 @@ public class OrderInfoController extends BaseController {
 		context.put("timeList", timeList);
 		context.put("addr", addr);
 		context.put("cartInfo", cartInfo);
-		return "order/order";
+		return "order/order2";
 	}
 	
 	@RequestMapping(value="createOrder", method={RequestMethod.GET, RequestMethod.POST})
-	public @ResponseBody Result createOrder(Integer paymentType, Integer orderType, String address_id, String hopeArrivalTime, HttpServletRequest request,HttpServletResponse response, ModelMap context){
+	public @ResponseBody Result createOrder(String orderType, String address_id, String hopeArrivalTime, HttpServletRequest request,HttpServletResponse response, ModelMap context){
 		Integer uid = CookieUtils.getUid(request);
 		Result result = new Result();
 		if(StringUtils.isBlank(address_id)){
+			result.setResult(null);
 			result.setSuccess(false);
 			result.setResultMessage("地址信息不能为空");
 			return result;
 		}
 		if(StringUtils.isBlank(hopeArrivalTime)){
+			result.setResult(null);
 			result.setSuccess(false);
 			result.setResultMessage("请选择配送时间");
 			return result;
@@ -89,22 +88,11 @@ public class OrderInfoController extends BaseController {
 		OrderInfo orderInfo = new OrderInfo();
 		orderInfo.setUserId(uid);
 		orderInfo.setHopeArrivalTime(hopeArrivalTime);
-		
-		if(orderType == null || orderType == 0 || (orderType != 1 && orderType != 2)){
-			result.setSuccess(false);
-			result.setResultMessage("请选择支付方式");
-			return result;
+		if(StringUtils.isBlank(orderType) || (!"1".equals(orderType) && !"2".equals(orderType))){
+			orderInfo.setOrderType(2);
+		}else{
+			orderInfo.setOrderType(Integer.parseInt(orderType));
 		}
-		
-		if(paymentType == null || paymentType == 0 || (paymentType != 1 && paymentType != 2 && paymentType != 3 && paymentType != 4)){
-			result.setSuccess(false);
-			result.setResultMessage("请选择支付方式");
-			return result;
-		}
-		
-		orderInfo.setOrderType(orderType);
-		orderInfo.setPaymentType(paymentType);
-		
 		return orderInfoService.createOrder(orderInfo, request, response);
 	}
 	
@@ -200,17 +188,6 @@ public class OrderInfoController extends BaseController {
 		return "/order/detail";
 	}
 	
-	@RequestMapping(value="orderCancle", method={RequestMethod.GET, RequestMethod.POST})
-	public @ResponseBody Result orderCancle(Integer orderId, HttpServletRequest request,HttpServletResponse response, ModelMap context){
-		Integer uid = CookieUtils.getUid(request);
-		return orderInfoService.orderCancle(orderId, uid, request, response);
-	}
-	
-	@RequestMapping(value="testWxPay", method={RequestMethod.GET, RequestMethod.POST})
-	public String testWxPay(HttpServletRequest request,HttpServletResponse response, ModelMap context){
-		return "/order/testWxPay";
-	}
-	
 	@RequestMapping(value="chosePayment", method={RequestMethod.GET, RequestMethod.POST})
 	public @ResponseBody Result chosePayment(Integer paymentType, Integer orderType, HttpServletRequest request,HttpServletResponse response, ModelMap context){
 		Result result = new Result();
@@ -221,13 +198,18 @@ public class OrderInfoController extends BaseController {
 		map.put("pmt_goods", 0);
 		if(count == null || count == 0){ //没下过订单
 			if(orderType == 1){ //在线支付
-				CartInfo cartInfo = cartService.getCartInfoByCookie(uid, request);
-				map.put("pmt_goods", cartInfo.getTotlePreferentialPrice());
+				map.put("pmt_goods", 5);
 			}
 		}
-		result.setResult(map);
 		return result;
 	}
+	
+	@RequestMapping(value="orderCancle", method={RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody Result orderCancle(Integer orderId, HttpServletRequest request,HttpServletResponse response, ModelMap context){
+		Integer uid = CookieUtils.getUid(request);
+		return orderInfoService.orderCancle(orderId, uid, request, response);
+	}
+	
 	
 	/**
 	 * 下单
@@ -526,10 +508,6 @@ public class OrderInfoController extends BaseController {
 
 	public void setReceiveAddrService(ReceiveAddrService receiveAddrService) {
 		this.receiveAddrService = receiveAddrService;
-	}
-
-	public void setCartService(CartService cartService) {
-		this.cartService = cartService;
 	}
 
 

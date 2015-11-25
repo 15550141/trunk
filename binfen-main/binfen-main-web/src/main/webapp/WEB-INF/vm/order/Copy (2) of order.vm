@@ -18,15 +18,17 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/misc/style/webIcon.png" />  
     <link type="image/x-icon" rel="Shortcut Icon" href="/misc/style/webIcon.png">
 
-    <!-- Bootstrap -->
+   <!-- Bootstrap -->
     <link href="/misc/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="/misc/css/style.css">
-	 
+	
+    <script src="/misc/js/jquery-1.11.0.min.js"></script>
+    <script src="/misc/js/checklogin.js"></script>
     <!--[if lt IE 9]>
     <script src="/misc/js/html5shiv.min.js"></script>
     <![endif]-->
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script src="/misc/js/require.js" data-main="/misc/style/main"></script>
-	<script src="/misc/js/jquery-1.11.0.min.js"></script>
 	<script src="/misc/js/dsp-zz.js"></script>
     <script src="/misc/js/prefixfree.min.js"></script>
 
@@ -75,11 +77,12 @@
                     #end
                 </div>
                 
-                <div class="m-order-item">
-					<a href="javascript:;" id="ordertime"><span class="pull-right">两小时内送达</span>配送时间</a>
-				</div>
-				
                 <!--
+                <div class="m-order-item">
+					<a href="javascript:;" id="ordertime_back"><span class="pull-right">两小时内送达</span>配送时间</a>
+				</div>
+                -->
+				<input type="hidden" id="hopeArrivalTime" />
                 <div class="m-order-item">
 					<a href="javascript:;" id="ordertime"><span class="pull-right">请选择</span>配送时间</a>
 				</div>
@@ -97,57 +100,22 @@
                             	</thead>
                                 -->
                         		<tbody>
-                                    <tr class="s_tr" datakey="20150731" datavalue="07-31|周五">
-                                        <td>07-31|周五</td>
-										<td class='s_td' timekey="0918" timevalue="09:00-18:00">
-                                            <div class="input-group text-center">
-                                                <input type="radio" id="ordertime1" name="ordertime" disabled='disabled'  />
-                                                <label for="ordertime1" class="glyphicon fdayicon fdayicon-delivery"></label>
-                                            </div>    
-                                        </td>
-									</tr>
-									<tr class="s_tr" datakey="20150801" datavalue="08-01|周六">
-                                    	<td>08-01|周六</td>
-											<td class='s_td' timekey="0918" timevalue="09:00-18:00">
-                                            <div class="input-group text-center">
-                                                <input type="radio" id="ordertime2" name="ordertime"   />
-                                                <label for="ordertime2" class="glyphicon fdayicon fdayicon-delivery"></label>
-                                            </div>    
-                                    	</td>
-									</tr>
-									<tr class="s_tr" datakey="20150802" datavalue="08-02|周日">
-                                    	<td>08-02|周日</td>
-										<td class='s_td' timekey="0918" timevalue="09:00-18:00">
-                                        	<div class="input-group text-center">
-                                            	<input type="radio" id="ordertime3" name="ordertime"   />
-                                            	<label for="ordertime3" class="glyphicon fdayicon fdayicon-delivery"></label>
-                                        	</div>    
-                                    	</td>
-									</tr>
-									<tr class="s_tr" datakey="20150803" datavalue="08-03|周一">
-                                    	<td>08-03|周一</td>
-										<td class='s_td' timekey="0918" timevalue="09:00-18:00">
-                                            <div class="input-group text-center">
-                                                <input type="radio" id="ordertime4" name="ordertime"   />
-                                                <label for="ordertime4" class="glyphicon fdayicon fdayicon-delivery"></label>
-                                            </div>    
-                                    	</td>
-									</tr>
-									<tr class="s_tr" datakey="20150804" datavalue="08-04|周二">
-                                    	<td>08-04|周二</td>
-										<td class='s_td' timekey="0918" timevalue="09:00-18:00">
-                                            <div class="input-group text-center">
-                                                <input type="radio" id="ordertime5" name="ordertime"   />
-                                                <label for="ordertime5" class="glyphicon fdayicon fdayicon-delivery"></label>
-                                            </div>    
-                                        </td>
-									</tr>
+                        			#foreach($time in $timeList)
+	                                    <tr class="s_tr" datakey="$time" datavalue="$time">
+	                                        <td>$time</td>
+											<td class='s_td' timekey="$time" timevalue="$time">
+	                                            <div class="input-group text-center">
+	                                                <input type="radio" id="ordertime$!velocityCount" name="ordertime" />
+	                                                <label for="ordertime$!velocityCount" class="glyphicon fdayicon fdayicon-delivery"></label>
+	                                            </div>    
+	                                        </td>
+										</tr>
+									#end
 								</tbody>
                         	</table>          
                     	</div>
 					</div>
             	</div>
-                -->
             </li>
             <li>
                 <div class="m-order-item">
@@ -271,7 +239,7 @@
 									<a href="/detail/index/$!{sku.itemId}.html">
 	                  					<img class="lazy pull-left" data-original="$!sku.image" src="$!sku.image" alt="">
 	                                    <div class="m-cartlist-info">
-	                                        <h3>$!sku.name</h3>
+	                                        <h3>$!sku.name #if($!sku.gift)（赠品）#end</h3>
 	                                        <h4>$!sku.salesPropertyName</h4>
 	                                        <h5>￥$!sku.skuPrice</h5>                           
 	                                    </div>
@@ -284,9 +252,25 @@
                 </div>
             </li>
             <li>
-                <div class="m-order-item">
-                    <span class="pull-right orange" id="goods_amount" money="$!cartInfo.totleSalePrice">￥$!cartInfo.totleSalePrice</span>商品总价
+            
+            	<div class="m-order-item">
+                    <span class="pull-right" id="pmt_goods" money="$!cartInfo.totleOriginalPrice">￥$!cartInfo.totleOriginalPrice</span>商品总价
                 </div>
+                #if($!cartInfo.totlePreferentialPrice != 0)
+	                <div class="m-order-item">
+	                    <span class="pull-right" id="pmt_goods" money="$!cartInfo.totlePreferentialPrice">￥-$!cartInfo.totlePreferentialPrice</span>首单满19减5元优惠
+	                </div>
+	            #else
+	            	<div class="m-order-item">
+	                    <span class="pull-right" id="pmt_goods" money="0">￥0</span>优惠减免
+	                </div>
+                #end
+            	
+                
+                <div class="m-order-item">
+                    <span class="pull-right orange" id="goods_amount" money="$!cartInfo.totleSalePrice">￥$!cartInfo.totleSalePrice</span>订单金额
+                </div>
+                
                 <!--
                 <div class="m-order-item">
                     <span class="pull-right orange" id="method_money" money="0">￥0</span>运费
@@ -327,7 +311,7 @@
     
 	<nav class="navbar navbar-default navbar-fixed-bottom m-component-foot" role="navigation">
       	<div class="container">
-        	<div class="navbar-text navbar-left pull-left" id="order_money">￥<span>$!cartInfo.totleSalePrice</span></div> 
+        	<div class="navbar-text navbar-left pull-left" id="order_money">订单金额￥<span>$!cartInfo.totleSalePrice</span></div> 
         	<button type="button" class="btn btn-warning navbar-btn pull-right" id="order-submit">提交订单</button>
       	</div>
     </nav>

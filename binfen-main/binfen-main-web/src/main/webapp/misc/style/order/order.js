@@ -15,7 +15,6 @@ $(function(){
     /*时间选择事件end*/
     
     /*支付方式选择事件start*/  
-    /*
     $('#orderpay').on('click', function(){
         var address_id = $("#address_id").val();
         if(address_id){
@@ -26,7 +25,6 @@ $(function(){
             MessageBox.error('请先选择配送地址');
         }
     });
-    */
     /*支付方式选择事件end*/  
 
     /*积分使用事件start*/
@@ -172,38 +170,38 @@ function updateJfMoney(order_jf_limit,jf_money){
 }
 
 /*选择支付方式*/
-function chosePayment(pay_parent_id,pay_id,payment_name){
+function chosePayment(paymentType,orderType,payment_name){
     var data = {
-        'pay_parent_id':pay_parent_id,
-        'pay_id':pay_id
+        'paymentType':paymentType,
+        'orderType':orderType
     };
-    $.post('/ajax/order/chosePayment',data,function(result_data){
-        resp = eval('('+result_data+')');
-        if(resp['code']=='200'){
+    
+     $.post('/order/chosePayment',data,function(resp){
+        if(resp.success==true){
             $('.modal-orderpay').modal('hide');
             $('#orderpay>span').text(payment_name);
-            $('#pay_discount').text('¥'+resp['msg'].pay_discount);
-            $('#pay_discount').attr('money',resp['msg'].pay_discount);
-            $("#pay_parent_id").val(pay_parent_id);
-            if(pay_parent_id==5){
-                
-                balancePlay();
-            }else{
-                if($("#order-submit").attr('disabled')=='disabled'){
-                    $("#order-submit").removeAttr('disabled').removeClass('btn-default').addClass('btn-warning');
-                }
-                $("#pay_send_code").hide();
+//            $('#pay_discount').text('¥'+resp['msg'].pay_discount);
+//            $('#pay_discount').attr('money',resp['msg'].pay_discount);
+            $("#paymentType").val(paymentType);
+            $("#orderType").val(orderType);
+            
+            if($("#order-submit").attr('disabled')=='disabled'){
+                $("#order-submit").removeAttr('disabled').removeClass('btn-default').addClass('btn-warning');
             }
-            updateJfMoney(resp['msg'].order_jf_limit,resp['msg'].jf_money);
+//            $("#pay_send_code").hide();
+            
+//            updateJfMoney(resp['msg'].order_jf_limit,resp['msg'].jf_money);
+            $('#pmt_goods').text('¥'+resp.result.pmt_goods);
+            $('#pmt_goods').attr('money',resp.result.pmt_goods);
             orderMoney();
-            if(resp['msg'].has_invoice=='0'){
-                $("#fp_li").hide();
-                if($('#myonoffswitch2').val()==1){
-                    $("#myonoffswitch2").click();
-                }
-            }else if(resp['msg'].has_invoice=='1'){
-                $("#fp_li").show();
-            }
+//            if(resp['msg'].has_invoice=='0'){
+//                $("#fp_li").hide();
+//                if($('#myonoffswitch2').val()==1){
+//                    $("#myonoffswitch2").click();
+//                }
+//            }else if(resp['msg'].has_invoice=='1'){
+//                $("#fp_li").show();
+//            }
         }else{
             if(resp['code']=='700'){
                 MessageBox.confirm(resp.msg,toBindMobile);
@@ -215,6 +213,7 @@ function chosePayment(pay_parent_id,pay_id,payment_name){
             
         }
     });
+
 }
 
 function toBindMobile(){
@@ -230,10 +229,10 @@ function getPayment(){
     var objEvt = $._data($('.modal-orderpay input[name="radiopay"]')[0], "events");
     if (!objEvt){
         $('.modal-orderpay input[name="radiopay"]').on('change',function(){
-            var pay_parent_id = $(this).parent().find(".pay_parent_id").val();
-            var pay_id = $(this).parent().find(".pay_id").val();
+            var paymentType = $(this).parent().find(".paymentType").val();
+            var orderType = $(this).parent().find(".orderType").val();
             var payment_name = $(this).parent().find(".payment_name").val()+'-'+$(this).parent().find(".pay_name").val();
-            chosePayment(pay_parent_id,pay_id,payment_name);
+            chosePayment(paymentType,orderType,payment_name);
         });
     }
     $('.modal-orderpay .m-dialog-close').on('click', function(){
@@ -299,12 +298,13 @@ function useInvoice(fun,fp,checkbox_obj,checkbox_obj_val){
 /*商品金额计算*/
 function orderMoney(){
     var goods_amount = parseInt($("#goods_amount").attr("money"));
-    var method_money = parseInt($("#method_money").attr("money"));
+    var method_money = parseInt($("#method_money").attr("money"));//运费
     var pmt_goods = parseInt($("#pmt_goods").attr("money"));
-    var use_jf_money = parseInt($("#use_jf_money").attr("money"));
-    var card_money = parseInt($("#card_money").attr("money"));
-    var pay_discount = parseInt($("#pay_discount").attr("money"));
-    var ordermoney = goods_amount+method_money-pmt_goods-use_jf_money-card_money-pay_discount;
+//    var use_jf_money = parseInt($("#use_jf_money").attr("money"));//积分抵扣
+//    var card_money = parseInt($("#card_money").attr("money"));
+//    var pay_discount = parseInt($("#pay_discount").attr("money"));
+//    var ordermoney = goods_amount+method_money-pmt_goods-use_jf_money-card_money-pay_discount;
+    var ordermoney = goods_amount+method_money-pmt_goods;
     $("#order_money span").text(ordermoney);
 }
 
@@ -323,17 +323,16 @@ function orderVerify(){
     	}
         MessageBox.loading();
         $("#order-submit").attr('disabled','disabled');
-        var pay_parent_id = $("#pay_parent_id").val();
-        if(pay_parent_id==5){
-            var data = {
-                "verification_code":$("#identcode").val()
-            };
-        }else{
-            var data = {
-        		"address_id" : addressId,
-        		"hopeArrivalTime" : hopeArrivalTime
-            };
-        }
+        
+        var paymentType = $("#paymentType").val();
+        var orderType = $("#orderType").val();
+        var data = {
+    		"address_id" : addressId,
+    		"hopeArrivalTime" : hopeArrivalTime,
+    		"paymentType" : paymentType,
+    		"orderType" : orderType
+        };
+        
         $.post('/order/createOrder',data,function(resp){
             $("#order-submit").removeAttr('disabled');
             MessageBox.unloading();
@@ -344,7 +343,11 @@ function orderVerify(){
 //                    window.location.href="/order/succ/"+resp['msg'];
 //                }
 //				localStorage['cartcount'] = 0;
-            	window.location.href="/success.html";
+            	if(orderType == 1 && paymentType == 3){
+            		goWxPay(resp.result);
+            	}else{
+            		window.location.href="/success.html";
+            	}
             }else{
                 x=$('<div class="alert alert-danger m-order-tips" role="alert">'+resp.resultMessage+'</div>'),
                 $('.m-component-foot').before(x);
@@ -358,6 +361,31 @@ function orderVerify(){
             //$('.m-order-tips').fadeOut(200);
         //});
     });
+}
+
+function goWxPay(orderId){
+	$.ajax({
+		type:"POST",
+		url:"/wxpay/pay",
+		data: {
+			orderId: orderId,
+			orderPayType : 1
+		},
+		dataType: "json",
+		success:function(data){
+			wx.chooseWXPay({
+				appId : data.result.appId,
+                timestamp: data.result.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+                nonceStr: data.result.nonceStr, // 支付签名随机串，不长于 32 位
+                package: data.result.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+                signType: data.result.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+                paySign: data.result.paySign, // 支付签名
+                success: function (res) {
+                	window.location.href="/success.html";
+                }
+            });
+		}
+	});
 }
 
 /*余额支付验证码*/

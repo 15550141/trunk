@@ -467,11 +467,7 @@ var Cart = {
         this.itemT(cart);
         this.pmtT(cart);
 
-        var prompt = "";
-        if(cart.totlePreferentialPrice > 0){
-        	prompt = "(首单减免活动不能使用会员卡支付)";
-        }
-        $('.cart-body .navbar .container .navbar-text').html('合计：￥'+cart.totleSalePrice+'<p>商品总价￥'+cart.totleOriginalPrice+'， 优惠￥'+cart.totlePreferentialPrice+prompt	+'</p>');
+        $('.cart-body .navbar .container .navbar-text').html('合计：￥'+cart.totleSalePrice+'<p>商品总价￥'+cart.totleOriginalPrice+'， 优惠￥'+cart.totlePreferentialPrice+'</p>');
     },
     pmtT:function(cart){
         var manjian = '<li class="donationTips" data-toggle="tooltip" data-placement="top" title="首单满19元，立减5元，快去凑单吧" ><i>减</i>首单满19元，立减5元，快去凑单吧</li>';
