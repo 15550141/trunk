@@ -66,13 +66,12 @@ function scrollbottomadd(){
 						}
 						$.each(list,function(k,val){
  							list_status_html = '<div class="m-orderfun">';
- 							if(val.can_cancel=='true'){
- 								list_status_html = list_status_html+'<button type="button" class="btn btn-default btn-sm btn-order-cancal">取消订单</button>';
+ 							if(val.orderStatus < 8){
+ 								list_status_html = list_status_html+'<button data-order="'+val.orderId+'" type="button" class="btn btn-default btn-sm btn-order-cancal">取消订单</button>';
+ 								list_status_html = list_status_html+'<button data-order="'+val.orderId+'"  type="button" class="btn btn-default btn-sm btn-order-pay">立即支付</button>';
  							}
+ 							
  							/**
- 							if(val.can_pay=='true'){
- 								list_status_html = list_status_html+'<button type="button" class="btn btn-default btn-sm">立即支付</button>';
- 							}
  							if(val.can_confirm_receive=='true'){
  								list_status_html = list_status_html+'<button type="button" class="btn btn-default btn-sm btn-order-confirm">确定收货</button>';
  							}
@@ -217,22 +216,59 @@ function listOrderPay(){
 		var order_name = $(this).attr('data-order');
 		$(this).text("支付跳转中...");
 		$(this).attr('disabled',true);
-		data = {
-			'order_name':order_name
-		};
-	    $.post('/ajax/order/orderPay',data,function(result_data){
-		    resp = eval('('+result_data+')');
-		    
-		    if(resp['code']=='200'){
-		        window.location.href = resp['msg'];
-		        $("#undone .btn-order-pay").attr('disabled',false);
-		    }else{
-		    	$("#undone .btn-order-pay").text("立即支付");
-		    	$("#undone .btn-order-pay").attr('disabled',false);
-		        MessageBox.error(resp.msg);
-		    }
+		
+		$.ajax({
+			type:"POST",
+			url:"/wxpay/pay",
+			data: {
+				orderId: order_name,
+				orderPayType : 1
+			},
+			dataType: "json",
+			success:function(data){
+				wx.chooseWXPay({
+					appId : data.result.appId,
+	                timestamp: data.result.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+	                nonceStr: data.result.nonceStr, // 支付签名随机串，不长于 32 位
+	                package: data.result.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+	                signType: data.result.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+	                paySign: data.result.paySign, // 支付签名
+	                success: function (res) {
+                		window.location.href="/success.html";
+	                },
+	                cancel:function(){
+	                	$("#undone .btn-order-pay").text("立即支付");
+        		    	$("#undone .btn-order-pay").attr('disabled',false);
+	                }
+	            });
+			}
 		});
 		
+	});
+}
+
+function goWxPay(orderId){
+	$.ajax({
+		type:"POST",
+		url:"/wxpay/pay",
+		data: {
+			orderId: orderId,
+			orderPayType : 1
+		},
+		dataType: "json",
+		success:function(data){
+			wx.chooseWXPay({
+				appId : data.result.appId,
+                timestamp: data.result.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+                nonceStr: data.result.nonceStr, // 支付签名随机串，不长于 32 位
+                package: data.result.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+                signType: data.result.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+                paySign: data.result.paySign, // 支付签名
+                success: function (res) {
+                	window.location.href="/success.html";
+                }
+            });
+		}
 	});
 }
 

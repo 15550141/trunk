@@ -87,6 +87,7 @@
 	                       		 	#if($!order.orderStatus == 1)
 		                    			<div data-order="$!order.orderId" class="m-orderfun">
 	                                    	<button data-order="$!order.orderId" class="btn btn-default btn-sm btn-order-cancal" type="button">取消订单</button>
+											<button data-order="$!order.orderId" class="btn btn-default btn-sm btn-order-pay" type="button">立即支付</button>
 	                                    </div>
                                     #end
 	                    		</li>

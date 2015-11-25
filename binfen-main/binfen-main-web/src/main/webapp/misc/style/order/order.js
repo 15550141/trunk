@@ -344,7 +344,20 @@ function orderVerify(){
 //                }
 //				localStorage['cartcount'] = 0;
             	if(orderType == 1 && paymentType == 3){
-            		goWxPay(resp.result);
+            		wx.chooseWXPay({
+        				appId : resp.result.appId,
+                        timestamp: resp.result.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+                        nonceStr: resp.result.nonceStr, // 支付签名随机串，不长于 32 位
+                        package: resp.result.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+                        signType: resp.result.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+                        paySign: resp.result.paySign, // 支付签名
+                        success: function (res) {
+                    		window.location.href="/success.html";
+                        },
+                        cancel:function(){
+                        	window.location.href="/order/my";
+                        }
+                    });
             	}else{
             		window.location.href="/success.html";
             	}
@@ -381,7 +394,10 @@ function goWxPay(orderId){
                 signType: data.result.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
                 paySign: data.result.paySign, // 支付签名
                 success: function (res) {
-                	window.location.href="/success.html";
+            		window.location.href="/success.html";
+                },
+                cancel:function(){
+                	window.location.href="/order/my";
                 }
             });
 		}

@@ -106,27 +106,30 @@ public class Test {
 //		System.out.println(HttpUtils.httpPostData("https://api.mch.weixin.qq.com/pay/unifiedorder", "<xml><appid>wx1845cbfdc233b86b</appid><mch_id>1267232401</mch_id><device_info>WEB</device_info><nonce_str>yujianming</nonce_str><sign>8681AE82E00C9D15E9A38530ED2C7850</sign><body>陕西红心奇异果</body><out_trade_no>1000078</out_trade_no><total_fee>500</total_fee><spbill_create_ip>111.201.24.163</spbill_create_ip><notify_url>http://www.binfenguoyuan.cn/wxpay/wxCallBack</notify_url><trade_type>JSAPI</trade_type><openid>oETAJv0DR67KPB5u8IHUExp9Cm-8</openid></xml> ", "utf-8"));
 		
 		
-		Map<String, String> resultMap = new HashMap<String, String>();
-		resultMap.put("appId", BFConstants.appId);
-		resultMap.put("timeStamp", System.currentTimeMillis()/1000+"");
-		resultMap.put("nonceStr", "xianguoweidao");
-		resultMap.put("package", "prepay_id=wx20151123232638e2a0e153750219669787");
-		resultMap.put("signType", "MD5");
+//		Map<String, String> resultMap = new HashMap<String, String>();
+//		resultMap.put("appId", BFConstants.appId);
+//		resultMap.put("timeStamp", System.currentTimeMillis()/1000+"");
+//		resultMap.put("nonceStr", "xianguoweidao");
+//		resultMap.put("package", "prepay_id=wx20151123232638e2a0e153750219669787");
+//		resultMap.put("signType", "MD5");
+//		
+//		StringBuilder sb = new StringBuilder();
+//		sb.append("appId=").append(resultMap.get("appId")).append("&");
+//		sb.append("nonceStr=").append(resultMap.get("nonceStr")).append("&");
+//		sb.append("package=").append(resultMap.get("package")).append("&");
+//		sb.append("signType=").append(resultMap.get("signType")).append("&");
+//		sb.append("timeStamp=").append(resultMap.get("timeStamp")).append("&");
+//		sb.append("key=").append(BFConstants.wxPaySkey);
+//		String paySign = MD5Util.md5Hex(sb.toString());
+//		System.out.println(resultMap.get("appId"));
+//		System.out.println(resultMap.get("nonceStr"));
+//		System.out.println(resultMap.get("package"));
+//		System.out.println(resultMap.get("signType"));
+//		System.out.println(resultMap.get("timeStamp"));
+//		System.out.println(paySign);
 		
-		StringBuilder sb = new StringBuilder();
-		sb.append("appId=").append(resultMap.get("appId")).append("&");
-		sb.append("nonceStr=").append(resultMap.get("nonceStr")).append("&");
-		sb.append("package=").append(resultMap.get("package")).append("&");
-		sb.append("signType=").append(resultMap.get("signType")).append("&");
-		sb.append("timeStamp=").append(resultMap.get("timeStamp")).append("&");
-		sb.append("key=").append(BFConstants.wxPaySkey);
-		String paySign = MD5Util.md5Hex(sb.toString());
-		System.out.println(resultMap.get("appId"));
-		System.out.println(resultMap.get("nonceStr"));
-		System.out.println(resultMap.get("package"));
-		System.out.println(resultMap.get("signType"));
-		System.out.println(resultMap.get("timeStamp"));
-		System.out.println(paySign);
+		System.out.println(DateUtil.parseDate("20151125231928").getTime());;
+		System.out.println(System.currentTimeMillis());
 	}
 	
 	public static void listNodes(Element node){  

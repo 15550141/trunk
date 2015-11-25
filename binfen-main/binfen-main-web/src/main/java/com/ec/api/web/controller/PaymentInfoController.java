@@ -1,5 +1,10 @@
 package com.ec.api.web.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -44,6 +49,25 @@ public class PaymentInfoController extends BaseController {
 		Integer uid = CookieUtils.getUid(request);
 		paymentInfo.setUid(uid);
 		return paymentInfoService.userCreatePayment(paymentInfo);
+	}
+	
+	@RequestMapping(value="wxCallBack", method={RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody String wxCallback(PaymentInfo paymentInfo, HttpServletRequest request,HttpServletResponse response, ModelMap context){
+		String str = null;
+		try {
+			StringBuffer sb = new StringBuffer() ;
+			InputStream is = request.getInputStream();
+			InputStreamReader isr = new InputStreamReader(is);  
+			BufferedReader br = new BufferedReader(isr);
+			String s = "" ;
+			while((s=br.readLine())!=null){
+				sb.append(s) ;
+			}
+			str = sb.toString();
+		} catch (IOException e) {
+			log.error("", e);
+		}
+		return paymentInfoService.wxCallback(str);
 	}
 	
 	
