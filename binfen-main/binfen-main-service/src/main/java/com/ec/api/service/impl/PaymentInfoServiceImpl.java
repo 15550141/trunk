@@ -1,5 +1,6 @@
 package com.ec.api.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -52,6 +53,7 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 	private OrderInfoService orderInfoService;
 	private AccessTokenDao accessTokenDao;
 	
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 	//用户发起支付请求
 	@Override
 	public Result userCreatePayment(PaymentInfo paymentInfo) {
@@ -72,7 +74,6 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 				return result;
 			}
 			paymentInfo.setOrderId(orderInfo.getOrderId());
-			paymentInfo.setOrderPayType(1);//微信支付
 			paymentInfo.setPaymentInfoType(1);//发起支付类型
 			
 			paymentInfo.setPaymentMoney(orderInfo.getOrderMoney());//订单总金额
@@ -98,6 +99,13 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 			resultMap.put("package", "prepay_id="+paymentNumber);
 			resultMap.put("signType", "MD5");
 			resultMap.put("paySign", this.getPaySign(resultMap));
+			
+			log.error("appId:"+resultMap.get("appId"));
+			log.error("timeStamp:"+resultMap.get("timeStamp"));
+			log.error("nonceStr:"+resultMap.get("nonceStr"));
+			log.error("package:"+resultMap.get("package"));
+			log.error("signType:"+resultMap.get("signType"));
+			log.error("paySign:"+resultMap.get("paySign"));
 			
 			result.setResult(resultMap);
 			result.setSuccess(true);
@@ -156,7 +164,7 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 			paymentInfo.setPaymentInfoMessage(callbackString);//此处放订单详细信息
 			paymentInfo.setPaymentMoney(wxPayCallback.getTotal_fee());//订单总金额
 			paymentInfo.setPaymentNumber(wxPayCallback.getTransaction_id());//第三方支付单号
-			paymentInfo.setDtOrder(new Date(Long.parseLong(wxPayCallback.getTime_end())*1000));
+			paymentInfo.setDtOrder(sdf.parse(wxPayCallback.getTime_end()));
 			
 			new TransactionTemplate(transactionManager).execute(new TransactionCallbackWithoutResult() {
 				@Override
@@ -170,7 +178,7 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 				}
 			});
 			
-			
+			log.error("给腾讯返回的是成功！	订单号："+orderInfo.getOrderId());
 			return "<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>";
 		}catch (Exception e) {
 			log.error("添加支付信息异常	callbackString="+callbackString, e);
@@ -186,7 +194,7 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 			Element root = doc.getRootElement();
 			Element return_code = root.element("return_code");
 			if(return_code != null){
-				wxPayCallback.setResult_code(return_code.getTextTrim());
+				wxPayCallback.setReturn_code(return_code.getTextTrim());
 			}
 			
 			Element return_msg = root.element("return_msg");

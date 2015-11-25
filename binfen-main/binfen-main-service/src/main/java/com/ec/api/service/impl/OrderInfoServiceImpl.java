@@ -21,6 +21,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import com.ec.api.common.utils.CookieUtils;
 import com.ec.api.common.utils.HttpUtils;
 import com.ec.api.common.utils.JsonUtils;
 import com.ec.api.common.utils.PaginatedArrayList;
@@ -38,6 +39,7 @@ import com.ec.api.domain.ConsigneeInfo;
 import com.ec.api.domain.Item;
 import com.ec.api.domain.OrderDetail;
 import com.ec.api.domain.OrderInfo;
+import com.ec.api.domain.PaymentInfo;
 import com.ec.api.domain.PromotionInfo;
 import com.ec.api.domain.PromotionSku;
 import com.ec.api.domain.ReceiveAddr;
@@ -47,6 +49,7 @@ import com.ec.api.domain.query.OrderInfoQuery;
 import com.ec.api.domain.query.PromotionSkuQuery;
 import com.ec.api.service.CartService;
 import com.ec.api.service.OrderInfoService;
+import com.ec.api.service.PaymentInfoService;
 import com.ec.api.service.ReceiveAddrService;
 import com.ec.api.service.UmpInfoService;
 import com.ec.api.service.result.Result;
@@ -70,6 +73,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 	private UmpInfoService umpInfoService;
 	private CartService cartService;
 	private ReceiveAddrService receiveAddrService;
+	private PaymentInfoService paymentInfoService;
 	
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 	
@@ -164,12 +168,20 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 //							}
 //						}
 					}
+					
 					EcUtils.setSuccessResult(result);
-					result.setResult(orderId);
 				}
 			});
+			CartUtils.clearCookies(response);//清除
 			
-			CartUtils.clearCookies(response);
+			if(order.getPaymentType() == 3){//微信支付
+				PaymentInfo paymentInfo = new PaymentInfo();
+				paymentInfo.setOrderId(order.getOrderId());
+				paymentInfo.setOrderPayType(1);
+				paymentInfo.setUid(order.getUserId());
+				return paymentInfoService.userCreatePayment(paymentInfo);
+			}
+			
 		}catch (Exception e) {
 			log.error("下单异常，userId:"+order.getUserId(), e);
 			EcUtils.setExceptionResult(result);
@@ -883,6 +895,10 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 
 	public void setReceiveAddrService(ReceiveAddrService receiveAddrService) {
 		this.receiveAddrService = receiveAddrService;
+	}
+
+	public void setPaymentInfoService(PaymentInfoService paymentInfoService) {
+		this.paymentInfoService = paymentInfoService;
 	}
 
 }
