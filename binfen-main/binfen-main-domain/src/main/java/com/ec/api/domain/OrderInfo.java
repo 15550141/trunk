@@ -433,14 +433,20 @@ public class OrderInfo implements Serializable{
 	}
 
 	public BigDecimal getBigDecimalOrderMoney(){
-		return new BigDecimal(this.getOrderMoney()).divide(new BigDecimal(100));
+		if(this.getOrderMoney() != null){
+			return new BigDecimal(this.getOrderMoney()).divide(new BigDecimal(100));
+		}
+		return new BigDecimal(0);
 	}
 	/**
 	 * 获取订单总优惠金额（元）
 	 * @return
 	 */
 	public BigDecimal getBigDecimalDiscountMoney(){
-		return new BigDecimal(this.getDiscountMoney()).divide(new BigDecimal(100));
+		if(this.getDiscountMoney() != null){
+			return new BigDecimal(this.getDiscountMoney()).divide(new BigDecimal(100));
+		}
+		return new BigDecimal(0);
 	}
 
 	public Integer getPaymentId() {
