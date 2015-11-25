@@ -94,17 +94,19 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 			this.setBasicOrderInfo(order);
 			order.setIp(HttpUtils.getRemoteIp(request));
 			
-			//设置订单总金额
-			order.setOrderMoney((cartInfo.getTotleSalePrice().multiply(new BigDecimal(100))).intValue());
-			//设置订单总优惠金额
-			order.setDiscountMoney((cartInfo.getTotlePreferentialPrice().multiply(new BigDecimal(100))).intValue());
-			//设置订单优惠明细
-			if(cartInfo.getTotlePreferentialPrice().compareTo(new BigDecimal(0)) > 0){
-				order.setDiscountInfo("首单满19元减5元");
+			if(order.getOrderType() == 1 && order.getPaymentType() == 3){//使用在线支付-微信支付 才享受优惠
+				//设置订单总金额
+				order.setOrderMoney((cartInfo.getTotleSalePrice().multiply(new BigDecimal(100))).intValue());
+				//设置订单总优惠金额
+				order.setDiscountMoney((cartInfo.getTotlePreferentialPrice().multiply(new BigDecimal(100))).intValue());
+				//设置订单优惠明细
+				if(cartInfo.getTotlePreferentialPrice().compareTo(new BigDecimal(0)) > 0){
+					order.setDiscountInfo("首单满19元减5元");
+				}
+			}else{
+				//设置订单总金额
+				order.setOrderMoney((cartInfo.getTotleOriginalPrice().multiply(new BigDecimal(100))).intValue());
 			}
-			
-			//默认支付方式为现金支付
-			order.setPaymentType(1);
 			
 			//如果是货到付款订单
 			if(order.getOrderType() != 2){
@@ -294,6 +296,12 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 		return result;
 	}
 	
+	/**
+	 * 查看该用户是否未生成过订单
+	 * @param uid
+	 * @param request
+	 * @return
+	 */
 	@Override
 	public Integer getEffectiveOrderCount(Integer uid) {
 		
