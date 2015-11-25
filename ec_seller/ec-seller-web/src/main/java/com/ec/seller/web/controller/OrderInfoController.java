@@ -112,10 +112,10 @@ public class OrderInfoController {
 		
 		context.put("orderInfo", orderInfo);
 		context.put("address", address);
-		PaymentInfo paymentInfo1 = paymentInfoService.getPaymentInfoByOrderId(orderId, 1);//获取全款或者订金支付金额
-		context.put("paymentInfo1", paymentInfo1);//全款或者定金支付金额
-		PaymentInfo paymentInfo2 = paymentInfoService.getPaymentInfoByOrderId(orderId, 2);//获取全款或者订金支付金额
-		context.put("paymentInfo2", paymentInfo2);//尾款支付金额
+//		PaymentInfo paymentInfo1 = paymentInfoService.getPaymentInfoByOrderId(orderId, 1);//获取全款或者订金支付金额
+//		context.put("paymentInfo1", paymentInfo1);//全款或者定金支付金额
+//		PaymentInfo paymentInfo2 = paymentInfoService.getPaymentInfoByOrderId(orderId, 2);//获取全款或者订金支付金额
+//		context.put("paymentInfo2", paymentInfo2);//尾款支付金额
 		context.put("zaixianSellEntryPrice", sellerEntryService.selectSumPayMoneyByCondition(orderId, 1));//补录金额
 		context.put("weikuanSellEntryPrice", sellerEntryService.selectSumPayMoneyByCondition(orderId, 2));//尾款补录金额
 		return "/orderInfo/detail";
@@ -161,8 +161,8 @@ public class OrderInfoController {
 		context.put("orderInfo", orderInfo);
 		PaymentInfo paymentInfo1 = paymentInfoService.getPaymentInfoByOrderId(orderId, 1);//获取全款或者订金支付金额
 		context.put("paymentInfo1", paymentInfo1);//全款或者定金支付金额
-		PaymentInfo paymentInfo2 = paymentInfoService.getPaymentInfoByOrderId(orderId, 2);//获取全款或者订金支付金额
-		context.put("paymentInfo2", paymentInfo2);//尾款支付金额
+//		PaymentInfo paymentInfo2 = paymentInfoService.getPaymentInfoByOrderId(orderId, 2);//获取全款或者订金支付金额
+//		context.put("paymentInfo2", paymentInfo2);//尾款支付金额
 		context.put("zaixianSellEntryPrice", sellerEntryService.selectSumPayMoneyByCondition(orderId, 1));//补录金额
 		context.put("weikuanSellEntryPrice", sellerEntryService.selectSumPayMoneyByCondition(orderId, 2));//尾款补录金额
 		return "/orderInfo/confirmGetLastPrice";
