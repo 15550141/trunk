@@ -32,6 +32,7 @@ import com.ec.api.dao.OrderInfoDao;
 import com.ec.api.dao.PromotionInfoDao;
 import com.ec.api.dao.PromotionSkuDao;
 import com.ec.api.dao.SkuDao;
+import com.ec.api.dao.TaskDao;
 import com.ec.api.dao.UmpInfoDao;
 import com.ec.api.domain.CartInfo;
 import com.ec.api.domain.CartSku;
@@ -44,6 +45,7 @@ import com.ec.api.domain.PromotionInfo;
 import com.ec.api.domain.PromotionSku;
 import com.ec.api.domain.ReceiveAddr;
 import com.ec.api.domain.Sku;
+import com.ec.api.domain.Task;
 import com.ec.api.domain.UmpInfo;
 import com.ec.api.domain.query.OrderInfoQuery;
 import com.ec.api.domain.query.PromotionSkuQuery;
@@ -74,6 +76,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 	private CartService cartService;
 	private ReceiveAddrService receiveAddrService;
 	private PaymentInfoService paymentInfoService;
+	private TaskDao taskDao;
 	
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 	
@@ -169,6 +172,16 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 //						}
 					}
 					
+					//添加任务表
+					Task task = new Task();
+					Map<String, Integer> map = new HashMap<String, Integer>();
+					map.put("orderId", order.getOrderId());
+					map.put("userId", order.getUserId());
+					task.setContent(JsonUtils.writeValue(map));//内容
+					task.setStatus(0);//初始状态
+					task.setType(1);//下单成功任务
+					task.setYn(1);//有效
+					taskDao.insert(task);
 					EcUtils.setSuccessResult(result);
 				}
 			});
@@ -899,6 +912,10 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 
 	public void setPaymentInfoService(PaymentInfoService paymentInfoService) {
 		this.paymentInfoService = paymentInfoService;
+	}
+
+	public void setTaskDao(TaskDao taskDao) {
+		this.taskDao = taskDao;
 	}
 
 }
