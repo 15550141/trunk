@@ -61,6 +61,12 @@
     where id = #id#
   </select>
   
+  <select id="selectByUserId" resultMap="AccessTokenResult" parameterClass="java.lang.Integer" >
+    select id,uid,appid,access_token,expires_in,refresh_token,openid,scope,unionid,created,modified
+    from access_token 
+    where uid = #uid#
+  </select>
+  
   <!-- 添加信息 -->
   <insert id="insert" parameterClass="com.ec.api.domain.AccessToken" >
     insert into access_token (uid,appid,access_token,expires_in,refresh_token,openid,scope,unionid,created,modified)

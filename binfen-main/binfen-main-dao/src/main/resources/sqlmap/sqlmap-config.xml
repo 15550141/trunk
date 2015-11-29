@@ -36,5 +36,6 @@ Config 2.0/" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
 	<sqlMap resource="sqlmap/ump_info_SqlMap.xml"/>
 	<sqlMap resource="sqlmap/receive_addr_SqlMap.xml"/>
 	<sqlMap resource="sqlmap/access_token_SqlMap.xml"/>
+	<sqlMap resource="sqlmap/task_SqlMap.xml"/>
 	
 </sqlMapConfig>

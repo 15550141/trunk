@@ -31,6 +31,11 @@ public class AccessTokenDaoImpl extends SqlMapClientTemplate implements AccessTo
 	public List<AccessToken> selectByCondition(AccessToken accessToken) {
 		return (List<AccessToken>)queryForList("AccessToken.selectByCondition", accessToken);
 	}
+
+	@Override
+	public AccessToken selectByUserId(Integer userId) {
+		return (AccessToken) queryForObject("AccessToken.selectByUserId", userId);
+	}
 	
 	
 }

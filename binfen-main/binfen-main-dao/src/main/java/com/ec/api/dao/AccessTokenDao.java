@@ -23,4 +23,5 @@ public interface AccessTokenDao{
 	 */
 	public List<AccessToken> selectByCondition(AccessToken accessToken);
 	
+	public AccessToken selectByUserId(Integer userId);
 }
