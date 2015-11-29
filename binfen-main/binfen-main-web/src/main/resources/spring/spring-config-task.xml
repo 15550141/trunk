@@ -22,9 +22,29 @@
 			</list>
 		</property>
 	</bean>
-	 -->
+	-->	
 	<!-- 刷新access_token 和 jsapi_ticket -->
 	
-	
+	<bean id="taskService" class="com.ec.api.service.impl.TaskServiceImpl" >
+		<property name="taskDao" ref="taskDao"/>
+		<property name="orderInfoService" ref="orderInfoService"/>
+		<property name="accessTokenDao" ref="accessTokenDao"/>
+	</bean>
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<bean class="org.springframework.scheduling.quartz.CronTriggerBean">
+					<property name="jobDetail">
+						<bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+							<property name="targetObject" ref="taskService" />
+							<property name="targetMethod" value="doTask" />
+							<property name="concurrent" value="false" />
+						</bean>
+					</property>
+					<property name="cronExpression" value="0/5 * * * * ?" />
+				</bean>
+			</list>
+		</property>
+	</bean>
 	
 </beans>

@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
@@ -14,6 +16,7 @@ import org.apache.commons.httpclient.methods.GetMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.ec.api.common.utils.JsonUtils;
 import com.ec.api.common.utils.MD5Util;
 
 public class HttpTest {
@@ -238,9 +241,50 @@ public class HttpTest {
 //		System.out.println(domain + url+"&" +getSign() + "&token="+token);
 //		System.out.println(HttpUtils.httpPostData(domain + url, getSign() + "&token="+token, null));
 		
-		System.out.println(HttpUtils.httpGetData("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token="+URLEncoder.encode("OezXcEiiBSKSxW0eoylIeGww1Qr0IJP-ZV9qVqQRUp0QacNDdYOgaVbF8NBCJCZqxEDzamDnt72QBPGAg0xQjB1RVCZXRMeQmMnfGe6svIPtA0Ti2y7aIA6peDcCB9zCG6yFyHjSVBfAH4zXrOpxMQ","utf-8")+"&type=jsapi", null, null));
+//		System.out.println(HttpUtils.httpGetData("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token="+URLEncoder.encode("OezXcEiiBSKSxW0eoylIeGww1Qr0IJP-ZV9qVqQRUp0QacNDdYOgaVbF8NBCJCZqxEDzamDnt72QBPGAg0xQjB1RVCZXRMeQmMnfGe6svIPtA0Ti2y7aIA6peDcCB9zCG6yFyHjSVBfAH4zXrOpxMQ","utf-8")+"&type=jsapi", null, null));
 //		down();
-		log.error("OK");                                                                        
+//		log.error("OK"); 
+		
+		sendTemplateMessage();
+	}
+	
+	private static void sendTemplateMessage(){
+		String url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=zei4LBZ4bREUD4y3PzeThsS2TLd9qFcdUEFmZICmfpBTKZZE60MLuHNXJ6bdB39PWiCdQ304VbFFHDTe-hQ6JqaQIzFrEj9-k-9HUuLLaFYLVJaAGAAKY";
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("touser", "oETAJv0DR67KPB5u8IHUExp9Cm-8");//openid
+		map.put("template_id", "tJ_N7VPWkQblYNIMj0mAxbzSFtSIg_k7EqP-BKq-BTE");
+		map.put("url", "http://www.binfenguoyuan.cn/order/my");
+		map.put("topcolor", "#FF0000");
+		Map<String, Map<String, String>> dataMap = new HashMap<String, Map<String, String>>();
+		Map<String, String> first = new HashMap<String, String>();
+		first.put("value", "尊敬的客户，您的订单已提交成功！");
+		first.put("color", "#173177");
+		Map<String, String> keyword1 = new HashMap<String, String>();
+		keyword1.put("value", "此处是订单号");
+		keyword1.put("color", "#173177");
+		Map<String, String> keyword2 = new HashMap<String, String>();
+		keyword2.put("value", "此处是金额");
+		keyword2.put("color", "#173177");
+		Map<String, String> keyword3 = new HashMap<String, String>();
+		keyword3.put("value", "我是商品名字");
+		keyword3.put("color", "#173177");
+		Map<String, String> keyword4 = new HashMap<String, String>();
+		keyword4.put("value", "此处是时间");
+		keyword4.put("color", "#173177");
+		Map<String, String> remark = new HashMap<String, String>();
+		remark.put("value", "请您尽快支付，如已支付请忽略。");
+		remark.put("color", "#173177");
+		
+		dataMap.put("first", first);
+		dataMap.put("keyword1", keyword1);
+		dataMap.put("keyword2", keyword2);
+		dataMap.put("keyword3", keyword3);
+		dataMap.put("keyword4", keyword4);
+		dataMap.put("remark", remark);
+		map.put("data", dataMap);
+		
+		System.out.println(HttpUtils.httpPostData(url, JsonUtils.writeValue(map), "utf-8"));
+		
 	}
 	
 //	private static String getSign() throws Exception{

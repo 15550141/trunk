@@ -105,5 +105,9 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
     
+    <bean id="taskDao" class="com.ec.api.dao.impl.TaskDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
 </beans>
 
