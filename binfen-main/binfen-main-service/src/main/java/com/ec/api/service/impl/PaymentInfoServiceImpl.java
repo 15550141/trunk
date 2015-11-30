@@ -30,9 +30,11 @@ import com.ec.api.common.utils.MD5Util;
 import com.ec.api.dao.AccessTokenDao;
 import com.ec.api.dao.OrderInfoDao;
 import com.ec.api.dao.PaymentInfoDao;
+import com.ec.api.dao.TaskDao;
 import com.ec.api.domain.AccessToken;
 import com.ec.api.domain.OrderInfo;
 import com.ec.api.domain.PaymentInfo;
+import com.ec.api.domain.Task;
 import com.ec.api.domain.UserInfo;
 import com.ec.api.domain.WxPayCallback;
 import com.ec.api.domain.WxPay;
@@ -52,6 +54,7 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 	
 	private OrderInfoService orderInfoService;
 	private AccessTokenDao accessTokenDao;
+	private TaskDao taskDao;
 	
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 	//用户发起支付请求
@@ -175,6 +178,18 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 					orderInfo.setOrderStatus(8);//修改订单状态为已支付完成，等待发货状态
 					orderInfo.setPaymentId(paymentId);
 					orderInfoDao.modify(orderInfo);
+					
+					
+					//添加任务表
+					Task task = new Task();
+					Map<String, Integer> map = new HashMap<String, Integer>();
+					map.put("orderId", orderInfo.getOrderId());
+					map.put("userId", orderInfo.getUserId());
+					task.setContent(JsonUtils.writeValue(map));//内容
+					task.setStatus(0);//初始状态
+					task.setType(2);//支付成功
+					task.setYn(1);//有效
+					taskDao.insert(task);
 				}
 			});
 			
@@ -487,6 +502,10 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 
 	public void setAccessTokenDao(AccessTokenDao accessTokenDao) {
 		this.accessTokenDao = accessTokenDao;
+	}
+
+	public void setTaskDao(TaskDao taskDao) {
+		this.taskDao = taskDao;
 	}
 
 	
