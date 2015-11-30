@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="Task" >
+  <resultMap id="TaskResult" class="com.ec.seller.domain.Task" >
+    <result column="id" property="id"  />
+    <result column="content" property="content" />
+    <result column="type" property="type" />
+    <result column="status" property="status" />
+    <result column="yn" property="yn" />
+    <result column="created" property="created" />
+    <result column="modified" property="modified" />
+  </resultMap>
+  
+  <!-- 查询条件 -->
+  <sql id="condition" >
+  	<dynamic prepend="where" >
+  	  <isNotNull prepend="and" property="id" >
+        id = #id#
+      </isNotNull>
+      <isNotNull prepend="and" property="content" >
+        content = #content#
+      </isNotNull>
+      <isNotNull prepend="and" property="type" >
+        type = #type#
+      </isNotNull>
+      <isNotNull prepend="and" property="status" >
+        status = #status#
+      </isNotNull>
+      <isNotNull prepend="and" property="yn" >
+        yn = #yn#
+      </isNotNull>
+    </dynamic>
+  </sql>
+  
+  <!-- 依据主键进行查询 -->
+  <select id="selectByPrimaryKey" resultMap="TaskResult" parameterClass="java.lang.Integer" >
+    select id,content,type,status,yn,created,modified
+    from task 
+    where id = #id#
+  </select>
+  
+  <!-- 添加信息 -->
+  <insert id="insert" parameterClass="com.ec.seller.domain.Task" >
+    insert into task (content,type,status,yn,created,modified)
+    values (#content#,#type#,#status#,#yn#, now(), now())
+      <!-- 返回自增主键 -->
+      <selectKey resultClass="java.lang.Integer" keyProperty="id">
+			<![CDATA[SELECT @@IDENTITY AS id ]]>
+	  </selectKey>
+  </insert>
+  
+  <!-- 依据主键进行修改 -->
+  <update id="modify" parameterClass="com.ec.seller.domain.Task" >
+    update task set MODIFIED = now()
+    <dynamic>
+      <isNotNull prepend="," property="content" >
+        content = #content#
+      </isNotNull>
+      <isNotNull prepend="," property="type" >
+        type = #type#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        status = #status#
+      </isNotNull>
+      <isNotNull prepend="," property="yn" >
+        yn = #yn#
+      </isNotNull>
+    </dynamic>
+    where id=#id# 
+  </update>
+  
+  <!-- 条件查询列表 -->
+  <select id="selectByCondition" parameterClass="com.ec.seller.domain.Task" resultMap="TaskResult" >
+    select id,content,type,status,yn,created,modified
+    from task
+    <include refid="Task.condition" />
+    limit 1000
+  </select>
+  
+</sqlMap>

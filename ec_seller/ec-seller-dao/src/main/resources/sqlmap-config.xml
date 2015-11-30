@@ -35,5 +35,6 @@ Config 2.0/" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
     <sqlMap resource="sqlmap/promotion_sku_SqlMap.xml"/> 
     <sqlMap resource="sqlmap/seller_entry_SqlMap.xml"/> 
     <sqlMap resource="sqlmap/balance_info_SqlMap.xml"/> 
+    <sqlMap resource="sqlmap/task_SqlMap.xml"/> 
     
 </sqlMapConfig>
