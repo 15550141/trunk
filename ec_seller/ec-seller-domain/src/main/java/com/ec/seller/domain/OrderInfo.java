@@ -423,6 +423,9 @@ public class OrderInfo implements Serializable{
 	 * @return
 	 */
 	public BigDecimal getBigDecimalOrderMoney(){
+		if(this.getOrderMoney() == null){
+			return new BigDecimal(0);
+		}
 		return new BigDecimal(this.getOrderMoney()).divide(new BigDecimal(100));
 	}
 	/**
@@ -430,6 +433,9 @@ public class OrderInfo implements Serializable{
 	 * @return
 	 */
 	public BigDecimal getBigDecimalDiscountMoney(){
+		if(this.getDiscountMoney() == null){
+			return new BigDecimal(0);
+		}
 		return new BigDecimal(this.getDiscountMoney()).divide(new BigDecimal(100));
 	}
 }
