@@ -10,18 +10,17 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallbackWithoutResult;
-import org.springframework.transaction.support.TransactionTemplate;
 
+import com.ec.seller.common.utils.JsonUtils;
 import com.ec.seller.common.utils.PaginatedList;
 import com.ec.seller.common.utils.impl.PaginatedArrayList;
 import com.ec.seller.dao.OrderDetailDao;
 import com.ec.seller.dao.OrderInfoDao;
 import com.ec.seller.dao.SellerEntryDao;
+import com.ec.seller.dao.TaskDao;
 import com.ec.seller.domain.OrderDetail;
 import com.ec.seller.domain.OrderInfo;
-import com.ec.seller.domain.SellerEntry;
+import com.ec.seller.domain.Task;
 import com.ec.seller.domain.query.OrderInfoQuery;
 import com.ec.seller.service.OrderInfoService;
 
@@ -32,6 +31,8 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 	private OrderDetailDao orderDetailDao;
 	private SellerEntryDao sellerEntryDao;
 	private DataSourceTransactionManager transactionManager;
+	private TaskDao taskDao;
+	
 	@Override
 	public PaginatedList<OrderInfo> getOrderInfosByPage(OrderInfoQuery orderInfoQuery) {
 		PaginatedList<OrderInfo> OrderInfoList = new PaginatedArrayList<OrderInfo>(orderInfoQuery.getPageNo(),orderInfoQuery.getPageSize());
@@ -219,8 +220,24 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 		orderInfo.setOrderId(orderId);
 		orderInfo.setVenderUserId(venderId);
 		orderInfo.setOrderStatus(13);//等待收货
+		int result = 0;
+		try{
+			result = orderInfoDao.modify(orderInfo);
+			
+			//添加任务表
+			Task task = new Task();
+			Map<String, Integer> taskMap = new HashMap<String, Integer>();
+			taskMap.put("orderId", orderInfo.getOrderId());
+			taskMap.put("userId", orderInfo.getUserId());
+			task.setContent(JsonUtils.writeValue(taskMap));//内容
+			task.setStatus(0);//初始状态
+			task.setType(3);//确认发货
+			task.setYn(1);//有效
+			taskDao.insert(task);
+		}catch (Exception e) {
+			log.error("", e);
+		}
 		
-		int result = orderInfoDao.modify(orderInfo);
 		if(result == 0){
 			map.put("success", false);
 			map.put("message", "修改失败");
@@ -326,6 +343,10 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 	public void setTransactionManager(
 			DataSourceTransactionManager transactionManager) {
 		this.transactionManager = transactionManager;
+	}
+
+	public void setTaskDao(TaskDao taskDao) {
+		this.taskDao = taskDao;
 	}
 
 	
