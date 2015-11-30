@@ -141,5 +141,10 @@
 		<property name="dataSource" ref="ecDataSource"></property>
 	</bean>
 	
+	<bean id="taskDao" class="com.ec.seller.dao.impl.TaskDaoImpl" >
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="ecDataSource"></property>
+	</bean>
+	
 </beans>
 

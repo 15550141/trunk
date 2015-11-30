@@ -218,7 +218,7 @@
 					#if($!orderInfo.orderStatus == 13)
 						<a href="javascript:void(0);" onclick="doFinish($!orderInfo.orderId);">【确认已收货】</a><br /><br />
 					#end
-					#if($!orderInfo.orderStatus != 50 && $!orderInfo.orderStatus != 51)
+					#if($!orderInfo.orderStatus == 1 || ($!orderInfo.orderType == 2 && $!orderInfo.orderStatus == 8))
 						<a href="javascript:void(0);" onclick="doCancel($!orderInfo.orderId);">【取消订单】</a><br /><br />
 					#end
 				</td>
