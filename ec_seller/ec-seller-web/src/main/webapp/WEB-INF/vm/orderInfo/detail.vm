@@ -11,7 +11,7 @@
                 		<td class="TdLabel"><div align="middle">价格</div></td>
                 		<td class="TdLabel"><div align="middle">商品数量</div></td>
                 		<!-- <td class="TdLabel"><div align="middle">库存状态</div></td> -->
-                		<td class="TdLabel"><div align="middle">小计</div></td>
+                		<!-- <td class="TdLabel"><div align="middle">小计</div></td> -->
                 	</tr>
                 	
                 	#foreach($orderDetail in $!orderInfo.orderDetails)
@@ -23,7 +23,7 @@
                 			$!orderDetail.salesPropertyName
                 		</td>
                 		<td align="middle" class="TdValue">
-                			$!orderDetail.price
+                			$!orderDetail.bigDecimalPrice
                 		</td>
                 		<td align="middle" class="TdValue">
                 			$!orderDetail.num
@@ -33,9 +33,11 @@
                 				有货
                 			</td>
                 		-->
-                		<td align="middle" class="TdValue">
+                		<!--
+						<td align="middle" class="TdValue">
                 			$!orderDetail.bigDecimalPrice
                 		</td>
+						-->
                 	</tr>
                 	
             		#end
