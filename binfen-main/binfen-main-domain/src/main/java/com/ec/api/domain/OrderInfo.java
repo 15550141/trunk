@@ -81,8 +81,11 @@ public class OrderInfo implements Serializable{
      */
     private String hopeArrivalTime;
 
-    /** 发货时间 */
+    /** 点击确认发货时间 */
     private Date sendOutTime;
+    
+    /** 点击确认发货时间 */
+    private Date estimateSendOutTime;
 
     /** 订单完成时间 */
     private Date finishTime;
@@ -455,6 +458,14 @@ public class OrderInfo implements Serializable{
 
 	public void setPaymentId(Integer paymentId) {
 		this.paymentId = paymentId;
+	}
+
+	public void setEstimateSendOutTime(Date estimateSendOutTime) {
+		this.estimateSendOutTime = estimateSendOutTime;
+	}
+
+	public Date getEstimateSendOutTime() {
+		return estimateSendOutTime;
 	}
 	
 }
