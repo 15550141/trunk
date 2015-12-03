@@ -104,7 +104,7 @@ public class TaskServiceImpl implements TaskService{
 			keyword2.put("color", "#173177");
 			
 			Map<String, String> keyword3 = new HashMap<String, String>();
-			keyword3.put("value", orderInfo.getHopeArrivalTime());
+			keyword3.put("value", sdf.format(orderInfo.getEstimateSendOutTime()));
 			keyword3.put("color", "#173177");
 			
 			Map<String, String> keyword4 = new HashMap<String, String>();
