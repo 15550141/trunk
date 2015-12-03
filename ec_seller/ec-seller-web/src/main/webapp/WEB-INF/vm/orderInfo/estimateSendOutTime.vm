@@ -1,0 +1,50 @@
+    <input type="hidden" value="$!orderId" id="orderId" name="orderId" />
+    <div class="box">
+           <div class="title">
+				锁定提示
+           </div>
+		   
+           <div class="panel_form">
+				<table width="100%" cellspacing="0" cellpadding="0" border="0" id="ctl00_CPform_tab_userinfo">
+					<tbody>
+                    	<tr>
+                    		<td class="TdLabel"><div align="right">预计发货时间：</div></td>
+                    		<td width="78%" align="left" colspan="10" class="TdValue">
+                    			<input type="text" id="estimateSendOutTime" name="estimateSendOutTime" value="" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                    		</td>
+                    	</tr>
+                    	<tr>
+                    		<td class="TdLabel"><div align="right"></div></td>
+                    		<td width="78%" align="left" colspan="10" class="TdValue">
+                    			<input type="button" value="提交" onclick="doSend($!orderId);">&nbsp;&nbsp;&nbsp;&nbsp;
+                    			<input type="button" value="取消" onclick="$.modal.close();">
+                    		</td>
+                    	</tr>
+                	</tbody>
+				</table>
+		   </div>
+	</div>
+
+	<script type="text/javascript">
+		function doSend(orderId){
+			if(confirm("请确保订单已发货？")){
+				var estimateSendOutTime = $("#estimateSendOutTime").val();
+				$.ajax({
+					type : "post",
+			    	url : "/orderInfo/sendGoods",
+			    	data : "orderId="+orderId+"&estimateSendOutTime="+estimateSendOutTime,
+			    	contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+			    	dataType: "json", 
+			    	success : function(data) {
+			    		if(data.success){
+			    			alert("发货成功！");
+			    		}else{
+			    			alert(data.message);
+			    		}
+			    		window.location.reload();
+			    	}
+				});
+			}
+		};
+		
+	</script>
