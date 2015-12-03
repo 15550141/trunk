@@ -77,9 +77,14 @@ public class OrderInfo implements Serializable{
      */
     private String hopeArrivalTime;
 
-    /** 发货时间 */
+    /** 点击确认发货时间 */
     private Date sendOutTime;
 
+    /**
+     * 预计发货时间
+     */
+    private Date estimateSendOutTime;
+    
     /** 订单完成时间 */
     private Date finishTime;
 
@@ -438,4 +443,13 @@ public class OrderInfo implements Serializable{
 		}
 		return new BigDecimal(this.getDiscountMoney()).divide(new BigDecimal(100));
 	}
+
+	public Date getEstimateSendOutTime() {
+		return estimateSendOutTime;
+	}
+
+	public void setEstimateSendOutTime(Date estimateSendOutTime) {
+		this.estimateSendOutTime = estimateSendOutTime;
+	}
+	
 }
