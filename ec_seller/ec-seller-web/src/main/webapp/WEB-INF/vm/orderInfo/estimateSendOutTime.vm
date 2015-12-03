@@ -29,6 +29,10 @@
 		function doSend(orderId){
 			if(confirm("请确保订单已发货？")){
 				var estimateSendOutTime = $("#estimateSendOutTime").val();
+				if(!estimateSendOutTime){
+					alert("请输入预计发货时间");
+					return;
+				}
 				$.ajax({
 					type : "post",
 			    	url : "/orderInfo/sendGoods",
