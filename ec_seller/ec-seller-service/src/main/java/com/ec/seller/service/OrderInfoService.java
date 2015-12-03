@@ -1,6 +1,7 @@
 package com.ec.seller.service;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -77,5 +78,5 @@ public interface OrderInfoService {
 	 */
 	public Map<String, Object> addSellerEntry(Integer orderId, Integer orderPayType, Integer paymentMode, BigDecimal paymentMoney, Integer venderUserId);
 	
-	public Map<String, Object> sendGoods(Integer orderId, Integer venderId);
+	public Map<String, Object> sendGoods(Integer orderId, Integer venderId, Date estimateSendOutTime);
 }

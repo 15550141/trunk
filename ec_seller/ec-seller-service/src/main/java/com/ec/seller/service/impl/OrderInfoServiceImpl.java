@@ -191,7 +191,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 	}
 	
 	@Override
-	public Map<String, Object> sendGoods(Integer orderId, Integer venderId) {
+	public Map<String, Object> sendGoods(Integer orderId, Integer venderId, Date estimateSendOutTime) {
 		Map<String, Object> map = new HashMap<String, Object>();
 	
 		OrderInfoQuery query = new OrderInfoQuery();
@@ -219,6 +219,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 		
 		orderInfo.setOrderId(orderId);
 		orderInfo.setVenderUserId(venderId);
+		orderInfo.setEstimateSendOutTime(estimateSendOutTime);
 		orderInfo.setOrderStatus(13);//等待收货
 		int result = 0;
 		try{
