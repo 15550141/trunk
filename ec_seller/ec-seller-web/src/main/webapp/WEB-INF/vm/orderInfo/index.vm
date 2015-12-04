@@ -158,7 +158,7 @@
                 		暂停
                 	#end
                 	#if($!orderInfo.orderStatus==4)
-                		店长最终审核
+                		等待给客户回电
                 	#end
                 	#if($!orderInfo.orderStatus==5)
                 		等待打印
@@ -213,6 +213,9 @@
 					#end
 					#if($!orderInfo.lockStatus == 1)
 						<a href="javascript:void(0);" onClick="unLockOrder($!orderInfo.orderId);">【解除锁定】</a><br /><br />
+					#end
+					#if($!orderInfo.orderStatus == 4)
+						<a href="javascript:void(0);" onClick="estimateSendOutTime($!orderInfo.orderId);">【录入预计发货时间】</a><br /><br />
 					#end
 					#if($!orderInfo.orderStatus == 8)
 						<a href="javascript:void(0);" onClick="sendGoods($!orderInfo.orderId);">【确认发货】</a><br /><br />
@@ -323,8 +326,17 @@
 		}
 	}
 	
+	function estimateSendOutTime(orderId){
+		jQuery.get("/orderInfo/estimateSendOutTime?orderId="+orderId, function(result){
+			$("#addDialog").html(result);
+		});
+  
+		$('#addDialog').modal({
+		});
+		return;
+	}
+	
 	function sendGoods(orderId){
-		/*
 		if(confirm("请确保订单已发货？")){
 			$.ajax({
 				type : "post",
@@ -342,15 +354,6 @@
 		    	}
 			});
 		}
-		*/
-		
-		jQuery.get("/orderInfo/estimateSendOutTime?orderId="+orderId, function(result){
-			$("#addDialog").html(result);
-		});
-  
-		$('#addDialog').modal({
-		});
-		return;
 	}
 	
 	function confirmGetPrice(orderId){

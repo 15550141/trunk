@@ -296,6 +296,25 @@ public class OrderInfoController {
 		return orderInfoService.sendGoods(orderId, CookieUtil.getUserId(reuqest), estimateSendOutTime);
 	}
 	
+	/**
+	 * 确认发货
+	 * @param orderId
+	 * @param reuqest
+	 * @param response
+	 * @param context
+	 * @return
+	 */
+	@RequestMapping(value="/doEstimateSendOutTime", method={ RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody Map<String, Object> doEstimateSendOutTime(Integer orderId, Date estimateSendOutTime, HttpServletRequest reuqest,HttpServletResponse response, ModelMap context){
+		Map<String, Object> map = new HashMap<String, Object>();
+		if(orderId == null){
+			map.put("success", false);
+			map.put("message", "订单号不能为空");
+			return map;
+		}
+		return orderInfoService.doEstimateSendOutTime(orderId, CookieUtil.getUserId(reuqest), estimateSendOutTime);
+	}
+	
 	@RequestMapping(value="/estimateSendOutTime", method={ RequestMethod.GET, RequestMethod.POST })
 	public String estimateSendOutTime(Integer orderId, HttpServletRequest reuqest,HttpServletResponse response, ModelMap context){
 		context.put("orderId", orderId);
