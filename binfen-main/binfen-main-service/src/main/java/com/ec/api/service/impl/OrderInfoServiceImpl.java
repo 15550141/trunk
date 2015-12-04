@@ -119,8 +119,8 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 			if(order.getOrderType() != 2){
 				order.setOrderStatus(1);
 			}else{
-				//订单状态，默认支付方式是货到付款，订单状态为等待发货
-				order.setOrderStatus(8);
+				//订单状态，默认支付方式是货到付款，订单状态为给客户回电确认真实发货时间
+				order.setOrderStatus(4);
 			}
 			//商品信息
 			final List<OrderDetail> orderDetailList = new ArrayList<OrderDetail>();

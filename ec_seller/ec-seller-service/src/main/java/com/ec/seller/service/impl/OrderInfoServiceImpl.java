@@ -219,7 +219,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 		
 		orderInfo.setOrderId(orderId);
 		orderInfo.setVenderUserId(venderId);
-		orderInfo.setEstimateSendOutTime(estimateSendOutTime);
+		orderInfo.setSendOutTime(new Date());//点击确认发货时间
 		orderInfo.setOrderStatus(13);//等待收货
 		int result = 0;
 		try{
@@ -329,6 +329,56 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 		return map;
 	}
 	
+	@Override
+	public Map<String, Object> doEstimateSendOutTime(Integer orderId,
+			Integer venderId, Date estimateSendOutTime) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		OrderInfoQuery query = new OrderInfoQuery();
+		query.setOrderId(orderId);
+		query.setVenderUserId(venderId);
+		List<OrderInfo> list = orderInfoDao.selectByCondition(query);
+		
+		if(list == null || list.size() == 0){
+			map.put("success", false);
+			map.put("message", "订单不存在");
+			return map;
+		}
+		
+		OrderInfo orderInfo = list.get(0);
+		if(orderInfo.getOrderStatus() == 51){//订单已取消
+			map.put("success", false);
+			map.put("message", "该订单已被取消");
+			return map;
+		}
+		if(orderInfo.getOrderStatus() > 4){
+			map.put("success", false);
+			map.put("message", "请重新操作");
+			return map;
+		}
+		
+		orderInfo.setOrderId(orderId);
+		orderInfo.setVenderUserId(venderId);
+		orderInfo.setEstimateSendOutTime(estimateSendOutTime);//预计发货时间
+		orderInfo.setTelephoneCallTime(new Date());//回电用户时间
+		orderInfo.setOrderStatus(8);//等待发货
+		int result = 0;
+		try{
+			result = orderInfoDao.modify(orderInfo);
+		}catch (Exception e) {
+			log.error("", e);
+		}
+		
+		if(result == 0){
+			map.put("success", false);
+			map.put("message", "修改失败");
+		}else{
+			map.put("success", true);
+		}
+		return map;
+	}
+
+	
 	public void setOrderDetailDao(OrderDetailDao orderDetailDao) {
 		this.orderDetailDao = orderDetailDao;
 	}
@@ -349,7 +399,5 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 	public void setTaskDao(TaskDao taskDao) {
 		this.taskDao = taskDao;
 	}
-
-	
 
 }

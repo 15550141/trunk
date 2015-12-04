@@ -79,4 +79,6 @@ public interface OrderInfoService {
 	public Map<String, Object> addSellerEntry(Integer orderId, Integer orderPayType, Integer paymentMode, BigDecimal paymentMoney, Integer venderUserId);
 	
 	public Map<String, Object> sendGoods(Integer orderId, Integer venderId, Date estimateSendOutTime);
+	
+	public Map<String, Object> doEstimateSendOutTime(Integer orderId, Integer venderId, Date estimateSendOutTime);
 }

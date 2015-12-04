@@ -22,6 +22,7 @@
     <result column="hope_arrival_time" property="hopeArrivalTime" jdbcType="TIMESTAMP" />
     <result column="send_out_time" property="sendOutTime" jdbcType="TIMESTAMP" />
     <result column="estimate_send_out_time" property="estimateSendOutTime" jdbcType="TIMESTAMP" />
+    <result column="telephone_call_time" property="telephoneCallTime" jdbcType="TIMESTAMP" />
     <result column="finish_time" property="finishTime" jdbcType="TIMESTAMP" />
     <result column="order_status" property="orderStatus"  />
     <result column="ip" property="ip" jdbcType="VARCHAR" />
@@ -123,7 +124,7 @@
 
   <select id="selectByPrimaryKey" resultMap="OrderInfoResult" parameterClass="java.lang.Integer" >
     select order_id, order_type, payment_type, vender_user_id, user_id, consignee_name, consignee_province, consignee_city, consignee_county,
-    consignee_address, consignee_mobile, remark, order_money, discount_money,discount_info, order_time, pay_time ,hope_arrival_time,send_out_time ,estimate_send_out_time, finish_time,
+    consignee_address, consignee_mobile, remark, order_money, discount_money,discount_info, order_time, pay_time ,hope_arrival_time,send_out_time ,estimate_send_out_time, telephone_call_time, finish_time,
     order_status, ip, lock_status, lock_reason, created, modified, parent_order_id ,yn 
     from order_info
     where order_id = #orderId:INTEGER#
@@ -131,10 +132,10 @@
 
   <insert id="insert" parameterClass="com.ec.seller.domain.OrderInfo" >
     insert into order_info ( order_type, payment_type, vender_user_id, user_id, consignee_name, consignee_province, consignee_city, consignee_county,
-    consignee_address, consignee_mobile, remark, order_money, discount_money,discount_info, order_time, pay_time ,hope_arrival_time,send_out_time ,estimate_send_out_time,finish_time,
+    consignee_address, consignee_mobile, remark, order_money, discount_money,discount_info, order_time, pay_time ,hope_arrival_time,send_out_time ,estimate_send_out_time, telephone_call_time,finish_time,
     order_status, ip, lock_status, lock_reason, created, modified, parent_order_id ,yn )
     values (#orderType#, #paymentType#, #venderUserId#, #userId#, #consigneeName#, #consigneeProvince#, #consigneeCity#, #consigneeCounty#,
-    #consigneeAddress#, #consigneeMobile#, #remark#, #orderMoney#, #discountMoney#, #discountInfo#, now(), #payTime# ,#hopeArrivalTime#,#sendOutTime# ,#estimateSendOutTime# ,#finishTime#,
+    #consigneeAddress#, #consigneeMobile#, #remark#, #orderMoney#, #discountMoney#, #discountInfo#, now(), #payTime# ,#hopeArrivalTime#,#sendOutTime# ,#estimateSendOutTime#, #telephoneCallTime#,#finishTime#,
     #orderStatus#, #ip#, #lockStatus#, #lockReason#, now(), #modified#, #parentOrderId# ,#yn# )
       <!-- 返回自增主键 -->
       <selectKey resultClass="java.lang.Integer" keyProperty="orderId">
@@ -190,6 +191,9 @@
       <isNotNull prepend="," property="estimateSendOutTime" >
         estimate_send_out_time = #estimateSendOutTime#
       </isNotNull>
+      <isNotNull prepend="," property="telephoneCallTime" >
+        telephone_call_time = #telephoneCallTime#
+      </isNotNull>
       <isNotNull prepend="," property="finishTime" >
         finish_time = #finishTime#
       </isNotNull>
@@ -216,7 +220,7 @@
   
   <select id="selectByCondition" parameterClass="com.ec.seller.domain.query.OrderInfoQuery" resultMap="OrderInfoResult" >
     select order_id, order_type, payment_type, vender_user_id, user_id, consignee_name, consignee_province, consignee_city, consignee_county,
-    consignee_address, consignee_mobile, remark, order_money, discount_money,discount_info, order_time, pay_time ,hope_arrival_time,send_out_time ,estimate_send_out_time, finish_time,
+    consignee_address, consignee_mobile, remark, order_money, discount_money,discount_info, order_time, pay_time ,hope_arrival_time,send_out_time ,estimate_send_out_time, telephone_call_time, finish_time,
     order_status, ip, lock_status, lock_reason, created, modified, parent_order_id ,yn 
     from order_info
     <include refid="OrderInfo.condition" />
@@ -224,7 +228,7 @@
   
   <select id="selectByConditionForPage" parameterClass="com.ec.seller.domain.query.OrderInfoQuery" resultMap="OrderInfoResult" >
     select order_id, order_type, payment_type, vender_user_id, user_id, consignee_name, consignee_province, consignee_city, consignee_county,
-    consignee_address, consignee_mobile, remark, order_money, discount_money,discount_info, order_time, pay_time ,hope_arrival_time,send_out_time ,estimate_send_out_time, finish_time,
+    consignee_address, consignee_mobile, remark, order_money, discount_money,discount_info, order_time, pay_time ,hope_arrival_time,send_out_time ,estimate_send_out_time, telephone_call_time, finish_time,
     order_status, ip, lock_status, lock_reason, created, modified, parent_order_id ,yn 
     from order_info
     <include refid="OrderInfo.condition" />

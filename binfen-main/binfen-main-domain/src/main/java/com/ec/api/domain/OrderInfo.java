@@ -84,13 +84,16 @@ public class OrderInfo implements Serializable{
     /** 点击确认发货时间 */
     private Date sendOutTime;
     
-    /** 点击确认发货时间 */
+    /** 预计发货时间 */
     private Date estimateSendOutTime;
+    
+    /** 客服回电时间，确认预计发货时间 */
+    private Date telephoneCallTime;
 
     /** 订单完成时间 */
     private Date finishTime;
 
-    /** 订单状态（1 等待付款，2 等待付款确认 3 暂停 4 店长最终审核 5等待打印  6等待出库 7 等待打包  8等待发货  9 自提途中  10上门提货 11 自提退货  12确认自提 13 等待确认收货  14配送退货 15 收款确认 16 锁定  17等待退款  50完成 51取消订单） */
+    /** 订单状态（1 等待付款，2 等待付款确认 3 暂停 4 等待客服回电  5等待打印  6等待出库 7 等待打包  8等待发货  9 自提途中  10上门提货 11 自提退货  12确认自提 13 等待确认收货  14配送退货 15 收款确认 16 锁定  17等待退款  50完成 51取消订单） */
     private Integer orderStatus;
 
     /** 下单IP */
@@ -466,6 +469,14 @@ public class OrderInfo implements Serializable{
 
 	public Date getEstimateSendOutTime() {
 		return estimateSendOutTime;
+	}
+
+	public Date getTelephoneCallTime() {
+		return telephoneCallTime;
+	}
+
+	public void setTelephoneCallTime(Date telephoneCallTime) {
+		this.telephoneCallTime = telephoneCallTime;
 	}
 	
 }
