@@ -175,7 +175,7 @@ public class PaymentInfoServiceImpl implements PaymentInfoService {
 					Integer paymentId = paymentInfoDao.insert(paymentInfo);
 					
 					//修改订单状态为支付完成
-					orderInfo.setOrderStatus(8);//修改订单状态为已支付完成，等待发货状态
+					orderInfo.setOrderStatus(4);//修改订单状态为已支付完成，等待给客户回电，确认发货时间状态
 					orderInfo.setPaymentId(paymentId);
 					orderInfoDao.modify(orderInfo);
 					
