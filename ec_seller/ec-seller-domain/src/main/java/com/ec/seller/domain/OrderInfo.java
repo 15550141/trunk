@@ -85,6 +85,9 @@ public class OrderInfo implements Serializable{
      */
     private Date estimateSendOutTime;
     
+    /** 客服回电时间，确认预计发货时间 */
+    private Date telephoneCallTime;
+    
     /** 订单完成时间 */
     private Date finishTime;
 
@@ -450,6 +453,14 @@ public class OrderInfo implements Serializable{
 
 	public void setEstimateSendOutTime(Date estimateSendOutTime) {
 		this.estimateSendOutTime = estimateSendOutTime;
+	}
+
+	public Date getTelephoneCallTime() {
+		return telephoneCallTime;
+	}
+
+	public void setTelephoneCallTime(Date telephoneCallTime) {
+		this.telephoneCallTime = telephoneCallTime;
 	}
 	
 }
