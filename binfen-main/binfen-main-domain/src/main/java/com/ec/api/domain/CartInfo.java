@@ -25,9 +25,14 @@ public class CartInfo implements Serializable{
 	 */
 	private BigDecimal totleSalePrice;
 	/**
-	 * 订单原价
+	 * 商品总价
 	 */
 	private BigDecimal totleOriginalPrice;
+	
+	/**
+	 * 运费
+	 */
+	private BigDecimal freightMoney;
 	
 	/**
 	 * 总优惠价格
@@ -98,6 +103,14 @@ public class CartInfo implements Serializable{
 
 	public void setUid(Integer uid) {
 		this.uid = uid;
+	}
+
+	public BigDecimal getFreightMoney() {
+		return freightMoney;
+	}
+
+	public void setFreightMoney(BigDecimal freightMoney) {
+		this.freightMoney = freightMoney;
 	}
 	
 	

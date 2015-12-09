@@ -45,6 +45,9 @@ public class OrderInfoQuery extends BaseSearchForMysqlVo implements Serializable
 
     /** 备注 */
     private String remark;
+    
+    /** 运费 */
+    private Integer freightMoney;
 
     /** 订单总金额 */
     private Integer orderMoney;
@@ -334,6 +337,14 @@ public class OrderInfoQuery extends BaseSearchForMysqlVo implements Serializable
 
 	public void setPaymentId(Integer paymentId) {
 		this.paymentId = paymentId;
+	}
+
+	public Integer getFreightMoney() {
+		return freightMoney;
+	}
+
+	public void setFreightMoney(Integer freightMoney) {
+		this.freightMoney = freightMoney;
 	}
     
 }

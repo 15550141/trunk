@@ -20,6 +20,9 @@ public class OrderDetail implements Serializable{
 
     /** 订单ID */
     private Integer orderId;
+    
+    /** 用户uid */
+    private Integer uid;
 
     /** SKU_ID */
     private Integer skuId;
@@ -141,6 +144,14 @@ public class OrderDetail implements Serializable{
 
 	public void setItemId(Integer itemId) {
 		this.itemId = itemId;
+	}
+
+	public Integer getUid() {
+		return uid;
+	}
+
+	public void setUid(Integer uid) {
+		this.uid = uid;
 	}
 
 	public String getSalesPropertyName() {

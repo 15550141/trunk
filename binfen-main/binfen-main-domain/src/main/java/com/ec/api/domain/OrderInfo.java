@@ -59,6 +59,9 @@ public class OrderInfo implements Serializable{
 
     /** 备注 */
     private String remark;
+    
+    /** 运费     */
+    private Integer freightMoney;
 
     /** 订单总金额   不包含优惠金额  */
     private Integer orderMoney;
@@ -444,6 +447,13 @@ public class OrderInfo implements Serializable{
 		}
 		return new BigDecimal(0);
 	}
+	
+	public BigDecimal getBigDecimalFreightMoney(){
+		if(this.getFreightMoney() != null){
+			return new BigDecimal(this.getFreightMoney()).divide(new BigDecimal(100));
+		}
+		return new BigDecimal(0);
+	}
 	/**
 	 * 获取订单总优惠金额（元）
 	 * @return
@@ -477,6 +487,14 @@ public class OrderInfo implements Serializable{
 
 	public void setTelephoneCallTime(Date telephoneCallTime) {
 		this.telephoneCallTime = telephoneCallTime;
+	}
+
+	public Integer getFreightMoney() {
+		return freightMoney;
+	}
+
+	public void setFreightMoney(Integer freightMoney) {
+		this.freightMoney = freightMoney;
 	}
 	
 }
