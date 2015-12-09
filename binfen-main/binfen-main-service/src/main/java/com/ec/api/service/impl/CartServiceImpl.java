@@ -192,6 +192,9 @@ public class CartServiceImpl implements CartService {
 			BigDecimal totleSalePrice = new BigDecimal(0);
 			//原价
 			BigDecimal totleOriginalPrice = new BigDecimal(0);
+			//运费
+			BigDecimal freightMoney = new BigDecimal(0);
+			
 			for(int i = 0 ; i < cartSkuList.size() ; i ++){
 				CartSku cart = cartSkuList.get(i);
 				
@@ -233,13 +236,6 @@ public class CartServiceImpl implements CartService {
 				}
 			}
 			
-			Integer count = orderInfoService.getEffectiveOrderCount(cartInfo.getUid());
-			if(count != null && count == 0){
-				cartInfo.setFirst(true);
-			}
-
-			//满减逻辑结束
-			
 			//满赠逻辑
 			if(totleSalePrice.compareTo(new BigDecimal(50))>= 0){
 				CartSku cartSku = new CartSku();
@@ -256,20 +252,34 @@ public class CartServiceImpl implements CartService {
 			}
 			//满赠逻辑结束
 			
-			//满减逻辑	满19块钱减5块
-			if(totleSalePrice.compareTo(new BigDecimal(19))>= 0 && cartInfo.isFirst()){
-				totleSalePrice = totleSalePrice.subtract(new BigDecimal(5));
+			//TODO 满减逻辑	满19块钱减5块
+//			Integer count = orderInfoService.getEffectiveOrderCount(cartInfo.getUid());
+//			if(count != null && count == 0){
+//				cartInfo.setFirst(true);
+//			}
+//			if(totleSalePrice.compareTo(new BigDecimal(19))>= 0 && cartInfo.isFirst()){
+//				totleSalePrice = totleSalePrice.subtract(new BigDecimal(5));
+//			}
+			//满减逻辑结束
+			
+			//运费逻辑开始
+			if(totleSalePrice.compareTo(new BigDecimal(39)) < 0){
+				freightMoney = new BigDecimal(4);//不满39，添加4元运费
+				totleSalePrice = totleSalePrice.add(freightMoney);//销售价加上运费
 			}
+			//运费逻辑结束
 			
 			//直接清空对象，释放内存
 			itemList = null;
 			cartInfo.setCartSkusCount(cartSkuList.size());
-			//订单原价
+			//设置运费价格
+			cartInfo.setFreightMoney(freightMoney);
+			//商品总价
 			cartInfo.setTotleOriginalPrice(totleOriginalPrice);
 			//总销售金额
 			cartInfo.setTotleSalePrice(totleSalePrice);
-			//总优惠金额
-			cartInfo.setTotlePreferentialPrice(cartInfo.getTotleOriginalPrice().subtract(cartInfo.getTotleSalePrice()));
+			//总优惠金额	= 总商品销售价格 + 运费 - 最终订单价格
+			cartInfo.setTotlePreferentialPrice(cartInfo.getTotleOriginalPrice().add(freightMoney).subtract(cartInfo.getTotleSalePrice()));
 		}catch (Exception e) {
 			log.error("", e);
 			return null;
