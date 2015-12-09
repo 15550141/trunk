@@ -79,7 +79,17 @@
 	                </div>
                  -->
                 <div class="m-order-item">
-                    <span class="pull-right">货到付款</span>支付方式
+                    <span class="pull-right">
+						#if($!order.paymentType == 1)
+							货到付款-现金
+						#end
+						#if($!order.paymentType == 2)
+							货到付款-银行卡
+						#end
+						#if($!order.paymentType == 3)
+							在线支付-微信支付
+						#end
+					</span>支付方式
                 </div>   
                 <!--
 	                <div class="m-order-item">
@@ -128,6 +138,9 @@
 	                </div>
                 -->
                 <div class="m-order-item">
+                    <span class="pull-right">￥$order.bigDecimalFreightMoney</span>运费
+                </div>
+				<div class="m-order-item">
                     <span class="pull-right">￥$order.bigDecimalDiscountMoney</span>优惠金额
                 </div>
             </li>

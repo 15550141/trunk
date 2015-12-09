@@ -105,15 +105,15 @@
 							</li>
 						#end
 						#if($!cartInfo.totleOriginalPrice < 50)
-							<li  class="donationTips" data-toggle="tooltip" data-placement="top" title="满50元，送精品大石榴，快去凑单吧" >
-								<i>促</i>满50元，送精品大石榴，快去凑单吧
+							<li  class="donationTips" data-toggle="tooltip" data-placement="top" title="满50元，送越南白心火龙果，快去凑单吧" >
+								<i>促</i>满50元，送越南白心火龙果，快去凑单吧
 							</li>
 						#end
-						<!--
-						<li  class="donationTips" data-toggle="tooltip" data-placement="top" title="满158元送智利富士苹果,还差80元，去凑单" >
-							<i>促</i>满158元送智利富士苹果,还差80元，去凑单
-						</li>
-						-->
+						#if($!cartInfo.freightMoney > 0)
+    						<li  class="donationTips" data-toggle="tooltip" data-placement="top" title="满39元免配送费，快去凑单吧" >
+    							<i>包</i>满39元免配送费，快去凑单吧
+    						</li>
+						#end
 					</ul> 
 					
 			    </div>
@@ -123,7 +123,7 @@
 			<nav class="navbar navbar-default navbar-fixed-bottom m-component-foot" role="navigation">
 				<div class="container">
 					<div class="navbar-text navbar-left pull-left m-cart-disbursement">合计：￥$!cartInfo.totleSalePrice
-						<p>商品总价￥$!cartInfo.totleOriginalPrice， 优惠￥ $!cartInfo.totlePreferentialPrice</p>
+						<p>商品总价￥$!cartInfo.totleOriginalPrice， 运费￥ $!cartInfo.freightMoney， 优惠￥ $!cartInfo.totlePreferentialPrice</p>
 					</div> 
 				<button type="button" class="btn btn-warning navbar-btn pull-right" onclick="MessageBox.loading();location.href='/order?showwxpaytitle=1'">去结算</button>
 		  		</div>

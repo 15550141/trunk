@@ -216,15 +216,17 @@ public class OrderInfoController extends BaseController {
 		Result result = new Result();
 		Map<String, Object> map = new HashMap<String, Object>();
 		result.setSuccess(true);
-		Integer uid = CookieUtils.getUid(request);
-		Integer count = orderInfoService.getEffectiveOrderCount(uid);
 		map.put("pmt_goods", 0);
-		if(count == null || count == 0){ //没下过订单
-			if(orderType == 1){ //在线支付
-				CartInfo cartInfo = cartService.getCartInfoByCookie(uid, request);
-				map.put("pmt_goods", cartInfo.getTotlePreferentialPrice());
-			}
-		}
+		
+		//之前逻辑是，如果是在线支付，订单满19元减5元逻辑。现在删除掉了。
+//		Integer uid = CookieUtils.getUid(request);
+//		Integer count = orderInfoService.getEffectiveOrderCount(uid);
+//		if(count == null || count == 0){ //没下过订单
+//			if(orderType == 1){ //在线支付
+//				CartInfo cartInfo = cartService.getCartInfoByCookie(uid, request);
+//				map.put("pmt_goods", cartInfo.getTotlePreferentialPrice());
+//			}
+//		}
 		result.setResult(map);
 		return result;
 	}

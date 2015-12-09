@@ -25,6 +25,7 @@
 	-->	
 	<!-- 刷新access_token 和 jsapi_ticket -->
 	
+	<!-- 
 	<bean id="taskService" class="com.ec.api.service.impl.TaskServiceImpl" >
 		<property name="taskDao" ref="taskDao"/>
 		<property name="orderInfoService" ref="orderInfoService"/>
@@ -46,5 +47,6 @@
 			</list>
 		</property>
 	</bean>
+	 -->
 	
 </beans>

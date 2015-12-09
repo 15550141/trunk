@@ -259,7 +259,7 @@
                 #end
             	
             	<div class="m-order-item">
-                    <span class="pull-right" id="method_money" money="0">￥0</span>运费
+                    <span class="pull-right" id="method_money" money="$!cartInfo.freightMoney">￥$!cartInfo.freightMoney</span>运费
                 </div>
                 
                 <!--
