@@ -106,9 +106,8 @@
         <table>
             <tr>
                 <th>订单号</th>
-                <th>商品信息</th> 
+                <!-- <th>商品信息</th> --> 
                 <th>总订单金额</th>
-                <th>订单类型</th> 
                 <th>买家姓名</th>
                 <th>下单时间</th>
                 <th>期望到达时间</th>
@@ -120,6 +119,7 @@
             #foreach($orderInfo in $list)
 			<tr>
                 <td>$!orderInfo.orderId</td>
+                <!--
                 <td>
             		#foreach($orderDetail in $!orderInfo.orderDetails)
             			商品名称：$!orderDetail.itemName &nbsp;&nbsp;
@@ -128,17 +128,10 @@
             			数量：$!orderDetail.num<br />
             		#end
                 </td> 
+                -->
                 <td>
                 	$!orderInfo.getBigDecimalOrderMoney()
                 </td>
-                <td>
-                	#if($!orderInfo.orderType==1)
-                		在线支付
-                	#end
-                	#if($!orderInfo.orderType==2)
-                		货到付款
-                	#end
-                </td> 
                  
                 <td>$!orderInfo.consigneeName</td>
                 <td>$!{dateFormatUtils.format($orderInfo.orderTime)}</td>
