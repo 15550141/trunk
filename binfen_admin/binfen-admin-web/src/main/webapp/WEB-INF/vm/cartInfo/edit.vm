@@ -1,0 +1,41 @@
+<form name="cartInfoUpdateForm" action="/cartInfo/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>cartId:</td>
+			<td><input type="text" name="cartId" value="$!{cartInfo.cartId}" placeholder="cartId" readonly/></td>
+			<td>userId:</td>
+			<td><input type="text" name="userId" value="$!{cartInfo.userId}" placeholder="userId"/></td>
+		</tr>
+		<tr>
+			<td>orderId:</td>
+			<td><input type="text" name="orderId" value="$!{cartInfo.orderId}" placeholder="orderId"/></td>
+			<td>venderUserId:</td>
+			<td><input type="text" name="venderUserId" value="$!{cartInfo.venderUserId}" placeholder="venderUserId"/></td>
+		</tr>
+		<tr>
+			<td>itemId:</td>
+			<td><input type="text" name="itemId" value="$!{cartInfo.itemId}" placeholder="itemId"/></td>
+			<td>skuId:</td>
+			<td><input type="text" name="skuId" value="$!{cartInfo.skuId}" placeholder="skuId"/></td>
+		</tr>
+		<tr>
+			<td>skuNum:</td>
+			<td><input type="text" name="skuNum" value="$!{cartInfo.skuNum}" placeholder="skuNum"/></td>
+			<td>ip:</td>
+			<td><input type="text" name="ip" value="$!{cartInfo.ip}" placeholder="ip"/></td>
+		</tr>
+		<tr>
+			<td>yn:</td>
+			<td><input type="text" name="yn" value="$!{cartInfo.yn}" placeholder="yn"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{cartInfo.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td colspan="3"><input type="text" name="modified" value="$!{cartInfo.modified}" placeholder="modified"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=cartInfoUpdateForm]').submit()">保存更改</button>
+</div>

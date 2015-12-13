@@ -1,0 +1,18 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>iD:</td>
+		<td>$!{itemProperty.iD}</td>
+		<td>iTEMID:</td>
+		<td>$!{itemProperty.iTEMID}</td>
+	</tr>
+	<tr>
+		<td>iTEMPROPERTYS:</td>
+		<td>$!{itemProperty.iTEMPROPERTYS}</td>
+		<td>cREATED:</td>
+		<td>$!{itemProperty.cREATED}</td>
+	</tr>
+	<tr>
+		<td>mODIFIED:</td>
+		<td colspan="3">$!{itemProperty.mODIFIED}</td>
+	</tr>
+</table>

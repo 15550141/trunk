@@ -1,0 +1,18 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>id:</td>
+		<td>$!{userInfoIncr.id}</td>
+		<td>userId:</td>
+		<td>$!{userInfoIncr.userId}</td>
+	</tr>
+	<tr>
+		<td>status:</td>
+		<td>$!{userInfoIncr.status}</td>
+		<td>created:</td>
+		<td>$!{userInfoIncr.created}</td>
+	</tr>
+	<tr>
+		<td>modified:</td>
+		<td colspan="3">$!{userInfoIncr.modified}</td>
+	</tr>
+</table>

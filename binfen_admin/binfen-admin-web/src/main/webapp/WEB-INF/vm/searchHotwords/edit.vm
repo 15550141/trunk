@@ -1,0 +1,25 @@
+<form name="searchHotwordsUpdateForm" action="/searchHotwords/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{searchHotwords.id}" placeholder="id" readonly/></td>
+			<td>hotwordName:</td>
+			<td><input type="text" name="hotwordName" value="$!{searchHotwords.hotwordName}" placeholder="hotwordName"/></td>
+		</tr>
+		<tr>
+			<td>sortNum:</td>
+			<td><input type="text" name="sortNum" value="$!{searchHotwords.sortNum}" placeholder="sortNum"/></td>
+			<td>yn:</td>
+			<td><input type="text" name="yn" value="$!{searchHotwords.yn}" placeholder="yn"/></td>
+		</tr>
+		<tr>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{searchHotwords.created}" placeholder="created"/></td>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{searchHotwords.modified}" placeholder="modified"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=searchHotwordsUpdateForm]').submit()">保存更改</button>
+</div>

@@ -1,0 +1,77 @@
+<form name="promotionInfoUpdateForm" action="/promotionInfo/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>promotionId:</td>
+			<td><input type="text" name="promotionId" value="$!{promotionInfo.promotionId}" placeholder="promotionId" readonly/></td>
+			<td>promotionName:</td>
+			<td><input type="text" name="promotionName" value="$!{promotionInfo.promotionName}" placeholder="promotionName"/></td>
+		</tr>
+		<tr>
+			<td>itemId:</td>
+			<td><input type="text" name="itemId" value="$!{promotionInfo.itemId}" placeholder="itemId"/></td>
+			<td>venderUserId:</td>
+			<td><input type="text" name="venderUserId" value="$!{promotionInfo.venderUserId}" placeholder="venderUserId"/></td>
+		</tr>
+		<tr>
+			<td>promotionType:</td>
+			<td><input type="text" name="promotionType" value="$!{promotionInfo.promotionType}" placeholder="promotionType"/></td>
+			<td>startTime:</td>
+			<td><input type="text" name="startTime" value="$!{promotionInfo.startTime}" placeholder="startTime"/></td>
+		</tr>
+		<tr>
+			<td>endTime:</td>
+			<td><input type="text" name="endTime" value="$!{promotionInfo.endTime}" placeholder="endTime"/></td>
+			<td>purchaseNumberMin:</td>
+			<td><input type="text" name="purchaseNumberMin" value="$!{promotionInfo.purchaseNumberMin}" placeholder="purchaseNumberMin"/></td>
+		</tr>
+		<tr>
+			<td>purchaseNumberMax:</td>
+			<td><input type="text" name="purchaseNumberMax" value="$!{promotionInfo.purchaseNumberMax}" placeholder="purchaseNumberMax"/></td>
+			<td>promotionStock:</td>
+			<td><input type="text" name="promotionStock" value="$!{promotionInfo.promotionStock}" placeholder="promotionStock"/></td>
+		</tr>
+		<tr>
+			<td>promotionRule:</td>
+			<td><input type="text" name="promotionRule" value="$!{promotionInfo.promotionRule}" placeholder="promotionRule"/></td>
+			<td>promotionStatus:</td>
+			<td><input type="text" name="promotionStatus" value="$!{promotionInfo.promotionStatus}" placeholder="promotionStatus"/></td>
+		</tr>
+		<tr>
+			<td>yn:</td>
+			<td><input type="text" name="yn" value="$!{promotionInfo.yn}" placeholder="yn"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{promotionInfo.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{promotionInfo.modified}" placeholder="modified"/></td>
+			<td>discountFlag:</td>
+			<td><input type="text" name="discountFlag" value="$!{promotionInfo.discountFlag}" placeholder="discountFlag"/></td>
+		</tr>
+		<tr>
+			<td>discountTime:</td>
+			<td><input type="text" name="discountTime" value="$!{promotionInfo.discountTime}" placeholder="discountTime"/></td>
+			<td>specialFlag:</td>
+			<td><input type="text" name="specialFlag" value="$!{promotionInfo.specialFlag}" placeholder="specialFlag"/></td>
+		</tr>
+		<tr>
+			<td>specialTime:</td>
+			<td><input type="text" name="specialTime" value="$!{promotionInfo.specialTime}" placeholder="specialTime"/></td>
+			<td>specialProvince:</td>
+			<td><input type="text" name="specialProvince" value="$!{promotionInfo.specialProvince}" placeholder="specialProvince"/></td>
+		</tr>
+		<tr>
+			<td>specialCity:</td>
+			<td><input type="text" name="specialCity" value="$!{promotionInfo.specialCity}" placeholder="specialCity"/></td>
+			<td>specialCounty:</td>
+			<td><input type="text" name="specialCounty" value="$!{promotionInfo.specialCounty}" placeholder="specialCounty"/></td>
+		</tr>
+		<tr>
+			<td>specialAddress:</td>
+			<td colspan="3"><input type="text" name="specialAddress" value="$!{promotionInfo.specialAddress}" placeholder="specialAddress"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=promotionInfoUpdateForm]').submit()">保存更改</button>
+</div>

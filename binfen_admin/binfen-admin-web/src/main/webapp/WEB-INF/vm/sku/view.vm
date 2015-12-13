@@ -1,0 +1,42 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>skuId:</td>
+		<td>$!{sku.skuId}</td>
+		<td>itemId:</td>
+		<td>$!{sku.itemId}</td>
+	</tr>
+	<tr>
+		<td>salesProperty:</td>
+		<td>$!{sku.salesProperty}</td>
+		<td>salesPropertyName:</td>
+		<td>$!{sku.salesPropertyName}</td>
+	</tr>
+	<tr>
+		<td>leastBuy:</td>
+		<td>$!{sku.leastBuy}</td>
+		<td>barCode:</td>
+		<td>$!{sku.barCode}</td>
+	</tr>
+	<tr>
+		<td>costPrice:</td>
+		<td>$!{sku.costPrice}</td>
+		<td>originalPrice:</td>
+		<td>$!{sku.originalPrice}</td>
+	</tr>
+	<tr>
+		<td>salePrice:</td>
+		<td>$!{sku.salePrice}</td>
+		<td>stock:</td>
+		<td>$!{sku.stock}</td>
+	</tr>
+	<tr>
+		<td>created:</td>
+		<td>$!{sku.created}</td>
+		<td>modified:</td>
+		<td>$!{sku.modified}</td>
+	</tr>
+	<tr>
+		<td>yn:</td>
+		<td colspan="3">$!{sku.yn}</td>
+	</tr>
+</table>

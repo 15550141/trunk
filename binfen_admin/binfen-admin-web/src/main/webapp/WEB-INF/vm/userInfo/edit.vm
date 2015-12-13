@@ -1,0 +1,77 @@
+<form name="userInfoUpdateForm" action="/userInfo/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>uSERID:</td>
+			<td><input type="text" name="uSERID" value="$!{userInfo.uSERID}" placeholder="uSERID" readonly/></td>
+			<td>mobile:</td>
+			<td><input type="text" name="mobile" value="$!{userInfo.mobile}" placeholder="mobile"/></td>
+		</tr>
+		<tr>
+			<td>pASSWORD:</td>
+			<td><input type="text" name="pASSWORD" value="$!{userInfo.pASSWORD}" placeholder="pASSWORD"/></td>
+			<td>uSERTYPE:</td>
+			<td><input type="text" name="uSERTYPE" value="$!{userInfo.uSERTYPE}" placeholder="uSERTYPE"/></td>
+		</tr>
+		<tr>
+			<td>yN:</td>
+			<td><input type="text" name="yN" value="$!{userInfo.yN}" placeholder="yN"/></td>
+			<td>rEGISTERTIME:</td>
+			<td><input type="text" name="rEGISTERTIME" value="$!{userInfo.rEGISTERTIME}" placeholder="rEGISTERTIME"/></td>
+		</tr>
+		<tr>
+			<td>rEGISTERIP:</td>
+			<td><input type="text" name="rEGISTERIP" value="$!{userInfo.rEGISTERIP}" placeholder="rEGISTERIP"/></td>
+			<td>lASTLOGINTIME:</td>
+			<td><input type="text" name="lASTLOGINTIME" value="$!{userInfo.lASTLOGINTIME}" placeholder="lASTLOGINTIME"/></td>
+		</tr>
+		<tr>
+			<td>lASTLOGINIP:</td>
+			<td><input type="text" name="lASTLOGINIP" value="$!{userInfo.lASTLOGINIP}" placeholder="lASTLOGINIP"/></td>
+			<td>cREATED:</td>
+			<td><input type="text" name="cREATED" value="$!{userInfo.cREATED}" placeholder="cREATED"/></td>
+		</tr>
+		<tr>
+			<td>mODIFIED:</td>
+			<td><input type="text" name="mODIFIED" value="$!{userInfo.mODIFIED}" placeholder="mODIFIED"/></td>
+			<td>nickname:</td>
+			<td><input type="text" name="nickname" value="$!{userInfo.nickname}" placeholder="nickname"/></td>
+		</tr>
+		<tr>
+			<td>sex:</td>
+			<td><input type="text" name="sex" value="$!{userInfo.sex}" placeholder="sex"/></td>
+			<td>userLevel:</td>
+			<td><input type="text" name="userLevel" value="$!{userInfo.userLevel}" placeholder="userLevel"/></td>
+		</tr>
+		<tr>
+			<td>province:</td>
+			<td><input type="text" name="province" value="$!{userInfo.province}" placeholder="province"/></td>
+			<td>city:</td>
+			<td><input type="text" name="city" value="$!{userInfo.city}" placeholder="city"/></td>
+		</tr>
+		<tr>
+			<td>country:</td>
+			<td><input type="text" name="country" value="$!{userInfo.country}" placeholder="country"/></td>
+			<td>email:</td>
+			<td><input type="text" name="email" value="$!{userInfo.email}" placeholder="email"/></td>
+		</tr>
+		<tr>
+			<td>headimgurl:</td>
+			<td><input type="text" name="headimgurl" value="$!{userInfo.headimgurl}" placeholder="headimgurl"/></td>
+			<td>truename:</td>
+			<td><input type="text" name="truename" value="$!{userInfo.truename}" placeholder="truename"/></td>
+		</tr>
+		<tr>
+			<td>postcode:</td>
+			<td><input type="text" name="postcode" value="$!{userInfo.postcode}" placeholder="postcode"/></td>
+			<td>address:</td>
+			<td><input type="text" name="address" value="$!{userInfo.address}" placeholder="address"/></td>
+		</tr>
+		<tr>
+			<td>registSource:</td>
+			<td colspan="3"><input type="text" name="registSource" value="$!{userInfo.registSource}" placeholder="registSource"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=userInfoUpdateForm]').submit()">保存更改</button>
+</div>

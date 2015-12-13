@@ -1,0 +1,19 @@
+<form name="brandUpdateForm" action="/brand/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>brandId:</td>
+			<td><input type="text" name="brandId" value="$!{brand.brandId}" placeholder="brandId" readonly/></td>
+			<td>brandName:</td>
+			<td><input type="text" name="brandName" value="$!{brand.brandName}" placeholder="brandName"/></td>
+		</tr>
+		<tr>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{brand.created}" placeholder="created"/></td>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{brand.modified}" placeholder="modified"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=brandUpdateForm]').submit()">保存更改</button>
+</div>

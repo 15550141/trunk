@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="GBK"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- demoDataSource -->
+	<bean id="demoDataSource" class="org.apache.commons.dbcp.BasicDataSource"  destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="${mysql.jdbc.url.core}" />
+		<property name="username" value="${mysql.jdbc.username.core}" />
+		<property name="password" value="${mysql.jdbc.password.core}" />
+		<property name="maxActive" value="${mysql.max.active}" />
+		<property name="initialSize" value="2" />
+		<property name="maxWait" value="60000" />
+		<property name="minIdle" value="1" />
+		<property name="testOnBorrow" value="false" />
+        <property name="testWhileIdle" value="true" />
+        <property name="validationQuery" value="select 1" />
+        <property name="timeBetweenEvictionRunsMillis" value="${mysql.timeBetweenEvictionRunsMillis}" />
+    	<property name="numTestsPerEvictionRun" value="${mysql.numTestsPerEvictionRun}" />
+    	<property name="minEvictableIdleTimeMillis" value="${mysql.minEvictableIdleTimeMillis}" />
+	</bean>
+
+    <!-- 事务管理器配置, 使用jdbc事务 -->
+    <bean id="taskTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="demoDataSource" />
+    </bean>
+
+    <!-- 使用annotation定义事务 -->
+    <tx:annotation-driven transaction-manager="taskTransactionManager" proxy-target-class="true" />
+	
+</beans>

@@ -1,0 +1,42 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>paymentId:</td>
+		<td>$!{paymentInfo.paymentId}</td>
+		<td>uid:</td>
+		<td>$!{paymentInfo.uid}</td>
+	</tr>
+	<tr>
+		<td>orderId:</td>
+		<td>$!{paymentInfo.orderId}</td>
+		<td>orderPayType:</td>
+		<td>$!{paymentInfo.orderPayType}</td>
+	</tr>
+	<tr>
+		<td>paymentInfoType:</td>
+		<td>$!{paymentInfo.paymentInfoType}</td>
+		<td>paymentInfoMessage:</td>
+		<td>$!{paymentInfo.paymentInfoMessage}</td>
+	</tr>
+	<tr>
+		<td>paymentMoney:</td>
+		<td>$!{paymentInfo.paymentMoney}</td>
+		<td>paymentNumber:</td>
+		<td>$!{paymentInfo.paymentNumber}</td>
+	</tr>
+	<tr>
+		<td>dtOrder:</td>
+		<td>$!{paymentInfo.dtOrder}</td>
+		<td>validOrder:</td>
+		<td>$!{paymentInfo.validOrder}</td>
+	</tr>
+	<tr>
+		<td>settleDate:</td>
+		<td>$!{paymentInfo.settleDate}</td>
+		<td>created:</td>
+		<td>$!{paymentInfo.created}</td>
+	</tr>
+	<tr>
+		<td>modified:</td>
+		<td colspan="3">$!{paymentInfo.modified}</td>
+	</tr>
+</table>

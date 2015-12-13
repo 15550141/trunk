@@ -1,0 +1,26 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>logId:</td>
+		<td>$!{log.logId}</td>
+		<td>logType:</td>
+		<td>$!{log.logType}</td>
+	</tr>
+	<tr>
+		<td>operTxtId:</td>
+		<td>$!{log.operTxtId}</td>
+		<td>operatorId:</td>
+		<td>$!{log.operatorId}</td>
+	</tr>
+	<tr>
+		<td>operOldTxt:</td>
+		<td>$!{log.operOldTxt}</td>
+		<td>operNewTxt:</td>
+		<td>$!{log.operNewTxt}</td>
+	</tr>
+	<tr>
+		<td>operIp:</td>
+		<td>$!{log.operIp}</td>
+		<td>created:</td>
+		<td>$!{log.created}</td>
+	</tr>
+</table>

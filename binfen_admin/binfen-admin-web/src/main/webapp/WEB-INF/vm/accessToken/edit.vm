@@ -1,0 +1,41 @@
+<form name="accessTokenUpdateForm" action="/accessToken/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{accessToken.id}" placeholder="id" readonly/></td>
+			<td>appid:</td>
+			<td><input type="text" name="appid" value="$!{accessToken.appid}" placeholder="appid"/></td>
+		</tr>
+		<tr>
+			<td>accessToken:</td>
+			<td><input type="text" name="accessToken" value="$!{accessToken.accessToken}" placeholder="accessToken"/></td>
+			<td>expiresIn:</td>
+			<td><input type="text" name="expiresIn" value="$!{accessToken.expiresIn}" placeholder="expiresIn"/></td>
+		</tr>
+		<tr>
+			<td>refreshToken:</td>
+			<td><input type="text" name="refreshToken" value="$!{accessToken.refreshToken}" placeholder="refreshToken"/></td>
+			<td>openid:</td>
+			<td><input type="text" name="openid" value="$!{accessToken.openid}" placeholder="openid"/></td>
+		</tr>
+		<tr>
+			<td>scope:</td>
+			<td><input type="text" name="scope" value="$!{accessToken.scope}" placeholder="scope"/></td>
+			<td>unionid:</td>
+			<td><input type="text" name="unionid" value="$!{accessToken.unionid}" placeholder="unionid"/></td>
+		</tr>
+		<tr>
+			<td>uid:</td>
+			<td><input type="text" name="uid" value="$!{accessToken.uid}" placeholder="uid"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{accessToken.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td colspan="3"><input type="text" name="modified" value="$!{accessToken.modified}" placeholder="modified"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=accessTokenUpdateForm]').submit()">保存更改</button>
+</div>

@@ -1,0 +1,14 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>brandId:</td>
+		<td>$!{brand.brandId}</td>
+		<td>brandName:</td>
+		<td>$!{brand.brandName}</td>
+	</tr>
+	<tr>
+		<td>created:</td>
+		<td>$!{brand.created}</td>
+		<td>modified:</td>
+		<td>$!{brand.modified}</td>
+	</tr>
+</table>

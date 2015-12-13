@@ -1,0 +1,25 @@
+<form name="itemDescriptionUpdateForm" action="/itemDescription/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>iD:</td>
+			<td><input type="text" name="iD" value="$!{itemDescription.iD}" placeholder="iD" readonly/></td>
+			<td>iTEMID:</td>
+			<td><input type="text" name="iTEMID" value="$!{itemDescription.iTEMID}" placeholder="iTEMID"/></td>
+		</tr>
+		<tr>
+			<td>pCDescriptionINFO:</td>
+			<td><input type="text" name="pCDescriptionINFO" value="$!{itemDescription.pCDescriptionINFO}" placeholder="pCDescriptionINFO"/></td>
+			<td>aPPDescriptionINFO:</td>
+			<td><input type="text" name="aPPDescriptionINFO" value="$!{itemDescription.aPPDescriptionINFO}" placeholder="aPPDescriptionINFO"/></td>
+		</tr>
+		<tr>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{itemDescription.created}" placeholder="created"/></td>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{itemDescription.modified}" placeholder="modified"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=itemDescriptionUpdateForm]').submit()">保存更改</button>
+</div>

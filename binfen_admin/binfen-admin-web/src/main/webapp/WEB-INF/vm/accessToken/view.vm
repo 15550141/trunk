@@ -1,0 +1,36 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>id:</td>
+		<td>$!{accessToken.id}</td>
+		<td>appid:</td>
+		<td>$!{accessToken.appid}</td>
+	</tr>
+	<tr>
+		<td>accessToken:</td>
+		<td>$!{accessToken.accessToken}</td>
+		<td>expiresIn:</td>
+		<td>$!{accessToken.expiresIn}</td>
+	</tr>
+	<tr>
+		<td>refreshToken:</td>
+		<td>$!{accessToken.refreshToken}</td>
+		<td>openid:</td>
+		<td>$!{accessToken.openid}</td>
+	</tr>
+	<tr>
+		<td>scope:</td>
+		<td>$!{accessToken.scope}</td>
+		<td>unionid:</td>
+		<td>$!{accessToken.unionid}</td>
+	</tr>
+	<tr>
+		<td>uid:</td>
+		<td>$!{accessToken.uid}</td>
+		<td>created:</td>
+		<td>$!{accessToken.created}</td>
+	</tr>
+	<tr>
+		<td>modified:</td>
+		<td colspan="3">$!{accessToken.modified}</td>
+	</tr>
+</table>

@@ -1,0 +1,25 @@
+<form name="addressUpdateForm" action="/address/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>aDDRESSID:</td>
+			<td><input type="text" name="aDDRESSID" value="$!{address.aDDRESSID}" placeholder="aDDRESSID" readonly/></td>
+			<td>aDDRESSNAME:</td>
+			<td><input type="text" name="aDDRESSNAME" value="$!{address.aDDRESSNAME}" placeholder="aDDRESSNAME"/></td>
+		</tr>
+		<tr>
+			<td>aDDRESSLEVEL:</td>
+			<td><input type="text" name="aDDRESSLEVEL" value="$!{address.aDDRESSLEVEL}" placeholder="aDDRESSLEVEL"/></td>
+			<td>aDDRESSFID:</td>
+			<td><input type="text" name="aDDRESSFID" value="$!{address.aDDRESSFID}" placeholder="aDDRESSFID"/></td>
+		</tr>
+		<tr>
+			<td>cREATED:</td>
+			<td><input type="text" name="cREATED" value="$!{address.cREATED}" placeholder="cREATED"/></td>
+			<td>mODIFIED:</td>
+			<td><input type="text" name="mODIFIED" value="$!{address.mODIFIED}" placeholder="mODIFIED"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=addressUpdateForm]').submit()">保存更改</button>
+</div>

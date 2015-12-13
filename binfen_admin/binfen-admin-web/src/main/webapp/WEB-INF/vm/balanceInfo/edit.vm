@@ -1,0 +1,53 @@
+<form name="balanceInfoUpdateForm" action="/balanceInfo/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>balanceId:</td>
+			<td><input type="text" name="balanceId" value="$!{balanceInfo.balanceId}" placeholder="balanceId" readonly/></td>
+			<td>venderUserId:</td>
+			<td><input type="text" name="venderUserId" value="$!{balanceInfo.venderUserId}" placeholder="venderUserId"/></td>
+		</tr>
+		<tr>
+			<td>oughtPayMoney:</td>
+			<td><input type="text" name="oughtPayMoney" value="$!{balanceInfo.oughtPayMoney}" placeholder="oughtPayMoney"/></td>
+			<td>payDate:</td>
+			<td><input type="text" name="payDate" value="$!{balanceInfo.payDate}" placeholder="payDate"/></td>
+		</tr>
+		<tr>
+			<td>balanceMoneyFact:</td>
+			<td><input type="text" name="balanceMoneyFact" value="$!{balanceInfo.balanceMoneyFact}" placeholder="balanceMoneyFact"/></td>
+			<td>balanceDateEnd:</td>
+			<td><input type="text" name="balanceDateEnd" value="$!{balanceInfo.balanceDateEnd}" placeholder="balanceDateEnd"/></td>
+		</tr>
+		<tr>
+			<td>balanceDateStart:</td>
+			<td><input type="text" name="balanceDateStart" value="$!{balanceInfo.balanceDateStart}" placeholder="balanceDateStart"/></td>
+			<td>orderMoneyAll:</td>
+			<td><input type="text" name="orderMoneyAll" value="$!{balanceInfo.orderMoneyAll}" placeholder="orderMoneyAll"/></td>
+		</tr>
+		<tr>
+			<td>paymentGoods:</td>
+			<td><input type="text" name="paymentGoods" value="$!{balanceInfo.paymentGoods}" placeholder="paymentGoods"/></td>
+			<td>commission:</td>
+			<td><input type="text" name="commission" value="$!{balanceInfo.commission}" placeholder="commission"/></td>
+		</tr>
+		<tr>
+			<td>balanceMoney:</td>
+			<td><input type="text" name="balanceMoney" value="$!{balanceInfo.balanceMoney}" placeholder="balanceMoney"/></td>
+			<td>balanceStatus:</td>
+			<td><input type="text" name="balanceStatus" value="$!{balanceInfo.balanceStatus}" placeholder="balanceStatus"/></td>
+		</tr>
+		<tr>
+			<td>reason:</td>
+			<td><input type="text" name="reason" value="$!{balanceInfo.reason}" placeholder="reason"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{balanceInfo.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td colspan="3"><input type="text" name="modified" value="$!{balanceInfo.modified}" placeholder="modified"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=balanceInfoUpdateForm]').submit()">保存更改</button>
+</div>

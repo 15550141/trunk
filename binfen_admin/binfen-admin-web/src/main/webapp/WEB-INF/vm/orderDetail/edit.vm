@@ -1,0 +1,55 @@
+<form name="orderDetailUpdateForm" action="/orderDetail/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{orderDetail.id}" placeholder="id" readonly/></td>
+			<td>orderId:</td>
+			<td><input type="text" name="orderId" value="$!{orderDetail.orderId}" placeholder="orderId"/></td>
+		</tr>
+		<tr>
+			<td>uid:</td>
+			<td><input type="text" name="uid" value="$!{orderDetail.uid}" placeholder="uid"/></td>
+			<td>skuId:</td>
+			<td><input type="text" name="skuId" value="$!{orderDetail.skuId}" placeholder="skuId"/></td>
+		</tr>
+		<tr>
+			<td>itemId:</td>
+			<td><input type="text" name="itemId" value="$!{orderDetail.itemId}" placeholder="itemId"/></td>
+			<td>itemName:</td>
+			<td><input type="text" name="itemName" value="$!{orderDetail.itemName}" placeholder="itemName"/></td>
+		</tr>
+		<tr>
+			<td>salesProperty:</td>
+			<td><input type="text" name="salesProperty" value="$!{orderDetail.salesProperty}" placeholder="salesProperty"/></td>
+			<td>salesPropertyName:</td>
+			<td><input type="text" name="salesPropertyName" value="$!{orderDetail.salesPropertyName}" placeholder="salesPropertyName"/></td>
+		</tr>
+		<tr>
+			<td>price:</td>
+			<td><input type="text" name="price" value="$!{orderDetail.price}" placeholder="price"/></td>
+			<td>originalPrice:</td>
+			<td><input type="text" name="originalPrice" value="$!{orderDetail.originalPrice}" placeholder="originalPrice"/></td>
+		</tr>
+		<tr>
+			<td>num:</td>
+			<td><input type="text" name="num" value="$!{orderDetail.num}" placeholder="num"/></td>
+			<td>itemImage:</td>
+			<td><input type="text" name="itemImage" value="$!{orderDetail.itemImage}" placeholder="itemImage"/></td>
+		</tr>
+		<tr>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{orderDetail.created}" placeholder="created"/></td>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{orderDetail.modified}" placeholder="modified"/></td>
+		</tr>
+		<tr>
+			<td>subOrderId:</td>
+			<td><input type="text" name="subOrderId" value="$!{orderDetail.subOrderId}" placeholder="subOrderId"/></td>
+			<td>venderUserId:</td>
+			<td><input type="text" name="venderUserId" value="$!{orderDetail.venderUserId}" placeholder="venderUserId"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=orderDetailUpdateForm]').submit()">保存更改</button>
+</div>

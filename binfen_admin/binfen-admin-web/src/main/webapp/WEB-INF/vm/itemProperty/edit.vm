@@ -1,0 +1,23 @@
+<form name="itemPropertyUpdateForm" action="/itemProperty/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>iD:</td>
+			<td><input type="text" name="iD" value="$!{itemProperty.iD}" placeholder="iD" readonly/></td>
+			<td>iTEMID:</td>
+			<td><input type="text" name="iTEMID" value="$!{itemProperty.iTEMID}" placeholder="iTEMID"/></td>
+		</tr>
+		<tr>
+			<td>iTEMPROPERTYS:</td>
+			<td><input type="text" name="iTEMPROPERTYS" value="$!{itemProperty.iTEMPROPERTYS}" placeholder="iTEMPROPERTYS"/></td>
+			<td>cREATED:</td>
+			<td><input type="text" name="cREATED" value="$!{itemProperty.cREATED}" placeholder="cREATED"/></td>
+		</tr>
+		<tr>
+			<td>mODIFIED:</td>
+			<td colspan="3"><input type="text" name="mODIFIED" value="$!{itemProperty.mODIFIED}" placeholder="mODIFIED"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=itemPropertyUpdateForm]').submit()">保存更改</button>
+</div>

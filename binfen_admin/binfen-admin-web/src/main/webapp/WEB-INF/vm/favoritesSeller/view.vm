@@ -1,0 +1,18 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>favoritesId:</td>
+		<td>$!{favoritesSeller.favoritesId}</td>
+		<td>userId:</td>
+		<td>$!{favoritesSeller.userId}</td>
+	</tr>
+	<tr>
+		<td>venderUserId:</td>
+		<td>$!{favoritesSeller.venderUserId}</td>
+		<td>created:</td>
+		<td>$!{favoritesSeller.created}</td>
+	</tr>
+	<tr>
+		<td>modified:</td>
+		<td colspan="3">$!{favoritesSeller.modified}</td>
+	</tr>
+</table>

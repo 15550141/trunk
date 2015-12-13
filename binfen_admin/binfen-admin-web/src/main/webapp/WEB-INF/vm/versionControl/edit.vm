@@ -1,0 +1,37 @@
+<form name="versionControlUpdateForm" action="/versionControl/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{versionControl.id}" placeholder="id" readonly/></td>
+			<td>versionType:</td>
+			<td><input type="text" name="versionType" value="$!{versionControl.versionType}" placeholder="versionType"/></td>
+		</tr>
+		<tr>
+			<td>yn:</td>
+			<td><input type="text" name="yn" value="$!{versionControl.yn}" placeholder="yn"/></td>
+			<td>updateFlag:</td>
+			<td><input type="text" name="updateFlag" value="$!{versionControl.updateFlag}" placeholder="updateFlag"/></td>
+		</tr>
+		<tr>
+			<td>cREATED:</td>
+			<td><input type="text" name="cREATED" value="$!{versionControl.cREATED}" placeholder="cREATED"/></td>
+			<td>mODIFIED:</td>
+			<td><input type="text" name="mODIFIED" value="$!{versionControl.mODIFIED}" placeholder="mODIFIED"/></td>
+		</tr>
+		<tr>
+			<td>versionName:</td>
+			<td><input type="text" name="versionName" value="$!{versionControl.versionName}" placeholder="versionName"/></td>
+			<td>versionNo:</td>
+			<td><input type="text" name="versionNo" value="$!{versionControl.versionNo}" placeholder="versionNo"/></td>
+		</tr>
+		<tr>
+			<td>versionUrl:</td>
+			<td><input type="text" name="versionUrl" value="$!{versionControl.versionUrl}" placeholder="versionUrl"/></td>
+			<td>versionIntro:</td>
+			<td><input type="text" name="versionIntro" value="$!{versionControl.versionIntro}" placeholder="versionIntro"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=versionControlUpdateForm]').submit()">保存更改</button>
+</div>

@@ -1,0 +1,30 @@
+#* 设置标题 *#
+#set($title = "demoUser-list")
+
+
+<script type="text/javascript" src="js/jquery-1.2.6.js"></script>
+<center>用户列表</center><br/>
+
+<div id="message">$!{message}</div >
+
+<h3>增加用户</h3>
+<form action="add" method="post">
+	用户 名:<input type="text" name="demoUser.name"><br/>
+	年龄:<input type="text" name="demoUser.age"><br/>
+	<input type="submit" value="增加"/>	
+</form>
+
+<hr/>
+<table border="1">
+    <tr >
+		<td>id</td><td >name</td><td>age</td><td>created</td>
+    </tr>
+	#foreach($user in $users)
+        <tr >
+			<td>${user.id}</td>
+			<td>${stringEscapeUtils.escapeHtml(${user.name})}</td>
+			<td>${user.age}</td>
+			<td>${dateFormatUtils.format(${user.created})}</td>
+		</tr>
+	#end
+</table>

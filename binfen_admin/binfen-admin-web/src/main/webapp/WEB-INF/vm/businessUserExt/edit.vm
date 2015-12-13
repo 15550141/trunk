@@ -1,0 +1,97 @@
+<form name="businessUserExtUpdateForm" action="/businessUserExt/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{businessUserExt.id}" placeholder="id" readonly/></td>
+			<td>userId:</td>
+			<td><input type="text" name="userId" value="$!{businessUserExt.userId}" placeholder="userId"/></td>
+		</tr>
+		<tr>
+			<td>shopName:</td>
+			<td><input type="text" name="shopName" value="$!{businessUserExt.shopName}" placeholder="shopName"/></td>
+			<td>shopImage:</td>
+			<td><input type="text" name="shopImage" value="$!{businessUserExt.shopImage}" placeholder="shopImage"/></td>
+		</tr>
+		<tr>
+			<td>status:</td>
+			<td><input type="text" name="status" value="$!{businessUserExt.status}" placeholder="status"/></td>
+			<td>bank:</td>
+			<td><input type="text" name="bank" value="$!{businessUserExt.bank}" placeholder="bank"/></td>
+		</tr>
+		<tr>
+			<td>billOrg:</td>
+			<td><input type="text" name="billOrg" value="$!{businessUserExt.billOrg}" placeholder="billOrg"/></td>
+			<td>taxCode:</td>
+			<td><input type="text" name="taxCode" value="$!{businessUserExt.taxCode}" placeholder="taxCode"/></td>
+		</tr>
+		<tr>
+			<td>phone:</td>
+			<td><input type="text" name="phone" value="$!{businessUserExt.phone}" placeholder="phone"/></td>
+			<td>moneyUnion:</td>
+			<td><input type="text" name="moneyUnion" value="$!{businessUserExt.moneyUnion}" placeholder="moneyUnion"/></td>
+		</tr>
+		<tr>
+			<td>address:</td>
+			<td><input type="text" name="address" value="$!{businessUserExt.address}" placeholder="address"/></td>
+			<td>bankAc:</td>
+			<td><input type="text" name="bankAc" value="$!{businessUserExt.bankAc}" placeholder="bankAc"/></td>
+		</tr>
+		<tr>
+			<td>branch:</td>
+			<td><input type="text" name="branch" value="$!{businessUserExt.branch}" placeholder="branch"/></td>
+			<td>cNAPSCode:</td>
+			<td><input type="text" name="cNAPSCode" value="$!{businessUserExt.cNAPSCode}" placeholder="cNAPSCode"/></td>
+		</tr>
+		<tr>
+			<td>bankProvince:</td>
+			<td><input type="text" name="bankProvince" value="$!{businessUserExt.bankProvince}" placeholder="bankProvince"/></td>
+			<td>bankCity:</td>
+			<td><input type="text" name="bankCity" value="$!{businessUserExt.bankCity}" placeholder="bankCity"/></td>
+		</tr>
+		<tr>
+			<td>bankStatus:</td>
+			<td><input type="text" name="bankStatus" value="$!{businessUserExt.bankStatus}" placeholder="bankStatus"/></td>
+			<td>bankRemark:</td>
+			<td><input type="text" name="bankRemark" value="$!{businessUserExt.bankRemark}" placeholder="bankRemark"/></td>
+		</tr>
+		<tr>
+			<td>bankCreated:</td>
+			<td><input type="text" name="bankCreated" value="$!{businessUserExt.bankCreated}" placeholder="bankCreated"/></td>
+			<td>bankChecked:</td>
+			<td><input type="text" name="bankChecked" value="$!{businessUserExt.bankChecked}" placeholder="bankChecked"/></td>
+		</tr>
+		<tr>
+			<td>commision:</td>
+			<td><input type="text" name="commision" value="$!{businessUserExt.commision}" placeholder="commision"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{businessUserExt.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{businessUserExt.modified}" placeholder="modified"/></td>
+			<td>ifHaveDeposit:</td>
+			<td><input type="text" name="ifHaveDeposit" value="$!{businessUserExt.ifHaveDeposit}" placeholder="ifHaveDeposit"/></td>
+		</tr>
+		<tr>
+			<td>deposit:</td>
+			<td><input type="text" name="deposit" value="$!{businessUserExt.deposit}" placeholder="deposit"/></td>
+			<td>businessType:</td>
+			<td><input type="text" name="businessType" value="$!{businessUserExt.businessType}" placeholder="businessType"/></td>
+		</tr>
+		<tr>
+			<td>supplyProvince:</td>
+			<td><input type="text" name="supplyProvince" value="$!{businessUserExt.supplyProvince}" placeholder="supplyProvince"/></td>
+			<td>supplyCity:</td>
+			<td><input type="text" name="supplyCity" value="$!{businessUserExt.supplyCity}" placeholder="supplyCity"/></td>
+		</tr>
+		<tr>
+			<td>supplyCounty:</td>
+			<td><input type="text" name="supplyCounty" value="$!{businessUserExt.supplyCounty}" placeholder="supplyCounty"/></td>
+			<td>qualificationUrl:</td>
+			<td><input type="text" name="qualificationUrl" value="$!{businessUserExt.qualificationUrl}" placeholder="qualificationUrl"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=businessUserExtUpdateForm]').submit()">保存更改</button>
+</div>

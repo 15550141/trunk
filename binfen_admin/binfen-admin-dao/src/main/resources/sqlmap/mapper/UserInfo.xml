@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jd.binfen_admin.dao.UserInfoDao">
+
+	<!-- user_info 所有查询列 -->
+	<sql id="QUERY_COLUMN_LIST">
+		<![CDATA[USER_ID AS uSERID,mobile,PASSWORD AS pASSWORD,USER_TYPE AS uSERTYPE,YN AS yN,REGISTER_TIME AS rEGISTERTIME,REGISTER_IP AS rEGISTERIP,LAST_LOGIN_TIME AS lASTLOGINTIME,LAST_LOGIN_IP AS lASTLOGINIP,CREATED AS cREATED,MODIFIED AS mODIFIED,nickname,sex,user_level AS userLevel,province,city,country,email,headimgurl,truename,postcode,address,regist_source AS registSource]]>
+	</sql>
+
+	<!-- user_info 查询列来源表-->
+	<sql id="QUERY_FROM_TABLE"><![CDATA[FROM user_info]]></sql>
+	
+	<!-- 全部条件(更多功能可以通过queryData扩展实现)  -->
+	<sql id="QUERY_WHERE_CLAUSE">
+		<where>
+			<if test="uSERID != null and uSERID != ''"><![CDATA[AND USER_ID = #{uSERID}]]></if>
+			<if test="mobile != null and mobile != ''"><![CDATA[AND mobile = #{mobile}]]></if>
+			<if test="pASSWORD != null and pASSWORD != ''"><![CDATA[AND PASSWORD = #{pASSWORD}]]></if>
+			<if test="uSERTYPE != null and uSERTYPE != ''"><![CDATA[AND USER_TYPE = #{uSERTYPE}]]></if>
+			<if test="yN != null and yN != ''"><![CDATA[AND YN = #{yN}]]></if>
+			<if test="rEGISTERTIME != null and rEGISTERTIME != ''"><![CDATA[AND REGISTER_TIME = #{rEGISTERTIME}]]></if>
+			<if test="rEGISTERIP != null and rEGISTERIP != ''"><![CDATA[AND REGISTER_IP = #{rEGISTERIP}]]></if>
+			<if test="lASTLOGINTIME != null and lASTLOGINTIME != ''"><![CDATA[AND LAST_LOGIN_TIME = #{lASTLOGINTIME}]]></if>
+			<if test="lASTLOGINIP != null and lASTLOGINIP != ''"><![CDATA[AND LAST_LOGIN_IP = #{lASTLOGINIP}]]></if>
+			<if test="cREATED != null and cREATED != ''"><![CDATA[AND CREATED = #{cREATED}]]></if>
+			<if test="mODIFIED != null and mODIFIED != ''"><![CDATA[AND MODIFIED = #{mODIFIED}]]></if>
+			<if test="nickname != null and nickname != ''"><![CDATA[AND nickname = #{nickname}]]></if>
+			<if test="sex != null and sex != ''"><![CDATA[AND sex = #{sex}]]></if>
+			<if test="userLevel != null and userLevel != ''"><![CDATA[AND user_level = #{userLevel}]]></if>
+			<if test="province != null and province != ''"><![CDATA[AND province = #{province}]]></if>
+			<if test="city != null and city != ''"><![CDATA[AND city = #{city}]]></if>
+			<if test="country != null and country != ''"><![CDATA[AND country = #{country}]]></if>
+			<if test="email != null and email != ''"><![CDATA[AND email = #{email}]]></if>
+			<if test="headimgurl != null and headimgurl != ''"><![CDATA[AND headimgurl = #{headimgurl}]]></if>
+			<if test="truename != null and truename != ''"><![CDATA[AND truename = #{truename}]]></if>
+			<if test="postcode != null and postcode != ''"><![CDATA[AND postcode = #{postcode}]]></if>
+			<if test="address != null and address != ''"><![CDATA[AND address = #{address}]]></if>
+			<if test="registSource != null and registSource != ''"><![CDATA[AND regist_source = #{registSource}]]></if>
+		</where>
+	</sql>
+	
+	<!-- 智能排序与分页 -->
+	<sql id="QUERY_ORDER_LIMIT_CONDTION">
+		<if test="orderField != null and orderField != '' and orderFieldType != null and orderFieldType != ''"><![CDATA[ORDER BY ${orderField} ${orderFieldType}]]></if>
+		<if test="startIndex != null and startIndex &gt;= 0 and pageSize != null and pageSize &gt; 0"><![CDATA[LIMIT #{startIndex},#{pageSize}]]></if>
+	</sql>
+
+	<!-- 更新列字段,只要不为NULL则更新,除开主键列 -->
+	<sql id="UPDATE_COLUMN_SET">
+		<set>
+			<if test="mobile != null"><![CDATA[mobile = #{mobile},]]></if>
+			<if test="pASSWORD != null"><![CDATA[PASSWORD = #{pASSWORD},]]></if>
+			<if test="uSERTYPE != null"><![CDATA[USER_TYPE = #{uSERTYPE},]]></if>
+			<if test="yN != null"><![CDATA[YN = #{yN},]]></if>
+			<if test="rEGISTERTIME != null"><![CDATA[REGISTER_TIME = #{rEGISTERTIME},]]></if>
+			<if test="rEGISTERIP != null"><![CDATA[REGISTER_IP = #{rEGISTERIP},]]></if>
+			<if test="lASTLOGINTIME != null"><![CDATA[LAST_LOGIN_TIME = #{lASTLOGINTIME},]]></if>
+			<if test="lASTLOGINIP != null"><![CDATA[LAST_LOGIN_IP = #{lASTLOGINIP},]]></if>
+			<if test="cREATED != null"><![CDATA[CREATED = #{cREATED},]]></if>
+			<if test="mODIFIED != null"><![CDATA[MODIFIED = #{mODIFIED},]]></if>
+			<if test="nickname != null"><![CDATA[nickname = #{nickname},]]></if>
+			<if test="sex != null"><![CDATA[sex = #{sex},]]></if>
+			<if test="userLevel != null"><![CDATA[user_level = #{userLevel},]]></if>
+			<if test="province != null"><![CDATA[province = #{province},]]></if>
+			<if test="city != null"><![CDATA[city = #{city},]]></if>
+			<if test="country != null"><![CDATA[country = #{country},]]></if>
+			<if test="email != null"><![CDATA[email = #{email},]]></if>
+			<if test="headimgurl != null"><![CDATA[headimgurl = #{headimgurl},]]></if>
+			<if test="truename != null"><![CDATA[truename = #{truename},]]></if>
+			<if test="postcode != null"><![CDATA[postcode = #{postcode},]]></if>
+			<if test="address != null"><![CDATA[address = #{address},]]></if>
+			<if test="registSource != null"><![CDATA[regist_source = #{registSource},]]></if>
+		</set>
+	</sql>
+
+	<!-- 插入user_info记录 -->
+	<insert id="insertEntry" parameterType="userInfo" >
+		<![CDATA[
+			INSERT INTO user_info (USER_ID,mobile,PASSWORD,USER_TYPE,YN,REGISTER_TIME,REGISTER_IP,LAST_LOGIN_TIME,LAST_LOGIN_IP,CREATED,MODIFIED,nickname,sex,user_level,province,city,country,email,headimgurl,truename,postcode,address,regist_source)
+			VALUES (#{uSERID},#{mobile},#{pASSWORD},#{uSERTYPE},#{yN},#{rEGISTERTIME},#{rEGISTERIP},#{lASTLOGINTIME},#{lASTLOGINIP},#{cREATED},#{mODIFIED},#{nickname},#{sex},#{userLevel},#{province},#{city},#{country},#{email},#{headimgurl},#{truename},#{postcode},#{address},#{registSource})
+		]]>
+	</insert>
+	
+	<!-- 返回插入的编号,在事务开启状态下有效 -->
+	<select id="lastSequence" resultType="int"><![CDATA[SELECT LAST_INSERT_ID() AS USER_ID]]></select>
+
+	<!-- 删除记录,主键IN(array) -->
+	<delete id="deleteByArrayKey" parameterType="java.lang.reflect.Array" >
+		<![CDATA[DELETE FROM user_info WHERE USER_ID IN]]>
+		<foreach collection="array" item="uSERID" open="(" separator="," close=")">
+			<![CDATA[#{uSERID}]]>
+		</foreach>
+	</delete>
+
+	<!-- 删除,通过条件 -->
+	<update id="deleteByCondtion" parameterType="userInfo" >
+		<![CDATA[DELETE FROM user_info]]>
+		<include refid="QUERY_WHERE_CLAUSE"/>
+	</update>
+
+	<!-- 修改记录通过主键 -->
+	<update id="updateByKey" parameterType="userInfo" >
+		<![CDATA[UPDATE user_info]]>
+		<include refid="UPDATE_COLUMN_SET"/>
+		<![CDATA[WHERE USER_ID = #{uSERID}]]>
+	</update>
+
+	<!-- 查询,通过主键IN(array) -->
+	<select id="selectEntryArray" parameterType="java.lang.reflect.Array" resultType="userInfo">
+		<![CDATA[SELECT]]>
+		<include refid="QUERY_COLUMN_LIST"/>
+		<include refid="QUERY_FROM_TABLE"/>
+		<![CDATA[WHERE USER_ID IN]]>
+		<foreach collection="array" item="uSERID" open="(" separator="," close=")">
+			<![CDATA[#{uSERID}]]>
+		</foreach>
+	</select>
+
+	<!-- 查询,通过条件 -->
+	<select id="selectEntryList" parameterType="userInfo" resultType="userInfo">
+		<![CDATA[SELECT]]>
+		<include refid="QUERY_COLUMN_LIST"/>
+		<include refid="QUERY_FROM_TABLE"/>
+		<include refid="QUERY_WHERE_CLAUSE"/>
+		<include refid="QUERY_ORDER_LIMIT_CONDTION"/>
+	</select>
+
+	<!-- 总数查询,通过条件 -->
+	<select id="selectEntryListCount" parameterType="userInfo" resultType="int">
+		<![CDATA[SELECT COUNT(USER_ID) AS dataCount]]>
+		<include refid="QUERY_FROM_TABLE"/>
+		<include refid="QUERY_WHERE_CLAUSE"/>
+	</select>
+	
+	<!-- 其它SQL语句 -->
+	
+	
+</mapper>

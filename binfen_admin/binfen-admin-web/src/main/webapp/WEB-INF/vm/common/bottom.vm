@@ -1,0 +1,11 @@
+<script type="text/javascript">
+    #if($result.success == false)
+        #if(!$!actionErrors.empty)
+            #foreach($str in $actionErrors)
+                alert("$!str");
+                #break
+            #end
+        #end
+	#end
+</script>
+<div id="footer"></div>

@@ -1,0 +1,19 @@
+<form name="orderMoneyHistoryUpdateForm" action="/orderMoneyHistory/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>orderMoney:</td>
+			<td><input type="text" name="orderMoney" value="$!{orderMoneyHistory.orderMoney}" placeholder="orderMoney"/></td>
+			<td>orderId:</td>
+			<td><input type="text" name="orderId" value="$!{orderMoneyHistory.orderId}" placeholder="orderId"/></td>
+		</tr>
+		<tr>
+			<td>modifyTime:</td>
+			<td><input type="text" name="modifyTime" value="$!{orderMoneyHistory.modifyTime}" placeholder="modifyTime"/></td>
+			<td>modifyUserId:</td>
+			<td><input type="text" name="modifyUserId" value="$!{orderMoneyHistory.modifyUserId}" placeholder="modifyUserId"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=orderMoneyHistoryUpdateForm]').submit()">保存更改</button>
+</div>

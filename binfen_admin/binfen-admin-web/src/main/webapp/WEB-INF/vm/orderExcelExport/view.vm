@@ -1,0 +1,26 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>id:</td>
+		<td>$!{orderExcelExport.id}</td>
+		<td>venderUserId:</td>
+		<td>$!{orderExcelExport.venderUserId}</td>
+	</tr>
+	<tr>
+		<td>excelPath:</td>
+		<td>$!{orderExcelExport.excelPath}</td>
+		<td>createTime:</td>
+		<td>$!{orderExcelExport.createTime}</td>
+	</tr>
+	<tr>
+		<td>orderExcelStart:</td>
+		<td>$!{orderExcelExport.orderExcelStart}</td>
+		<td>orderExcelEnd:</td>
+		<td>$!{orderExcelExport.orderExcelEnd}</td>
+	</tr>
+	<tr>
+		<td>orderNum:</td>
+		<td>$!{orderExcelExport.orderNum}</td>
+		<td>goodsNum:</td>
+		<td>$!{orderExcelExport.goodsNum}</td>
+	</tr>
+</table>

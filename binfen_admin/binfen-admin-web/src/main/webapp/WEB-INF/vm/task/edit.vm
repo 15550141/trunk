@@ -1,0 +1,29 @@
+<form name="taskUpdateForm" action="/task/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{task.id}" placeholder="id" readonly/></td>
+			<td>content:</td>
+			<td><input type="text" name="content" value="$!{task.content}" placeholder="content"/></td>
+		</tr>
+		<tr>
+			<td>type:</td>
+			<td><input type="text" name="type" value="$!{task.type}" placeholder="type"/></td>
+			<td>status:</td>
+			<td><input type="text" name="status" value="$!{task.status}" placeholder="status"/></td>
+		</tr>
+		<tr>
+			<td>yn:</td>
+			<td><input type="text" name="yn" value="$!{task.yn}" placeholder="yn"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{task.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td colspan="3"><input type="text" name="modified" value="$!{task.modified}" placeholder="modified"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=taskUpdateForm]').submit()">保存更改</button>
+</div>

@@ -1,0 +1,30 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>paymentId:</td>
+		<td>$!{sellerEntry.paymentId}</td>
+		<td>orderId:</td>
+		<td>$!{sellerEntry.orderId}</td>
+	</tr>
+	<tr>
+		<td>orderPayType:</td>
+		<td>$!{sellerEntry.orderPayType}</td>
+		<td>paymentMode:</td>
+		<td>$!{sellerEntry.paymentMode}</td>
+	</tr>
+	<tr>
+		<td>paymentMoney:</td>
+		<td>$!{sellerEntry.paymentMoney}</td>
+		<td>busiPartner:</td>
+		<td>$!{sellerEntry.busiPartner}</td>
+	</tr>
+	<tr>
+		<td>created:</td>
+		<td>$!{sellerEntry.created}</td>
+		<td>modified:</td>
+		<td>$!{sellerEntry.modified}</td>
+	</tr>
+	<tr>
+		<td>remark:</td>
+		<td colspan="3">$!{sellerEntry.remark}</td>
+	</tr>
+</table>

@@ -1,0 +1,26 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>propertyValueId:</td>
+		<td>$!{propertyValue.propertyValueId}</td>
+		<td>propertyId:</td>
+		<td>$!{propertyValue.propertyId}</td>
+	</tr>
+	<tr>
+		<td>propertyValueName:</td>
+		<td>$!{propertyValue.propertyValueName}</td>
+		<td>propertyValueType:</td>
+		<td>$!{propertyValue.propertyValueType}</td>
+	</tr>
+	<tr>
+		<td>sortNumber:</td>
+		<td>$!{propertyValue.sortNumber}</td>
+		<td>venderUserId:</td>
+		<td>$!{propertyValue.venderUserId}</td>
+	</tr>
+	<tr>
+		<td>created:</td>
+		<td>$!{propertyValue.created}</td>
+		<td>modified:</td>
+		<td>$!{propertyValue.modified}</td>
+	</tr>
+</table>

@@ -1,0 +1,43 @@
+<form name="wxUserUpdateForm" action="/wxUser/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{wxUser.id}" placeholder="id" readonly/></td>
+			<td>userId:</td>
+			<td><input type="text" name="userId" value="$!{wxUser.userId}" placeholder="userId"/></td>
+		</tr>
+		<tr>
+			<td>subscribe:</td>
+			<td><input type="text" name="subscribe" value="$!{wxUser.subscribe}" placeholder="subscribe"/></td>
+			<td>openid:</td>
+			<td><input type="text" name="openid" value="$!{wxUser.openid}" placeholder="openid"/></td>
+		</tr>
+		<tr>
+			<td>nickname:</td>
+			<td><input type="text" name="nickname" value="$!{wxUser.nickname}" placeholder="nickname"/></td>
+			<td>sex:</td>
+			<td><input type="text" name="sex" value="$!{wxUser.sex}" placeholder="sex"/></td>
+		</tr>
+		<tr>
+			<td>language:</td>
+			<td><input type="text" name="language" value="$!{wxUser.language}" placeholder="language"/></td>
+			<td>city:</td>
+			<td><input type="text" name="city" value="$!{wxUser.city}" placeholder="city"/></td>
+		</tr>
+		<tr>
+			<td>province:</td>
+			<td><input type="text" name="province" value="$!{wxUser.province}" placeholder="province"/></td>
+			<td>country:</td>
+			<td><input type="text" name="country" value="$!{wxUser.country}" placeholder="country"/></td>
+		</tr>
+		<tr>
+			<td>headimgurl:</td>
+			<td><input type="text" name="headimgurl" value="$!{wxUser.headimgurl}" placeholder="headimgurl"/></td>
+			<td>subscribeTime:</td>
+			<td><input type="text" name="subscribeTime" value="$!{wxUser.subscribeTime}" placeholder="subscribeTime"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=wxUserUpdateForm]').submit()">保存更改</button>
+</div>

@@ -1,0 +1,127 @@
+<form name="itemUpdateForm" action="/item/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>itemId:</td>
+			<td><input type="text" name="itemId" value="$!{item.itemId}" placeholder="itemId" readonly/></td>
+			<td>itemName:</td>
+			<td><input type="text" name="itemName" value="$!{item.itemName}" placeholder="itemName"/></td>
+		</tr>
+		<tr>
+			<td>itemType:</td>
+			<td><input type="text" name="itemType" value="$!{item.itemType}" placeholder="itemType"/></td>
+			<td>categoryId1:</td>
+			<td><input type="text" name="categoryId1" value="$!{item.categoryId1}" placeholder="categoryId1"/></td>
+		</tr>
+		<tr>
+			<td>categoryId2:</td>
+			<td><input type="text" name="categoryId2" value="$!{item.categoryId2}" placeholder="categoryId2"/></td>
+			<td>categoryId3:</td>
+			<td><input type="text" name="categoryId3" value="$!{item.categoryId3}" placeholder="categoryId3"/></td>
+		</tr>
+		<tr>
+			<td>categoryId4:</td>
+			<td><input type="text" name="categoryId4" value="$!{item.categoryId4}" placeholder="categoryId4"/></td>
+			<td>venderUserId:</td>
+			<td><input type="text" name="venderUserId" value="$!{item.venderUserId}" placeholder="venderUserId"/></td>
+		</tr>
+		<tr>
+			<td>itemStatus:</td>
+			<td><input type="text" name="itemStatus" value="$!{item.itemStatus}" placeholder="itemStatus"/></td>
+			<td>autoOnShelfTime:</td>
+			<td><input type="text" name="autoOnShelfTime" value="$!{item.autoOnShelfTime}" placeholder="autoOnShelfTime"/></td>
+		</tr>
+		<tr>
+			<td>autoOffShelfTime:</td>
+			<td><input type="text" name="autoOffShelfTime" value="$!{item.autoOffShelfTime}" placeholder="autoOffShelfTime"/></td>
+			<td>onShelfTime:</td>
+			<td><input type="text" name="onShelfTime" value="$!{item.onShelfTime}" placeholder="onShelfTime"/></td>
+		</tr>
+		<tr>
+			<td>offShelfTime:</td>
+			<td><input type="text" name="offShelfTime" value="$!{item.offShelfTime}" placeholder="offShelfTime"/></td>
+			<td>leastBuy:</td>
+			<td><input type="text" name="leastBuy" value="$!{item.leastBuy}" placeholder="leastBuy"/></td>
+		</tr>
+		<tr>
+			<td>itemImage:</td>
+			<td><input type="text" name="itemImage" value="$!{item.itemImage}" placeholder="itemImage"/></td>
+			<td>ifDeposit:</td>
+			<td><input type="text" name="ifDeposit" value="$!{item.ifDeposit}" placeholder="ifDeposit"/></td>
+		</tr>
+		<tr>
+			<td>depositRate:</td>
+			<td><input type="text" name="depositRate" value="$!{item.depositRate}" placeholder="depositRate"/></td>
+			<td>originProvince:</td>
+			<td><input type="text" name="originProvince" value="$!{item.originProvince}" placeholder="originProvince"/></td>
+		</tr>
+		<tr>
+			<td>originCity:</td>
+			<td><input type="text" name="originCity" value="$!{item.originCity}" placeholder="originCity"/></td>
+			<td>originCounty:</td>
+			<td><input type="text" name="originCounty" value="$!{item.originCounty}" placeholder="originCounty"/></td>
+		</tr>
+		<tr>
+			<td>originAddress:</td>
+			<td><input type="text" name="originAddress" value="$!{item.originAddress}" placeholder="originAddress"/></td>
+			<td>supplyProvince:</td>
+			<td><input type="text" name="supplyProvince" value="$!{item.supplyProvince}" placeholder="supplyProvince"/></td>
+		</tr>
+		<tr>
+			<td>supplyCity:</td>
+			<td><input type="text" name="supplyCity" value="$!{item.supplyCity}" placeholder="supplyCity"/></td>
+			<td>supplyCounty:</td>
+			<td><input type="text" name="supplyCounty" value="$!{item.supplyCounty}" placeholder="supplyCounty"/></td>
+		</tr>
+		<tr>
+			<td>weight:</td>
+			<td><input type="text" name="weight" value="$!{item.weight}" placeholder="weight"/></td>
+			<td>differWeight:</td>
+			<td><input type="text" name="differWeight" value="$!{item.differWeight}" placeholder="differWeight"/></td>
+		</tr>
+		<tr>
+			<td>packingType:</td>
+			<td><input type="text" name="packingType" value="$!{item.packingType}" placeholder="packingType"/></td>
+			<td>packingTypeCustom:</td>
+			<td><input type="text" name="packingTypeCustom" value="$!{item.packingTypeCustom}" placeholder="packingTypeCustom"/></td>
+		</tr>
+		<tr>
+			<td>length:</td>
+			<td><input type="text" name="length" value="$!{item.length}" placeholder="length"/></td>
+			<td>wide:</td>
+			<td><input type="text" name="wide" value="$!{item.wide}" placeholder="wide"/></td>
+		</tr>
+		<tr>
+			<td>high:</td>
+			<td><input type="text" name="high" value="$!{item.high}" placeholder="high"/></td>
+			<td>salesPropertySet:</td>
+			<td><input type="text" name="salesPropertySet" value="$!{item.salesPropertySet}" placeholder="salesPropertySet"/></td>
+		</tr>
+		<tr>
+			<td>yn:</td>
+			<td><input type="text" name="yn" value="$!{item.yn}" placeholder="yn"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{item.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{item.modified}" placeholder="modified"/></td>
+			<td>unit:</td>
+			<td><input type="text" name="unit" value="$!{item.unit}" placeholder="unit"/></td>
+		</tr>
+		<tr>
+			<td>ifHaveZjbg:</td>
+			<td><input type="text" name="ifHaveZjbg" value="$!{item.ifHaveZjbg}" placeholder="ifHaveZjbg"/></td>
+			<td>ifHaveCprz:</td>
+			<td><input type="text" name="ifHaveCprz" value="$!{item.ifHaveCprz}" placeholder="ifHaveCprz"/></td>
+		</tr>
+		<tr>
+			<td>marketStartTime:</td>
+			<td><input type="text" name="marketStartTime" value="$!{item.marketStartTime}" placeholder="marketStartTime"/></td>
+			<td>marketEndTime:</td>
+			<td><input type="text" name="marketEndTime" value="$!{item.marketEndTime}" placeholder="marketEndTime"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=itemUpdateForm]').submit()">保存更改</button>
+</div>

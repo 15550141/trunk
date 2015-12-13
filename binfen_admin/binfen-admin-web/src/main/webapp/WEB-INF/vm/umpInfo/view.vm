@@ -1,0 +1,42 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>id:</td>
+		<td>$!{umpInfo.id}</td>
+		<td>orderId:</td>
+		<td>$!{umpInfo.orderId}</td>
+	</tr>
+	<tr>
+		<td>userId:</td>
+		<td>$!{umpInfo.userId}</td>
+		<td>type:</td>
+		<td>$!{umpInfo.type}</td>
+	</tr>
+	<tr>
+		<td>tradeNo:</td>
+		<td>$!{umpInfo.tradeNo}</td>
+		<td>param:</td>
+		<td>$!{umpInfo.param}</td>
+	</tr>
+	<tr>
+		<td>amount:</td>
+		<td>$!{umpInfo.amount}</td>
+		<td>tradeState:</td>
+		<td>$!{umpInfo.tradeState}</td>
+	</tr>
+	<tr>
+		<td>merDate:</td>
+		<td>$!{umpInfo.merDate}</td>
+		<td>payDate:</td>
+		<td>$!{umpInfo.payDate}</td>
+	</tr>
+	<tr>
+		<td>settleDate:</td>
+		<td>$!{umpInfo.settleDate}</td>
+		<td>created:</td>
+		<td>$!{umpInfo.created}</td>
+	</tr>
+	<tr>
+		<td>modified:</td>
+		<td colspan="3">$!{umpInfo.modified}</td>
+	</tr>
+</table>

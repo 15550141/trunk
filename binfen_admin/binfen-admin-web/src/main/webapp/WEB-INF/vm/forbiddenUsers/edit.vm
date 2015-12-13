@@ -1,0 +1,25 @@
+<form name="forbiddenUsersUpdateForm" action="/forbiddenUsers/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>forbiddenId:</td>
+			<td><input type="text" name="forbiddenId" value="$!{forbiddenUsers.forbiddenId}" placeholder="forbiddenId" readonly/></td>
+			<td>userId:</td>
+			<td><input type="text" name="userId" value="$!{forbiddenUsers.userId}" placeholder="userId"/></td>
+		</tr>
+		<tr>
+			<td>mobile:</td>
+			<td><input type="text" name="mobile" value="$!{forbiddenUsers.mobile}" placeholder="mobile"/></td>
+			<td>createTime:</td>
+			<td><input type="text" name="createTime" value="$!{forbiddenUsers.createTime}" placeholder="createTime"/></td>
+		</tr>
+		<tr>
+			<td>reason:</td>
+			<td><input type="text" name="reason" value="$!{forbiddenUsers.reason}" placeholder="reason"/></td>
+			<td>createUserId:</td>
+			<td><input type="text" name="createUserId" value="$!{forbiddenUsers.createUserId}" placeholder="createUserId"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=forbiddenUsersUpdateForm]').submit()">保存更改</button>
+</div>

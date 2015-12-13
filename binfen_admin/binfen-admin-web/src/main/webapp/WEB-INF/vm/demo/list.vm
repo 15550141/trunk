@@ -1,0 +1,266 @@
+<script>
+    jQuery(document).ready(function () {
+        $('.datetimepicker').datetimepicker({
+            format: 'yyyy-MM-dd',
+            language: 'en'
+        });
+        $('.datetimepicker').dblclick(function () {
+            $(this).children("input").val("");
+        });
+    });
+
+    function toManualExeTask(taskId, productCode,actionType,url) {
+        if (isBlank(taskId)) {
+            layer.alert("获取任务ID错误",8);
+            return false;
+        }
+        if (isBlank(actionType)) {
+            layer.alert("获取事件类型错误",8);
+            return false;
+        }
+        /*if (isBlank(planExeTime)) {
+            layer.alert("获取执行日期错误",8);
+            return false;
+        }
+        if (isBlank(productCode)) {
+            layer.alert("获取产品编号错误",8);
+            return false;
+        }*/
+        layer.confirm("是否确认执行?",function(){
+            layer.load('请稍等...',2);
+            $.ajax({
+                type: "GET",
+                url: url,
+                data: {
+                    "taskId":taskId,
+                    "actionType": actionType,
+                    "productCode": productCode
+
+                },
+                dataType: "json",
+                async: false,
+                success: function (opBackResult) {
+                    if(opBackResult.status){
+                        var msg=opBackResult.message;
+                        if (isBlank(msg)) {
+                            msg="任务执行成功! "+msg;
+                        }
+                        layer.alert(msg,9,function(){
+                            $('#pageForm').submit();
+                        });
+
+                    }else{
+                        layer.alert("任务执行失败:"+opBackResult.message,8,function(){
+                            $('#pageForm').submit();
+                        });
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    layer.alert(opBackResult.message,8,function(){
+                        $('#pageForm').submit();
+                    });
+                }
+            });
+
+        });
+        return true;
+    }
+
+    function toView(taskId){
+        if (isBlank(taskId)) {
+            layer.alert("获取任务ID错误",8);
+            return false;
+        }
+
+        $.layer({
+            type: 2,
+            shade: [0],
+            fix: false,
+            title: '任务详情',
+            maxmin: true,
+            iframe: {src : '/task/view?taskId='+taskId},
+            area: ['1000px' , '600px'],
+            close: function(index){
+                //layer.msg('您获得了子窗口标记：' + layer.getChildFrame('#name', index).val(),3,1);
+                layer.closeAll();
+            }
+        });
+        return true;
+    }
+
+    function isBlank(str) {
+        if (!str) {
+            return true;
+        }
+        if (jQuery.trim(str) == ''||str==null) {
+            return true;
+        }
+        return false;
+    }
+
+
+    function onAddClick(){
+        jQuery("#pageForm").attr("action",'/task/onAddClick');
+        jQuery("#pageForm").submit();
+        return true;
+    }
+
+
+</script>
+<form id="pageForm" method="post" action="#springUrl('/task/query')">
+<div class="container">
+<div class="span12">
+<div class="navbar">
+    <div class="navbar-inner">
+        <a class="brand">定时任务管理</a>
+    </div>
+</div>
+<div id="err-message" class="alert  fade in supplierInfo freeze">
+    <strong>提示!</strong>
+
+    <div class="message-error">
+        <span id="err-span"></span>
+    </div>
+</div>
+<ul class="breadcrumb">
+    <li><a>定时任务查询列表</a> <span class="divider">/</span></li>
+    <li class="active">查询条件</li>
+</ul>
+<table class="table table-bordered table-condensed">
+    <tbody>
+    <tr>
+        <td class="td_title">任务编号</td>
+        <td>
+            <input name="taskId" value="$!{query.taskId}" type="text" class="input-middle"/>
+        </td>
+        <td class="td_title">执行状态</td>
+        <td>
+            <select name="status">
+                <option value="" #if($!query.status=='')selected="selected"#end >全部</option>
+                #foreach($bType in $!allConstAlias.get("TASK_STAE").keySet())
+                    <option value="$bType"
+                            #if($!query.status==$bType)selected="selected"#end >$!allConstAlias.get("TASK_STAE").get("$bType")</option>
+                #end
+
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title">执行时间</td>
+        <td>
+            <div  class="input-append date datetimepicker">
+                <input type="text" id="exeTime" size="10" name="exeTime" value="$!dateFormatUtils.format($!query.exeTime,"yyyy-MM-dd")" readonly="readonly"  />
+                                <span class="add-on">
+                                    <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                                </span>
+            </div>
+        </td>
+        <td class="td_title">产品名称</td>
+        <td>
+            <select name="productCode">
+                <option value="" #if($!query.productCode=='')selected="selected"#end >全部</option>
+                #foreach($bType in $!allConstAlias.get("PRODUCT_LIST").keySet())
+                    <option value="$bType"
+                            #if($!query.productCode==$bType)selected="selected"#end >$!allConstAlias.get("PRODUCT_LIST").get("$bType")</option>
+                #end
+
+            </select>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<table class="table table-bordered  table-condensed">
+    <tbody>
+    <tr>
+        <td class="td_title" style="text-align: center">
+            <span class="showMessage">每页显示:</span>
+            <select name="pageSize" class="themes"
+                    style="width:75px;margin-left: 10px;margin-right: 10px;margin-bottom: 0px;">   $!pageSize
+                <option #if($!pageSize == 5 ) selected="selected" #end>5</option>
+                <option #if($!pageSize == 10 ) selected="selected" #end>10</option>
+                <option #if($!pageSize == 15 ) selected="selected" #end>15</option>
+                <option #if($!pageSize == 20 ) selected="selected" #end>20</option>
+                <option #if($!pageSize == 25 ) selected="selected" #end>25</option>
+            </select>
+            <button id="search" type="submit" class="btn  btn-primary load" style="margin-bottom: 0px;"><i
+                    class="icon-search icon-white"></i>查询
+            </button>
+            <a class="btn  btn-primary" style="text-align: right;margin-bottom: 0px;" href="#"
+               onclick="otherSySTask();">其他任务</a>
+            <button type="button" id="apply" onclick="onAddClick()" class=" btn btn-primary"><i class="icon-th-large icon-white"></i> 新增</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<table class="table table-bordered table-striped table-condensed">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>任务编号</th>
+        <th>任务名称</th>
+        <th>任务组</th>
+        <th>所属产品</th>
+        <th>任务描述</th>
+        <th>执行时间</th>
+        <th>执行频率</th>
+        <th>执行状态</th>
+        <th>创建时间</th>
+        <th style="text-align:center;display: block">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+        #if($result.status == false)
+        <tr>
+            <td style="height: 200px;background: #f5f5f5;text-align: center;text-shadow: 0 1px 0 #fff;line-height: 200px;color:#333"
+                colspan="11">$result.message</td>
+        </tr>
+        #else
+            #if($!appInfos.size()>0)
+                #foreach($batchTask in $appInfos)
+                <tr>
+                    <td>$!{velocityCount}</td>
+                    <td>$!{batchTask.taskId}</td>
+                    <td>$!{batchTask.taskName}</td>
+                    <td>$!{batchTask.taskGroup}</td>
+                    <td>
+                        $!allConstAlias.get("PRODUCT_LIST").get("$!batchTask.productCode")
+                    </td>
+                    <td>
+                        $!{batchTask.taskMemo}
+                    </td>
+                    <td>#if($!batchTask.exeTime) $!dateFormatUtils.format($!batchTask.exeTime,"yyyy-MM-dd HH:mm:ss") #end</td>
+                    <td>$!{batchTask.rateValue}</td>
+                    <td>
+                        $!allConstAlias.get("TASK_STAE").get("$!{batchTask.status}")
+                    </td>
+                    <td>#if($!batchTask.createTime) $!dateFormatUtils.format($!batchTask.createTime,"yyyy-MM-dd HH:mm:ss") #end</td>
+                    <td style="text-align:center;">
+                        <a class="btn" href="#springUrl("/task/onModifyClick?taskId=")$!batchTask.taskId" class="btn load">修改</a>
+                        <a class="btn" href="#"
+                           onclick="toView('$!batchTask.taskId');">
+                            查看
+                        </a>
+                    </td>
+
+                </tr>
+                #end
+            #else
+            <tr>
+                <td style="height: 200px;background: #f5f5f5;text-align: center;text-shadow: 0 1px 0 #fff;line-height: 200px;color:#333"
+                    colspan="11">未查询到信息列表数据
+                </td>
+            </tr>
+            #end
+        #end
+    </tbody>
+</table>
+<div style="text-align: right">
+
+</div>
+<div class="pages">
+    #set($formId="pageForm")
+            #showPageFormSubmit($appInfos $formId)
+</div>
+</div>
+</div>
+</form>

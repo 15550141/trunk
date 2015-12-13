@@ -1,0 +1,20 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>forbiddenId:</td>
+		<td>$!{forbiddenUsers.forbiddenId}</td>
+		<td>userId:</td>
+		<td>$!{forbiddenUsers.userId}</td>
+	</tr>
+	<tr>
+		<td>mobile:</td>
+		<td>$!{forbiddenUsers.mobile}</td>
+		<td>createTime:</td>
+		<td>$!{forbiddenUsers.createTime}</td>
+	</tr>
+	<tr>
+		<td>reason:</td>
+		<td>$!{forbiddenUsers.reason}</td>
+		<td>createUserId:</td>
+		<td>$!{forbiddenUsers.createUserId}</td>
+	</tr>
+</table>

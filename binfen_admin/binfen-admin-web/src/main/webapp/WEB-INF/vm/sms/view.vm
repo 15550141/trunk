@@ -1,0 +1,20 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>iD:</td>
+		<td>$!{sms.iD}</td>
+		<td>mobile:</td>
+		<td>$!{sms.mobile}</td>
+	</tr>
+	<tr>
+		<td>content:</td>
+		<td>$!{sms.content}</td>
+		<td>status:</td>
+		<td>$!{sms.status}</td>
+	</tr>
+	<tr>
+		<td>created:</td>
+		<td>$!{sms.created}</td>
+		<td>modified:</td>
+		<td>$!{sms.modified}</td>
+	</tr>
+</table>

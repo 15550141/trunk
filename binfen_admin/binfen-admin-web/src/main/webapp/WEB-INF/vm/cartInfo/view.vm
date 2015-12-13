@@ -1,0 +1,36 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>cartId:</td>
+		<td>$!{cartInfo.cartId}</td>
+		<td>userId:</td>
+		<td>$!{cartInfo.userId}</td>
+	</tr>
+	<tr>
+		<td>orderId:</td>
+		<td>$!{cartInfo.orderId}</td>
+		<td>venderUserId:</td>
+		<td>$!{cartInfo.venderUserId}</td>
+	</tr>
+	<tr>
+		<td>itemId:</td>
+		<td>$!{cartInfo.itemId}</td>
+		<td>skuId:</td>
+		<td>$!{cartInfo.skuId}</td>
+	</tr>
+	<tr>
+		<td>skuNum:</td>
+		<td>$!{cartInfo.skuNum}</td>
+		<td>ip:</td>
+		<td>$!{cartInfo.ip}</td>
+	</tr>
+	<tr>
+		<td>yn:</td>
+		<td>$!{cartInfo.yn}</td>
+		<td>created:</td>
+		<td>$!{cartInfo.created}</td>
+	</tr>
+	<tr>
+		<td>modified:</td>
+		<td colspan="3">$!{cartInfo.modified}</td>
+	</tr>
+</table>

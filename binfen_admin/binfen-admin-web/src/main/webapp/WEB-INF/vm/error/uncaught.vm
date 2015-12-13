@@ -1,0 +1,9 @@
+<!-- main container -->
+<div class="content">
+    #if($!exception)
+        <div style="margin-top: 20px;margin-left: 20px">
+            $exception.printStackTrace()
+            Unexpect：  $!exception.message
+        </div>
+    #end
+</div>

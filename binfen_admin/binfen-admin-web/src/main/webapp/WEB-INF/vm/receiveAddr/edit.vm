@@ -1,0 +1,53 @@
+<form name="receiveAddrUpdateForm" action="/receiveAddr/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{receiveAddr.id}" placeholder="id" readonly/></td>
+			<td>uid:</td>
+			<td><input type="text" name="uid" value="$!{receiveAddr.uid}" placeholder="uid"/></td>
+		</tr>
+		<tr>
+			<td>name:</td>
+			<td><input type="text" name="name" value="$!{receiveAddr.name}" placeholder="name"/></td>
+			<td>province:</td>
+			<td><input type="text" name="province" value="$!{receiveAddr.province}" placeholder="province"/></td>
+		</tr>
+		<tr>
+			<td>provinceName:</td>
+			<td><input type="text" name="provinceName" value="$!{receiveAddr.provinceName}" placeholder="provinceName"/></td>
+			<td>city:</td>
+			<td><input type="text" name="city" value="$!{receiveAddr.city}" placeholder="city"/></td>
+		</tr>
+		<tr>
+			<td>cityName:</td>
+			<td><input type="text" name="cityName" value="$!{receiveAddr.cityName}" placeholder="cityName"/></td>
+			<td>county:</td>
+			<td><input type="text" name="county" value="$!{receiveAddr.county}" placeholder="county"/></td>
+		</tr>
+		<tr>
+			<td>countyName:</td>
+			<td><input type="text" name="countyName" value="$!{receiveAddr.countyName}" placeholder="countyName"/></td>
+			<td>address:</td>
+			<td><input type="text" name="address" value="$!{receiveAddr.address}" placeholder="address"/></td>
+		</tr>
+		<tr>
+			<td>mobile:</td>
+			<td><input type="text" name="mobile" value="$!{receiveAddr.mobile}" placeholder="mobile"/></td>
+			<td>defaultFlag:</td>
+			<td><input type="text" name="defaultFlag" value="$!{receiveAddr.defaultFlag}" placeholder="defaultFlag"/></td>
+		</tr>
+		<tr>
+			<td>addrType:</td>
+			<td><input type="text" name="addrType" value="$!{receiveAddr.addrType}" placeholder="addrType"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{receiveAddr.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td colspan="3"><input type="text" name="modified" value="$!{receiveAddr.modified}" placeholder="modified"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=receiveAddrUpdateForm]').submit()">保存更改</button>
+</div>

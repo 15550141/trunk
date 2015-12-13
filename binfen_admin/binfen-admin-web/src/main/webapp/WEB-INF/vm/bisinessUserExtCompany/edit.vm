@@ -1,0 +1,125 @@
+<form name="bisinessUserExtCompanyUpdateForm" action="/bisinessUserExtCompany/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{bisinessUserExtCompany.id}" placeholder="id" readonly/></td>
+			<td>extId:</td>
+			<td><input type="text" name="extId" value="$!{bisinessUserExtCompany.extId}" placeholder="extId"/></td>
+		</tr>
+		<tr>
+			<td>companyName:</td>
+			<td><input type="text" name="companyName" value="$!{bisinessUserExtCompany.companyName}" placeholder="companyName"/></td>
+			<td>busiLiceId:</td>
+			<td><input type="text" name="busiLiceId" value="$!{bisinessUserExtCompany.busiLiceId}" placeholder="busiLiceId"/></td>
+		</tr>
+		<tr>
+			<td>leglName:</td>
+			<td><input type="text" name="leglName" value="$!{bisinessUserExtCompany.leglName}" placeholder="leglName"/></td>
+			<td>legIdCard:</td>
+			<td><input type="text" name="legIdCard" value="$!{bisinessUserExtCompany.legIdCard}" placeholder="legIdCard"/></td>
+		</tr>
+		<tr>
+			<td>legPicUrl:</td>
+			<td><input type="text" name="legPicUrl" value="$!{bisinessUserExtCompany.legPicUrl}" placeholder="legPicUrl"/></td>
+			<td>busiLiceProvince:</td>
+			<td><input type="text" name="busiLiceProvince" value="$!{bisinessUserExtCompany.busiLiceProvince}" placeholder="busiLiceProvince"/></td>
+		</tr>
+		<tr>
+			<td>busiLiceCity:</td>
+			<td><input type="text" name="busiLiceCity" value="$!{bisinessUserExtCompany.busiLiceCity}" placeholder="busiLiceCity"/></td>
+			<td>busiLiceCounty:</td>
+			<td><input type="text" name="busiLiceCounty" value="$!{bisinessUserExtCompany.busiLiceCounty}" placeholder="busiLiceCounty"/></td>
+		</tr>
+		<tr>
+			<td>busiLiceAddr:</td>
+			<td><input type="text" name="busiLiceAddr" value="$!{bisinessUserExtCompany.busiLiceAddr}" placeholder="busiLiceAddr"/></td>
+			<td>companyProvince:</td>
+			<td><input type="text" name="companyProvince" value="$!{bisinessUserExtCompany.companyProvince}" placeholder="companyProvince"/></td>
+		</tr>
+		<tr>
+			<td>companyCity:</td>
+			<td><input type="text" name="companyCity" value="$!{bisinessUserExtCompany.companyCity}" placeholder="companyCity"/></td>
+			<td>companyCounty:</td>
+			<td><input type="text" name="companyCounty" value="$!{bisinessUserExtCompany.companyCounty}" placeholder="companyCounty"/></td>
+		</tr>
+		<tr>
+			<td>companyAddr:</td>
+			<td><input type="text" name="companyAddr" value="$!{bisinessUserExtCompany.companyAddr}" placeholder="companyAddr"/></td>
+			<td>bankAccountName:</td>
+			<td><input type="text" name="bankAccountName" value="$!{bisinessUserExtCompany.bankAccountName}" placeholder="bankAccountName"/></td>
+		</tr>
+		<tr>
+			<td>bankAccountNo:</td>
+			<td><input type="text" name="bankAccountNo" value="$!{bisinessUserExtCompany.bankAccountNo}" placeholder="bankAccountNo"/></td>
+			<td>bankBranchName:</td>
+			<td><input type="text" name="bankBranchName" value="$!{bisinessUserExtCompany.bankBranchName}" placeholder="bankBranchName"/></td>
+		</tr>
+		<tr>
+			<td>bankBranchNo:</td>
+			<td><input type="text" name="bankBranchNo" value="$!{bisinessUserExtCompany.bankBranchNo}" placeholder="bankBranchNo"/></td>
+			<td>bankProvince:</td>
+			<td><input type="text" name="bankProvince" value="$!{bisinessUserExtCompany.bankProvince}" placeholder="bankProvince"/></td>
+		</tr>
+		<tr>
+			<td>bankCity:</td>
+			<td><input type="text" name="bankCity" value="$!{bisinessUserExtCompany.bankCity}" placeholder="bankCity"/></td>
+			<td>bankCounty:</td>
+			<td><input type="text" name="bankCounty" value="$!{bisinessUserExtCompany.bankCounty}" placeholder="bankCounty"/></td>
+		</tr>
+		<tr>
+			<td>operStartTime:</td>
+			<td><input type="text" name="operStartTime" value="$!{bisinessUserExtCompany.operStartTime}" placeholder="operStartTime"/></td>
+			<td>operEndTime:</td>
+			<td><input type="text" name="operEndTime" value="$!{bisinessUserExtCompany.operEndTime}" placeholder="operEndTime"/></td>
+		</tr>
+		<tr>
+			<td>companyType:</td>
+			<td><input type="text" name="companyType" value="$!{bisinessUserExtCompany.companyType}" placeholder="companyType"/></td>
+			<td>busiModel:</td>
+			<td><input type="text" name="busiModel" value="$!{bisinessUserExtCompany.busiModel}" placeholder="busiModel"/></td>
+		</tr>
+		<tr>
+			<td>busiArea:</td>
+			<td><input type="text" name="busiArea" value="$!{bisinessUserExtCompany.busiArea}" placeholder="busiArea"/></td>
+			<td>busiLiceDuplication:</td>
+			<td><input type="text" name="busiLiceDuplication" value="$!{bisinessUserExtCompany.busiLiceDuplication}" placeholder="busiLiceDuplication"/></td>
+		</tr>
+		<tr>
+			<td>contact:</td>
+			<td><input type="text" name="contact" value="$!{bisinessUserExtCompany.contact}" placeholder="contact"/></td>
+			<td>tel:</td>
+			<td><input type="text" name="tel" value="$!{bisinessUserExtCompany.tel}" placeholder="tel"/></td>
+		</tr>
+		<tr>
+			<td>orgCode:</td>
+			<td><input type="text" name="orgCode" value="$!{bisinessUserExtCompany.orgCode}" placeholder="orgCode"/></td>
+			<td>orgCodeUrl:</td>
+			<td><input type="text" name="orgCodeUrl" value="$!{bisinessUserExtCompany.orgCodeUrl}" placeholder="orgCodeUrl"/></td>
+		</tr>
+		<tr>
+			<td>taxNum:</td>
+			<td><input type="text" name="taxNum" value="$!{bisinessUserExtCompany.taxNum}" placeholder="taxNum"/></td>
+			<td>taxType:</td>
+			<td><input type="text" name="taxType" value="$!{bisinessUserExtCompany.taxType}" placeholder="taxType"/></td>
+		</tr>
+		<tr>
+			<td>taxTypeCode:</td>
+			<td><input type="text" name="taxTypeCode" value="$!{bisinessUserExtCompany.taxTypeCode}" placeholder="taxTypeCode"/></td>
+			<td>taxRegisCert:</td>
+			<td><input type="text" name="taxRegisCert" value="$!{bisinessUserExtCompany.taxRegisCert}" placeholder="taxRegisCert"/></td>
+		</tr>
+		<tr>
+			<td>generTaxCert:</td>
+			<td><input type="text" name="generTaxCert" value="$!{bisinessUserExtCompany.generTaxCert}" placeholder="generTaxCert"/></td>
+			<td>isMainland:</td>
+			<td><input type="text" name="isMainland" value="$!{bisinessUserExtCompany.isMainland}" placeholder="isMainland"/></td>
+		</tr>
+		<tr>
+			<td>bankLicenseUrl:</td>
+			<td colspan="3"><input type="text" name="bankLicenseUrl" value="$!{bisinessUserExtCompany.bankLicenseUrl}" placeholder="bankLicenseUrl"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=bisinessUserExtCompanyUpdateForm]').submit()">保存更改</button>
+</div>

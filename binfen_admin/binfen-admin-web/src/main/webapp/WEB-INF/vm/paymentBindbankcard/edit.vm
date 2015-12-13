@@ -1,0 +1,59 @@
+<form name="paymentBindbankcardUpdateForm" action="/paymentBindbankcard/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{paymentBindbankcard.id}" placeholder="id" readonly/></td>
+			<td>merCustId:</td>
+			<td><input type="text" name="merCustId" value="$!{paymentBindbankcard.merCustId}" placeholder="merCustId"/></td>
+		</tr>
+		<tr>
+			<td>venderUserId:</td>
+			<td><input type="text" name="venderUserId" value="$!{paymentBindbankcard.venderUserId}" placeholder="venderUserId"/></td>
+			<td>usrBusiAgreementId:</td>
+			<td><input type="text" name="usrBusiAgreementId" value="$!{paymentBindbankcard.usrBusiAgreementId}" placeholder="usrBusiAgreementId"/></td>
+		</tr>
+		<tr>
+			<td>usrPayAgreementId:</td>
+			<td><input type="text" name="usrPayAgreementId" value="$!{paymentBindbankcard.usrPayAgreementId}" placeholder="usrPayAgreementId"/></td>
+			<td>mobile:</td>
+			<td><input type="text" name="mobile" value="$!{paymentBindbankcard.mobile}" placeholder="mobile"/></td>
+		</tr>
+		<tr>
+			<td>bank:</td>
+			<td><input type="text" name="bank" value="$!{paymentBindbankcard.bank}" placeholder="bank"/></td>
+			<td>bankAc:</td>
+			<td><input type="text" name="bankAc" value="$!{paymentBindbankcard.bankAc}" placeholder="bankAc"/></td>
+		</tr>
+		<tr>
+			<td>branch:</td>
+			<td><input type="text" name="branch" value="$!{paymentBindbankcard.branch}" placeholder="branch"/></td>
+			<td>branchAc:</td>
+			<td><input type="text" name="branchAc" value="$!{paymentBindbankcard.branchAc}" placeholder="branchAc"/></td>
+		</tr>
+		<tr>
+			<td>bankAcLast4:</td>
+			<td><input type="text" name="bankAcLast4" value="$!{paymentBindbankcard.bankAcLast4}" placeholder="bankAcLast4"/></td>
+			<td>branchAcLast4:</td>
+			<td><input type="text" name="branchAcLast4" value="$!{paymentBindbankcard.branchAcLast4}" placeholder="branchAcLast4"/></td>
+		</tr>
+		<tr>
+			<td>identityType:</td>
+			<td><input type="text" name="identityType" value="$!{paymentBindbankcard.identityType}" placeholder="identityType"/></td>
+			<td>identityCode:</td>
+			<td><input type="text" name="identityCode" value="$!{paymentBindbankcard.identityCode}" placeholder="identityCode"/></td>
+		</tr>
+		<tr>
+			<td>cardHolder:</td>
+			<td><input type="text" name="cardHolder" value="$!{paymentBindbankcard.cardHolder}" placeholder="cardHolder"/></td>
+			<td>createDate:</td>
+			<td><input type="text" name="createDate" value="$!{paymentBindbankcard.createDate}" placeholder="createDate"/></td>
+		</tr>
+		<tr>
+			<td>updateDate:</td>
+			<td colspan="3"><input type="text" name="updateDate" value="$!{paymentBindbankcard.updateDate}" placeholder="updateDate"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=paymentBindbankcardUpdateForm]').submit()">保存更改</button>
+</div>

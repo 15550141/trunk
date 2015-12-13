@@ -1,0 +1,64 @@
+<DIV id="navBar" title="indexImage">
+	<li><a href="$!{contextPath}/">首页</a><span class="divider">/</span></li>
+	<li class="active">indexImage</li>
+</DIV>
+<form class="well form-search" name="indexImageListForm" action="/indexImage" method="POST">
+	<!-- 智能分页与排序 -->
+	<input type="hidden" name="currentPage" value="$!{page.currentPage}"/>
+	<input type="hidden" name="pageSize" value="$!{page.pageSize}"/>
+	<input type="hidden" name="orderField" value="$!{indexImage.orderField}"/>
+	<input type="hidden" name="orderFieldType" value="$!{indexImage.orderFieldType}"/>
+	<!-- 查询条件 -->
+	<input class="span2" type="text" name="id" value="$!{indexImage.id}" placeholder="id"/>
+	<input class="span2" type="text" name="imageUrl" value="$!{indexImage.imageUrl}" placeholder="imageUrl"/>
+	<input class="span2" type="text" name="imageName" value="$!{indexImage.imageName}" placeholder="imageName"/>
+	<button type="submit" class="btn"><i class="icon-search"></i>搜索</button>
+	<!-- 新增按钮 -->
+	<div class="btn-group pull-right">
+		<a class="btn" onclick="XUI.window.open('/indexImage/0',null,'PUT',{title:$(this).text()})"><i class="icon-pencil"></i>新增</a>
+	</div>
+</form>
+
+<!-- 表格数据 -->
+<table class="table table-striped table-bordered table-condensed grid">
+	<thead>
+		<tr>
+			<th #sorting($!{indexImage} "id")>id</th>
+			<th #sorting($!{indexImage} "imageUrl")>imageUrl</th>
+			<th #sorting($!{indexImage} "imageName")>imageName</th>
+			<th #sorting($!{indexImage} "imageWebUrl")>imageWebUrl</th>
+			<th #sorting($!{indexImage} "sortNumber")>sortNumber</th>
+			<th #sorting($!{indexImage} "created")>created</th>
+			<th #sorting($!{indexImage} "itemId")>itemId</th>
+			<th #sorting($!{indexImage} "skuId")>skuId</th>
+			<th #sorting($!{indexImage} "modified")>modified</th>
+			<th #sorting($!{indexImage} "yn")>yn</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+#foreach(${item} in ${page.result})
+		<tr>
+			<td>$!{item.id}</td>
+			<td>$!{item.imageUrl}</td>
+			<td>$!{item.imageName}</td>
+			<td>$!{item.imageWebUrl}</td>
+			<td>$!{item.sortNumber}</td>
+			<td>$!{item.created}</td>
+			<td>$!{item.itemId}</td>
+			<td>$!{item.skuId}</td>
+			<td>$!{item.modified}</td>
+			<td>$!{item.yn}</td>
+			<td class="textC">
+				<div class="btn-group">
+					<a class="btn btn-mini" onclick="XUI.ajax.delete('/indexImage/${item.id}',null,{refresh:true})"><i class="icon-trash"></i> 删除</a>
+					<a class="btn btn-mini" onclick="XUI.window.open('/indexImage/${item.id}',null,'PUT',{title:$(this).text()})"><i class="icon-pencil"></i> 修改</a>
+					<a class="btn btn-mini" onclick="XUI.window.open('/indexImage/${item.id}',null,'GET',{title:$(this).text()})"><i class="icon-eye-open"></i> 查看</a>
+				</div>
+			</td>
+		</tr>
+#end
+	</tbody>
+</table>
+<!-- 分页栏 -->
+#showPage($!{page})

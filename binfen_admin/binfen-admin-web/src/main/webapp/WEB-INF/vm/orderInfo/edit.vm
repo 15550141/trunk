@@ -1,0 +1,101 @@
+<form name="orderInfoUpdateForm" action="/orderInfo/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>orderId:</td>
+			<td><input type="text" name="orderId" value="$!{orderInfo.orderId}" placeholder="orderId" readonly/></td>
+			<td>orderType:</td>
+			<td><input type="text" name="orderType" value="$!{orderInfo.orderType}" placeholder="orderType"/></td>
+		</tr>
+		<tr>
+			<td>paymentType:</td>
+			<td><input type="text" name="paymentType" value="$!{orderInfo.paymentType}" placeholder="paymentType"/></td>
+			<td>paymentId:</td>
+			<td><input type="text" name="paymentId" value="$!{orderInfo.paymentId}" placeholder="paymentId"/></td>
+		</tr>
+		<tr>
+			<td>venderUserId:</td>
+			<td><input type="text" name="venderUserId" value="$!{orderInfo.venderUserId}" placeholder="venderUserId"/></td>
+			<td>userId:</td>
+			<td><input type="text" name="userId" value="$!{orderInfo.userId}" placeholder="userId"/></td>
+		</tr>
+		<tr>
+			<td>consigneeName:</td>
+			<td><input type="text" name="consigneeName" value="$!{orderInfo.consigneeName}" placeholder="consigneeName"/></td>
+			<td>consigneeProvince:</td>
+			<td><input type="text" name="consigneeProvince" value="$!{orderInfo.consigneeProvince}" placeholder="consigneeProvince"/></td>
+		</tr>
+		<tr>
+			<td>consigneeCity:</td>
+			<td><input type="text" name="consigneeCity" value="$!{orderInfo.consigneeCity}" placeholder="consigneeCity"/></td>
+			<td>consigneeCounty:</td>
+			<td><input type="text" name="consigneeCounty" value="$!{orderInfo.consigneeCounty}" placeholder="consigneeCounty"/></td>
+		</tr>
+		<tr>
+			<td>consigneeAddress:</td>
+			<td><input type="text" name="consigneeAddress" value="$!{orderInfo.consigneeAddress}" placeholder="consigneeAddress"/></td>
+			<td>consigneeMobile:</td>
+			<td><input type="text" name="consigneeMobile" value="$!{orderInfo.consigneeMobile}" placeholder="consigneeMobile"/></td>
+		</tr>
+		<tr>
+			<td>remark:</td>
+			<td><input type="text" name="remark" value="$!{orderInfo.remark}" placeholder="remark"/></td>
+			<td>orderMoney:</td>
+			<td><input type="text" name="orderMoney" value="$!{orderInfo.orderMoney}" placeholder="orderMoney"/></td>
+		</tr>
+		<tr>
+			<td>discountMoney:</td>
+			<td><input type="text" name="discountMoney" value="$!{orderInfo.discountMoney}" placeholder="discountMoney"/></td>
+			<td>discountInfo:</td>
+			<td><input type="text" name="discountInfo" value="$!{orderInfo.discountInfo}" placeholder="discountInfo"/></td>
+		</tr>
+		<tr>
+			<td>orderTime:</td>
+			<td><input type="text" name="orderTime" value="$!{orderInfo.orderTime}" placeholder="orderTime"/></td>
+			<td>payTime:</td>
+			<td><input type="text" name="payTime" value="$!{orderInfo.payTime}" placeholder="payTime"/></td>
+		</tr>
+		<tr>
+			<td>hopeArrivalTime:</td>
+			<td><input type="text" name="hopeArrivalTime" value="$!{orderInfo.hopeArrivalTime}" placeholder="hopeArrivalTime"/></td>
+			<td>sendOutTime:</td>
+			<td><input type="text" name="sendOutTime" value="$!{orderInfo.sendOutTime}" placeholder="sendOutTime"/></td>
+		</tr>
+		<tr>
+			<td>estimateSendOutTime:</td>
+			<td><input type="text" name="estimateSendOutTime" value="$!{orderInfo.estimateSendOutTime}" placeholder="estimateSendOutTime"/></td>
+			<td>telephoneCallTime:</td>
+			<td><input type="text" name="telephoneCallTime" value="$!{orderInfo.telephoneCallTime}" placeholder="telephoneCallTime"/></td>
+		</tr>
+		<tr>
+			<td>finishTime:</td>
+			<td><input type="text" name="finishTime" value="$!{orderInfo.finishTime}" placeholder="finishTime"/></td>
+			<td>orderStatus:</td>
+			<td><input type="text" name="orderStatus" value="$!{orderInfo.orderStatus}" placeholder="orderStatus"/></td>
+		</tr>
+		<tr>
+			<td>ip:</td>
+			<td><input type="text" name="ip" value="$!{orderInfo.ip}" placeholder="ip"/></td>
+			<td>lockStatus:</td>
+			<td><input type="text" name="lockStatus" value="$!{orderInfo.lockStatus}" placeholder="lockStatus"/></td>
+		</tr>
+		<tr>
+			<td>lockReason:</td>
+			<td><input type="text" name="lockReason" value="$!{orderInfo.lockReason}" placeholder="lockReason"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{orderInfo.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{orderInfo.modified}" placeholder="modified"/></td>
+			<td>parentOrderId:</td>
+			<td><input type="text" name="parentOrderId" value="$!{orderInfo.parentOrderId}" placeholder="parentOrderId"/></td>
+		</tr>
+		<tr>
+			<td>yn:</td>
+			<td colspan="3"><input type="text" name="yn" value="$!{orderInfo.yn}" placeholder="yn"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=orderInfoUpdateForm]').submit()">保存更改</button>
+</div>

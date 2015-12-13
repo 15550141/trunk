@@ -1,0 +1,47 @@
+<form name="businessUserExtPersonUpdateForm" action="/businessUserExtPerson/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{businessUserExtPerson.id}" placeholder="id" readonly/></td>
+			<td>extId:</td>
+			<td><input type="text" name="extId" value="$!{businessUserExtPerson.extId}" placeholder="extId"/></td>
+		</tr>
+		<tr>
+			<td>sellerName:</td>
+			<td><input type="text" name="sellerName" value="$!{businessUserExtPerson.sellerName}" placeholder="sellerName"/></td>
+			<td>name:</td>
+			<td><input type="text" name="name" value="$!{businessUserExtPerson.name}" placeholder="name"/></td>
+		</tr>
+		<tr>
+			<td>legIdcard:</td>
+			<td><input type="text" name="legIdcard" value="$!{businessUserExtPerson.legIdcard}" placeholder="legIdcard"/></td>
+			<td>isMainland:</td>
+			<td><input type="text" name="isMainland" value="$!{businessUserExtPerson.isMainland}" placeholder="isMainland"/></td>
+		</tr>
+		<tr>
+			<td>legIdcardRul:</td>
+			<td><input type="text" name="legIdcardRul" value="$!{businessUserExtPerson.legIdcardRul}" placeholder="legIdcardRul"/></td>
+			<td>busiArea:</td>
+			<td><input type="text" name="busiArea" value="$!{businessUserExtPerson.busiArea}" placeholder="busiArea"/></td>
+		</tr>
+		<tr>
+			<td>busiLiceProvince:</td>
+			<td><input type="text" name="busiLiceProvince" value="$!{businessUserExtPerson.busiLiceProvince}" placeholder="busiLiceProvince"/></td>
+			<td>busiLiceCity:</td>
+			<td><input type="text" name="busiLiceCity" value="$!{businessUserExtPerson.busiLiceCity}" placeholder="busiLiceCity"/></td>
+		</tr>
+		<tr>
+			<td>busiLiceCounty:</td>
+			<td><input type="text" name="busiLiceCounty" value="$!{businessUserExtPerson.busiLiceCounty}" placeholder="busiLiceCounty"/></td>
+			<td>busiAddr:</td>
+			<td><input type="text" name="busiAddr" value="$!{businessUserExtPerson.busiAddr}" placeholder="busiAddr"/></td>
+		</tr>
+		<tr>
+			<td>tel:</td>
+			<td colspan="3"><input type="text" name="tel" value="$!{businessUserExtPerson.tel}" placeholder="tel"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=businessUserExtPersonUpdateForm]').submit()">保存更改</button>
+</div>

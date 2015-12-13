@@ -1,0 +1,31 @@
+<form name="orderExcelExportUpdateForm" action="/orderExcelExport/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{orderExcelExport.id}" placeholder="id" readonly/></td>
+			<td>venderUserId:</td>
+			<td><input type="text" name="venderUserId" value="$!{orderExcelExport.venderUserId}" placeholder="venderUserId"/></td>
+		</tr>
+		<tr>
+			<td>excelPath:</td>
+			<td><input type="text" name="excelPath" value="$!{orderExcelExport.excelPath}" placeholder="excelPath"/></td>
+			<td>createTime:</td>
+			<td><input type="text" name="createTime" value="$!{orderExcelExport.createTime}" placeholder="createTime"/></td>
+		</tr>
+		<tr>
+			<td>orderExcelStart:</td>
+			<td><input type="text" name="orderExcelStart" value="$!{orderExcelExport.orderExcelStart}" placeholder="orderExcelStart"/></td>
+			<td>orderExcelEnd:</td>
+			<td><input type="text" name="orderExcelEnd" value="$!{orderExcelExport.orderExcelEnd}" placeholder="orderExcelEnd"/></td>
+		</tr>
+		<tr>
+			<td>orderNum:</td>
+			<td><input type="text" name="orderNum" value="$!{orderExcelExport.orderNum}" placeholder="orderNum"/></td>
+			<td>goodsNum:</td>
+			<td><input type="text" name="goodsNum" value="$!{orderExcelExport.goodsNum}" placeholder="goodsNum"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=orderExcelExportUpdateForm]').submit()">保存更改</button>
+</div>

@@ -1,0 +1,24 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>id:</td>
+		<td>$!{itemImage.id}</td>
+		<td>itemId:</td>
+		<td>$!{itemImage.itemId}</td>
+	</tr>
+	<tr>
+		<td>imageUrl:</td>
+		<td>$!{itemImage.imageUrl}</td>
+		<td>sortNumber:</td>
+		<td>$!{itemImage.sortNumber}</td>
+	</tr>
+	<tr>
+		<td>yn:</td>
+		<td>$!{itemImage.yn}</td>
+		<td>created:</td>
+		<td>$!{itemImage.created}</td>
+	</tr>
+	<tr>
+		<td>modified:</td>
+		<td colspan="3">$!{itemImage.modified}</td>
+	</tr>
+</table>

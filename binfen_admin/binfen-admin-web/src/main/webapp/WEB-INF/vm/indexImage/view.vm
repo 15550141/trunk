@@ -1,0 +1,32 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>id:</td>
+		<td>$!{indexImage.id}</td>
+		<td>imageUrl:</td>
+		<td>$!{indexImage.imageUrl}</td>
+	</tr>
+	<tr>
+		<td>imageName:</td>
+		<td>$!{indexImage.imageName}</td>
+		<td>imageWebUrl:</td>
+		<td>$!{indexImage.imageWebUrl}</td>
+	</tr>
+	<tr>
+		<td>sortNumber:</td>
+		<td>$!{indexImage.sortNumber}</td>
+		<td>created:</td>
+		<td>$!{indexImage.created}</td>
+	</tr>
+	<tr>
+		<td>itemId:</td>
+		<td>$!{indexImage.itemId}</td>
+		<td>skuId:</td>
+		<td>$!{indexImage.skuId}</td>
+	</tr>
+	<tr>
+		<td>modified:</td>
+		<td>$!{indexImage.modified}</td>
+		<td>yn:</td>
+		<td>$!{indexImage.yn}</td>
+	</tr>
+</table>

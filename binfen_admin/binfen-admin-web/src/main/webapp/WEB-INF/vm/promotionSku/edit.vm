@@ -1,0 +1,29 @@
+<form name="promotionSkuUpdateForm" action="/promotionSku/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>iD:</td>
+			<td><input type="text" name="iD" value="$!{promotionSku.iD}" placeholder="iD" readonly/></td>
+			<td>promotionId:</td>
+			<td><input type="text" name="promotionId" value="$!{promotionSku.promotionId}" placeholder="promotionId"/></td>
+		</tr>
+		<tr>
+			<td>sKUID:</td>
+			<td><input type="text" name="sKUID" value="$!{promotionSku.sKUID}" placeholder="sKUID"/></td>
+			<td>deductionPrice:</td>
+			<td><input type="text" name="deductionPrice" value="$!{promotionSku.deductionPrice}" placeholder="deductionPrice"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{promotionSku.modified}" placeholder="modified"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{promotionSku.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>yn:</td>
+			<td colspan="3"><input type="text" name="yn" value="$!{promotionSku.yn}" placeholder="yn"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=promotionSkuUpdateForm]').submit()">保存更改</button>
+</div>

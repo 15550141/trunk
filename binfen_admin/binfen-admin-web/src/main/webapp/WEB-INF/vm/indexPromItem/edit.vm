@@ -1,0 +1,43 @@
+<form name="indexPromItemUpdateForm" action="/indexPromItem/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{indexPromItem.id}" placeholder="id" readonly/></td>
+			<td>promType:</td>
+			<td><input type="text" name="promType" value="$!{indexPromItem.promType}" placeholder="promType"/></td>
+		</tr>
+		<tr>
+			<td>promName:</td>
+			<td><input type="text" name="promName" value="$!{indexPromItem.promName}" placeholder="promName"/></td>
+			<td>promIntro:</td>
+			<td><input type="text" name="promIntro" value="$!{indexPromItem.promIntro}" placeholder="promIntro"/></td>
+		</tr>
+		<tr>
+			<td>promUrl:</td>
+			<td><input type="text" name="promUrl" value="$!{indexPromItem.promUrl}" placeholder="promUrl"/></td>
+			<td>skuId:</td>
+			<td><input type="text" name="skuId" value="$!{indexPromItem.skuId}" placeholder="skuId"/></td>
+		</tr>
+		<tr>
+			<td>promImgUrl:</td>
+			<td><input type="text" name="promImgUrl" value="$!{indexPromItem.promImgUrl}" placeholder="promImgUrl"/></td>
+			<td>itemId:</td>
+			<td><input type="text" name="itemId" value="$!{indexPromItem.itemId}" placeholder="itemId"/></td>
+		</tr>
+		<tr>
+			<td>yn:</td>
+			<td><input type="text" name="yn" value="$!{indexPromItem.yn}" placeholder="yn"/></td>
+			<td>sortNum:</td>
+			<td><input type="text" name="sortNum" value="$!{indexPromItem.sortNum}" placeholder="sortNum"/></td>
+		</tr>
+		<tr>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{indexPromItem.created}" placeholder="created"/></td>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{indexPromItem.modified}" placeholder="modified"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=indexPromItemUpdateForm]').submit()">保存更改</button>
+</div>

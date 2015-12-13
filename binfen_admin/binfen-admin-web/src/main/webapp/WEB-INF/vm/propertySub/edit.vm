@@ -1,0 +1,23 @@
+<form name="propertySubUpdateForm" action="/propertySub/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>propertySubId:</td>
+			<td><input type="text" name="propertySubId" value="$!{propertySub.propertySubId}" placeholder="propertySubId" readonly/></td>
+			<td>propertyId:</td>
+			<td><input type="text" name="propertyId" value="$!{propertySub.propertyId}" placeholder="propertyId"/></td>
+		</tr>
+		<tr>
+			<td>propertySubName:</td>
+			<td><input type="text" name="propertySubName" value="$!{propertySub.propertySubName}" placeholder="propertySubName"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{propertySub.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td colspan="3"><input type="text" name="modified" value="$!{propertySub.modified}" placeholder="modified"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=propertySubUpdateForm]').submit()">保存更改</button>
+</div>

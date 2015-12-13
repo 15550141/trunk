@@ -1,0 +1,35 @@
+<form name="categoryUpdateForm" action="/category/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>categoryId:</td>
+			<td><input type="text" name="categoryId" value="$!{category.categoryId}" placeholder="categoryId" readonly/></td>
+			<td>categoryName:</td>
+			<td><input type="text" name="categoryName" value="$!{category.categoryName}" placeholder="categoryName"/></td>
+		</tr>
+		<tr>
+			<td>categoryLevel:</td>
+			<td><input type="text" name="categoryLevel" value="$!{category.categoryLevel}" placeholder="categoryLevel"/></td>
+			<td>parentCategoryId:</td>
+			<td><input type="text" name="parentCategoryId" value="$!{category.parentCategoryId}" placeholder="parentCategoryId"/></td>
+		</tr>
+		<tr>
+			<td>sortNumber:</td>
+			<td><input type="text" name="sortNumber" value="$!{category.sortNumber}" placeholder="sortNumber"/></td>
+			<td>ifHaveSaleProperty:</td>
+			<td><input type="text" name="ifHaveSaleProperty" value="$!{category.ifHaveSaleProperty}" placeholder="ifHaveSaleProperty"/></td>
+		</tr>
+		<tr>
+			<td>yn:</td>
+			<td><input type="text" name="yn" value="$!{category.yn}" placeholder="yn"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{category.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td colspan="3"><input type="text" name="modified" value="$!{category.modified}" placeholder="modified"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=categoryUpdateForm]').submit()">保存更改</button>
+</div>

@@ -1,0 +1,119 @@
+#set($title="管理系统")
+<style>
+    .selected{
+        font-weight:bold;
+        background-color:#f5f5f5;
+    }
+	#menus {
+        margin-top:10px;
+    }
+    #menus h5 {
+        cursor:pointer;
+        padding: 5px 0px 5px 10px;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#menus ul").hide();
+        $("#menus h5").bind("click",function(){
+            $(this).next("ul").toggle("fast");
+        });
+    });
+    function refreshFrame(ths,url) {
+        var pIf = $('#rightFrame');
+        $(".selected").removeClass("selected");
+        $(ths).parent("li").addClass('selected');
+        if(url.indexOf('?')>0){
+            pIf.attr("src",url + "&rrrrrr=".concat(Math.random()));
+        }else{
+            pIf.attr("src",url + "?rrrrrr=".concat(Math.random()));
+        }
+    }
+</script>
+<div class="container-fluid">
+
+##    <div id="left-side" class="m menu-left" style="height: 620px;">
+##        <div class="mt">
+##            <h3>$!{resource_menu.name}</h3>
+##        ##<h3>小贷增信</h3>
+##        </div>
+##        <div class="mc">
+##            <ul class="mc">
+##                #set($i=0)
+##                #foreach($res in $!{resource_menu.resourceList})
+##                    #if($!{res.isMenu}=="1")
+##                        #set($i=$i+1)
+##                        <li #if($i==1)class="open"#end>
+##                            <h3>$!{res.name}</h3>
+##                            <ul>
+##                                #foreach($r in $!{res.resourceList})
+##                                    #if($!{r.isMenu}=="1")
+##                                        <li>
+##                                            <a href="javascript:goPageByFrame('$!{r.url}')">$!{r.name}</a>
+##                                        </li>
+##                                    #end
+##                                #end
+##                            </ul>
+##                        </li>
+##                    #end
+##                #end
+##            </ul>
+##        </div>
+##        <div class="resizer">
+##            <div class="placeholder">
+##                <b></b>
+##                展开左侧菜单
+##            </div>
+##            <div class="opt">
+##                <div class="indicator">
+##                    <i></i>
+##                </div>
+##            </div>
+##        </div>
+##    </div>
+
+
+
+
+        <div class="span2" style="width:10%;float:left;">
+            <div  id="menus" >
+                <h5 class="btn-primary">参数设置</h5>
+                <ul class="nav nav-tabs nav-stacked">
+                    <li><a href="javascript:void(0);" onclick="refreshFrame(this,'/checkErp/apply.action');" >采销审批人白名单添加</ERP></a></li>
+                    <li><a href="javascript:void(0);" onclick="refreshFrame(this,'/checkErp/query.action');" >采销审批人白名单查询</ERP></a></li>
+                </ul>
+                <h5 class="btn-primary">额度管理</h5>
+                <ul class="nav nav-tabs nav-stacked">
+                    <li><a href="javascript:void(0);" onclick="refreshFrame(this,'/limit/apply.action');" >额度申请</a></li>
+                    <li><a href="javascript:void(0);" onclick="refreshFrame(this,'/limit/query.action');" >额度查询</a></li>
+                    <li><a href="javascript:void(0);" onclick="refreshFrame(this,'/limit/firstAudit.action');" >额度一审列表</a></li>
+                    <li><a href="javascript:void(0);" onclick="refreshFrame(this,'/limit/secondAudit.action');" >额度二审列表</a></li>
+                    <li><a href="javascript:void(0);" onclick="refreshFrame(this,'/report/custlimit.action');" >保理池融资额度查询</a></li>
+                </ul>
+                <h5 class="btn-primary">融资管理</h5>
+                <ul class="nav nav-tabs nav-stacked">
+                    <li><a href="javascript:void(0);" onclick="refreshFrame(this,'/order/apply.action');" >单笔订单融资申请</a></li>
+                    <li><a href="javascript:void(0);" onclick="refreshFrame(this,'/order/firstAudit.action?processId=Fcash_Order_Apply');" >单笔订单融资一审列表</a></li>
+                </ul>
+                <h5 class="btn-primary">还款管理</h5>
+                <ul class="nav nav-tabs nav-stacked">
+                    <li><a href="javascript:void(0);" onclick="refreshFrame(this,'/repayment/apply.action?paytype=apply');" >单笔融资主动还款录入</a></li>
+                </ul>
+                <h5 class="btn-primary">台账管理</h5>
+                <ul class="nav nav-tabs nav-stacked">
+                    <li><a href="javascript:void(0);" onclick="refreshFrame(this,'/report/lendpay.action');" >放贷台账</a></li>
+                    <li><a href="javascript:void(0);" onclick="refreshFrame(this,'/report/repay.action');" >还贷台账</a></li>
+                    <li><a href="javascript:void(0);" onclick="refreshFrame(this,'/report/reconcilia.action');" >供应商对账单查询</a></li>
+                    <li><a href="javascript:void(0);" onclick="refreshFrame(this,'/report/partition.action');" >订单融资结算单拆分明细</a></li>
+                </ul>
+                <h5 class="btn-primary">后台管理</h5>
+                <ul class="nav nav-tabs nav-stacked">
+                    <li><a href="javascript:void(0);" onclick="refreshFrame(this,'/overduebatchtask/query.action');" >定时任务管理</a></li>
+                </ul>
+            </div><!--/.well -->
+        </div><!--/span-->
+        <div style="float:right;width:89%;">
+            <iframe id="rightFrame" name="right" frameborder="0" scrolling="true" width="100%" height="900px"
+                    src=""/>
+        </div><!--/span-->
+</div><!--/.fluid-container-->

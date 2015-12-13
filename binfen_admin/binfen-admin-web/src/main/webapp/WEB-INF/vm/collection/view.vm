@@ -1,0 +1,18 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>collectionId:</td>
+		<td>$!{collection.collectionId}</td>
+		<td>userId:</td>
+		<td>$!{collection.userId}</td>
+	</tr>
+	<tr>
+		<td>venderUserId:</td>
+		<td>$!{collection.venderUserId}</td>
+		<td>created:</td>
+		<td>$!{collection.created}</td>
+	</tr>
+	<tr>
+		<td>modified:</td>
+		<td colspan="3">$!{collection.modified}</td>
+	</tr>
+</table>

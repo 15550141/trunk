@@ -1,0 +1,97 @@
+<form name="commentUpdateForm" action="/comment/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{comment.id}" placeholder="id" readonly/></td>
+			<td>skuId:</td>
+			<td><input type="text" name="skuId" value="$!{comment.skuId}" placeholder="skuId"/></td>
+		</tr>
+		<tr>
+			<td>itemId:</td>
+			<td><input type="text" name="itemId" value="$!{comment.itemId}" placeholder="itemId"/></td>
+			<td>userId:</td>
+			<td><input type="text" name="userId" value="$!{comment.userId}" placeholder="userId"/></td>
+		</tr>
+		<tr>
+			<td>title:</td>
+			<td><input type="text" name="title" value="$!{comment.title}" placeholder="title"/></td>
+			<td>content:</td>
+			<td><input type="text" name="content" value="$!{comment.content}" placeholder="content"/></td>
+		</tr>
+		<tr>
+			<td>score:</td>
+			<td><input type="text" name="score" value="$!{comment.score}" placeholder="score"/></td>
+			<td>uselessCount:</td>
+			<td><input type="text" name="uselessCount" value="$!{comment.uselessCount}" placeholder="uselessCount"/></td>
+		</tr>
+		<tr>
+			<td>usefulCount:</td>
+			<td><input type="text" name="usefulCount" value="$!{comment.usefulCount}" placeholder="usefulCount"/></td>
+			<td>advantage:</td>
+			<td><input type="text" name="advantage" value="$!{comment.advantage}" placeholder="advantage"/></td>
+		</tr>
+		<tr>
+			<td>disadvantage:</td>
+			<td><input type="text" name="disadvantage" value="$!{comment.disadvantage}" placeholder="disadvantage"/></td>
+			<td>orderId:</td>
+			<td><input type="text" name="orderId" value="$!{comment.orderId}" placeholder="orderId"/></td>
+		</tr>
+		<tr>
+			<td>topped:</td>
+			<td><input type="text" name="topped" value="$!{comment.topped}" placeholder="topped"/></td>
+			<td>status:</td>
+			<td><input type="text" name="status" value="$!{comment.status}" placeholder="status"/></td>
+		</tr>
+		<tr>
+			<td>deleted:</td>
+			<td><input type="text" name="deleted" value="$!{comment.deleted}" placeholder="deleted"/></td>
+			<td>integral:</td>
+			<td><input type="text" name="integral" value="$!{comment.integral}" placeholder="integral"/></td>
+		</tr>
+		<tr>
+			<td>ip:</td>
+			<td><input type="text" name="ip" value="$!{comment.ip}" placeholder="ip"/></td>
+			<td>sortNumber:</td>
+			<td><input type="text" name="sortNumber" value="$!{comment.sortNumber}" placeholder="sortNumber"/></td>
+		</tr>
+		<tr>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{comment.created}" placeholder="created"/></td>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{comment.modified}" placeholder="modified"/></td>
+		</tr>
+		<tr>
+			<td>itemName:</td>
+			<td><input type="text" name="itemName" value="$!{comment.itemName}" placeholder="itemName"/></td>
+			<td>userName:</td>
+			<td><input type="text" name="userName" value="$!{comment.userName}" placeholder="userName"/></td>
+		</tr>
+		<tr>
+			<td>categoryId1:</td>
+			<td><input type="text" name="categoryId1" value="$!{comment.categoryId1}" placeholder="categoryId1"/></td>
+			<td>categoryName1:</td>
+			<td><input type="text" name="categoryName1" value="$!{comment.categoryName1}" placeholder="categoryName1"/></td>
+		</tr>
+		<tr>
+			<td>categoryId2:</td>
+			<td><input type="text" name="categoryId2" value="$!{comment.categoryId2}" placeholder="categoryId2"/></td>
+			<td>categoryName2:</td>
+			<td><input type="text" name="categoryName2" value="$!{comment.categoryName2}" placeholder="categoryName2"/></td>
+		</tr>
+		<tr>
+			<td>categoryId3:</td>
+			<td><input type="text" name="categoryId3" value="$!{comment.categoryId3}" placeholder="categoryId3"/></td>
+			<td>categoryName3:</td>
+			<td><input type="text" name="categoryName3" value="$!{comment.categoryName3}" placeholder="categoryName3"/></td>
+		</tr>
+		<tr>
+			<td>categoryId4:</td>
+			<td><input type="text" name="categoryId4" value="$!{comment.categoryId4}" placeholder="categoryId4"/></td>
+			<td>categoryName4:</td>
+			<td><input type="text" name="categoryName4" value="$!{comment.categoryName4}" placeholder="categoryName4"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=commentUpdateForm]').submit()">保存更改</button>
+</div>

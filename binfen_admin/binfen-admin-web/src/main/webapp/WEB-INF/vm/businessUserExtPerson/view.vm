@@ -1,0 +1,42 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>id:</td>
+		<td>$!{businessUserExtPerson.id}</td>
+		<td>extId:</td>
+		<td>$!{businessUserExtPerson.extId}</td>
+	</tr>
+	<tr>
+		<td>sellerName:</td>
+		<td>$!{businessUserExtPerson.sellerName}</td>
+		<td>name:</td>
+		<td>$!{businessUserExtPerson.name}</td>
+	</tr>
+	<tr>
+		<td>legIdcard:</td>
+		<td>$!{businessUserExtPerson.legIdcard}</td>
+		<td>isMainland:</td>
+		<td>$!{businessUserExtPerson.isMainland}</td>
+	</tr>
+	<tr>
+		<td>legIdcardRul:</td>
+		<td>$!{businessUserExtPerson.legIdcardRul}</td>
+		<td>busiArea:</td>
+		<td>$!{businessUserExtPerson.busiArea}</td>
+	</tr>
+	<tr>
+		<td>busiLiceProvince:</td>
+		<td>$!{businessUserExtPerson.busiLiceProvince}</td>
+		<td>busiLiceCity:</td>
+		<td>$!{businessUserExtPerson.busiLiceCity}</td>
+	</tr>
+	<tr>
+		<td>busiLiceCounty:</td>
+		<td>$!{businessUserExtPerson.busiLiceCounty}</td>
+		<td>busiAddr:</td>
+		<td>$!{businessUserExtPerson.busiAddr}</td>
+	</tr>
+	<tr>
+		<td>tel:</td>
+		<td colspan="3">$!{businessUserExtPerson.tel}</td>
+	</tr>
+</table>

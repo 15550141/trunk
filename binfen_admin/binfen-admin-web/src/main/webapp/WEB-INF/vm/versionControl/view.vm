@@ -1,0 +1,32 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>id:</td>
+		<td>$!{versionControl.id}</td>
+		<td>versionType:</td>
+		<td>$!{versionControl.versionType}</td>
+	</tr>
+	<tr>
+		<td>yn:</td>
+		<td>$!{versionControl.yn}</td>
+		<td>updateFlag:</td>
+		<td>$!{versionControl.updateFlag}</td>
+	</tr>
+	<tr>
+		<td>cREATED:</td>
+		<td>$!{versionControl.cREATED}</td>
+		<td>mODIFIED:</td>
+		<td>$!{versionControl.mODIFIED}</td>
+	</tr>
+	<tr>
+		<td>versionName:</td>
+		<td>$!{versionControl.versionName}</td>
+		<td>versionNo:</td>
+		<td>$!{versionControl.versionNo}</td>
+	</tr>
+	<tr>
+		<td>versionUrl:</td>
+		<td>$!{versionControl.versionUrl}</td>
+		<td>versionIntro:</td>
+		<td>$!{versionControl.versionIntro}</td>
+	</tr>
+</table>

@@ -1,0 +1,47 @@
+<form name="skuUpdateForm" action="/sku/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>skuId:</td>
+			<td><input type="text" name="skuId" value="$!{sku.skuId}" placeholder="skuId" readonly/></td>
+			<td>itemId:</td>
+			<td><input type="text" name="itemId" value="$!{sku.itemId}" placeholder="itemId"/></td>
+		</tr>
+		<tr>
+			<td>salesProperty:</td>
+			<td><input type="text" name="salesProperty" value="$!{sku.salesProperty}" placeholder="salesProperty"/></td>
+			<td>salesPropertyName:</td>
+			<td><input type="text" name="salesPropertyName" value="$!{sku.salesPropertyName}" placeholder="salesPropertyName"/></td>
+		</tr>
+		<tr>
+			<td>leastBuy:</td>
+			<td><input type="text" name="leastBuy" value="$!{sku.leastBuy}" placeholder="leastBuy"/></td>
+			<td>barCode:</td>
+			<td><input type="text" name="barCode" value="$!{sku.barCode}" placeholder="barCode"/></td>
+		</tr>
+		<tr>
+			<td>costPrice:</td>
+			<td><input type="text" name="costPrice" value="$!{sku.costPrice}" placeholder="costPrice"/></td>
+			<td>originalPrice:</td>
+			<td><input type="text" name="originalPrice" value="$!{sku.originalPrice}" placeholder="originalPrice"/></td>
+		</tr>
+		<tr>
+			<td>salePrice:</td>
+			<td><input type="text" name="salePrice" value="$!{sku.salePrice}" placeholder="salePrice"/></td>
+			<td>stock:</td>
+			<td><input type="text" name="stock" value="$!{sku.stock}" placeholder="stock"/></td>
+		</tr>
+		<tr>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{sku.created}" placeholder="created"/></td>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{sku.modified}" placeholder="modified"/></td>
+		</tr>
+		<tr>
+			<td>yn:</td>
+			<td colspan="3"><input type="text" name="yn" value="$!{sku.yn}" placeholder="yn"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=skuUpdateForm]').submit()">保存更改</button>
+</div>

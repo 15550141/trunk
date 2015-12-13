@@ -1,0 +1,30 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>id:</td>
+		<td>$!{promotionLog.id}</td>
+		<td>promotionId:</td>
+		<td>$!{promotionLog.promotionId}</td>
+	</tr>
+	<tr>
+		<td>promotionName:</td>
+		<td>$!{promotionLog.promotionName}</td>
+		<td>itemName:</td>
+		<td>$!{promotionLog.itemName}</td>
+	</tr>
+	<tr>
+		<td>skuId:</td>
+		<td>$!{promotionLog.skuId}</td>
+		<td>operator:</td>
+		<td>$!{promotionLog.operator}</td>
+	</tr>
+	<tr>
+		<td>operType:</td>
+		<td>$!{promotionLog.operType}</td>
+		<td>operTime:</td>
+		<td>$!{promotionLog.operTime}</td>
+	</tr>
+	<tr>
+		<td>operResult:</td>
+		<td colspan="3">$!{promotionLog.operResult}</td>
+	</tr>
+</table>

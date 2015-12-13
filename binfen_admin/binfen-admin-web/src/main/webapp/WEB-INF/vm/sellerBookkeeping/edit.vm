@@ -1,0 +1,43 @@
+<form name="sellerBookkeepingUpdateForm" action="/sellerBookkeeping/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>iD:</td>
+			<td><input type="text" name="iD" value="$!{sellerBookkeeping.iD}" placeholder="iD" readonly/></td>
+			<td>venderUserId:</td>
+			<td><input type="text" name="venderUserId" value="$!{sellerBookkeeping.venderUserId}" placeholder="venderUserId"/></td>
+		</tr>
+		<tr>
+			<td>tradeMoney:</td>
+			<td><input type="text" name="tradeMoney" value="$!{sellerBookkeeping.tradeMoney}" placeholder="tradeMoney"/></td>
+			<td>paymentMoney:</td>
+			<td><input type="text" name="paymentMoney" value="$!{sellerBookkeeping.paymentMoney}" placeholder="paymentMoney"/></td>
+		</tr>
+		<tr>
+			<td>linkman:</td>
+			<td><input type="text" name="linkman" value="$!{sellerBookkeeping.linkman}" placeholder="linkman"/></td>
+			<td>mobile:</td>
+			<td><input type="text" name="mobile" value="$!{sellerBookkeeping.mobile}" placeholder="mobile"/></td>
+		</tr>
+		<tr>
+			<td>remark:</td>
+			<td><input type="text" name="remark" value="$!{sellerBookkeeping.remark}" placeholder="remark"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{sellerBookkeeping.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{sellerBookkeeping.modified}" placeholder="modified"/></td>
+			<td>itemName:</td>
+			<td><input type="text" name="itemName" value="$!{sellerBookkeeping.itemName}" placeholder="itemName"/></td>
+		</tr>
+		<tr>
+			<td>itemPrice:</td>
+			<td><input type="text" name="itemPrice" value="$!{sellerBookkeeping.itemPrice}" placeholder="itemPrice"/></td>
+			<td>companyName:</td>
+			<td><input type="text" name="companyName" value="$!{sellerBookkeeping.companyName}" placeholder="companyName"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=sellerBookkeepingUpdateForm]').submit()">保存更改</button>
+</div>

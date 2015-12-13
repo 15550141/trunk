@@ -1,0 +1,64 @@
+<DIV id="navBar" title="promotionInfo">
+	<li><a href="$!{contextPath}/">首页</a><span class="divider">/</span></li>
+	<li class="active">promotionInfo</li>
+</DIV>
+<form class="well form-search" name="promotionInfoListForm" action="/promotionInfo" method="POST">
+	<!-- 智能分页与排序 -->
+	<input type="hidden" name="currentPage" value="$!{page.currentPage}"/>
+	<input type="hidden" name="pageSize" value="$!{page.pageSize}"/>
+	<input type="hidden" name="orderField" value="$!{promotionInfo.orderField}"/>
+	<input type="hidden" name="orderFieldType" value="$!{promotionInfo.orderFieldType}"/>
+	<!-- 查询条件 -->
+	<input class="span2" type="text" name="promotionId" value="$!{promotionInfo.promotionId}" placeholder="promotionId"/>
+	<input class="span2" type="text" name="promotionName" value="$!{promotionInfo.promotionName}" placeholder="promotionName"/>
+	<input class="span2" type="text" name="itemId" value="$!{promotionInfo.itemId}" placeholder="itemId"/>
+	<button type="submit" class="btn"><i class="icon-search"></i>搜索</button>
+	<!-- 新增按钮 -->
+	<div class="btn-group pull-right">
+		<a class="btn" onclick="XUI.window.open('/promotionInfo/0',null,'PUT',{title:$(this).text()})"><i class="icon-pencil"></i>新增</a>
+	</div>
+</form>
+
+<!-- 表格数据 -->
+<table class="table table-striped table-bordered table-condensed grid">
+	<thead>
+		<tr>
+			<th #sorting($!{promotionInfo} "promotionId")>promotionId</th>
+			<th #sorting($!{promotionInfo} "promotionName")>promotionName</th>
+			<th #sorting($!{promotionInfo} "itemId")>itemId</th>
+			<th #sorting($!{promotionInfo} "venderUserId")>venderUserId</th>
+			<th #sorting($!{promotionInfo} "promotionType")>promotionType</th>
+			<th #sorting($!{promotionInfo} "startTime")>startTime</th>
+			<th #sorting($!{promotionInfo} "endTime")>endTime</th>
+			<th #sorting($!{promotionInfo} "purchaseNumberMin")>purchaseNumberMin</th>
+			<th #sorting($!{promotionInfo} "purchaseNumberMax")>purchaseNumberMax</th>
+			<th #sorting($!{promotionInfo} "promotionStock")>promotionStock</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+#foreach(${item} in ${page.result})
+		<tr>
+			<td>$!{item.promotionId}</td>
+			<td>$!{item.promotionName}</td>
+			<td>$!{item.itemId}</td>
+			<td>$!{item.venderUserId}</td>
+			<td>$!{item.promotionType}</td>
+			<td>$!{item.startTime}</td>
+			<td>$!{item.endTime}</td>
+			<td>$!{item.purchaseNumberMin}</td>
+			<td>$!{item.purchaseNumberMax}</td>
+			<td>$!{item.promotionStock}</td>
+			<td class="textC">
+				<div class="btn-group">
+					<a class="btn btn-mini" onclick="XUI.ajax.delete('/promotionInfo/${item.promotionId}',null,{refresh:true})"><i class="icon-trash"></i> 删除</a>
+					<a class="btn btn-mini" onclick="XUI.window.open('/promotionInfo/${item.promotionId}',null,'PUT',{title:$(this).text()})"><i class="icon-pencil"></i> 修改</a>
+					<a class="btn btn-mini" onclick="XUI.window.open('/promotionInfo/${item.promotionId}',null,'GET',{title:$(this).text()})"><i class="icon-eye-open"></i> 查看</a>
+				</div>
+			</td>
+		</tr>
+#end
+	</tbody>
+</table>
+<!-- 分页栏 -->
+#showPage($!{page})

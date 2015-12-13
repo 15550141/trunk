@@ -1,0 +1,64 @@
+<DIV id="navBar" title="sellerBookkeeping">
+	<li><a href="$!{contextPath}/">首页</a><span class="divider">/</span></li>
+	<li class="active">sellerBookkeeping</li>
+</DIV>
+<form class="well form-search" name="sellerBookkeepingListForm" action="/sellerBookkeeping" method="POST">
+	<!-- 智能分页与排序 -->
+	<input type="hidden" name="currentPage" value="$!{page.currentPage}"/>
+	<input type="hidden" name="pageSize" value="$!{page.pageSize}"/>
+	<input type="hidden" name="orderField" value="$!{sellerBookkeeping.orderField}"/>
+	<input type="hidden" name="orderFieldType" value="$!{sellerBookkeeping.orderFieldType}"/>
+	<!-- 查询条件 -->
+	<input class="span2" type="text" name="iD" value="$!{sellerBookkeeping.iD}" placeholder="iD"/>
+	<input class="span2" type="text" name="venderUserId" value="$!{sellerBookkeeping.venderUserId}" placeholder="venderUserId"/>
+	<input class="span2" type="text" name="tradeMoney" value="$!{sellerBookkeeping.tradeMoney}" placeholder="tradeMoney"/>
+	<button type="submit" class="btn"><i class="icon-search"></i>搜索</button>
+	<!-- 新增按钮 -->
+	<div class="btn-group pull-right">
+		<a class="btn" onclick="XUI.window.open('/sellerBookkeeping/0',null,'PUT',{title:$(this).text()})"><i class="icon-pencil"></i>新增</a>
+	</div>
+</form>
+
+<!-- 表格数据 -->
+<table class="table table-striped table-bordered table-condensed grid">
+	<thead>
+		<tr>
+			<th #sorting($!{sellerBookkeeping} "iD")>iD</th>
+			<th #sorting($!{sellerBookkeeping} "venderUserId")>venderUserId</th>
+			<th #sorting($!{sellerBookkeeping} "tradeMoney")>tradeMoney</th>
+			<th #sorting($!{sellerBookkeeping} "paymentMoney")>paymentMoney</th>
+			<th #sorting($!{sellerBookkeeping} "linkman")>linkman</th>
+			<th #sorting($!{sellerBookkeeping} "mobile")>mobile</th>
+			<th #sorting($!{sellerBookkeeping} "remark")>remark</th>
+			<th #sorting($!{sellerBookkeeping} "created")>created</th>
+			<th #sorting($!{sellerBookkeeping} "modified")>modified</th>
+			<th #sorting($!{sellerBookkeeping} "itemName")>itemName</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+#foreach(${item} in ${page.result})
+		<tr>
+			<td>$!{item.iD}</td>
+			<td>$!{item.venderUserId}</td>
+			<td>$!{item.tradeMoney}</td>
+			<td>$!{item.paymentMoney}</td>
+			<td>$!{item.linkman}</td>
+			<td>$!{item.mobile}</td>
+			<td>$!{item.remark}</td>
+			<td>$!{item.created}</td>
+			<td>$!{item.modified}</td>
+			<td>$!{item.itemName}</td>
+			<td class="textC">
+				<div class="btn-group">
+					<a class="btn btn-mini" onclick="XUI.ajax.delete('/sellerBookkeeping/${item.iD}',null,{refresh:true})"><i class="icon-trash"></i> 删除</a>
+					<a class="btn btn-mini" onclick="XUI.window.open('/sellerBookkeeping/${item.iD}',null,'PUT',{title:$(this).text()})"><i class="icon-pencil"></i> 修改</a>
+					<a class="btn btn-mini" onclick="XUI.window.open('/sellerBookkeeping/${item.iD}',null,'GET',{title:$(this).text()})"><i class="icon-eye-open"></i> 查看</a>
+				</div>
+			</td>
+		</tr>
+#end
+	</tbody>
+</table>
+<!-- 分页栏 -->
+#showPage($!{page})

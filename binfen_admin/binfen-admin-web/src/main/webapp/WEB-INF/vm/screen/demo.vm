@@ -1,0 +1,23 @@
+#* 设置标题 *#
+#set($title = "get")
+
+
+<script type="text/javascript" src="$homeModule.getTarget('/js/jquery-1.2.6.js')"></script>
+
+<center>demo</center><br/>
+
+hello not escape:
+$!hello<br/>
+
+hello escape:
+escape:${stringEscapeUtils.escapeHtml($hello)}<br/>
+
+homeModule:
+${homeModule}<br/>
+-----------------------------------<br/>
+#showSimpleMessage()
+
+
+
+
+

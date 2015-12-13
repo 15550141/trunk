@@ -1,0 +1,14 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>orderMoney:</td>
+		<td>$!{orderMoneyHistory.orderMoney}</td>
+		<td>orderId:</td>
+		<td>$!{orderMoneyHistory.orderId}</td>
+	</tr>
+	<tr>
+		<td>modifyTime:</td>
+		<td>$!{orderMoneyHistory.modifyTime}</td>
+		<td>modifyUserId:</td>
+		<td>$!{orderMoneyHistory.modifyUserId}</td>
+	</tr>
+</table>

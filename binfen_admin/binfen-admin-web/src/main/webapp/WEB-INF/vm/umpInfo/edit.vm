@@ -1,0 +1,47 @@
+<form name="umpInfoUpdateForm" action="/umpInfo/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{umpInfo.id}" placeholder="id" readonly/></td>
+			<td>orderId:</td>
+			<td><input type="text" name="orderId" value="$!{umpInfo.orderId}" placeholder="orderId"/></td>
+		</tr>
+		<tr>
+			<td>userId:</td>
+			<td><input type="text" name="userId" value="$!{umpInfo.userId}" placeholder="userId"/></td>
+			<td>type:</td>
+			<td><input type="text" name="type" value="$!{umpInfo.type}" placeholder="type"/></td>
+		</tr>
+		<tr>
+			<td>tradeNo:</td>
+			<td><input type="text" name="tradeNo" value="$!{umpInfo.tradeNo}" placeholder="tradeNo"/></td>
+			<td>param:</td>
+			<td><input type="text" name="param" value="$!{umpInfo.param}" placeholder="param"/></td>
+		</tr>
+		<tr>
+			<td>amount:</td>
+			<td><input type="text" name="amount" value="$!{umpInfo.amount}" placeholder="amount"/></td>
+			<td>tradeState:</td>
+			<td><input type="text" name="tradeState" value="$!{umpInfo.tradeState}" placeholder="tradeState"/></td>
+		</tr>
+		<tr>
+			<td>merDate:</td>
+			<td><input type="text" name="merDate" value="$!{umpInfo.merDate}" placeholder="merDate"/></td>
+			<td>payDate:</td>
+			<td><input type="text" name="payDate" value="$!{umpInfo.payDate}" placeholder="payDate"/></td>
+		</tr>
+		<tr>
+			<td>settleDate:</td>
+			<td><input type="text" name="settleDate" value="$!{umpInfo.settleDate}" placeholder="settleDate"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{umpInfo.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td colspan="3"><input type="text" name="modified" value="$!{umpInfo.modified}" placeholder="modified"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=umpInfoUpdateForm]').submit()">保存更改</button>
+</div>

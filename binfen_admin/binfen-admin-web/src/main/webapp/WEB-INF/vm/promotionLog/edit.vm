@@ -1,0 +1,35 @@
+<form name="promotionLogUpdateForm" action="/promotionLog/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{promotionLog.id}" placeholder="id" readonly/></td>
+			<td>promotionId:</td>
+			<td><input type="text" name="promotionId" value="$!{promotionLog.promotionId}" placeholder="promotionId"/></td>
+		</tr>
+		<tr>
+			<td>promotionName:</td>
+			<td><input type="text" name="promotionName" value="$!{promotionLog.promotionName}" placeholder="promotionName"/></td>
+			<td>itemName:</td>
+			<td><input type="text" name="itemName" value="$!{promotionLog.itemName}" placeholder="itemName"/></td>
+		</tr>
+		<tr>
+			<td>skuId:</td>
+			<td><input type="text" name="skuId" value="$!{promotionLog.skuId}" placeholder="skuId"/></td>
+			<td>operator:</td>
+			<td><input type="text" name="operator" value="$!{promotionLog.operator}" placeholder="operator"/></td>
+		</tr>
+		<tr>
+			<td>operType:</td>
+			<td><input type="text" name="operType" value="$!{promotionLog.operType}" placeholder="operType"/></td>
+			<td>operTime:</td>
+			<td><input type="text" name="operTime" value="$!{promotionLog.operTime}" placeholder="operTime"/></td>
+		</tr>
+		<tr>
+			<td>operResult:</td>
+			<td colspan="3"><input type="text" name="operResult" value="$!{promotionLog.operResult}" placeholder="operResult"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=promotionLogUpdateForm]').submit()">保存更改</button>
+</div>

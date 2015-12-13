@@ -1,0 +1,24 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>id:</td>
+		<td>$!{task.id}</td>
+		<td>content:</td>
+		<td>$!{task.content}</td>
+	</tr>
+	<tr>
+		<td>type:</td>
+		<td>$!{task.type}</td>
+		<td>status:</td>
+		<td>$!{task.status}</td>
+	</tr>
+	<tr>
+		<td>yn:</td>
+		<td>$!{task.yn}</td>
+		<td>created:</td>
+		<td>$!{task.created}</td>
+	</tr>
+	<tr>
+		<td>modified:</td>
+		<td colspan="3">$!{task.modified}</td>
+	</tr>
+</table>

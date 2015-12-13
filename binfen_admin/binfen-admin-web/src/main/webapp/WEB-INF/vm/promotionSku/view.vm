@@ -1,0 +1,24 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>iD:</td>
+		<td>$!{promotionSku.iD}</td>
+		<td>promotionId:</td>
+		<td>$!{promotionSku.promotionId}</td>
+	</tr>
+	<tr>
+		<td>sKUID:</td>
+		<td>$!{promotionSku.sKUID}</td>
+		<td>deductionPrice:</td>
+		<td>$!{promotionSku.deductionPrice}</td>
+	</tr>
+	<tr>
+		<td>modified:</td>
+		<td>$!{promotionSku.modified}</td>
+		<td>created:</td>
+		<td>$!{promotionSku.created}</td>
+	</tr>
+	<tr>
+		<td>yn:</td>
+		<td colspan="3">$!{promotionSku.yn}</td>
+	</tr>
+</table>

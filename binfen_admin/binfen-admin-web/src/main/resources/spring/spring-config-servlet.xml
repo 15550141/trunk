@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+
+         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-autowire="byName">
+
+    <!-- 读配置文件 -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:${property-path}.properties</value>
+                <value>classpath:important.properties</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- exception related -->
+    <!-- all exception handler will be registered by DispatcherServlet default (detectAllHandlerExceptionResolvers=true) -->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="defaultErrorView" value="error/error"/>
+        <property name="exceptionMappings">
+            <props>
+                <prop key="com.jd.common.hrm.IllegalHrmPrivilegeException">error/access-denied</prop>
+            </props>
+        </property>
+    </bean>
+
+    <mvc:default-servlet-handler/>
+    <!-- static resources -->
+    <mvc:resources location="/resources/" mapping="/resources/**" cache-period="864000"/>
+    <!-- 24 * 3600 * 10 -->
+    <!-- template view -->
+    <!--  <mvc:view-controller path="/" view-name="home"/>
+      <mvc:view-controller path="/menu/home" view-name="home"/>
+      <mvc:view-controller path="error/error" view-name="error"/>
+      <mvc:view-controller path="error/access-denied" view-name="error/access-denied"/> -->
+
+      <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+          <property name="basename" value="messages"/>
+          <property name="useCodeAsDefaultMessage" value="true"/>
+      </bean>
+
+
+      <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+          <property name="resourceLoaderPath" value="/WEB-INF/vm/"/>
+          <!--页面文件的路径,相对于webapp-->
+        <property name="velocityProperties">
+            <props>
+                <prop key="input.encoding">UTF-8</prop>
+                <!-- 指定模板引擎进行模板处理的编码 -->
+                <prop key="output.encoding">UTF-8</prop>
+                <!-- 指定输出流的编码 -->
+                <prop key="contentType">text/html;charset=UTF-8</prop>
+                <!-- contentType -->
+                <prop key="velocimacro.library">macro.vm</prop>
+                <!-- Velocitymacro 模板库的列表 -->
+            </props>
+        </property>
+    </bean>
+
+    <bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+        <property name="layoutUrl" value="layout/default.vm"/>
+        <!--指定vm默认布局模板-->
+        <property name="cache" value="false"/>
+        <!--是否缓存模板-->
+        <property name="suffix" value=".vm"/>
+        <!--页面后缀-->
+        <property name="exposeSpringMacroHelpers" value="true"/>
+        <!--是否使用spring对宏定义的支持-->
+        <property name="dateToolAttribute" value="dateTool"/>
+        <!--日期函数名称-->
+        <property name="numberToolAttribute" value="numberTool"/>
+        <!--velocity工具类-->
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="defaultContentType" value="text/html"/>
+        <!-- not by accept header -->
+        <property name="ignoreAcceptHeader" value="true"/>
+        <!-- by extension -->
+        <property name="mediaTypes">
+            <map>
+                <entry key="xml" value="application/xml"/>
+                <entry key="json" value="application/json;charset=UTF-8"/>
+            </map>
+        </property>
+        <property name="viewResolvers">
+            <list>
+                <ref bean="velocityViewResolver"/>
+            </list>
+        </property>
+        <property name="defaultViews">
+            <list>
+                <!-- for application/json -->
+                <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- locale related -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="cookieName" value="_clientlocale"/>
+        <property name="defaultLocale" value="zh_CN"/>
+        <property name="cookieMaxAge" value="2147483647"/>
+    </bean>
+
+    <!-- file upload related -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="maxUploadSize" value="5000000"/>
+    </bean>
+
+
+</beans>

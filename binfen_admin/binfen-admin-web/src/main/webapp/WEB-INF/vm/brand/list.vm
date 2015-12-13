@@ -1,0 +1,52 @@
+<DIV id="navBar" title="brand">
+	<li><a href="$!{contextPath}/">首页</a><span class="divider">/</span></li>
+	<li class="active">brand</li>
+</DIV>
+<form class="well form-search" name="brandListForm" action="/brand" method="POST">
+	<!-- 智能分页与排序 -->
+	<input type="hidden" name="currentPage" value="$!{page.currentPage}"/>
+	<input type="hidden" name="pageSize" value="$!{page.pageSize}"/>
+	<input type="hidden" name="orderField" value="$!{brand.orderField}"/>
+	<input type="hidden" name="orderFieldType" value="$!{brand.orderFieldType}"/>
+	<!-- 查询条件 -->
+	<input class="span2" type="text" name="brandId" value="$!{brand.brandId}" placeholder="brandId"/>
+	<input class="span2" type="text" name="brandName" value="$!{brand.brandName}" placeholder="brandName"/>
+	<input class="span2" type="text" name="created" value="$!{brand.created}" placeholder="created"/>
+	<button type="submit" class="btn"><i class="icon-search"></i>搜索</button>
+	<!-- 新增按钮 -->
+	<div class="btn-group pull-right">
+		<a class="btn" onclick="XUI.window.open('/brand/0',null,'PUT',{title:$(this).text()})"><i class="icon-pencil"></i>新增</a>
+	</div>
+</form>
+
+<!-- 表格数据 -->
+<table class="table table-striped table-bordered table-condensed grid">
+	<thead>
+		<tr>
+			<th #sorting($!{brand} "brandId")>brandId</th>
+			<th #sorting($!{brand} "brandName")>brandName</th>
+			<th #sorting($!{brand} "created")>created</th>
+			<th #sorting($!{brand} "modified")>modified</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+#foreach(${item} in ${page.result})
+		<tr>
+			<td>$!{item.brandId}</td>
+			<td>$!{item.brandName}</td>
+			<td>$!{item.created}</td>
+			<td>$!{item.modified}</td>
+			<td class="textC">
+				<div class="btn-group">
+					<a class="btn btn-mini" onclick="XUI.ajax.delete('/brand/${item.brandId}',null,{refresh:true})"><i class="icon-trash"></i> 删除</a>
+					<a class="btn btn-mini" onclick="XUI.window.open('/brand/${item.brandId}',null,'PUT',{title:$(this).text()})"><i class="icon-pencil"></i> 修改</a>
+					<a class="btn btn-mini" onclick="XUI.window.open('/brand/${item.brandId}',null,'GET',{title:$(this).text()})"><i class="icon-eye-open"></i> 查看</a>
+				</div>
+			</td>
+		</tr>
+#end
+	</tbody>
+</table>
+<!-- 分页栏 -->
+#showPage($!{page})

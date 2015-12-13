@@ -1,0 +1,20 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>id:</td>
+		<td>$!{searchHotwords.id}</td>
+		<td>hotwordName:</td>
+		<td>$!{searchHotwords.hotwordName}</td>
+	</tr>
+	<tr>
+		<td>sortNum:</td>
+		<td>$!{searchHotwords.sortNum}</td>
+		<td>yn:</td>
+		<td>$!{searchHotwords.yn}</td>
+	</tr>
+	<tr>
+		<td>created:</td>
+		<td>$!{searchHotwords.created}</td>
+		<td>modified:</td>
+		<td>$!{searchHotwords.modified}</td>
+	</tr>
+</table>

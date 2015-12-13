@@ -1,0 +1,23 @@
+<form name="collectionUpdateForm" action="/collection/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>collectionId:</td>
+			<td><input type="text" name="collectionId" value="$!{collection.collectionId}" placeholder="collectionId" readonly/></td>
+			<td>userId:</td>
+			<td><input type="text" name="userId" value="$!{collection.userId}" placeholder="userId"/></td>
+		</tr>
+		<tr>
+			<td>venderUserId:</td>
+			<td><input type="text" name="venderUserId" value="$!{collection.venderUserId}" placeholder="venderUserId"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{collection.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td colspan="3"><input type="text" name="modified" value="$!{collection.modified}" placeholder="modified"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=collectionUpdateForm]').submit()">保存更改</button>
+</div>

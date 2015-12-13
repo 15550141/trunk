@@ -1,0 +1,32 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>serviceId:</td>
+		<td>$!{serviceInfo.serviceId}</td>
+		<td>serviceName:</td>
+		<td>$!{serviceInfo.serviceName}</td>
+	</tr>
+	<tr>
+		<td>serviceTel:</td>
+		<td>$!{serviceInfo.serviceTel}</td>
+		<td>serviceImage:</td>
+		<td>$!{serviceInfo.serviceImage}</td>
+	</tr>
+	<tr>
+		<td>categoryId:</td>
+		<td>$!{serviceInfo.categoryId}</td>
+		<td>sortNumber:</td>
+		<td>$!{serviceInfo.sortNumber}</td>
+	</tr>
+	<tr>
+		<td>yn:</td>
+		<td>$!{serviceInfo.yn}</td>
+		<td>created:</td>
+		<td>$!{serviceInfo.created}</td>
+	</tr>
+	<tr>
+		<td>modified:</td>
+		<td>$!{serviceInfo.modified}</td>
+		<td>categoryId1:</td>
+		<td>$!{serviceInfo.categoryId1}</td>
+	</tr>
+</table>

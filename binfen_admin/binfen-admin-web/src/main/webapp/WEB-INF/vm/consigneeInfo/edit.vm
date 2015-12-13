@@ -1,0 +1,43 @@
+<form name="consigneeInfoUpdateForm" action="/consigneeInfo/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>consigneeId:</td>
+			<td><input type="text" name="consigneeId" value="$!{consigneeInfo.consigneeId}" placeholder="consigneeId" readonly/></td>
+			<td>userId:</td>
+			<td><input type="text" name="userId" value="$!{consigneeInfo.userId}" placeholder="userId"/></td>
+		</tr>
+		<tr>
+			<td>consigneeName:</td>
+			<td><input type="text" name="consigneeName" value="$!{consigneeInfo.consigneeName}" placeholder="consigneeName"/></td>
+			<td>consigneeProvince:</td>
+			<td><input type="text" name="consigneeProvince" value="$!{consigneeInfo.consigneeProvince}" placeholder="consigneeProvince"/></td>
+		</tr>
+		<tr>
+			<td>consigneeCity:</td>
+			<td><input type="text" name="consigneeCity" value="$!{consigneeInfo.consigneeCity}" placeholder="consigneeCity"/></td>
+			<td>consigneeCounty:</td>
+			<td><input type="text" name="consigneeCounty" value="$!{consigneeInfo.consigneeCounty}" placeholder="consigneeCounty"/></td>
+		</tr>
+		<tr>
+			<td>consigneeAddress:</td>
+			<td><input type="text" name="consigneeAddress" value="$!{consigneeInfo.consigneeAddress}" placeholder="consigneeAddress"/></td>
+			<td>consigneeMobile:</td>
+			<td><input type="text" name="consigneeMobile" value="$!{consigneeInfo.consigneeMobile}" placeholder="consigneeMobile"/></td>
+		</tr>
+		<tr>
+			<td>lastTime:</td>
+			<td><input type="text" name="lastTime" value="$!{consigneeInfo.lastTime}" placeholder="lastTime"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{consigneeInfo.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{consigneeInfo.modified}" placeholder="modified"/></td>
+			<td>defaultConsigneeFlag:</td>
+			<td><input type="text" name="defaultConsigneeFlag" value="$!{consigneeInfo.defaultConsigneeFlag}" placeholder="defaultConsigneeFlag"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=consigneeInfoUpdateForm]').submit()">保存更改</button>
+</div>

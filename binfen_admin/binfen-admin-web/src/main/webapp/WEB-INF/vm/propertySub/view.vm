@@ -1,0 +1,18 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>propertySubId:</td>
+		<td>$!{propertySub.propertySubId}</td>
+		<td>propertyId:</td>
+		<td>$!{propertySub.propertyId}</td>
+	</tr>
+	<tr>
+		<td>propertySubName:</td>
+		<td>$!{propertySub.propertySubName}</td>
+		<td>created:</td>
+		<td>$!{propertySub.created}</td>
+	</tr>
+	<tr>
+		<td>modified:</td>
+		<td colspan="3">$!{propertySub.modified}</td>
+	</tr>
+</table>

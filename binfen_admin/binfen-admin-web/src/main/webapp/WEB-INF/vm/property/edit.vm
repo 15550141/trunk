@@ -1,0 +1,43 @@
+<form name="propertyUpdateForm" action="/property/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>propertyId:</td>
+			<td><input type="text" name="propertyId" value="$!{property.propertyId}" placeholder="propertyId" readonly/></td>
+			<td>categoryId:</td>
+			<td><input type="text" name="categoryId" value="$!{property.categoryId}" placeholder="categoryId"/></td>
+		</tr>
+		<tr>
+			<td>propertyName:</td>
+			<td><input type="text" name="propertyName" value="$!{property.propertyName}" placeholder="propertyName"/></td>
+			<td>propertyType:</td>
+			<td><input type="text" name="propertyType" value="$!{property.propertyType}" placeholder="propertyType"/></td>
+		</tr>
+		<tr>
+			<td>ifMultiSelect:</td>
+			<td><input type="text" name="ifMultiSelect" value="$!{property.ifMultiSelect}" placeholder="ifMultiSelect"/></td>
+			<td>subFlag:</td>
+			<td><input type="text" name="subFlag" value="$!{property.subFlag}" placeholder="subFlag"/></td>
+		</tr>
+		<tr>
+			<td>showType:</td>
+			<td><input type="text" name="showType" value="$!{property.showType}" placeholder="showType"/></td>
+			<td>ifCanCustom:</td>
+			<td><input type="text" name="ifCanCustom" value="$!{property.ifCanCustom}" placeholder="ifCanCustom"/></td>
+		</tr>
+		<tr>
+			<td>sortNumber:</td>
+			<td><input type="text" name="sortNumber" value="$!{property.sortNumber}" placeholder="sortNumber"/></td>
+			<td>yn:</td>
+			<td><input type="text" name="yn" value="$!{property.yn}" placeholder="yn"/></td>
+		</tr>
+		<tr>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{property.created}" placeholder="created"/></td>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{property.modified}" placeholder="modified"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=propertyUpdateForm]').submit()">保存更改</button>
+</div>

@@ -1,0 +1,23 @@
+<form name="favoritesSellerUpdateForm" action="/favoritesSeller/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>favoritesId:</td>
+			<td><input type="text" name="favoritesId" value="$!{favoritesSeller.favoritesId}" placeholder="favoritesId" readonly/></td>
+			<td>userId:</td>
+			<td><input type="text" name="userId" value="$!{favoritesSeller.userId}" placeholder="userId"/></td>
+		</tr>
+		<tr>
+			<td>venderUserId:</td>
+			<td><input type="text" name="venderUserId" value="$!{favoritesSeller.venderUserId}" placeholder="venderUserId"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{favoritesSeller.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td colspan="3"><input type="text" name="modified" value="$!{favoritesSeller.modified}" placeholder="modified"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=favoritesSellerUpdateForm]').submit()">保存更改</button>
+</div>

@@ -1,0 +1,30 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>categoryId:</td>
+		<td>$!{category.categoryId}</td>
+		<td>categoryName:</td>
+		<td>$!{category.categoryName}</td>
+	</tr>
+	<tr>
+		<td>categoryLevel:</td>
+		<td>$!{category.categoryLevel}</td>
+		<td>parentCategoryId:</td>
+		<td>$!{category.parentCategoryId}</td>
+	</tr>
+	<tr>
+		<td>sortNumber:</td>
+		<td>$!{category.sortNumber}</td>
+		<td>ifHaveSaleProperty:</td>
+		<td>$!{category.ifHaveSaleProperty}</td>
+	</tr>
+	<tr>
+		<td>yn:</td>
+		<td>$!{category.yn}</td>
+		<td>created:</td>
+		<td>$!{category.created}</td>
+	</tr>
+	<tr>
+		<td>modified:</td>
+		<td colspan="3">$!{category.modified}</td>
+	</tr>
+</table>

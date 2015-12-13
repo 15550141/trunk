@@ -1,0 +1,21 @@
+.table_two{border-spacing:0;margin:0 auto;border:1px solid #98bad3}
+.table_two th{background:#deebff;height:23px;color:#0756a3}
+.table_two th,.table_two td{border-bottom:1px solid #cfd3d7;border-right:1px solid #cfd3d7;padding:0 4px}
+.table_two td{height:23px}
+
+.table_three{border-spacing:0;margin:10px auto;border:1px solid #98bad3}
+.table_three th{background:#deebff;height:30px; font-weight:normal; text-align:right}
+.table_three td{ background:#fff}
+.table_three td,.table_three th{border-bottom:1px solid #cfd3d7;border-right:1px solid #cfd3d7;padding:0 2px}
+.table_three td .readonly{border:0;background:transparent;}
+
+/*“≥√Ê±ÍÃ‚*/
+.bluetitle{font-weight:bold;font-size:14px;color:#05539b; background:#deebff url(images/dictype.jpg) no-repeat 9px 50%;padding-left:25px;border:1px solid #b3d8ea;line-height:28px; text-align:left}
+td.bluetitle1,th.title1{font-weight:bold;padding-left:3px;text-align:left;border:none;background:#fff}
+
+/*main*/
+.main{width:96%;margin:0 auto 9px auto; text-align:left;border:1px solid #98bad3;overflow:hidden; background:#fff;padding:3px 10px;}
+/*font_color*/
+.red{color:red}
+.green{color:green}
+.darkblue{color:#223399;}

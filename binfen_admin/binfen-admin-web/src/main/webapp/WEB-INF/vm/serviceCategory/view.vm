@@ -1,0 +1,26 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>categoryId:</td>
+		<td>$!{serviceCategory.categoryId}</td>
+		<td>categoryName:</td>
+		<td>$!{serviceCategory.categoryName}</td>
+	</tr>
+	<tr>
+		<td>categoryLevel:</td>
+		<td>$!{serviceCategory.categoryLevel}</td>
+		<td>parentCategoryId:</td>
+		<td>$!{serviceCategory.parentCategoryId}</td>
+	</tr>
+	<tr>
+		<td>sortNumber:</td>
+		<td>$!{serviceCategory.sortNumber}</td>
+		<td>yn:</td>
+		<td>$!{serviceCategory.yn}</td>
+	</tr>
+	<tr>
+		<td>created:</td>
+		<td>$!{serviceCategory.created}</td>
+		<td>modified:</td>
+		<td>$!{serviceCategory.modified}</td>
+	</tr>
+</table>

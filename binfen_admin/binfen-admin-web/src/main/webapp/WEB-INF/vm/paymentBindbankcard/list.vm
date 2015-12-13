@@ -1,0 +1,64 @@
+<DIV id="navBar" title="paymentBindbankcard">
+	<li><a href="$!{contextPath}/">首页</a><span class="divider">/</span></li>
+	<li class="active">paymentBindbankcard</li>
+</DIV>
+<form class="well form-search" name="paymentBindbankcardListForm" action="/paymentBindbankcard" method="POST">
+	<!-- 智能分页与排序 -->
+	<input type="hidden" name="currentPage" value="$!{page.currentPage}"/>
+	<input type="hidden" name="pageSize" value="$!{page.pageSize}"/>
+	<input type="hidden" name="orderField" value="$!{paymentBindbankcard.orderField}"/>
+	<input type="hidden" name="orderFieldType" value="$!{paymentBindbankcard.orderFieldType}"/>
+	<!-- 查询条件 -->
+	<input class="span2" type="text" name="id" value="$!{paymentBindbankcard.id}" placeholder="id"/>
+	<input class="span2" type="text" name="merCustId" value="$!{paymentBindbankcard.merCustId}" placeholder="merCustId"/>
+	<input class="span2" type="text" name="venderUserId" value="$!{paymentBindbankcard.venderUserId}" placeholder="venderUserId"/>
+	<button type="submit" class="btn"><i class="icon-search"></i>搜索</button>
+	<!-- 新增按钮 -->
+	<div class="btn-group pull-right">
+		<a class="btn" onclick="XUI.window.open('/paymentBindbankcard/0',null,'PUT',{title:$(this).text()})"><i class="icon-pencil"></i>新增</a>
+	</div>
+</form>
+
+<!-- 表格数据 -->
+<table class="table table-striped table-bordered table-condensed grid">
+	<thead>
+		<tr>
+			<th #sorting($!{paymentBindbankcard} "id")>id</th>
+			<th #sorting($!{paymentBindbankcard} "merCustId")>merCustId</th>
+			<th #sorting($!{paymentBindbankcard} "venderUserId")>venderUserId</th>
+			<th #sorting($!{paymentBindbankcard} "usrBusiAgreementId")>usrBusiAgreementId</th>
+			<th #sorting($!{paymentBindbankcard} "usrPayAgreementId")>usrPayAgreementId</th>
+			<th #sorting($!{paymentBindbankcard} "mobile")>mobile</th>
+			<th #sorting($!{paymentBindbankcard} "bank")>bank</th>
+			<th #sorting($!{paymentBindbankcard} "bankAc")>bankAc</th>
+			<th #sorting($!{paymentBindbankcard} "branch")>branch</th>
+			<th #sorting($!{paymentBindbankcard} "branchAc")>branchAc</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+#foreach(${item} in ${page.result})
+		<tr>
+			<td>$!{item.id}</td>
+			<td>$!{item.merCustId}</td>
+			<td>$!{item.venderUserId}</td>
+			<td>$!{item.usrBusiAgreementId}</td>
+			<td>$!{item.usrPayAgreementId}</td>
+			<td>$!{item.mobile}</td>
+			<td>$!{item.bank}</td>
+			<td>$!{item.bankAc}</td>
+			<td>$!{item.branch}</td>
+			<td>$!{item.branchAc}</td>
+			<td class="textC">
+				<div class="btn-group">
+					<a class="btn btn-mini" onclick="XUI.ajax.delete('/paymentBindbankcard/${item.id}',null,{refresh:true})"><i class="icon-trash"></i> 删除</a>
+					<a class="btn btn-mini" onclick="XUI.window.open('/paymentBindbankcard/${item.id}',null,'PUT',{title:$(this).text()})"><i class="icon-pencil"></i> 修改</a>
+					<a class="btn btn-mini" onclick="XUI.window.open('/paymentBindbankcard/${item.id}',null,'GET',{title:$(this).text()})"><i class="icon-eye-open"></i> 查看</a>
+				</div>
+			</td>
+		</tr>
+#end
+	</tbody>
+</table>
+<!-- 分页栏 -->
+#showPage($!{page})

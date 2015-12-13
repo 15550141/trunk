@@ -1,0 +1,67 @@
+<form name="promotionProductUpdateForm" action="/promotionProduct/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{promotionProduct.id}" placeholder="id" readonly/></td>
+			<td>promotionId:</td>
+			<td><input type="text" name="promotionId" value="$!{promotionProduct.promotionId}" placeholder="promotionId"/></td>
+		</tr>
+		<tr>
+			<td>promotionName:</td>
+			<td><input type="text" name="promotionName" value="$!{promotionProduct.promotionName}" placeholder="promotionName"/></td>
+			<td>itemId:</td>
+			<td><input type="text" name="itemId" value="$!{promotionProduct.itemId}" placeholder="itemId"/></td>
+		</tr>
+		<tr>
+			<td>venderUserId:</td>
+			<td><input type="text" name="venderUserId" value="$!{promotionProduct.venderUserId}" placeholder="venderUserId"/></td>
+			<td>promotionType:</td>
+			<td><input type="text" name="promotionType" value="$!{promotionProduct.promotionType}" placeholder="promotionType"/></td>
+		</tr>
+		<tr>
+			<td>startTime:</td>
+			<td><input type="text" name="startTime" value="$!{promotionProduct.startTime}" placeholder="startTime"/></td>
+			<td>endTime:</td>
+			<td><input type="text" name="endTime" value="$!{promotionProduct.endTime}" placeholder="endTime"/></td>
+		</tr>
+		<tr>
+			<td>purchaseNumberMin:</td>
+			<td><input type="text" name="purchaseNumberMin" value="$!{promotionProduct.purchaseNumberMin}" placeholder="purchaseNumberMin"/></td>
+			<td>purchaseNumberMax:</td>
+			<td><input type="text" name="purchaseNumberMax" value="$!{promotionProduct.purchaseNumberMax}" placeholder="purchaseNumberMax"/></td>
+		</tr>
+		<tr>
+			<td>promotionStock:</td>
+			<td><input type="text" name="promotionStock" value="$!{promotionProduct.promotionStock}" placeholder="promotionStock"/></td>
+			<td>promotionRule:</td>
+			<td><input type="text" name="promotionRule" value="$!{promotionProduct.promotionRule}" placeholder="promotionRule"/></td>
+		</tr>
+		<tr>
+			<td>promotionStatus:</td>
+			<td><input type="text" name="promotionStatus" value="$!{promotionProduct.promotionStatus}" placeholder="promotionStatus"/></td>
+			<td>yn:</td>
+			<td><input type="text" name="yn" value="$!{promotionProduct.yn}" placeholder="yn"/></td>
+		</tr>
+		<tr>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{promotionProduct.created}" placeholder="created"/></td>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{promotionProduct.modified}" placeholder="modified"/></td>
+		</tr>
+		<tr>
+			<td>discountFlag:</td>
+			<td><input type="text" name="discountFlag" value="$!{promotionProduct.discountFlag}" placeholder="discountFlag"/></td>
+			<td>discountTime:</td>
+			<td><input type="text" name="discountTime" value="$!{promotionProduct.discountTime}" placeholder="discountTime"/></td>
+		</tr>
+		<tr>
+			<td>specialFlag:</td>
+			<td><input type="text" name="specialFlag" value="$!{promotionProduct.specialFlag}" placeholder="specialFlag"/></td>
+			<td>specialTime:</td>
+			<td><input type="text" name="specialTime" value="$!{promotionProduct.specialTime}" placeholder="specialTime"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=promotionProductUpdateForm]').submit()">保存更改</button>
+</div>

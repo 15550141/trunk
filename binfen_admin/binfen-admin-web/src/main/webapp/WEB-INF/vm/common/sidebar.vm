@@ -1,0 +1,41 @@
+<div class="sidebar-nav">
+    <form class="search form-inline">
+        <input type="text" placeholder="Search...">
+    </form>
+
+    <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>Dashboard</a>
+    <ul id="dashboard-menu" class="nav nav-list collapse in" val="01">
+        <li val="01"><a href="#springUrl('/admin/index')">Home</a></li>
+        <li val="02"><a href="#springUrl('/admin/users')">Sample List</a></li>
+        <li val="03"><a href="#springUrl('/admin/user')">Sample Item</a></li>
+        <li val="04"><a href="#springUrl('/admin/media')">Media</a></li>
+        <li val="05"><a href="#springUrl('/admin/calendar')">Calendar</a></li>
+
+    </ul>
+
+    <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>Account<span
+            class="label label-info">+3</span></a>
+    <ul id="accounts-menu" class="nav nav-list collapse" val="02">
+        <li val="01"><a href="#springUrl('/admin/signin')">Sign In</a></li>
+        <li val="02"><a href="#springUrl('/admin/signup')">Sign Up</a></li>
+        <li val="03"><a href="#springUrl('/admin/reset')">Reset Password</a></li>
+    </ul>
+
+    <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>Error
+        Pages <i class="icon-chevron-up"></i></a>
+    <ul id="error-menu" class="nav nav-list collapse" val="03">
+        <li val="01"><a href="#springUrl('/admin/403')">403 page</a></li>
+        <li val="02"><a href="#springUrl('/admin/404')">404 page</a></li>
+        <li val="03"><a href="#springUrl('/admin/500')">500 page</a></li>
+        <li val="04"><a href="#springUrl('/admin/503')">503 page</a></li>
+    </ul>
+
+    <a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-legal"></i>Legal</a>
+    <ul id="legal-menu" class="nav nav-list collapse" val="04">
+        <li val="01"><a href="#springUrl('/admin/privacy')">Privacy Policy</a></li>
+        <li val="02"><a href="#springUrl('/admin/terms')">Terms and Conditions</a></li>
+    </ul>
+
+    <a v href="#springUrl('/admin/help')" class="nav-header" val="05"><i class="icon-question-sign"></i>Help</a>
+    <a href="#springUrl('/admin/faq')" class="nav-header" val="06"><i class="icon-comment"></i>Faq</a>
+</div>

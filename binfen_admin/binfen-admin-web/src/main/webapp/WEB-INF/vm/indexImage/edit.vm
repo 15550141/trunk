@@ -1,0 +1,37 @@
+<form name="indexImageUpdateForm" action="/indexImage/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{indexImage.id}" placeholder="id" readonly/></td>
+			<td>imageUrl:</td>
+			<td><input type="text" name="imageUrl" value="$!{indexImage.imageUrl}" placeholder="imageUrl"/></td>
+		</tr>
+		<tr>
+			<td>imageName:</td>
+			<td><input type="text" name="imageName" value="$!{indexImage.imageName}" placeholder="imageName"/></td>
+			<td>imageWebUrl:</td>
+			<td><input type="text" name="imageWebUrl" value="$!{indexImage.imageWebUrl}" placeholder="imageWebUrl"/></td>
+		</tr>
+		<tr>
+			<td>sortNumber:</td>
+			<td><input type="text" name="sortNumber" value="$!{indexImage.sortNumber}" placeholder="sortNumber"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{indexImage.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>itemId:</td>
+			<td><input type="text" name="itemId" value="$!{indexImage.itemId}" placeholder="itemId"/></td>
+			<td>skuId:</td>
+			<td><input type="text" name="skuId" value="$!{indexImage.skuId}" placeholder="skuId"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{indexImage.modified}" placeholder="modified"/></td>
+			<td>yn:</td>
+			<td><input type="text" name="yn" value="$!{indexImage.yn}" placeholder="yn"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=indexImageUpdateForm]').submit()">保存更改</button>
+</div>

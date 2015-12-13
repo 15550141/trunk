@@ -1,0 +1,35 @@
+<form name="sellerEntryUpdateForm" action="/sellerEntry/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>paymentId:</td>
+			<td><input type="text" name="paymentId" value="$!{sellerEntry.paymentId}" placeholder="paymentId" readonly/></td>
+			<td>orderId:</td>
+			<td><input type="text" name="orderId" value="$!{sellerEntry.orderId}" placeholder="orderId"/></td>
+		</tr>
+		<tr>
+			<td>orderPayType:</td>
+			<td><input type="text" name="orderPayType" value="$!{sellerEntry.orderPayType}" placeholder="orderPayType"/></td>
+			<td>paymentMode:</td>
+			<td><input type="text" name="paymentMode" value="$!{sellerEntry.paymentMode}" placeholder="paymentMode"/></td>
+		</tr>
+		<tr>
+			<td>paymentMoney:</td>
+			<td><input type="text" name="paymentMoney" value="$!{sellerEntry.paymentMoney}" placeholder="paymentMoney"/></td>
+			<td>busiPartner:</td>
+			<td><input type="text" name="busiPartner" value="$!{sellerEntry.busiPartner}" placeholder="busiPartner"/></td>
+		</tr>
+		<tr>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{sellerEntry.created}" placeholder="created"/></td>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{sellerEntry.modified}" placeholder="modified"/></td>
+		</tr>
+		<tr>
+			<td>remark:</td>
+			<td colspan="3"><input type="text" name="remark" value="$!{sellerEntry.remark}" placeholder="remark"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=sellerEntryUpdateForm]').submit()">保存更改</button>
+</div>

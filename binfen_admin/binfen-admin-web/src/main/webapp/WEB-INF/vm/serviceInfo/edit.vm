@@ -1,0 +1,37 @@
+<form name="serviceInfoUpdateForm" action="/serviceInfo/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>serviceId:</td>
+			<td><input type="text" name="serviceId" value="$!{serviceInfo.serviceId}" placeholder="serviceId" readonly/></td>
+			<td>serviceName:</td>
+			<td><input type="text" name="serviceName" value="$!{serviceInfo.serviceName}" placeholder="serviceName"/></td>
+		</tr>
+		<tr>
+			<td>serviceTel:</td>
+			<td><input type="text" name="serviceTel" value="$!{serviceInfo.serviceTel}" placeholder="serviceTel"/></td>
+			<td>serviceImage:</td>
+			<td><input type="text" name="serviceImage" value="$!{serviceInfo.serviceImage}" placeholder="serviceImage"/></td>
+		</tr>
+		<tr>
+			<td>categoryId:</td>
+			<td><input type="text" name="categoryId" value="$!{serviceInfo.categoryId}" placeholder="categoryId"/></td>
+			<td>sortNumber:</td>
+			<td><input type="text" name="sortNumber" value="$!{serviceInfo.sortNumber}" placeholder="sortNumber"/></td>
+		</tr>
+		<tr>
+			<td>yn:</td>
+			<td><input type="text" name="yn" value="$!{serviceInfo.yn}" placeholder="yn"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{serviceInfo.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{serviceInfo.modified}" placeholder="modified"/></td>
+			<td>categoryId1:</td>
+			<td><input type="text" name="categoryId1" value="$!{serviceInfo.categoryId1}" placeholder="categoryId1"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=serviceInfoUpdateForm]').submit()">保存更改</button>
+</div>

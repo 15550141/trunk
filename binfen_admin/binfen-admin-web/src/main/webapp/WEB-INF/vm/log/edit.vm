@@ -1,0 +1,31 @@
+<form name="logUpdateForm" action="/log/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>logId:</td>
+			<td><input type="text" name="logId" value="$!{log.logId}" placeholder="logId"/></td>
+			<td>logType:</td>
+			<td><input type="text" name="logType" value="$!{log.logType}" placeholder="logType"/></td>
+		</tr>
+		<tr>
+			<td>operTxtId:</td>
+			<td><input type="text" name="operTxtId" value="$!{log.operTxtId}" placeholder="operTxtId"/></td>
+			<td>operatorId:</td>
+			<td><input type="text" name="operatorId" value="$!{log.operatorId}" placeholder="operatorId"/></td>
+		</tr>
+		<tr>
+			<td>operOldTxt:</td>
+			<td><input type="text" name="operOldTxt" value="$!{log.operOldTxt}" placeholder="operOldTxt"/></td>
+			<td>operNewTxt:</td>
+			<td><input type="text" name="operNewTxt" value="$!{log.operNewTxt}" placeholder="operNewTxt"/></td>
+		</tr>
+		<tr>
+			<td>operIp:</td>
+			<td><input type="text" name="operIp" value="$!{log.operIp}" placeholder="operIp"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{log.created}" placeholder="created"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=logUpdateForm]').submit()">保存更改</button>
+</div>

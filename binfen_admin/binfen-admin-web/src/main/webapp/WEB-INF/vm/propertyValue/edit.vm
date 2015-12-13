@@ -1,0 +1,31 @@
+<form name="propertyValueUpdateForm" action="/propertyValue/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>propertyValueId:</td>
+			<td><input type="text" name="propertyValueId" value="$!{propertyValue.propertyValueId}" placeholder="propertyValueId" readonly/></td>
+			<td>propertyId:</td>
+			<td><input type="text" name="propertyId" value="$!{propertyValue.propertyId}" placeholder="propertyId"/></td>
+		</tr>
+		<tr>
+			<td>propertyValueName:</td>
+			<td><input type="text" name="propertyValueName" value="$!{propertyValue.propertyValueName}" placeholder="propertyValueName"/></td>
+			<td>propertyValueType:</td>
+			<td><input type="text" name="propertyValueType" value="$!{propertyValue.propertyValueType}" placeholder="propertyValueType"/></td>
+		</tr>
+		<tr>
+			<td>sortNumber:</td>
+			<td><input type="text" name="sortNumber" value="$!{propertyValue.sortNumber}" placeholder="sortNumber"/></td>
+			<td>venderUserId:</td>
+			<td><input type="text" name="venderUserId" value="$!{propertyValue.venderUserId}" placeholder="venderUserId"/></td>
+		</tr>
+		<tr>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{propertyValue.created}" placeholder="created"/></td>
+			<td>modified:</td>
+			<td><input type="text" name="modified" value="$!{propertyValue.modified}" placeholder="modified"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=propertyValueUpdateForm]').submit()">保存更改</button>
+</div>

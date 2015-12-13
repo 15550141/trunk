@@ -1,0 +1,29 @@
+<form name="itemImageUpdateForm" action="/itemImage/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>id:</td>
+			<td><input type="text" name="id" value="$!{itemImage.id}" placeholder="id" readonly/></td>
+			<td>itemId:</td>
+			<td><input type="text" name="itemId" value="$!{itemImage.itemId}" placeholder="itemId"/></td>
+		</tr>
+		<tr>
+			<td>imageUrl:</td>
+			<td><input type="text" name="imageUrl" value="$!{itemImage.imageUrl}" placeholder="imageUrl"/></td>
+			<td>sortNumber:</td>
+			<td><input type="text" name="sortNumber" value="$!{itemImage.sortNumber}" placeholder="sortNumber"/></td>
+		</tr>
+		<tr>
+			<td>yn:</td>
+			<td><input type="text" name="yn" value="$!{itemImage.yn}" placeholder="yn"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{itemImage.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td colspan="3"><input type="text" name="modified" value="$!{itemImage.modified}" placeholder="modified"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=itemImageUpdateForm]').submit()">保存更改</button>
+</div>

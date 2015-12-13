@@ -1,0 +1,47 @@
+<form name="paymentInfoUpdateForm" action="/paymentInfo/save" method="POST" data-resultType="JSON">
+	<table class="table table-bordered table-striped formLayout m0">
+		<tr>
+			<td>paymentId:</td>
+			<td><input type="text" name="paymentId" value="$!{paymentInfo.paymentId}" placeholder="paymentId" readonly/></td>
+			<td>uid:</td>
+			<td><input type="text" name="uid" value="$!{paymentInfo.uid}" placeholder="uid"/></td>
+		</tr>
+		<tr>
+			<td>orderId:</td>
+			<td><input type="text" name="orderId" value="$!{paymentInfo.orderId}" placeholder="orderId"/></td>
+			<td>orderPayType:</td>
+			<td><input type="text" name="orderPayType" value="$!{paymentInfo.orderPayType}" placeholder="orderPayType"/></td>
+		</tr>
+		<tr>
+			<td>paymentInfoType:</td>
+			<td><input type="text" name="paymentInfoType" value="$!{paymentInfo.paymentInfoType}" placeholder="paymentInfoType"/></td>
+			<td>paymentInfoMessage:</td>
+			<td><input type="text" name="paymentInfoMessage" value="$!{paymentInfo.paymentInfoMessage}" placeholder="paymentInfoMessage"/></td>
+		</tr>
+		<tr>
+			<td>paymentMoney:</td>
+			<td><input type="text" name="paymentMoney" value="$!{paymentInfo.paymentMoney}" placeholder="paymentMoney"/></td>
+			<td>paymentNumber:</td>
+			<td><input type="text" name="paymentNumber" value="$!{paymentInfo.paymentNumber}" placeholder="paymentNumber"/></td>
+		</tr>
+		<tr>
+			<td>dtOrder:</td>
+			<td><input type="text" name="dtOrder" value="$!{paymentInfo.dtOrder}" placeholder="dtOrder"/></td>
+			<td>validOrder:</td>
+			<td><input type="text" name="validOrder" value="$!{paymentInfo.validOrder}" placeholder="validOrder"/></td>
+		</tr>
+		<tr>
+			<td>settleDate:</td>
+			<td><input type="text" name="settleDate" value="$!{paymentInfo.settleDate}" placeholder="settleDate"/></td>
+			<td>created:</td>
+			<td><input type="text" name="created" value="$!{paymentInfo.created}" placeholder="created"/></td>
+		</tr>
+		<tr>
+			<td>modified:</td>
+			<td colspan="3"><input type="text" name="modified" value="$!{paymentInfo.modified}" placeholder="modified"/></td>
+		</tr>
+	</table>
+</form>
+<div class="bottomBar">
+	<button class="btn btn-primary" onclick="$('form[name=paymentInfoUpdateForm]').submit()">保存更改</button>
+</div>

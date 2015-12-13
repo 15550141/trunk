@@ -1,0 +1,20 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>iD:</td>
+		<td>$!{itemDescription.iD}</td>
+		<td>iTEMID:</td>
+		<td>$!{itemDescription.iTEMID}</td>
+	</tr>
+	<tr>
+		<td>pCDescriptionINFO:</td>
+		<td>$!{itemDescription.pCDescriptionINFO}</td>
+		<td>aPPDescriptionINFO:</td>
+		<td>$!{itemDescription.aPPDescriptionINFO}</td>
+	</tr>
+	<tr>
+		<td>created:</td>
+		<td>$!{itemDescription.created}</td>
+		<td>modified:</td>
+		<td>$!{itemDescription.modified}</td>
+	</tr>
+</table>

@@ -1,0 +1,20 @@
+<table class="table table-bordered table-striped formLayout m0">
+	<tr>
+		<td>aDDRESSID:</td>
+		<td>$!{address.aDDRESSID}</td>
+		<td>aDDRESSNAME:</td>
+		<td>$!{address.aDDRESSNAME}</td>
+	</tr>
+	<tr>
+		<td>aDDRESSLEVEL:</td>
+		<td>$!{address.aDDRESSLEVEL}</td>
+		<td>aDDRESSFID:</td>
+		<td>$!{address.aDDRESSFID}</td>
+	</tr>
+	<tr>
+		<td>cREATED:</td>
+		<td>$!{address.cREATED}</td>
+		<td>mODIFIED:</td>
+		<td>$!{address.mODIFIED}</td>
+	</tr>
+</table>
