@@ -1,14 +1,10 @@
 package com.ec.api.web.controller;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.codec.digest.DigestUtils;
-import org.junit.runner.manipulation.Sortable;
+import com.ec.api.common.utils.BFConstants;
+import com.ec.api.common.utils.BFUtils;
+import com.ec.api.service.utils.WeixinUtils;
+import com.ec.api.service.utils.WxJsConfig;
+import com.ec.api.web.base.BaseController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -17,14 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ec.api.common.utils.BFConstants;
-import com.ec.api.common.utils.BFUtils;
-import com.ec.api.domain.Address;
-import com.ec.api.service.AddressService;
-import com.ec.api.service.result.Result;
-import com.ec.api.service.utils.WeixinUtils;
-import com.ec.api.service.utils.WxJsConfig;
-import com.ec.api.web.base.BaseController;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 
 @Controller
 @RequestMapping("/weixin")

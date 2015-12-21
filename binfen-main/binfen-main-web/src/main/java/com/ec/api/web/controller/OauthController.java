@@ -1,41 +1,25 @@
 package com.ec.api.web.controller;
 
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.codec.digest.DigestUtils;
+import com.ec.api.common.utils.BFConstants;
+import com.ec.api.common.utils.CookieUtils;
+import com.ec.api.common.utils.DESUtil;
+import com.ec.api.domain.UserInfo;
+import com.ec.api.service.AccessTokenService;
+import com.ec.api.web.base.BaseController;
 import org.apache.commons.lang.StringUtils;
-import org.junit.runner.manipulation.Sortable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ec.api.common.utils.BFConstants;
-import com.ec.api.common.utils.BFUtils;
-import com.ec.api.common.utils.CookieUtils;
-import com.ec.api.common.utils.DESUtil;
-import com.ec.api.common.utils.HttpUtils;
-import com.ec.api.common.utils.JsonUtils;
-import com.ec.api.domain.Address;
-import com.ec.api.domain.UserInfo;
-import com.ec.api.service.AccessTokenService;
-import com.ec.api.service.AddressService;
-import com.ec.api.service.result.Result;
-import com.ec.api.service.utils.EcUtils;
-import com.ec.api.web.base.BaseController;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 @Controller
 @RequestMapping("/oauth")
